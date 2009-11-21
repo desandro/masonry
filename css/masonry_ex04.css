@@ -1,0 +1,89 @@
+body { 
+  margin: 0; 
+  font: 12px 'Helvetica Neue', Arial, sans-serif;
+  background: #CCC;
+  padding: 20px;
+    color: #222;
+}
+
+#nav {
+  list-style: none;
+  margin: 0 10px 10px;;
+  padding: 0 0 10px;
+  border-bottom: 1px dotted #CCC;
+  height: 20px;
+}
+
+#nav li {
+  float: left;
+  margin-right: 20px;
+}
+
+.wrap {
+  overflow: auto; /* clearing floats */
+}
+
+.wrap {
+    background: #111;
+	border: 0px solid #456;
+  padding: 1.0em;
+  overflow: auto; /* clearing floats */
+}
+
+#secondary {
+}
+
+.box {
+  margin: 5px;
+  padding: 5px;
+  display: inline-block; /* IE6 fix */
+  background: #444;
+    color: #FFF;
+    -moz-border-radius: 7px;
+    -moz-border-radius-topright: 0;
+    -webkit-border-radius: 10px;
+    -webkit-border-top-right-radius: 0;
+    border-radius: 10px;
+    border-top-right-radius: 0;
+  font-size: 11px;
+
+}
+
+.col1 { width: 80px; }
+.col2 { width: 180px; }
+.col3 { width: 280px; }
+.col4 { width: 380px; }
+.col5 { width: 480px; }
+
+
+h1, h2, h3 {
+  font-family:"HelveticaNeue-UltraLight", "Helvetica Neue", Arial, sans-serif;
+  font-weight:100;
+}
+
+h1 {
+  font-size: 36px;
+  margin: 0 10px;
+}
+
+#instruction {
+  margin: 4px;
+  width: 428px;
+}
+#instruction p {
+  line-height: 1.4em;
+  font-size: 12.5px;
+}
+
+pre {
+  background: #FFB;
+  padding: 10px;
+  border: 1px solid #DDA;
+}
+
+#footer {
+  clear: both;
+  margin: 20px 0;
+  border-top: 1px dotted #CCC;
+  line-height: 30px;
+}
