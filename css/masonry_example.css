@@ -6,7 +6,7 @@
 body { 
     margin: 0; 
     font: 12px 'Helvetica Neue', Arial, sans-serif;
-    background: #E8E5E2;
+    background: #D8D5D2;
     padding: 20px;
     color: #222;
 }
@@ -46,12 +46,9 @@ body {
     margin: 5px;
     padding: 5px;
     background: #D8D5D2;
-    -moz-border-radius: 6px;
-    -moz-border-radius-topleft: 0;
-    -webkit-border-radius: 6px;
-    -webkit-border-top-left-radius: 0;
-    border-radius: 6px;
-    border-top-left-radius: 0;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-top-radius: 5px;
     font-size: 11px;
     float: left;
 }
@@ -100,6 +97,8 @@ pre {
     padding: 10px;
     border: 1px solid #DDA;
 }
+
+ul, ol { padding-left: 1.2em;}
 
 .hidden {
     display: none;
