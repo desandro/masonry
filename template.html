@@ -7,9 +7,17 @@
 
     <link rel="stylesheet" type="text/css" href="css/masonry_example.css" media="screen" charset="utf-8"  />    
 
+    <style type="text/css" media="screen">
+        #primary {
+            margin-bottom: 20px;
+        }
+    </style>
+
+
     <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
     <script type="text/javascript" src="js/jquery.masonry.js"></script>
     <script type="text/javascript" src="js/rando_lorem_text.js"></script>
+    
 </head>
 <body>
     
@@ -387,8 +395,14 @@
         $(function(){
 
 
-            $('#primary').masonry({columnWidth: 100, itemSelector: '.box' });
-                $('#secondary').masonry({singleMode: true, itemSelector: '.box' });
+            $('#primary').masonry({
+                columnWidth: 100, 
+                itemSelector: '.box' 
+            });
+            $('#secondary').masonry({
+                singleMode: true, 
+                itemSelector: '.box' 
+            });
 
 
             function newContent( varCol ) {
@@ -399,11 +413,8 @@
                     var newDiv = '<div class="box ' + colClass + '">' + randoLoremText() + '</div>';
                     elements += newDiv;
                 }
-
                 var newContainer = $('<div class="new_content" />').append( elements );
-
                 return newContainer;
-
             }
 
 
@@ -411,14 +422,18 @@
                 var moreContent = newContent(3);
 
                 $('#primary').append( moreContent )
-                    .masonry({ appendedContent: moreContent });
+                    .masonry({ appendedContent: moreContent }
+                        , function() { $(this).css({background: '#222', color: '#EEE' })}    
+                    );
             });
 
             $('#append_secondary').click(function() {
                 var moreContent = newContent(1);
 
                 $('#secondary').append( moreContent )
-                    .masonry({ appendedContent: moreContent });
+                    .masonry({ appendedContent: moreContent }
+                        , function() { $(this).css({background: '#222', color: '#EEE' })}
+                    );
             });
 
 

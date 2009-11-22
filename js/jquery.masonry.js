@@ -152,9 +152,10 @@
         }
 
 
-        // let's begin
-        // IN A WORLD...
-
+        /*
+        *  let's begin
+        *  IN A WORLD...
+        */
         return this.each(function() {  
 
             var wall = $(this);
@@ -174,13 +175,7 @@
                         );  
 
             // should we save these options for next time?
-            // props.options = opts.saveOptions ? opts : previousOptions;
-            // 
-            if ( opts.saveOptions  ) {
-                props.options = opts;
-            } else {
-                props.options = previousOptions;
-            }
+            props.options = opts.saveOptions ? opts : previousOptions;
 
             //picked up from Paul Irish
             callback = callback || function(){};
