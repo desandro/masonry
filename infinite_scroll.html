@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Infinite Scroll</title>
+
+    <link rel="stylesheet" type="text/css" href="css/masonry_example.css" media="screen" charset="utf-8"  />    
+
+    <style type="text/css" media="screen">
+        /* Infinite Scroll loader 
+        */
+        #infscr-loading { 
+            z-index: 5000;
+            position: fixed;
+            left: 40%;
+            bottom: 40px;
+            width: 200px;
+            height: 100px;
+            padding: 10px;
+            background: #000; 
+            opacity: 0.8;
+            color: #FFF;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+        }
+
+    </style>
+
+    <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.masonry.js"></script>
+    <script type="text/javascript" src="js/jquery.infinitescroll.js"></script>
+    <script type="text/javascript" src="js/rando_lorem_text.js"></script>
+
+
+
+</head>
+<body>
+    
+    <ol id="nav">    
+        <li><a href=".">Parent Directory</a></li>
+    </ol>
+
+
+    <h1>Infinite Scroll</h1>    
+
+
+
+
+
+    <div id="primary" class="wrap">
+    
+        <div class="box col3">
+            <p>
+                <a href="http://www.flickr.com/photos/nemoorange/3318887645/" title="Clarendon Metro by nemoorange, on Flickr"><img src="http://farm4.static.flickr.com/3619/3318887645_1f33364338.jpg" alt="Clarendon Metro" width="280" height="186" /></a>
+            </p>
+        </div>
+
+        <div class="box col1">
+            <p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. </p>
+        </div>
+
+        <div class="box col2">
+            <p>
+                <a href="http://www.flickr.com/photos/nemoorange/3319714470/" title="Whitlow's on Wilson by nemoorange, on Flickr"><img src="http://farm4.static.flickr.com/3008/3319714470_c05a5cb5a8_m.jpg" alt="Whitlow's on Wilson" width="180" height="120" /></a>
+            </p>
+        </div>
+
+    
+        <div class="box col1">
+            <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula    </p>
+        </div>
+
+        <div class="box col1">
+            <h2>Sit amet mi ullamcorper vehicula</h2>
+        </div>
+        
+        <div class="box col1">
+            <p>adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus.</p>
+        </div>
+
+        <div class="box col5 hidden">
+            
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            
+            <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+            
+        </div>
+
+        <div class="box col5">
+            
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            
+            <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+            
+        </div>
+
+        <div class="box col3">
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p> 
+            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p> 
+            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            
+        </div>
+
+        <div class="box col2">
+            <p>Sit amet mi ullamcorper vehicula</p>
+        </div>
+    
+        <div class="box col1">
+            <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
+        </div>
+    
+        <div class="box col2">
+            <p>Ut condimentum mi vel tellus. Suspendisse laoreet. Fusce ut est sed dolor gravida convallis. Morbi vitae ante. Vivamus ultrices luctus nunc. Suspendisse et dolor. Etiam dignissim. Proin malesuada adipiscing lacus. Donec metus. Curabitur gravida.</p>
+            <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
+        </div>
+        
+        <div class="box col3">
+
+            <p>Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.</p>
+        </div>
+
+        <div class="box col1">
+            <p>Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis.</p>
+        </div>
+
+        <div>
+            <div class="box col2">
+                <p>Vestibulum volutpat, lacus a ultrices sagittis,</p>
+                <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula    </p>
+            </div>
+
+            <div class="box col2">
+                <p>Sit amet mi ullamcorper vehicula</p>
+            </div>
+
+            <div class="box col1">
+                <p>Morbi purus libero</p>
+            </div>
+
+            <div class="box col1">
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.</p>
+            </div>
+
+            <div class="box col3">
+                <p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
+                <p>Vestibulum volutpat, lacus a ultrices sagittis,</p>
+                <ul>
+                    <li>Lacus a ultrices sagittis</li>
+                    <li>Democratis</li>
+                    <li>Plummus</li>
+                </ul>
+            </div>
+        
+    
+            <div class="box col1">
+                <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula    </p>
+            </div>
+        
+            <div class="box col1">
+                <p>Sit amet mi ullamcorper vehicula</p>
+            </div>
+
+            <div class="box col1">
+                <h2>Morbi purus libero</h2>
+            </div>
+
+    
+            <div class="box col2">
+                <p>Ut condimentum mi vel tellus. Suspendisse laoreet. Fusce ut est sed dolor gravida convallis. Morbi vitae ante. Vivamus ultrices luctus nunc. Suspendisse et dolor. Etiam dignissim. Proin malesuada adipiscing lacus. Donec metus. Curabitur gravida.</p>
+                <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
+            </div>
+        
+            <div class="box col1">
+                <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula</p>
+            </div>
+
+            <div class="box col3">
+                <p>Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis.</p>
+                <p>Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.</p>
+                <p>Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.</p>
+            </div>
+
+
+            <div class="box col1">
+                <p>adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus.</p>
+            </div>
+
+            <div class="box col4">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+
+                
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            </div>
+
+
+            <div class="box col2">
+                <p>Sit amet mi ullamcorper vehicula</p>
+            </div>
+    
+            <div class="box col1">
+                <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
+            </div>
+
+            <div class="box col1">
+                <h2>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula    </h2>
+            </div>
+
+            <div class="box col2">
+                <p>Ut convallis, sem sit amet interdum consectetuer, odio augue aliquam leo, nec dapibus tortor nibh sed augue.</p>
+                <p>Ut condimentum mi vel tellus. Suspendisse laoreet. Fusce ut est sed dolor gravida convallis. Morbi vitae ante. Vivamus ultrices luctus nunc. Suspendisse et dolor. Etiam dignissim. Proin malesuada adipiscing lacus. Donec metus. Curabitur gravida.</p>
+            </div>
+
+            <div class="box col1">
+
+                <ul>
+                    <li>Lacus a ultrices sagittis</li>
+                    <li>Democratis</li>
+                    <li>Plummus</li>
+                </ul>
+            </div>
+
+            <div class="box col3">
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.</p>
+                <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula    </p>
+                <p>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus.</p>
+            </div>
+        
+            <div class="box col2">
+                <p>adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus.</p>
+                <p>Ut convallis, sem sit amet interdum consectetuer, odio augue aliquam leo, nec dapibus tortor nibh sed augue.  Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.</p>
+            </div>
+    
+    
+            <div class="box col1">
+                <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
+            </div>
+        
+            <div class="box col1">
+                <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula</p>
+            </div>
+
+            <div class="box col3">
+                <p>Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis.</p>
+                <p>Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.</p>
+            </div>
+
+
+        </div>
+
+        <div class="box col1">
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.</p>
+        </div>
+
+        <div class="box col1">
+            <p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. </p>
+        </div>
+    
+        <div class="box col1">
+            <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula    </p>
+        </div>
+
+        <div class="box col2">
+            <p>Vestibulum volutpat, lacus a ultrices sagittis,</p>
+            <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula    </p>
+            <p>Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis.</p>
+        </div>
+    
+    </div> <!-- /.wrap -->
+
+    <p id="navigation">
+        <a href="pages/2.html">Page 2</a>
+    </p>
+
+    <p id="footer">
+
+
+        <button id="append_primary">Append primary</button>
+
+        jQuery Masonry by <a href="http://desandro.com/">David DeSandro</a>
+    </p>
+
+
+    <script type="text/javascript">
+        $(function(){
+
+
+            $('#primary').masonry({ 
+                columnWidth: 100, 
+                itemSelector: '.box:visible' 
+            });
+
+            $('#primary').infinitescroll({
+                navSelector  : "#navigation",    // selector for the paged navigation 
+                nextSelector : "#navigation a",    // selector for the NEXT link (to page 2)
+                itemSelector : ".box",       // selector for all items you'll retrieve
+                loadingImg : 'img/loader.gif',
+                debug: false,
+                errorCallback: function() { $('#infscr-loading').animate({opacity: .8},2000).fadeOut('normal');     // fade out the error message after 2 seconds
+
+                    }
+            },
+                // we call masonry as a callback.  Infinite Scroll methods supplies
+                // the added content as context for the callback
+                function() { $('#primary').masonry({ appendedContent: $(this) }); }
+            );
+
+
+            function makeNewBoxes( varCol ) {
+                var elements = '';
+                for (i=0; i < Math.random()*3; i++ ){
+                    var colClass = 'col' +  Math.ceil( Math.random()*varCol );
+                    var newDiv = '<div class="box ' + colClass + '">' + randoLoremText() + '<\/div>';
+                    elements += newDiv;
+                }
+                var newContainer = $('<div />').addClass('new_content').append( elements );
+                return newContainer;
+            }
+
+
+            $('#append_primary').click(function() {
+                var extraBoxes = makeNewBoxes(3);
+
+                $('#primary').append( extraBoxes )
+                    .masonry({  appendedContent: extraBoxes },
+                        // using the callback to change the style of the box
+                        function(){ this.css({background: '#222', color: 'white' }); }
+                    )
+                ;
+            });
+
+
+        });
+    </script>
+
+
+
+</body>
+</html>
+
+
+
