@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Flickr 03</title>
+    <title>jQuery Masonry &rsaquo; Basic</title>
 
     <link rel="stylesheet" type="text/css" href="css/masonry_example.css" media="screen" charset="utf-8"  />    
 
@@ -22,17 +22,14 @@
     </ol>
 
 
-    <h1>Flickr 03</h1>    
-
-
-
+    <h1>jQuery Masonry &rsaquo; Basic</h1>    
 
 
     <div id="primary" class="wrap">
     
         <div class="box col3">
             <p>
-                <a href="http://www.flickr.com/photos/nemoorange/3318887645/" title="Clarendon Metro by nemoorange, on Flickr"><img src="http://farm4.static.flickr.com/3619/3318887645_1f33364338.jpg" alt="Clarendon Metro" /></a>
+                <a href="http://www.flickr.com/photos/nemoorange/3318887645/" title="Clarendon Metro by nemoorange, on Flickr"><img src="http://farm4.static.flickr.com/3619/3318887645_1f33364338.jpg" alt="Clarendon Metro" width="280" height="186" /></a>
             </p>
         </div>
 
@@ -42,7 +39,7 @@
 
         <div class="box col2">
             <p>
-                <a href="http://www.flickr.com/photos/nemoorange/3319714470/" title="Whitlow's on Wilson by nemoorange, on Flickr"><img src="http://farm4.static.flickr.com/3008/3319714470_c05a5cb5a8_m.jpg" alt="Whitlow's on Wilson" /></a>
+                <a href="http://www.flickr.com/photos/nemoorange/3319714470/" title="Whitlow's on Wilson by nemoorange, on Flickr"><img src="http://farm4.static.flickr.com/3008/3319714470_c05a5cb5a8_m.jpg" alt="Whitlow's on Wilson" width="180" height="120" /></a>
             </p>
         </div>
 
@@ -59,10 +56,10 @@
             <p>adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus.</p>
         </div>
 
-        <div class="box col5">
+        <div class="box col5" id="clarendon_ballroom">
             
             <p>
-                <a href="http://www.flickr.com/photos/nemoorange/3319714402/" title="Clarendon Ballroom by nemoorange, on Flickr"><img src="http://farm4.static.flickr.com/3297/3319714402_82f3732f42.jpg" alt="Clarendon Ballroom" /></a>
+                <a href="http://www.flickr.com/photos/nemoorange/3319714402/" title="Clarendon Ballroom by nemoorange, on Flickr"><img src="http://farm4.static.flickr.com/3297/3319714402_82f3732f42.jpg" alt="Clarendon Ballroom" width="480" height="320" /></a>
             </p>
             
         </div>
@@ -88,8 +85,8 @@
             <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
         </div>
         
-        <div class="box col3">
-            <p><a href="http://www.flickr.com/photos/nemoorange/3318887485/" title="Silver Diner by nemoorange, on Flickr"><img src="http://farm4.static.flickr.com/3645/3318887485_a9b5b5533f.jpg" alt="Silver Diner" /></a>
+        <div class="box col3" id="silver_diner">
+            <p><a href="http://www.flickr.com/photos/nemoorange/3318887485/" title="Silver Diner by nemoorange, on Flickr"><img src="http://farm4.static.flickr.com/3645/3318887485_a9b5b5533f.jpg" alt="Silver Diner"width="280" height="186"   /></a>
             </p>
 
 
@@ -128,9 +125,9 @@
                 </ul>
             </div>
         
-            <div class="box col4">
+            <div class="box col4" id="benz">
                 <p>
-                    <a href="http://www.flickr.com/photos/nemoorange/3319714118/" title="Mercedes Benz Jukebox by nemoorange, on Flickr"><img src="http://farm4.static.flickr.com/3295/3319714118_1f5dd65a29.jpg" alt="Mercedes Benz Jukebox" /></a>
+                    <a href="http://www.flickr.com/photos/nemoorange/3319714118/" title="Mercedes Benz Jukebox by nemoorange, on Flickr"><img src="http://farm4.static.flickr.com/3295/3319714118_1f5dd65a29.jpg" alt="Mercedes Benz Jukebox" width="380" height="253" /></a>
                 </p>
             </div>
         
@@ -167,12 +164,12 @@
                 <p>adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus.</p>
             </div>
 
-            <div class="box col4">
+            <div class="box col4" id="arts_center">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 
                 
                 <p>
-                    <a href="http://www.flickr.com/photos/nemoorange/3318887337/" title="Arlington Arts Center by nemoorange, on Flickr"><img src="http://farm4.static.flickr.com/3657/3318887337_8558695d4f.jpg" alt="Arlington Arts Center" /></a>
+                    <a href="http://www.flickr.com/photos/nemoorange/3318887337/" title="Arlington Arts Center by nemoorange, on Flickr"><img src="http://farm4.static.flickr.com/3657/3318887337_8558695d4f.jpg" alt="Arlington Arts Center" width="380" height="253" /></a>
                 </p>
 
                 <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
@@ -259,21 +256,17 @@
 
 
         <button id="append_primary">Append primary</button>
-        <button id="append_secondary">Append secondary</button>
 
         jQuery Masonry by <a href="http://desandro.com/">David DeSandro</a>
     </p>
 
     <script type="text/javascript">
-
-        $(window).load(function(){
-            $('#primary').masonry({columnWidth: 100, itemSelector: '.box' });             
-        });
-
-
         $(function(){
-
-
+            
+            $('#primary').masonry({
+                columnWidth: 100, 
+                itemSelector: '.box' 
+            });
 
             function newContent( varCol ) {
                 var elements = '';
@@ -293,12 +286,28 @@
                 var moreContent = newContent(3);
 
                 $('#primary').append( moreContent )
-                    .masonry({ appendedContent: moreContent });
+                    .masonry({ appendedContent: moreContent },
+                        // using the callback to change the style of the box
+                        function(){ this.css({background: '#222', color: 'white' }); }
+                    )
+                ;
             });
 
 
 
         });
+
+
+        /*
+        *  Resolve any incoming anchor links
+        */
+        $(window).load(function(){
+            if ( window.location.hash ) {
+                var destination = $( window.location.hash ).offset().top;
+                $("html:not(:animated),body:not(:animated)").scrollTop( destination );
+            }
+        });
+
     </script>
 
 
