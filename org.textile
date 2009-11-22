@@ -1,0 +1,21 @@
+Intro
+    
+    Examples
+        CSS floats
+        jQuery masonry applied
+
+    Options
+        singleMode: false,
+        columnWidth: undefined,
+        itemSelector: undefined,
+        resizeable: true,
+        appendedContent: undefined,
+        saveOptions: true
+
+
+    Images
+    Anchor Links
+
+Basic Example - demostrates singleMode    
+Infinite Scroll - demonstrates how to set up Masonry with Infinite Scroll
+
