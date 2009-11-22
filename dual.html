@@ -434,9 +434,15 @@
 	<script type="text/javascript">
 		$(function(){
 
-
-			$('#primary').masonry({columnWidth: 100, itemSelector: '.box', resizeable: false });
-			$('#secondary').masonry({ singleMode: true, itemSelector: '.box_alt' });
+			$('#primary').masonry({
+			    columnWidth: 100, 
+			    itemSelector: '.box', 
+                // resizeable: false 
+			});
+			$('#secondary').masonry({ 
+			    singleMode: true, 
+			    itemSelector: '.box_alt' 
+			});
 
 
 			function makeNewBoxes( varCol ) {
@@ -456,9 +462,8 @@
 
 				$('#primary').append( moreContent )
 					.masonry({  appendedContent: moreContent },
-						function(){
-							this.css({background: '#222', color: 'white' });
-						}
+                        // using the callback to change the style of the box
+						function(){	this.css({background: '#222', color: 'white' }); }
 					);
 			});
 
@@ -473,9 +478,8 @@
 
 				$('#secondary').append( newContainer )
 					.masonry({  appendedContent: newContainer },
-						function(){
-							this.css({background: '#EEE', color: '#333' });
-						}
+                        // using the callback to change the style of the box
+						function(){	this.css({background: '#EEE', color: '#333' });	}
 					);
 			});
 
