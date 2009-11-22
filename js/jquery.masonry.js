@@ -141,7 +141,7 @@
 			//		or anyone else's crazy jquery fun
 			wall.data('masonry', props );
 
-            debug(opts.singleMode);
+            // debug(opts.singleMode);
 
 		} //  /masonryArrange function
 
