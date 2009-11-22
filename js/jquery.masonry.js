@@ -131,10 +131,8 @@
 			props.wallH = 0;
 			for ( i=0; i < props.colCount; i++ ) {
 				props.wallH = Math.max( props.wallH, props.colY[i] );
-				debug( wall.attr('id'), i, props.colY[i]  )
 			}
 			wall.height( props.wallH - props.posTop );
-			// debug('props.wallH ' + props.wallH )
 
 			// provide props.bricks as context for the callback
 			callback.call( props.bricks );
@@ -143,6 +141,7 @@
 			//		or anyone else's crazy jquery fun
 			wall.data('masonry', props );
 
+            debug(opts.singleMode);
 
 		} //  /masonryArrange function
 
