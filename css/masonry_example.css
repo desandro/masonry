@@ -93,16 +93,31 @@ a img {
     border: none;
 }
 
-pre {
-    background: #FFB;
-    padding: 10px;
-    border: 1px solid #DDA;
+pre, code {
+    font-family: Monaco, monospace;
 }
+
+pre {
+    background: #111;
+    padding: 10px;
+    border: 1px solid #EEE;
+    color: #F5F5F5;
+}
+
+pre .string { color: #3C3;}
+pre .constant { color: #66F;}
+pre .property { color: #A00;}
+pre .keyword { color: #FC8;}
+pre .comment { color: #888;}
 
 ul, ol { padding-left: 1.3em;}
 
 .hidden {
     display: none;
+}
+
+#copy {
+    width: 600px;
 }
 
 #footer {

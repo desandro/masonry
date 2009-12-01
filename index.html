@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>jQuery Masonry - Index</title>
+
+	<link rel="stylesheet" type="text/css" href="css/masonry_example.css" media="screen" charset="utf-8"  />	
+
+	<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery.masonry.js"></script>
+
+
+</head>
+<body>
+
+	<ol id="nav">
+		<li><a href=".">Parent Directory</a></li>
+	</ol>
+
+	<h1>jQuery Masonry - Index</h1>	
+
+
+	<div id="copy">
+
+        <h2>All options</h2>
+
+<pre><code>$(<span class="string">'#wrapper'</span>).masonry({
+
+    singleMode: <span class="constant">false</span>,
+    <span class="comment">// disables measuring the width of each floated element.
+    // Set to true if you the floated elements have the same width.
+    // default: false</span>
+
+    columnWidth: <span class="constant">240</span>,
+    <span class="comment">// width in pixels of 1 column of your grid
+    // if unset, it defaults to the outer width of the first floated element</span>
+
+    itemSelector: <span class="string">'.box:visible'</span>,
+    <span class="comment">// additional selector to specify which elements inside
+    // the wrapping element will be rearranged by masonry</span>
+
+    resizeable: <span class="constant">true</span>,
+    <span class="comment">// binds a Masonry call to window resizing
+    // default: true</span>
+
+    appendedContent: $(<span class="string">'.new_content'</span>),
+    <span class="comment">// additional container selector for appended content
+    // useful for Infinite Scroll integration</span>
+
+    saveOptions: <span class="constant">true</span>,
+    <span class="comment">// default: true
+    // by default, Masonry will use the options from previous Masonry
+    // calls, so you only have to enter in options once</span>
+
+},  <span class="keyword">function</span>() {}
+    <span class="comment">// optional callback
+    // 'this' will refer to the applicable elements masonry just rearranged</span>
+
+);</code></pre>
+
+	</div>
+
+
+
+	<p id="footer">
+
+		jQuery Masonry by <a href="http://desandro.com/">David DeSandro</a>
+	</p>
+
+	<script type="text/javascript">
+		$(function(){
+			$('#magazine').masonry({columnWidth: 240})
+		})
+	</script>
+
+
+
+</body>
+</html>
+
+
+
