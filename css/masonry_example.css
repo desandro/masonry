@@ -1,6 +1,6 @@
 * {
     margin: 0;
-    padding 0;
+    padding: 0;
 }
 
 body { 
@@ -76,7 +76,7 @@ h1 {
     margin: 0 10px;
 }
 
-h1, h2, h3, p, ul, ol {
+h1, h2, h3, p, ul, ol, pre {
     margin-bottom: 1.0em;
 }
 

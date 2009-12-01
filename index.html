@@ -14,14 +14,28 @@
 </head>
 <body>
 
-	<ol id="nav">
-		<li><a href=".">Parent Directory</a></li>
-	</ol>
+    <ol id="nav">
+        <li><a href=".">Index</a></li>
+        <li><a href="basic.html">Basic Examples</a></li>
+        <li><a href="magazine.html">Magazine Example</a></li>
+        <li><a href="infinite_scroll.html">Infinite Scroll Example</a></li>
+    </ol>
 
 	<h1>jQuery Masonry - Index</h1>	
 
 
 	<div id="copy">
+
+        <h2>Minimum recommended configuration</h2>
+
+        <p>With elements that vary in width</p>
+
+        <pre><code>$(<span class="string">'#wrapper'</span>).masonry({ columnWidth: <span class="constant">200</span> });</code></pre>
+
+        <p>For layouts with elements that have the same width</p>
+
+        <pre><code>$(<span class="string">'#wrapper'</span>).masonry({ singleMode: <span class="constant">true</span> });</code></pre>
+
 
         <h2>All options</h2>
 
