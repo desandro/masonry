@@ -1,8 +1,4 @@
 Intro
-    
-    Examples
-        CSS floats
-        jQuery masonry applied
 
     Options
         singleMode: false,
@@ -12,10 +8,60 @@ Intro
         appendedContent: undefined,
         saveOptions: true
 
+    Callback
 
     Images
     Anchor Links
+    Infinite Scroll & appending content.
 
-Basic Example - demostrates singleMode    
+Basic Example - demostrates normal jquerY Masonry, and single mode.   
 Infinite Scroll - demonstrates how to set up Masonry with Infinite Scroll
+Magazine - more akin to typical use cases
+
+
+
+h2. Minimum recommended configuration
+
+With elements that vary in width
+
+$('#wrapper').masonry({columnWidth: 200});
+
+For layouts with elements that have the same width
+
+$('#wrapper').masonry({singleMode: true});
+
+h2. All options
+
+$('#wrapper').masonry({
+    singleMode: false,
+    // disables measuring the width of each floated element.
+    // Set to true if you the floated elements have the same width.
+    // default: false
+    
+    columnWidth: 240,
+    // width in pixels of 1 column of your grid
+    // if unset, it defaults to the outer width of the first floated element
+    
+    itemSelector: '.box:visible',
+    // additional selector to specify which elements inside
+    // the wrapping element will be rearranged by masonry
+    
+    resizeable: true,
+    // binds a Masonry call to window resizing
+    // default: true
+
+    appendedContent: $('.new_content'),
+    // additional container selector for appended content
+    // useful for Infinite Scroll integration
+
+    saveOptions: true,
+    // default: true
+    // by default, Masonry will use the options from previous Masonry
+    // calls, so you only have to enter in options once
+
+},  function() {}
+    // optional callback
+    // 'this' will refer to the applicable elements masonry just rearranged
+
+);
 
