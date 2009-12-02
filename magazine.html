@@ -7,49 +7,6 @@
 
 	<link rel="stylesheet" type="text/css" href="css/masonry_example.css" media="screen" charset="utf-8"  />	
 
-	<style type="text/css" media="screen">
-		/* Magazine page */
-
-		#magazine {
-			background: #FFF;
-			padding: 1.0em;
-		}
-
-		#magazine:after {
-			content: ".";
-			display: block;
-			height: 0;
-			clear: both;
-			visibility: hidden;
-		}
-
-		#magazine .story {
-			margin: 10px;
-			border-top: 4px solid #DCB;
-			padding-top: 10px;
-			background: #FFF;
-			float: left;
-		}
-
-		#magazine h1, h2, h3 { font-weight: bold;}
-
-		#magazine .col1 { width: 220px;}
-		#magazine .col2 { width: 460px;}
-		#magazine .col3 { width: 700px;}
-
-		#magazine .col1 img,
-		#magazine .col2 img,
-		#magazine .col3 img {
-		    max-width: none;
-		}
-
-		blockquote {
-			margin: 0;
-			font: italic 18px Georgia, serif;
-		}
-
-	</style>
-
 	<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 	<script type="text/javascript" src="js/jquery.masonry.js"></script>
 
@@ -57,22 +14,24 @@
 </head>
 <body>
 
-	<ol id="nav">
-		<li><a href=".">Parent Directory</a></li>
-	</ol>
+    <ol id="nav">
+        <li><a href=".">Index</a></li>
+        <li><a href="basic.html">Basic Examples</a></li>
+        <li><a href="magazine.html">Magazine Example</a></li>
+        <li><a href="infinite_scroll.html">Infinite Scroll Example</a></li>
+    </ol>
 
 	<h1>Magazine magazine</h1>	
 
 
 	<div id="copy">
-		<p>I've put together this magazine of what your client is probably looking for.  There are three sizes used:
+		<p>There are three sizes used:</p>
 			<ul>
 				<li><code>.col1</code> : 220px</li>
 				<li><code>.col2</code> : 460px</li>
 				<li><code>.col3</code> : 700px</li>
 			</ul>
-		With 10px of margin on right and left sides that makes for a grid of 240px.
-		</p>
+		<p>With 10px of margin on right and left sides that makes for a grid of 240px.</p>
 		
 		<p>Setting up masonry is easy for this magazine. The only option we need is to specify the column width.  Window resizing is set up in the defaults.</p>
 		
@@ -80,10 +39,7 @@
 	$('#magazine').masonry({columnWidth: 240})
 })</code></pre>
 
-		<p>Like I said the hardest part is going to be reducing the gaps.  This is hard to do with storyes of varying sizes.  After looking at Space Collective gallery, I believe they acheived the effect by specifically placing certain sized storyes in certain columns.  When you size it to three columns, all 1-column storyes are in the left column, and 2-column storyes are in the right.  When you size it 4 columns wide, its 1 - 2 - 1.  Only when you size it to 5 columns does it mix it up.</p>
-		
-		<p>If I were to try to reproduce this effect, I would need a lot more time and that's not the case for this project.  But I don't think having gaps is necessarily a bad thing. I've styled the storyes so there's no outlines.  Where there are gaps, it's not that distracting.  If anything, it helps separate one section from another.</p>
-		
+
 		<p>Please note that all videos and images have height specified inline</p>
 		
 	</div>

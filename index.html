@@ -23,58 +23,229 @@
 
 	<h1>jQuery Masonry - Index</h1>	
 
+    <div class="copy">
+        <p>Think of Masonry as the flip side of CSS floats. Whereas floating arranges elements horizontally then vertically, Masonry arranges elements vertically then horizontally. The <a href="#comparison">result</a> minimizes vertical gaps between elements of varying height, just like a mason fitting stones in a wall.</p>
+        
+    </div><!-- .copy -->
 
-	<div id="copy">
+    <div id="comparison">
+        <h2>Comparison Example</h2>
+        <div>
+            <h3>CSS Floats</h3>
+            <div id="primary" class="wrap">
+                <div class="box col1">
+                    <h5>1</h5>
+                    <p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris. </p>
+                </div>
+
+                <div class="box col2">
+                    <h5>2</h5>
+                    <p>Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit.</p>
+                </div>
+
+                <div class="box col1">
+                    <h5>3</h5>
+                    <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula. Ut eget sem risus, et posuere velit.  Aenean ac mauris non ligula.    </p>
+                </div>
+
+                <div class="box col1">
+                    <h5>4</h5>
+                    <p>Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus.</p>
+                </div>
+
+                <div class="box col1">
+                    <h5>5</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.</p>
+                </div>
+
+                <div class="box col1">
+                    <h5>6</h5>
+                    <p>Cadipiscing in, lacinia vel, tellus. </p>
+                </div>
+
+                <div class="box col1">
+                    <h5>7</h5>
+                    <p>Pellentesque a diam sit amet mi ullamcorper vehicula.  adipiscing in, lacinia vel, tellus.</p>
+                </div>
+                
+                <div class="box col3">
+                    <h5>8</h5>
+                    <p>Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus.  Suspendisse ac urna. Etiam pellentesque. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.  Suspendisse ac urna. Etiam pellentesque. </p>
+                </div>
+
+                <div class="box col2">
+                    <h5>9</h5>
+                    <p>Ut convallis, sem sit amet interdum consectetuer, odio augue aliquam leo, nec dapibus tortor nibh sed augue. Ut condimentum mi vel tellus. Suspendisse laoreet. Fusce ut est sed dolor gravida convallis. Morbi vitae ante. Vivamus ultrices luctus nunc. Suspendisse et dolor. Pellentesque a diam sit amet mi ullamcorper vehicula.  adipiscing in, lacinia vel, tellus.</p>
+                </div>
+
+                <div class="box col1">
+                     <h5>10</h5>
+                     <p>Etiam pellen tesque mauris ut lectus.</p>
+                 </div>
+
+                 <div class="box col1">
+                     <h5>11</h5>
+                     <p>Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspen disse ac urna. Ut condi mentum mi vel tellus.</p>
+                 </div>
+
+                 <div class="box col1">
+                      <h5>12</h5>
+                     <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
+                 </div>
+
+            </div> <!-- /#primary.wrap -->
+        </div> 
+
+        <div>
+            <h3>Masonry</h3>
+            <div id="secondary" class="wrap">
+                <div class="box col1">
+                    <h5>1</h5>
+                    <p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris. </p>
+                </div>
+
+                <div class="box col2">
+                    <h5>2</h5>
+                    <p>Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit.</p>
+                </div>
+
+                <div class="box col1">
+                    <h5>3</h5>
+                    <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula. Ut eget sem risus, et posuere velit.  Aenean ac mauris non ligula.    </p>
+                </div>
+
+                <div class="box col1">
+                    <h5>4</h5>
+                    <p>Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus.</p>
+                </div>
+
+                <div class="box col1">
+                    <h5>5</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.</p>
+                </div>
+
+                <div class="box col1">
+                    <h5>6</h5>
+                    <p>Cadipiscing in, lacinia vel, tellus. </p>
+                </div>
+
+                <div class="box col1">
+                    <h5>7</h5>
+                    <p>Pellentesque a diam sit amet mi ullamcorper vehicula.  adipiscing in, lacinia vel, tellus.</p>
+                </div>
+                
+                <div class="box col3">
+                    <h5>8</h5>
+                    <p>Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus.  Suspendisse ac urna. Etiam pellentesque. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.  Suspendisse ac urna. Etiam pellentesque. </p>
+                </div>
+
+                <div class="box col2">
+                    <h5>9</h5>
+                    <p>Ut convallis, sem sit amet interdum consectetuer, odio augue aliquam leo, nec dapibus tortor nibh sed augue. Ut condimentum mi vel tellus. Suspendisse laoreet. Fusce ut est sed dolor gravida convallis. Morbi vitae ante. Vivamus ultrices luctus nunc. Suspendisse et dolor. Pellentesque a diam sit amet mi ullamcorper vehicula.  adipiscing in, lacinia vel, tellus.</p>
+                </div>
+
+                <div class="box col1">
+                     <h5>10</h5>
+                     <p>Etiam pellen tesque mauris ut lectus.</p>
+                 </div>
+
+                 <div class="box col1">
+                     <h5>11</h5>
+                     <p>Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspen disse ac urna. Ut condi mentum mi vel tellus.</p>
+                 </div>
+
+                 <div class="box col1">
+                      <h5>12</h5>
+                     <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
+                 </div>
+
+            </div> <!-- /#secondary.wrap -->
+        </div>        
+
+    </div>
+
+
+
+	<div class="copy">
 
         <h2>Minimum recommended configuration</h2>
 
         <p>With elements that vary in width</p>
 
-        <pre><code>$(<span class="string">'#wrapper'</span>).masonry({ columnWidth: <span class="constant">200</span> });</code></pre>
+        <pre><code><span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({ columnWidth: <span class="constant">200</span> });</code></pre>
 
         <p>For layouts with elements that have the same width</p>
 
-        <pre><code>$(<span class="string">'#wrapper'</span>).masonry({ singleMode: <span class="constant">true</span> });</code></pre>
+        <pre><code><span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({ singleMode: <span class="constant">true</span> });</code></pre>
 
 
         <h2>All options</h2>
 
-<pre><code>$(<span class="string">'#wrapper'</span>).masonry({
+<pre><code><span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({
 
     singleMode: <span class="constant">false</span>,
-    <span class="comment">// disables measuring the width of each floated element.
-    // Set to true if you the floated elements have the same width.
+    <span class="comment">// Disables measuring the width of each floated element.
+    // Set to true if floated elements have the same width.
     // default: false</span>
 
     columnWidth: <span class="constant">240</span>,
     <span class="comment">// width in pixels of 1 column of your grid
-    // if unset, it defaults to the outer width of the first floated element</span>
+    // if unset, defaults to the outer width of the first floated element</span>
 
     itemSelector: <span class="string">'.box:visible'</span>,
-    <span class="comment">// additional selector to specify which elements inside
-    // the wrapping element will be rearranged by masonry</span>
+    <span class="comment">// Additional selector to specify which elements inside
+    // the wrapping element will be rearranged by masonry.</span>
 
     resizeable: <span class="constant">true</span>,
-    <span class="comment">// binds a Masonry call to window resizing
+    <span class="comment">// Binds a Masonry call to window resizes.
     // default: true</span>
 
     appendedContent: $(<span class="string">'.new_content'</span>),
-    <span class="comment">// additional container selector for appended content
-    // useful for Infinite Scroll integration</span>
+    <span class="comment">// additional container element for appended content.
+    // When specified, Masonry will only rearrange child elements 
+    // of the container to the bottom of the layout.
+    // Useful for Infinite Scroll integration.</span>
 
     saveOptions: <span class="constant">true</span>,
-    <span class="comment">// default: true
-    // by default, Masonry will use the options from previous Masonry
-    // calls, so you only have to enter in options once</span>
+    <span class="comment">// Masonry will use the options from previous Masonry
+    // calls by default, so you only have to enter in options once
+    // default: true</span>
 
-},  <span class="keyword">function</span>() {}
+},  <span class="storage">function</span>() {}
     <span class="comment">// optional callback
     // 'this' will refer to the applicable elements masonry just rearranged</span>
 
 );</code></pre>
 
-	</div>
 
+        <h2>Handling Images</h2>
+
+        <p>Since Masonry measures the height of the elements when placing them, you will need to account for images that haven't loaded.  The best method is to specify the height of images inline.</p>
+
+        <pre><code><span class="storage">&lt;img src=<span class="string">"img_file.jpg"</span> <span class="string">height="160"</span> /&gt;</span></code></pre>
+
+        <p>If you&rsquo;re using a PHP-based CMS, you can use the <a href="http://php.net/manual/en/function.getimagesize.php">getimagesize</a> function.</p>
+
+        <p>If this is not possible, the other option is to call Masonry after all the images have loaded.  This is done by calling the function inside of <code>$(window).load()</code> instead of <code>$(document).ready()</code>.</p>
+
+        <pre><code><span class="keyword">$</span>(<span class="string">'window'</span>).<span class="keyword">load</span>(<span class="storage">function</span>(){
+    <span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({ columnWidth: <span class="constant">200</span> });
+});</code></pre>
+
+        <h2>Resolving Anchor Links</h2>
+
+        <p>Since Masonry relies on absolute positioning, any anchor links that occur within or after the wrapping element will not work when the page first loads.  To remedy this, try these lines after your <code>.masonry()</code> calls.</p>
+
+        <pre><code><span class="keyword">$</span>(<span class="string">'window'</span>).<span class="keyword">load</span>(<span class="storage">function</span>(){
+    <span class="keyword">if</span> ( <span class="keyword">window</span>.<span class="keyword">location</span>.<span class="keyword">hash</span> ) {
+        <span class="storage">var</span> destination = <span class="keyword">$</span>( <span class="keyword">window</span>.<span class="keyword">location</span>.<span class="keyword">hash</span> ).offset().<span class="keyword">top</span>;
+        <span class="keyword">$</span>(<span class="string">'html:not(:animated),body:not(:animated)'</span>).scrollTop( destination );
+    }
+});</code></pre>
+
+        <p>This will set the window of the document to the appropriate place.  These couple lines were taken from <a href="http://blog.position-absolute.com/javascript-jquery/the-end-of-the-html-anchor-scroll-the-scroll/">Cedric Dugas’s anchorAnything.</a></p>
+
+	</div>
 
 
 	<p id="footer">
@@ -84,7 +255,7 @@
 
 	<script type="text/javascript">
 		$(function(){
-			$('#magazine').masonry({columnWidth: 240})
+			$('#secondary').masonry({columnWidth: 100});
 		})
 	</script>
 

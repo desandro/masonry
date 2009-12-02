@@ -5,7 +5,7 @@
 
 body { 
     margin: 0; 
-    font: 12px 'Helvetica Neue', Arial, sans-serif;
+    font: 13px 'Helvetica Neue', Arial, sans-serif;
     background: #D8D5D2;
     padding: 20px;
     color: #222;
@@ -13,9 +13,9 @@ body {
 
 #nav {
     list-style: none;
-    margin: 0 10px 10px;;
+    margin-bottom: 10px;
     padding: 0 0 10px;
-    border-bottom: 1px dotted #CCC;
+    border-bottom: 1px solid #BBB;
     height: 20px;
 }
 
@@ -28,8 +28,11 @@ body {
 .wrap {
     background: #FFF;
     border: 0px solid #456;
-    padding: 1.0em;
+    padding: 10px;
 	margin-bottom: 20px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 }
 
 .wrap:after {
@@ -49,7 +52,7 @@ body {
     background: #D8D5D2;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    border-top-radius: 5px;
+    border-radius: 5px;
     font-size: 11px;
     float: left;
 }
@@ -67,27 +70,24 @@ body {
 .col5 img { max-width: 480px; }
 
 
-h1, h2, h3 {
+h1, h2 {
     font-weight:100;
 }
 
 h1 {
     font-size: 36px;
-    margin: 0 10px;
 }
 
 h1, h2, h3, p, ul, ol, pre {
     margin-bottom: 1.0em;
 }
 
-#instruction {
-    margin: 4px;
-    width: 428px;
+
+.copy h2 {
+    border-top: 2px solid #FFF;
+    padding-top: 10px;
 }
-#instruction p {
-    line-height: 1.4em;
-    font-size: 12.5px;
-}
+
 
 a img {
     border: none;
@@ -95,19 +95,20 @@ a img {
 
 pre, code {
     font-family: Monaco, monospace;
+    font-size: 12px;
 }
 
 pre {
     background: #111;
     padding: 10px;
-    border: 1px solid #EEE;
     color: #F5F5F5;
 }
 
 pre .string { color: #3C3;}
 pre .constant { color: #66F;}
 pre .property { color: #A00;}
-pre .keyword { color: #FC8;}
+pre .keyword { color: #E66;}
+pre .storage { color: #FC8;}
 pre .comment { color: #888;}
 
 ul, ol { padding-left: 1.3em;}
@@ -116,18 +117,42 @@ ul, ol { padding-left: 1.3em;}
     display: none;
 }
 
-#copy {
+.copy {
     width: 600px;
+    line-height: 1.4em;
 }
+
 
 #footer {
     clear: both;
     margin: 20px 0;
-    border-top: 1px dotted #CCC;
+    border-top: 1px solid #BBB;
+    padding-top: 10px;
     line-height: 30px;
 }
 
 
+/**** Intro comparison ****/
+
+#comparison {
+    overflow: auto;
+}
+
+#comparison > div {
+    width: 420px;
+    float: left;
+    margin-right: 20px;
+}
+
+#comparison .box h5 {
+    float: left;
+    margin-bottom: 0;
+    font-size: 30px;
+    margin-right: 4px;
+    line-height: 28px;
+    font-weight: bold;
+    color: #FFF;
+}
 
 /* Infinite Scroll loader */
 #infscr-loading { 
@@ -144,4 +169,44 @@ ul, ol { padding-left: 1.3em;}
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
+}
+
+/* Magazine page */
+
+#magazine {
+	background: #FFF;
+	padding: 1.0em;
+}
+
+#magazine:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+#magazine .story {
+	margin: 10px;
+	border-top: 4px solid #DCB;
+	padding-top: 10px;
+	background: #FFF;
+	float: left;
+}
+
+#magazine h1, #magazine h2, #magazine h3 { font-weight: bold;}
+
+#magazine .col1 { width: 220px;}
+#magazine .col2 { width: 460px;}
+#magazine .col3 { width: 700px;}
+
+#magazine .col1 img,
+#magazine .col2 img,
+#magazine .col3 img {
+    max-width: none;
+}
+
+blockquote {
+	margin: 0;
+	font: italic 18px Georgia, serif;
 }
