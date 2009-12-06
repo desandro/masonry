@@ -3,14 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Infinite Scroll</title>
+    <title>jQuery Masonry &rsaquo; Infinite Scroll Example</title>
 
     <link rel="stylesheet" type="text/css" href="css/masonry_example.css" media="screen" charset="utf-8"  />    
-
-    <style type="text/css" media="screen">
-
-
-    </style>
 
     <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
     <script type="text/javascript" src="js/jquery.masonry.js"></script>
@@ -22,14 +17,45 @@
 <body>
     
     <ol id="nav">
-        <li><a href=".">Intro</a></li>
+        <li><strong>jQuery Masonry &rsaquo;</strong></li>
+        <li><a href=".">Primer</a></li>
         <li><a href="basic.html">Basic Examples</a></li>
         <li><a href="tumblelog.html">Tumblelog Example</a></li>
-        <li><a href="infinite_scroll.html">Infinite Scroll Example</a></li>
+        <li class="selected"><a href="infinite_scroll.html">Infinite Scroll Example</a></li>
     </ol>
 
 
-    <h1>Infinite Scroll</h1>    
+    <h1>Infinite Scroll Example</h1>
+
+    <div class="copy">
+        <p>Masonry integrates well with auto-paging scripts like <a href="http://www.infinite-scroll.com/">Infinite Scroll</a> by <a href="http://paulirish.com">Paul Irish</a>. Using the <code>appendedContent</code> option, Masonry will only re-position the newly appended elements, and skip over all the previous elements that are already in their proper position, thus saving precious milliseconds of page load time.</p>
+        
+        <p>Setting up the Masonry call is just the same as normally would be.</p>
+        
+        <pre><code><span class="keyword">$</span>(<span class="string">'#primary'</span>).masonry({ 
+    columnWidth: <span class="constant">100</span>, 
+    itemSelector: <span class="string">'.box:visible'</span> 
+});</code></pre>
+    
+        <p>In the Infinite Scroll configuration, call Masonry as a callback. Infinite Scroll provides <code>this</code> to refer to the content that was just loaded. <code>this</code> is used for the value of <code>appendedContent</code>.</p>
+
+        <pre><code><span class="keyword">$</span>(<span class="string">'#primary'</span>).infinitescroll({
+    navSelector  : <span class="string">'#page_nav'</span>,    <span class="comment">// selector for the paged navigation </span>
+    nextSelector : <span class="string">'#page_nav a'</span>,    <span class="comment">// selector for the NEXT link (to page 2)</span>
+    itemSelector : <span class="string">'.box'</span>,       <span class="comment">// selector for all items you'll retrieve</span>
+    loadingImg : <span class="string">'img/loader.gif'</span>,
+    donetext  : <span class="string">'No more pages to load.'</span>,
+    debug: <span class="constant">false</span>,
+    errorCallback: <span class="storage">function</span>() { 
+        <span class="comment">// fade out the error message after 2 seconds</span>
+        <span class="keyword">$</span>(<span class="string">'#infscr-loading'</span>).animate({opacity: .<span class="constant">8</span>},<span class="constant">2000</span>).fadeOut(<span class="string">'normal'</span>);     
+    }
+},
+    <span class="comment">// call masonry as a callback</span>
+    <span class="storage">function</span>() { <span class="keyword">$</span>(<span class="string">'#primary'</span>).masonry({ appendedContent: <span class="keyword">$</span>(<span class="constant">this</span>) }); }
+);</code></pre>
+        
+    </div> <!-- /.copy -->
 
 
     <div id="primary" class="wrap">
@@ -255,20 +281,20 @@
     
     </div> <!-- /.wrap -->
 
-    <p id="navigation">
+    <p id="page_nav">
         <a href="pages/2.html">Page 2</a>
     </p>
 
     <p id="footer">
 
 
-        jQuery Masonry by <a href="http://desandro.com/">David DeSandro</a>
+        jQuery Masonry by <a href="http://desandro.com/">David DeSandro</a> <br />
+        <a href="http://www.infinite-scroll.com/">Infinite Scroll</a> by <a href="http://paulirish.com">Paul Irish</a>
     </p>
 
 
     <script type="text/javascript">
         $(function(){
-
 
             $('#primary').masonry({ 
                 columnWidth: 100, 
@@ -276,17 +302,17 @@
             });
 
             $('#primary').infinitescroll({
-                navSelector  : "#navigation",    // selector for the paged navigation 
-                nextSelector : "#navigation a",    // selector for the NEXT link (to page 2)
+                navSelector  : "#page_nav",    // selector for the paged navigation 
+                nextSelector : "#page_nav a",    // selector for the NEXT link (to page 2)
                 itemSelector : ".box",       // selector for all items you'll retrieve
                 loadingImg : 'img/loader.gif',
+                donetext  : "No more pages to load.",
                 debug: false,
                 errorCallback: function() { $('#infscr-loading').animate({opacity: .8},2000).fadeOut('normal');     // fade out the error message after 2 seconds
 
                     }
             },
-                // call masonry as a callback.  Infinite Scroll methods supplies
-                // the added content as context for the callback
+                // call masonry as a callback.
                 function() { $('#primary').masonry({ appendedContent: $(this) }); }
             );
 

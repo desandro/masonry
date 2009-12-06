@@ -14,56 +14,56 @@
             window.console && console.log.call(console,arguments);
         }
     
-        function placeBrick(brick, setCount, setY, setSpan, props) {
+        function placeBrick($brick, setCount, setY, setSpan, props) {
             var shortCol = 0;
             
             for ( i=0; i < setCount; i++ ) {
                 if ( setY[i] < setY[ shortCol ] ) shortCol = i;
             }
 
-            brick.css({
+            $brick.css({
                 top: setY[ shortCol ],
                 left: props.colW * shortCol + props.posLeft
             });
 
             for ( i=0; i < setSpan; i++ ) {
-                props.colY[ shortCol + i ] = setY[ shortCol ] + brick.outerHeight(true) ;
+                props.colY[ shortCol + i ] = setY[ shortCol ] + $brick.outerHeight(true) ;
             }
         }
 
 
-        function masonrySetup(wall, opts, props) {
+        function masonrySetup($wall, opts, props) {
             if ( props.masoned && opts.appendedContent != undefined ) {
                 // if we're just dealing with appendedContent
-                props.bricks = opts.appendedContent.find(opts.itemSelector);
+                props.$bricks = opts.appendedContent.find(opts.itemSelector);
             } else {
-                props.bricks = opts.itemSelector == undefined ?
-                            wall.children() :
-                            wall.find(opts.itemSelector);
+                props.$bricks = opts.itemSelector == undefined ?
+                            $wall.children() :
+                            $wall.find(opts.itemSelector);
             }
 
             props.colW = opts.columnWidth == undefined ? 
-                        props.bricks.outerWidth(true) : 
+                        props.$bricks.outerWidth(true) : 
                         opts.columnWidth;
             
-            props.colCount = Math.floor( wall.width() / props.colW ) ;
+            props.colCount = Math.floor( $wall.width() / props.colW ) ;
             props.colCount = Math.max( props.colCount, 1 );
             
         }
 
-        function masonryArrange(wall, opts, props) {
+        function masonryArrange($wall, opts, props) {
             
             // if masonry hasn't been called before
-            if( !props.masoned ) wall.css( 'position', 'relative' );            
+            if( !props.masoned ) $wall.css( 'position', 'relative' );            
             
             if ( !props.masoned || opts.appendedContent != undefined ) {
                 // just the new bricks
-                props.bricks.css( 'position', 'absolute' );
+                props.$bricks.css( 'position', 'absolute' );
             }
 
             // get top left position of where the bricks should be
             var cursor = $('<div />');
-            wall.prepend( cursor );
+            $wall.prepend( cursor );
             props.posTop =  Math.round( cursor.position().top );
             props.posLeft = Math.round( cursor.position().left );
             cursor.remove();
@@ -71,14 +71,14 @@
             // set up column Y array
             if ( props.masoned && opts.appendedContent != undefined ) {
                 // if appendedContent is set, use colY from last call
-                props.colY = wall.data('masonry').colY;
+                props.colY = $wall.data('masonry').colY;
                 
                 /*
                 *  in the case that the wall is not resizeable,
                 *  but the colCount has changed from the previous time
                 *  masonry has been called
                 */
-                for (var i= wall.data('masonry').colCount; i < props.colCount; i++) {
+                for (var i= $wall.data('masonry').colCount; i < props.colCount; i++) {
                     props.colY[i] = props.posTop;
                 };
                 
@@ -91,21 +91,21 @@
 
             // layout logic
             if ( opts.singleMode ) {
-                props.bricks.each(function(){
-                    var brick = $(this);
-                    placeBrick(brick, props.colCount, props.colY, 1, props);
+                props.$bricks.each(function(){
+                    var $brick = $(this);
+                    placeBrick($brick, props.colCount, props.colY, 1, props);
                 });            
             } else {
-                props.bricks.each(function() {
-                    var brick = $(this);
+                props.$bricks.each(function() {
+                    var $brick = $(this);
                 
                     //how many columns does this brick span
-                    var colSpan = Math.ceil( brick.outerWidth(true) / props.colW);
+                    var colSpan = Math.ceil( $brick.outerWidth(true) / props.colW);
                     colSpan = Math.min( colSpan, props.colCount );
 
                     if ( colSpan == 1 ) {
                         // if brick spans only one column, just like singleMode
-                        placeBrick(brick, props.colCount, props.colY, 1, props);
+                        placeBrick($brick, props.colCount, props.colY, 1, props);
                     } else {
                         // brick spans more than one column
 
@@ -122,7 +122,7 @@
                             }
                         }
                 
-                        placeBrick(brick, groupCount, groupY, colSpan, props);
+                        placeBrick($brick, groupCount, groupY, colSpan, props);
                     }
                 }); //        /props.bricks.each(function() {
             }  //         /layout logic
@@ -132,23 +132,23 @@
             for ( i=0; i < props.colCount; i++ ) {
                 props.wallH = Math.max( props.wallH, props.colY[i] );
             }
-            wall.height( props.wallH - props.posTop );
+            $wall.height( props.wallH - props.posTop );
 
             // provide props.bricks as context for the callback
-            callback.call( props.bricks );
+            callback.call( props.$bricks );
             
             // set all data so we can retrieve it for appended appendedContent
             //        or anyone else's crazy jquery fun
-            wall.data('masonry', props );
+            $wall.data('masonry', props );
 
 
         } //  /masonryArrange function
 
 
-        function masonryResize(wall, opts, props) {
-            var prevColCount = wall.data('masonry').colCount;
-            masonrySetup(wall, opts, props);
-            if ( props.colCount != prevColCount ) masonryArrange(wall, opts, props); 
+        function masonryResize($wall, opts, props) {
+            var prevColCount = $wall.data('masonry').colCount;
+            masonrySetup($wall, opts, props);
+            if ( props.colCount != prevColCount ) masonryArrange($wall, opts, props); 
         }
 
 
@@ -158,14 +158,14 @@
         */
         return this.each(function() {  
 
-            var wall = $(this);
+            var $wall = $(this);
 
             var props = $.extend( {}, $.masonry );
 
             // checks if masonry has been called before on this object
-            props.masoned = wall.data('masonry') != undefined;
+            props.masoned = $wall.data('masonry') != undefined;
         
-            var previousOptions = props.masoned ? wall.data('masonry').options : {};
+            var previousOptions = props.masoned ? $wall.data('masonry').options : {};
 
             var opts =  $.extend(
                             {},
@@ -181,13 +181,13 @@
             callback = callback || function(){};
             
             // call masonry layout
-            masonrySetup(wall, opts, props);
-            masonryArrange(wall, opts, props);
+            masonrySetup($wall, opts, props);
+            masonryArrange($wall, opts, props);
             
             // binding window resizing
             var resizeOn = previousOptions.resizeable;
             if ( !resizeOn && opts.resizeable ) {
-                $(window).bind('resize.masonry', function() { masonryResize(wall, opts, props); } );
+                $(window).bind('resize.masonry', function() { masonryResize($wall, opts, props); } );
             }
             if ( resizeOn && !opts.resizeable ) $(window).unbind('resize.masonry'); 
 
@@ -213,7 +213,7 @@
         posTop: 0,
         posLeft: 0,
         options: undefined,
-        bricks: undefined
+        $bricks: undefined
     };
 
 

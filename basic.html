@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Basic</title>
+    <title>jQuery Masonry &rsaquo; Basic Examples</title>
 
     <link rel="stylesheet" type="text/css" href="css/masonry_example.css" media="screen" charset="utf-8"  />    
 
@@ -15,8 +15,9 @@
 <body>
     
     <ol id="nav">
-        <li><a href=".">Intro</a></li>
-        <li><a href="basic.html">Basic Examples</a></li>
+        <li><strong>jQuery Masonry &rsaquo;</strong></li>
+        <li><a href=".">Primer</a></li>
+        <li class="selected"><a href="basic.html">Basic Examples</a></li>
         <li><a href="tumblelog.html">Tumblelog Example</a></li>
         <li><a href="infinite_scroll.html">Infinite Scroll Example</a></li>
     </ol>
@@ -25,12 +26,14 @@
     <h1>Basic Examples</h1>    
 
     <div class="copy">
-        <p>These examples demonstrate the basic effect of jQuery Masonry. By default, Masonry rearranges the elements when the browser is resized for fluid layouts.</p>
+        <p>These examples demonstrate the basic effect of jQuery Masonry. </p>
         
         <pre><code><span class="keyword">$</span>(<span class="string">'#primary'</span>).masonry({
     columnWidth: <span class="constant">100</span>, 
     itemSelector: <span class="string">'.box'</span> 
 });</code></pre>
+        
+        <p>By default, if you&rsquo;re layout is fluid, Masonry will rearrange the elements when the browser is resized.</p>
     
         <p><code>itemSelector</code> is specified to rearrange all <code>box</code> elements, including the ones inside another <code>div</code>. </p>
 

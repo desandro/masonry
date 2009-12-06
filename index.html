@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<title>jQuery Masonry - Index</title>
+	<title>jQuery Masonry &rsaquo; Primer</title>
 
 	<link rel="stylesheet" type="text/css" href="css/masonry_example.css" media="screen" charset="utf-8"  />	
 
@@ -15,22 +15,23 @@
 <body>
 
     <ol id="nav">
-        <li><a href=".">Intro</a></li>
+        <li><strong>jQuery Masonry &rsaquo;</strong></li>
+        <li class="selected"><a href=".">Primer</a></li>
         <li><a href="basic.html">Basic Examples</a></li>
         <li><a href="tumblelog.html">Tumblelog Example</a></li>
         <li><a href="infinite_scroll.html">Infinite Scroll Example</a></li>
     </ol>
 
-	<h1>jQuery Masonry - Intro</h1>	
+	<h1>Primer</h1>	
 
     <div class="copy">
-        <p>Think of Masonry as the flip side of CSS floats. Whereas floating arranges elements horizontally then vertically, Masonry arranges elements vertically then horizontally. The <a href="#comparison">result</a> minimizes vertical gaps between elements of varying height, just like a mason fitting stones in a wall.</p>
+        <p>Masonry is a layout plugin for jQuery. Think of it as the flip side of CSS floats. Whereas floating arranges elements horizontally then vertically, Masonry arranges elements vertically then horizontally. The result minimizes vertical gaps between elements of varying height, just like a mason fitting stones in a wall.</p>
         
     </div><!-- .copy -->
 
     <div id="comparison">
         <h2>Comparison Example</h2>
-        <div>
+        <div class="example">
             <h3>CSS Floats</h3>
             <div id="primary" class="wrap">
                 <div class="box col1">
@@ -96,7 +97,7 @@
             </div> <!-- /#primary.wrap -->
         </div> 
 
-        <div>
+        <div class="example">
             <h3>Masonry</h3>
             <div id="secondary" class="wrap">
                 <div class="box col1">
@@ -170,11 +171,11 @@
 
         <h2>Minimum recommended configuration</h2>
 
-        <p>With elements that vary in width</p>
+        <p>For layout has elements that span multiple widths:</p>
 
         <pre><code><span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({ columnWidth: <span class="constant">200</span> });</code></pre>
 
-        <p>For layouts with elements that have the same width</p>
+        <p>For layouts with elements that span the same width:</p>
 
         <pre><code><span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({ singleMode: <span class="constant">true</span> });</code></pre>
 
@@ -202,8 +203,6 @@
 
     appendedContent: <span class="keyword">$</span>(<span class="string">'.new_content'</span>),
     <span class="comment">// Additional container element for appended content.
-    // When specified, Masonry will only rearrange child elements 
-    // of the container to the bottom of the layout.
     // Useful for Infinite Scroll integration.</span>
 
     saveOptions: <span class="constant">true</span>,
@@ -220,9 +219,9 @@
 
         <h2>Handling Images</h2>
 
-        <p>Since Masonry measures the height of the elements when placing them, you will need to account for images that haven't loaded.  The best method is to specify the height of images inline.</p>
+        <p>Since Masonry measures the height of the elements when placing them, you will need to account for images that haven't loaded.  The best method is to specify the width and height of images inline.</p>
 
-        <pre><code><span class="storage">&lt;img src=<span class="string">"img_file.jpg"</span> <span class="string">height="160"</span> /&gt;</span></code></pre>
+        <pre><code><span class="storage">&lt;img src=<span class="string">"img_file.jpg"</span> <span class="string">width="280"</span> <span class="string">height="160"</span> /&gt;</span></code></pre>
 
         <p>If you&rsquo;re using a PHP-based CMS, you can use the <a href="http://php.net/manual/en/function.getimagesize.php">getimagesize</a> function.</p>
 
@@ -234,7 +233,7 @@
 
         <h2>Resolving Anchor Links</h2>
 
-        <p>Since Masonry relies on absolute positioning, any anchor links that occur within or after the wrapping element will not work when the page first loads.  To remedy this, try these lines after your <code>.masonry()</code> calls.</p>
+        <p>Since Masonry relies on absolute positioning, any anchor links that occur within or after the wrapping element will not work when the page first loads.  The following script is one solution.</p>
 
         <pre><code><span class="keyword">$</span>(<span class="string">'window'</span>).<span class="keyword">load</span>(<span class="storage">function</span>(){
     <span class="keyword">if</span> ( <span class="keyword">window</span>.<span class="keyword">location</span>.<span class="keyword">hash</span> ) {
@@ -244,6 +243,37 @@
 });</code></pre>
 
         <p>This will set the window of the document to the appropriate place.  These couple lines were taken from <a href="http://blog.position-absolute.com/javascript-jquery/the-end-of-the-html-anchor-scroll-the-scroll/">Cedric Dugas’s anchorAnything.</a></p>
+
+        <h2>Examples in the Wild</h2>
+        
+        <ul id="inthewild">
+
+
+            <li><a href="http://www.tumblr.com/theme/3531">
+                Astronaut Tumblr Theme  
+                <img src="img/peter_vidani.jpg" alt="Astronaut Tumblr Theme" width="280" height="492" />
+            </a></li>
+            <li><a href="http://www.woothemes.com/demo/?t=41">
+                Mortar 
+                <img src="img/mortar.jpg" alt="Mortar"  width="280" height="705" />
+            </a></li>
+            <li><a href="http://maxvoltar.com">
+                Maxvoltar    
+                <img src="img/maxvoltar.jpg" alt="Maxvoltar"  width="280" height="547" />
+            </a></li>
+            <li><a href="http://www.mrbridge.co.nz/fluidadvert.html">
+                Andy Bridge    
+                <img src="img/andy.jpg" alt="Andy Bridge" width="280" height="508" />
+            </a></li>
+            <li><a href="http://chromeography.com">
+                Chromeography    
+                <img src="img/chromeography.jpg" alt="Chromeography" width="280" height="523" />
+            </a></li>
+            <li><a href="http://jquerystyle.com">
+                jQuery Style    
+                <img src="img/jquery_style.jpg" alt="jQuery Style" width="280" height="631" />
+            </a></li>
+        </ul>
 
         <h2>Changelog</h2>
 
@@ -262,6 +292,10 @@
 
         </dl>
 
+        <h2>License</h2>
+        
+        <p>jQuery Masonry is dual-licensed under <a href="http://www.gnu.org/licenses/gpl.html">GPL</a> and MIT, just like <a href="http://docs.jquery.com/License">jQuery itself.</a> You can use it for both personal and commercial applications.</p>
+
 	</div>
 
 
@@ -273,6 +307,7 @@
 	<script type="text/javascript">
 		$(function(){
 			$('#secondary').masonry({columnWidth: 100});
+			$('#inthewild').masonry({singleMode: true});
 		})
 	</script>
 

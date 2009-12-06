@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>jQuery Masonry &rsaquo; Tumblelog Example</title>
+
+    <link rel="stylesheet" href="css/article_post.css" type="text/css" media="screen"  charset="utf-8" />
+
+    <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.masonry.js"></script>
+
+
+</head>
+<body>
+
+    <div id="masonry10">
+        <p class="box1 jquery"><em>jQu ery</em></p>
+        <p class="box5 msnry">Masonry</p>
+        <p class="box2 version">version <em>1.0</em></p>
+        <p class="box4 released">Released <strong>6 December 2009</strong></p>
+        <p class="box1 infinite"><em><strong>Infinite</strong> Scroll support</em></p>
+        <p class="box2 mcolumn"><span><strong>Multi width</strong> <em>column</em> support</span></p>
+        <p class="box1 primer"><a href="#"><em>View</em> <strong>Primer and Demos</strong></a></p>
+        <p class="box2 download"><a href="#"><em>Down load</em> jquery.masonry.js</a></p>
+        <p class="box1 github"><a href="#"><span>Project</span> available on <em>Git hub</em></a></p>
+        <p class="box2 fluid"><em>Automatic</em>  <strong>fluid</strong> <span>rearrangement</span></p>
+        <p class="box4 markup"><em>No</em> <span>additional markup inserted</span></p>
+    </div>
+
+    <script type="text/javascript" charset="utf-8">
+        $(function(){
+            
+            /**
+             * test for CSS properties, in this case CSS Transform, taken from
+             * http://thinkweb2.com/projects/prototype/feature-testing-css-properties/
+             */
+            var getStyleProperty = (function(){
+              var prefixes = ['Moz', 'Webkit', 'Khtml', 'O', 'Ms'];
+              function getStyleProperty(propName, element) {
+                element = element || document.documentElement;
+                var style = element.style,
+                    prefixed;
+                // test standard property first
+                if (typeof style[propName] == 'string') return propName;
+                // capitalize
+                propName = propName.charAt(0).toUpperCase() + propName.slice(1);
+                // test vendor specific properties
+                for (var i=0, l=prefixes.length; i<l; i++) {
+                  prefixed = prefixes[i] + propName;
+                  if (typeof style[prefixed] == 'string') return prefixed;
+                }
+              }
+              return getStyleProperty;
+            })();
+
+
+
+            if (typeof getStyleProperty('transform') == 'string') {
+                $('.primer strong').css({
+                    position: 'absolute',
+                    top: 40,
+                    left: 105,
+                });
+                
+                $('.infinite em').css({
+                    fontSize: '32px',
+                    position: 'absolute',
+                    top: 0,
+                    left: 110,
+                    width: 299,
+                })
+                    .children('strong').css({
+                        
+                        fontSize: '70px',
+                    });
+                
+            }
+            
+            
+            $('#masonry10').masonry({columnWidth: 120, resizeable: false});
+            
+            
+            
+        })
+    </script>
+
+</body>
+</html>
+
+
+

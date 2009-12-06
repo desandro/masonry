@@ -1,0 +1,278 @@
+* { margin: 0; padding: 0;}
+
+body {
+    background: #D8D5D2;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    
+}
+
+#masonry10 {
+    width: 720px;
+    margin: 40px auto;
+    text-transform: uppercase;
+    overflow:hidden;
+}
+
+#masonry10 p {
+
+    background: #111;
+    color: #D8D5D2;
+    margin: 0 1px 1px 0;
+    position: relative;
+    float: left;
+}
+
+#masonry10 em { font-style: normal; }
+
+#masonry10 p span {
+
+
+}
+
+#masonry10 p a {
+    background: #C5A;
+    display: block;
+    color: #D8D5D2;
+    text-decoration: none;
+    height: 100%;
+}
+
+#masonry10 p a:hover {
+    background: #FFF;
+    color: #111;
+}
+
+#masonry10 p a span {
+    padding: 0;
+}
+
+#masonry10 p.box1 { width: 119px; }
+#masonry10 p.box2 { width: 239px; }
+#masonry10 p.box3 { width: 359px; }
+#masonry10 p.box4 { width: 479px; }
+#masonry10 p.box5 { width: 599px; }
+
+.jquery {
+    height: 119px;
+    font-weight: 100;
+}
+.jquery em {
+    position: absolute;
+    padding-top: 12px;
+    padding-left: 10px;
+    font-size: 58px;
+    line-height: 44px;
+    letter-spacing: -0.03em;
+    -moz-transform-origin: 60px 60px;
+    -moz-transform: rotate(-90deg);
+    -webkit-transform-origin: 60px 60px;
+    -webkit-transform: rotate(-90deg);
+}
+
+
+.msnry {
+    font-size: 119px;
+    text-align: center;
+    line-height: 119px;
+    letter-spacing: -5px;
+    font-weight: bold;
+}
+
+.version {
+    font-size: 26px;
+    text-align: center;
+    line-height: 40px;
+    letter-spacing: 0.55em;
+    height: 199px;
+    font-weight: bold;
+}
+.version em {
+    font-size: 190px;
+    line-height: 140px;
+    letter-spacing: -0.12em;
+    padding-right: 26px;
+    font-weight: 100;
+}
+
+
+.released {
+    line-height: 39px;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 0.5em;
+    font-weight: 200;
+}
+.released strong { font-weight: 600; }
+
+
+.primer { height: 159px }
+
+.primer a {
+}
+
+.primer em {
+    font-size: 34px;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    display: block;
+    text-align: center;
+    line-height: 32px;
+    padding-top: 5px;
+}
+
+.primer strong {
+    display: block;
+    width: 115px;
+    line-height: 32px;
+    font-size: 34px;
+    font-weight: 100;
+    -moz-transform-origin: 0 0;
+    -moz-transform: rotate(90deg);
+    -webkit-transform-origin: 0 0;
+    -webkit-transform: rotate(90deg);
+}
+
+
+.infinite {
+    height: 299px;
+}
+
+.infinite em {
+    text-align: center;
+    font-weight: 200;
+    display: block;
+    -moz-transform-origin: 0 0;
+    -moz-transform: rotate(90deg);
+    -webkit-transform-origin: 0 0;
+    -webkit-transform: rotate(90deg);
+}
+
+.infinite em strong {
+    display: block;
+    line-height: 60px;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+}
+
+.mcolumn {
+    height: 159px;
+    font-size: 40px;
+    font-weight: 100;
+    line-height: 40px;
+}
+
+.mcolumn span {
+    padding-left: 15px;
+    display: block;
+}
+
+.mcolumn strong {
+    display: block;
+    font-size: 58px;
+    line-height: 52px;
+    font-weight: 200;
+    padding-top: 5px;
+}
+
+
+
+.mcolumn em {
+    display: block;
+    position: absolute;
+    font-size: 32px;
+    font-weight: 600;
+    top: 6px;
+    left: 234px;
+    -moz-transform-origin: 0 0;
+    -moz-transform: rotate(90deg);
+    -webkit-transform-origin: 0 0;
+    -webkit-transform: rotate(90deg);
+}
+
+.download {
+    height: 139px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.download em {
+    display: block;
+    font-size: 60px;
+    line-height: 50px;
+    font-weight: 100;
+    letter-spacing: 0.2em;
+    margin-bottom: 4px;
+    padding-top: 5px;
+}
+
+.github {
+    font-weight: 500;
+    text-align: center;
+    font-size: 14px;
+    height: 139px;
+}
+
+.github span {
+    display: block;
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 200;
+}
+
+.github em {
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 44px;
+}
+
+.markup {
+    height: 59px;
+}
+
+.markup em {
+    display: block;
+    position: absolute;
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    font-weight: bold;
+    font-size: 26px;
+    top: 12px;
+    left: 0;
+    border-bottom: 2px solid;
+}
+
+.markup span {
+    padding-left: 50px;
+    line-height: 59px;
+    font-size: 30px;
+    font-weight: 100;
+}
+
+
+.fluid {
+    height: 199px;
+    text-align: center;
+}
+
+.fluid em {
+    display: block;
+    font-weight: bold;
+    font-size: 28px;
+    letter-spacing: 0.18em;
+    line-height: 30px;
+    padding-top: 20px;
+}
+
+.fluid strong {
+    font-size: 90px;
+    font-weight: 100;
+    letter-spacing: -0.02em;
+}
+
+.fluid span {
+    display: block;
+    width: 100%;
+    font-size: 18px;
+    letter-spacing: 0.25em;
+}

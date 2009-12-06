@@ -11,6 +11,16 @@ body {
     color: #222;
 }
 
+a {
+    color: #A2C;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #D26;
+}
+
 #nav {
     list-style: none;
     margin-bottom: 10px;
@@ -21,9 +31,110 @@ body {
 
 #nav li {
     float: left;
-    margin-right: 20px;
+    margin-right: 2px;
 }
 
+#nav li a {
+    padding: 6px 10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+#nav li a:hover {
+}
+
+#nav li.selected a {
+    background: #C8C5C2;
+    color: #FFF;
+
+}
+
+h1, h2 {
+    font-weight:100;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h1, h2, h3, p, ul, ol, pre {
+    margin-bottom: 1.0em;
+}
+
+
+.copy h2 {
+    border-top: 2px solid #FFF;
+    padding-top: 10px;
+    clear: both;
+}
+
+a img {
+    border: none;
+}
+
+pre, code {
+    font-family: Monaco, monospace;
+    font-size: 12px;
+    background: #111;
+    color: #F5F5F5;
+}
+
+p code {
+    padding: 1px 3px;
+}
+
+pre {
+    padding: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+pre .string { color: #3C3;}
+pre .constant { color: #66F;}
+pre .property { color: #A00;}
+pre .keyword { color: #E66;}
+pre .storage { color: #FC8;}
+pre .comment { color: #888;}
+
+ul, ol { padding-left: 1.3em;}
+
+.hidden { display: none; }
+
+.copy {
+    width: 600px;
+    line-height: 1.4em;
+}
+
+blockquote {
+	margin: 0;
+	font: italic 18px Georgia, serif;
+}
+
+dt {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+dd + dt {
+    margin-top: 0.5em;
+}
+
+dd {
+    margin-left: 1.0em;
+}
+
+
+#footer {
+    clear: both;
+    margin: 20px 0;
+    border-top: 1px solid #BBB;
+    padding-top: 10px;
+    line-height: 30px;
+}
+
+
+/**** Masonry CSS ****/
 
 .wrap {
     background: #FFF;
@@ -41,9 +152,6 @@ body {
     height: 0;
     clear: both;
     visibility: hidden;
-}
-
-#secondary {
 }
 
 .box {
@@ -70,75 +178,14 @@ body {
 .col5 img { max-width: 480px; }
 
 
-h1, h2 {
-    font-weight:100;
-}
 
-h1 {
-    font-size: 36px;
-}
-
-h1, h2, h3, p, ul, ol, pre {
-    margin-bottom: 1.0em;
-}
-
-
-.copy h2 {
-    border-top: 2px solid #FFF;
-    padding-top: 10px;
-}
-
-
-a img {
-    border: none;
-}
-
-pre, code {
-    font-family: Monaco, monospace;
-    font-size: 12px;
-}
-
-pre {
-    background: #111;
-    padding: 10px;
-    color: #F5F5F5;
-}
-
-pre .string { color: #3C3;}
-pre .constant { color: #66F;}
-pre .property { color: #A00;}
-pre .keyword { color: #E66;}
-pre .storage { color: #FC8;}
-pre .comment { color: #888;}
-
-ul, ol { padding-left: 1.3em;}
-
-.hidden {
-    display: none;
-}
-
-.copy {
-    width: 600px;
-    line-height: 1.4em;
-}
-
-
-#footer {
-    clear: both;
-    margin: 20px 0;
-    border-top: 1px solid #BBB;
-    padding-top: 10px;
-    line-height: 30px;
-}
-
-
-/**** Intro comparison ****/
+/**** Primer comparison ****/
 
 #comparison {
     overflow: auto;
 }
 
-#comparison > div {
+#comparison .example {
     width: 420px;
     float: left;
     margin-right: 20px;
@@ -152,6 +199,65 @@ ul, ol { padding-left: 1.3em;}
     line-height: 28px;
     font-weight: bold;
     color: #FFF;
+}
+
+
+/**** In the wild examples ****/
+
+#inthewild { margin: 0; padding: 0;}
+
+#inthewild li {
+    width: 300px;
+    float: left;
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+#inthewild li a {
+    display: block;
+    padding: 5px 10px 10px;
+    text-decoration: none;
+
+}
+#inthewild li a:hover { background: #C8C5C2 }
+
+#inthewild li img { 
+    margin-top: 5px;
+}
+
+/* Magazine page */
+
+#tumblelog {
+	background: #FFF;
+	padding: 1.0em;
+}
+
+#tumblelog:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+#tumblelog .story {
+	margin: 10px;
+	border-top: 4px solid #DCB;
+	padding-top: 10px;
+	background: #FFF;
+	float: left;
+}
+
+#tumblelog h1, #tumblelog h2, #tumblelog h3 { font-weight: bold;}
+
+#tumblelog .col1 { width: 220px;}
+#tumblelog .col2 { width: 460px;}
+#tumblelog .col3 { width: 700px;}
+
+#tumblelog .col1 img,
+#tumblelog .col2 img,
+#tumblelog .col3 img {
+    max-width: none;
 }
 
 /* Infinite Scroll loader */
@@ -171,56 +277,5 @@ ul, ol { padding-left: 1.3em;}
     border-radius: 10px;
 }
 
-/* Magazine page */
 
-#magazine {
-	background: #FFF;
-	padding: 1.0em;
-}
 
-#magazine:after {
-	content: ".";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;
-}
-
-#magazine .story {
-	margin: 10px;
-	border-top: 4px solid #DCB;
-	padding-top: 10px;
-	background: #FFF;
-	float: left;
-}
-
-#magazine h1, #magazine h2, #magazine h3 { font-weight: bold;}
-
-#magazine .col1 { width: 220px;}
-#magazine .col2 { width: 460px;}
-#magazine .col3 { width: 700px;}
-
-#magazine .col1 img,
-#magazine .col2 img,
-#magazine .col3 img {
-    max-width: none;
-}
-
-blockquote {
-	margin: 0;
-	font: italic 18px Georgia, serif;
-}
-
-dt {
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 14px;
-}
-
-dd + dt {
-    margin-top: 0.5em;
-}
-
-dd {
-    margin-left: 1.0em;
-}

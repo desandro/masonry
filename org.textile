@@ -1,4 +1,4 @@
-Intro
+Primer
 
     Options
         singleMode: false,

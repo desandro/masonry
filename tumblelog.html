@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Magazine magazine</title>
+    <title>jQuery Masonry &rsaquo; Tumblelog Example</title>
 
     <link rel="stylesheet" type="text/css" href="css/masonry_example.css" media="screen" charset="utf-8"  />    
 
@@ -15,17 +15,18 @@
 <body>
 
     <ol id="nav">
-        <li><a href=".">Intro</a></li>
+        <li><strong>jQuery Masonry &rsaquo;</strong></li>
+        <li><a href=".">Primer</a></li>
         <li><a href="basic.html">Basic Examples</a></li>
-        <li><a href="tumblelog.html">Tumblelog Example</a></li>
+        <li class="selected"><a href="tumblelog.html">Tumblelog Example</a></li>
         <li><a href="infinite_scroll.html">Infinite Scroll Example</a></li>
     </ol>
 
-    <h1>Tumblelog example</h1>    
+    <h1>Tumblelog Example</h1>
 
 
     <div class="copy">
-		<p>Here&rsquo;s a good example of a typical use case for Masonry: a tumblelog.</p>
+		<p>A tumblelog is a good example of a typical use case for Masonry.</p>
         <p>There are three sizes of columns used:</p>
             <ul>
                 <li><code>.col1</code> : 220px</li>
@@ -35,16 +36,16 @@
         <p>With 10px of margin on right and left sides that makes for a grid of 240px.</p>
         
         <pre><code><span class="keyword">$</span>(<span class="storage">function</span>(){
-    $(<span class="string">'#magazine'</span>).masonry({ columnWidth: <span class="constant">240</span> });
+    $(<span class="string">'#tumblelog'</span>).masonry({ columnWidth: <span class="constant">240</span> });
 });</code></pre>
 
 
-        <p>All videos and images have height specified inline.</p>
+        <p>All videos and images have width and height specified inline.</p>
         
     </div>
 
 
-    <div id="magazine">
+    <div id="tumblelog">
         
         <div class="story col2">
             <h2>Last Day Dream</h2>
@@ -219,7 +220,7 @@
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </div>
         
-    </div> <!-- /#magazine -->
+    </div> <!-- /#tumblelog -->
 
     <p id="footer">
 
@@ -228,7 +229,7 @@
 
     <script type="text/javascript">
         $(function(){
-            $('#magazine').masonry({columnWidth: 240})
+            $('#tumblelog').masonry({columnWidth: 240})
         })
     </script>
 
