@@ -17,3 +17,29 @@ Intro
 Basic Example - demostrates normal jquerY Masonry, and single mode.   
 Infinite Scroll - demonstrates how to set up Masonry with Infinite Scroll
 Magazine - more akin to typical use cases
+
+
+h3. To Do
+
+Contact Paul Irish
+
+Change log
+
+<dl>
+    <dt>v1.0: 6 Dec 2009</dt>
+    <dd>Multi-column width support</dd>
+    <dd>Appending elements and Infinite Scroll support</dd>
+    <dd>Less obstructive layout. Not inserting any additional markup.</dd>
+    <dd>Automatically binds event to window resizing</dd>
+    
+    <dt>v0.4: 14 Jun 2009</dt>
+    <dd>Proper fluid resizing support</dd>
+
+    <dt>v0.1: Feb 2009</dt>
+    <dd>Original release</dd>
+
+</dl>
+
+
+    
+ 

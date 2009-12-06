@@ -10,43 +10,41 @@
 
     <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
     <script type="text/javascript" src="js/jquery.masonry.js"></script>
-    <script type="text/javascript" src="js/rando_lorem_text.js"></script>
     
 </head>
 <body>
     
     <ol id="nav">
-        <li><a href=".">Index</a></li>
+        <li><a href=".">Intro</a></li>
         <li><a href="basic.html">Basic Examples</a></li>
-        <li><a href="magazine.html">Magazine Example</a></li>
+        <li><a href="tumblelog.html">Tumblelog Example</a></li>
         <li><a href="infinite_scroll.html">Infinite Scroll Example</a></li>
     </ol>
 
 
-    <h1>Basic</h1>    
+    <h1>Basic Examples</h1>    
 
     <div class="copy">
-        <p>These</p>
+        <p>These examples demonstrate the basic effect of jQuery Masonry. By default, Masonry rearranges the elements when the browser is resized for fluid layouts.</p>
         
         <pre><code><span class="keyword">$</span>(<span class="string">'#primary'</span>).masonry({
     columnWidth: <span class="constant">100</span>, 
     itemSelector: <span class="string">'.box'</span> 
 });</code></pre>
     
-        <p><code>itemSelector</code> is specified as </p>
+        <p><code>itemSelector</code> is specified to rearrange all <code>box</code> elements, including the ones inside another <code>div</code>. </p>
 
-<pre><code>
-    &lt;div id="primary" class="wrap"&gt;
-        &lt;div class="box col2"&gt;...&lt;/div&gt;
-        &lt;div class="box col1"&gt;...&lt;/div&gt;
-        &lt;div class="box col1"&gt;...&lt;/div&gt;
-        &lt;div class="box col3"&gt;...&lt;/div&gt;
-        &lt;div&gt;
-            &lt;div class="box col1"&gt;...&lt;/div&gt;
-            &lt;div class="box col2"&gt;...&lt;/div&gt;
-            &lt;div class="box col3"&gt;...&lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt; &lt;!-- /#primary.wrap --&gt;
+<pre><code><span class="storage">&lt;div id="primary" class="wrap"&gt;</span>
+    <span class="storage">&lt;div class=<span class="string">"box col2"</span>&gt;</span>...<span class="storage">&lt;/div&gt;</span>
+    <span class="storage">&lt;div class=<span class="string">"box col1"</span>&gt;</span>...<span class="storage">&lt;/div&gt;</span>
+    <span class="storage">&lt;div class=<span class="string">"box col1"</span>&gt;</span>...<span class="storage">&lt;/div&gt;</span>
+    <span class="storage">&lt;div class=<span class="string">"box col3"</span>&gt;</span>...<span class="storage">&lt;/div&gt;</span>
+    <span class="storage">&lt;div&gt;</span>
+        <span class="storage">&lt;div class=<span class="string">"box col1"</span>&gt;</span>...<span class="storage">&lt;/div&gt;</span>
+        <span class="storage">&lt;div class=<span class="string">"box col2"</span>&gt;</span>...<span class="storage">&lt;/div&gt;</span>
+        <span class="storage">&lt;div class=<span class="string">"box col3"</span>&gt;</span>...<span class="storage">&lt;/div&gt;</span>
+    <span class="storage">&lt;/div&gt;</span>
+<span class="storage">&lt;/div&gt;</span> <span class="comment">&lt;!-- /#primary.wrap --&gt;</span>
 </code></pre>
 
     </div><!-- .copy -->
@@ -239,6 +237,9 @@
 
     <div class="copy">
 
+		<p>This button demonstrates how to append new content to a layout using Masonry. Each time this button is clicked, new <code>box</code> elements are created, wrapped in an unstyled <code>div</code>.  This content is first appended to the wrapping container, then the boxes are rearranged with a <code>.masonry()</code> call. <code>appendedContent</code> was the only option to specify since Masonry saves all previous options. Using <code>appendedContent</code>, the Masonry script saves some processing time as it only rearranges the box inside that appended container. When the window is resized, these new boxes are appropriately rearranged with all the others.</p>
+		<p>Finally, using the callback function, the new boxes are dynamically styled. </p>
+
 <pre><code><span class="keyword">$</span>(<span class="string">'#append_primary'</span>).click(<span class="storage">function</span>() {
     <span class="storage">var</span> moreContent = makeNewBoxes(3);
     <span class="keyword">$</span>(<span class="string">'#primary'</span>).append( moreContent )
@@ -248,6 +249,8 @@
         )
     ;
 });</code></pre>
+
+		<p>The second example uses boxes with the same width, so <code>singleMode</code> is set to <code>true</code>. <code>columnWidth</code> does not need to be set if <code>singleMode</code> is set to <code>true</code>.</p>
 
 <pre><code><span class="keyword">$</span>(<span class="string">'#secondary'</span>).masonry({
     singleMode: <span class="constant">true</span>, 

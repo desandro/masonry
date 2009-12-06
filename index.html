@@ -15,13 +15,13 @@
 <body>
 
     <ol id="nav">
-        <li><a href=".">Index</a></li>
+        <li><a href=".">Intro</a></li>
         <li><a href="basic.html">Basic Examples</a></li>
-        <li><a href="magazine.html">Magazine Example</a></li>
+        <li><a href="tumblelog.html">Tumblelog Example</a></li>
         <li><a href="infinite_scroll.html">Infinite Scroll Example</a></li>
     </ol>
 
-	<h1>jQuery Masonry - Index</h1>	
+	<h1>jQuery Masonry - Intro</h1>	
 
     <div class="copy">
         <p>Think of Masonry as the flip side of CSS floats. Whereas floating arranges elements horizontally then vertically, Masonry arranges elements vertically then horizontally. The <a href="#comparison">result</a> minimizes vertical gaps between elements of varying height, just like a mason fitting stones in a wall.</p>
@@ -189,19 +189,19 @@
     // default: false</span>
 
     columnWidth: <span class="constant">240</span>,
-    <span class="comment">// width in pixels of 1 column of your grid
-    // if unset, defaults to the outer width of the first floated element</span>
+    <span class="comment">// Width in pixels of 1 column of your grid.
+    // default: outer width of the first floated element.</span>
 
     itemSelector: <span class="string">'.box:visible'</span>,
     <span class="comment">// Additional selector to specify which elements inside
-    // the wrapping element will be rearranged by masonry.</span>
+    // the wrapping element will be rearranged.</span>
 
     resizeable: <span class="constant">true</span>,
     <span class="comment">// Binds a Masonry call to window resizes.
     // default: true</span>
 
-    appendedContent: $(<span class="string">'.new_content'</span>),
-    <span class="comment">// additional container element for appended content.
+    appendedContent: <span class="keyword">$</span>(<span class="string">'.new_content'</span>),
+    <span class="comment">// Additional container element for appended content.
     // When specified, Masonry will only rearrange child elements 
     // of the container to the bottom of the layout.
     // Useful for Infinite Scroll integration.</span>
@@ -212,8 +212,8 @@
     // default: true</span>
 
 },  <span class="storage">function</span>() {}
-    <span class="comment">// optional callback
-    // 'this' will refer to the applicable elements masonry just rearranged</span>
+    <span class="comment">// Optional callback.
+    // 'this' will refer to the applicable elements Masonry just rearranged</span>
 
 );</code></pre>
 
@@ -244,6 +244,23 @@
 });</code></pre>
 
         <p>This will set the window of the document to the appropriate place.  These couple lines were taken from <a href="http://blog.position-absolute.com/javascript-jquery/the-end-of-the-html-anchor-scroll-the-scroll/">Cedric Dugas’s anchorAnything.</a></p>
+
+        <h2>Changelog</h2>
+
+        <dl>
+            <dt>v1.0: 6 Dec 2009</dt>
+            <dd>Multi-column width support</dd>
+            <dd>Appending elements and Infinite Scroll support</dd>
+            <dd>Less obstrusive layout. No inserting additional markup.</dd>
+            <dd>Automatically binds event to window resizing</dd>
+
+            <dt>v0.4: 14 Jun 2009</dt>
+            <dd>Proper fluid resizing support</dd>
+
+            <dt>v0.1: Feb 2009</dt>
+            <dd>Original release</dd>
+
+        </dl>
 
 	</div>
 

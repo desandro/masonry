@@ -210,3 +210,17 @@ blockquote {
 	margin: 0;
 	font: italic 18px Georgia, serif;
 }
+
+dt {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+dd + dt {
+    margin-top: 0.5em;
+}
+
+dd {
+    margin-left: 1.0em;
+}
