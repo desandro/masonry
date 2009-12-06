@@ -33,7 +33,7 @@
     itemSelector: <span class="string">'.box'</span> 
 });</code></pre>
         
-        <p>By default, if you&rsquo;re layout is fluid, Masonry will rearrange the elements when the browser is resized.</p>
+        <p>By default, if your layout is fluid, Masonry will rearrange the elements when the browser is resized.</p>
     
         <p><code>itemSelector</code> is specified to rearrange all <code>box</code> elements, including the ones inside another <code>div</code>. </p>
 
@@ -240,7 +240,7 @@
 
     <div class="copy">
 
-		<p>This button demonstrates how to append new content to a layout using Masonry. Each time this button is clicked, new <code>box</code> elements are created, wrapped in an unstyled <code>div</code>.  This content is first appended to the wrapping container, then the boxes are rearranged with a <code>.masonry()</code> call. <code>appendedContent</code> was the only option to specify since Masonry saves all previous options. Using <code>appendedContent</code>, the Masonry script saves some processing time as it only rearranges the box inside that appended container. When the window is resized, these new boxes are appropriately rearranged with all the others.</p>
+		<p>This button demonstrates how to append new content to a layout using Masonry. Each time this button is clicked, new <code>box</code> elements are created, wrapped in an unstyled <code>div</code>.  This content is first appended to the wrapping container, then the boxes are rearranged with a <code>.masonry()</code> call. <code>appendedContent</code> was the only option to specify since Masonry saves all previous options. Using <code>appendedContent</code>, the Masonry script saves some processing time as it only rearranges the box(es) inside that appended container. </p>
 		<p>Finally, using the callback function, the new boxes are dynamically styled. </p>
 
 <pre><code><span class="keyword">$</span>(<span class="string">'#append_primary'</span>).click(<span class="storage">function</span>() {

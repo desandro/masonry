@@ -171,7 +171,7 @@
 
         <h2>Minimum recommended configuration</h2>
 
-        <p>For layout has elements that span multiple widths:</p>
+        <p>For layouts with elements that span multiple widths:</p>
 
         <pre><code><span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({ columnWidth: <span class="constant">200</span> });</code></pre>
 
@@ -225,7 +225,7 @@
 
         <p>If you&rsquo;re using a PHP-based CMS, you can use the <a href="http://php.net/manual/en/function.getimagesize.php">getimagesize</a> function.</p>
 
-        <p>If this is not possible, the other option is to call Masonry after all the images have loaded.  This is done by calling the function inside of <code>$(window).load()</code> instead of <code>$(document).ready()</code>.</p>
+        <p>If this is not possible, another option is to call Masonry after all the images have loaded.  This is done by calling the function inside of <code>$(window).load()</code> instead of <code>$(document).ready()</code>.</p>
 
         <pre><code><span class="keyword">$</span>(<span class="string">'window'</span>).<span class="keyword">load</span>(<span class="storage">function</span>(){
     <span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({ columnWidth: <span class="constant">200</span> });
@@ -249,30 +249,12 @@
         <ul id="inthewild">
 
 
-            <li><a href="http://www.tumblr.com/theme/3531">
-                Astronaut Tumblr Theme  
-                <img src="img/peter_vidani.jpg" alt="Astronaut Tumblr Theme" width="280" height="492" />
-            </a></li>
-            <li><a href="http://www.woothemes.com/demo/?t=41">
-                Mortar 
-                <img src="img/mortar.jpg" alt="Mortar"  width="280" height="705" />
-            </a></li>
-            <li><a href="http://maxvoltar.com">
-                Maxvoltar    
-                <img src="img/maxvoltar.jpg" alt="Maxvoltar"  width="280" height="547" />
-            </a></li>
-            <li><a href="http://www.mrbridge.co.nz/fluidadvert.html">
-                Andy Bridge    
-                <img src="img/andy.jpg" alt="Andy Bridge" width="280" height="508" />
-            </a></li>
-            <li><a href="http://chromeography.com">
-                Chromeography    
-                <img src="img/chromeography.jpg" alt="Chromeography" width="280" height="523" />
-            </a></li>
-            <li><a href="http://jquerystyle.com">
-                jQuery Style    
-                <img src="img/jquery_style.jpg" alt="jQuery Style" width="280" height="631" />
-            </a></li>
+            <li><a href="http://www.tumblr.com/theme/3531">Astronaut Tumblr Theme by Peter Vidani</a></li>
+            <li><a href="http://www.woothemes.com/demo/?t=41">Mortar WordPress Theme by WooThemes</a></li>
+            <li><a href="http://maxvoltar.com">Maxvoltar</a></li>
+            <li><a href="http://www.mrbridge.co.nz/fluidadvert.html">Andy Bridge</a></li>
+            <li><a href="http://chromeography.com">Chromeography</a></li>
+            <li><a href="http://jquerystyle.com">jQuery Style</a></li>
         </ul>
 
         <h2>Changelog</h2>
@@ -294,7 +276,7 @@
 
         <h2>License</h2>
         
-        <p>jQuery Masonry is dual-licensed under <a href="http://www.gnu.org/licenses/gpl.html">GPL</a> and MIT, just like <a href="http://docs.jquery.com/License">jQuery itself.</a> You can use it for both personal and commercial applications.</p>
+        <p>jQuery Masonry is dual-licensed under <a href="http://www.gnu.org/licenses/gpl.html">GPL</a> and <a href="http://en.wikipedia.org/wiki/MIT_License">MIT</a>, just like <a href="http://docs.jquery.com/License">jQuery itself.</a> You can use it for both personal and commercial applications.</p>
 
 	</div>
 
@@ -307,7 +289,6 @@
 	<script type="text/javascript">
 		$(function(){
 			$('#secondary').masonry({columnWidth: 100});
-			$('#inthewild').masonry({singleMode: true});
 		})
 	</script>
 
