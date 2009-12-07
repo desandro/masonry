@@ -1,19 +1,12 @@
 /*************************************************
-**  jQuery Masonry plug in
+**  jQuery Masonry version 1.0.0
 **  copyright David DeSandro, licensed GPL & MIT
-**  version 0.8.10
 **  http://desandro.com/resources/jquery-masonry
 **************************************************/
 ;(function($){  
 
-
     $.fn.masonry = function(options, callback) { 
 
-        // console log wrapper.
-        function debug(){
-            window.console && console.log.call(console,arguments);
-        }
-    
         function placeBrick($brick, setCount, setY, setSpan, props) {
             var shortCol = 0;
             
@@ -180,16 +173,18 @@
             //picked up from Paul Irish
             callback = callback || function(){};
             
-            // call masonry layout
-            masonrySetup($wall, opts, props);
-            masonryArrange($wall, opts, props);
+            if ( $wall.children().length > 0 ) {
+                // call masonry layout
+                masonrySetup($wall, opts, props);
+                masonryArrange($wall, opts, props);
             
-            // binding window resizing
-            var resizeOn = previousOptions.resizeable;
-            if ( !resizeOn && opts.resizeable ) {
-                $(window).bind('resize.masonry', function() { masonryResize($wall, opts, props); } );
+                // binding window resizing
+                var resizeOn = previousOptions.resizeable;
+                if ( !resizeOn && opts.resizeable ) {
+                    $(window).bind('resize.masonry', function() { masonryResize($wall, opts, props); } );
+                }
+                if ( resizeOn && !opts.resizeable ) $(window).unbind('resize.masonry');
             }
-            if ( resizeOn && !opts.resizeable ) $(window).unbind('resize.masonry'); 
 
         });        //        /return this.each(function()
     };            //        /$.fn.masonry = function(options)
@@ -215,7 +210,6 @@
         options: undefined,
         $bricks: undefined
     };
-
 
 
 })(jQuery);  

@@ -10,7 +10,6 @@
 	<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 	<script type="text/javascript" src="js/jquery.masonry.js"></script>
 
-
 </head>
 <body>
 
@@ -25,7 +24,7 @@
 	<h1>Primer</h1>	
 
     <div class="copy">
-        <p>Masonry is a layout plugin for jQuery. Think of it as the flip side of CSS floats. Whereas floating arranges elements horizontally then vertically, Masonry arranges elements vertically then horizontally. The result minimizes vertical gaps between elements of varying height, just like a mason fitting stones in a wall.</p>
+        <p>Masonry is a layout plugin for jQuery. Think of it as the flip side of CSS floats. Whereas floating arranges elements horizontally then vertically, Masonry arranges elements vertically then horizontally according to a grid. The result minimizes vertical gaps between elements of varying height, just like a mason fitting stones in a wall.</p>
         
     </div><!-- .copy -->
 
@@ -171,6 +170,8 @@
 
         <h2>Minimum recommended configuration</h2>
 
+        <p>Configuring Masonry is fairly easy. Simply attach the <code>.masonry()</code> method to the wrapping container element in your jQuery script. Depending on the layout, you&rsquo;ll most likely need to specify one option.</p>
+
         <p>For layouts with elements that span multiple widths:</p>
 
         <pre><code><span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({ columnWidth: <span class="constant">200</span> });</code></pre>
@@ -286,11 +287,11 @@
 		jQuery Masonry by <a href="http://desandro.com/">David DeSandro</a>
 	</p>
 
-	<script type="text/javascript">
-		$(function(){
-			$('#secondary').masonry({columnWidth: 100});
-		})
-	</script>
+<script type="text/javascript">
+	$(function(){
+		$('#secondary').masonry({columnWidth: 100});
+	})
+</script>
 
 
 
