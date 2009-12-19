@@ -28,17 +28,24 @@
         function masonrySetup($wall, opts, props) {
             if ( props.masoned && opts.appendedContent != undefined ) {
                 // if we're just dealing with appendedContent
-                props.$bricks = opts.appendedContent.find(opts.itemSelector);
+                var $brickParent = opts.appendedContent;
             } else {
-                props.$bricks = opts.itemSelector == undefined ?
-                            $wall.children() :
-                            $wall.find(opts.itemSelector);
+                var $brickParent = $wall;
             }
 
-            props.colW = opts.columnWidth == undefined ? 
-                        props.$bricks.outerWidth(true) : 
-                        opts.columnWidth;
-            
+            props.$bricks = opts.itemSelector == undefined ?
+                        $brickParent.children() :
+                        $brickParent.find(opts.itemSelector);
+
+
+            if ( opts.columnWidth == undefined) {
+                props.colW = props.masoned ?
+                        $wall.data('masonry').colW :
+                        props.$bricks.outerWidth(true);
+            } else {
+                props.colW = opts.columnWidth;
+            }
+
             props.colCount = Math.floor( $wall.width() / props.colW ) ;
             props.colCount = Math.max( props.colCount, 1 );
             
