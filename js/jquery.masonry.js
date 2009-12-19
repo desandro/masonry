@@ -1,5 +1,5 @@
 /*************************************************
-**  jQuery Masonry version 1.0.0
+**  jQuery Masonry version 1.0.1
 **  copyright David DeSandro, licensed GPL & MIT
 **  http://desandro.com/resources/jquery-masonry
 **************************************************/
