@@ -30,7 +30,7 @@
     <div class="copy">
         <p>Masonry integrates well with auto-paging scripts like <a href="http://www.infinite-scroll.com/">Infinite Scroll</a> by <a href="http://paulirish.com">Paul Irish</a>. Using the <code>appendedContent</code> option, Masonry will only re-position the newly appended elements, and skip over all the previous elements that are already in their proper position, thus saving precious milliseconds of page load time.</p>
         
-        <p>Setting up the Masonry call is just the same as normally would be.</p>
+        <p>Setting up the Masonry call is just the same as normally would be. Since this layout uses both Infinite Scroll and resizable, <code>itemSelector</code> is required.</p>
         
         <pre><code><span class="keyword">$</span>(<span class="string">'#primary'</span>).masonry({ 
     columnWidth: <span class="constant">100</span>, 

@@ -26,16 +26,9 @@
 
 
         function masonrySetup($wall, opts, props) {
-            if ( props.masoned && opts.appendedContent != undefined ) {
-                // if we're just dealing with appendedContent
-                var $brickParent = opts.appendedContent;
-            } else {
-                var $brickParent = $wall;
-            }
-
             props.$bricks = opts.itemSelector == undefined ?
-                        $brickParent.children() :
-                        $brickParent.find(opts.itemSelector);
+                        opts.$brickParent.children() :
+                        opts.$brickParent.find(opts.itemSelector);
 
 
             if ( opts.columnWidth == undefined) {
@@ -179,8 +172,15 @@
 
             //picked up from Paul Irish
             callback = callback || function(){};
+
+            if ( props.masoned && opts.appendedContent != undefined ) {
+                // if we're dealing with appendedContent
+                opts.$brickParent = opts.appendedContent;
+            } else {
+                opts.$brickParent = $wall;
+            }
             
-            if ( $wall.children().length > 0 ) {
+            if ( opts.$brickParent.children().length > 0  ) {
                 // call masonry layout
                 masonrySetup($wall, opts, props);
                 masonryArrange($wall, opts, props);
@@ -191,6 +191,9 @@
                     $(window).bind('resize.masonry', function() { masonryResize($wall, opts, props); } );
                 }
                 if ( resizeOn && !opts.resizeable ) $(window).unbind('resize.masonry');
+            } else {
+                // brickParent is empty, do nothing, go back home and eat chips
+                return this;
             }
 
         });        //        /return this.each(function()
@@ -215,7 +218,8 @@
         posTop: 0,
         posLeft: 0,
         options: undefined,
-        $bricks: undefined
+        $bricks: undefined,
+        $brickParent: undefined
     };
 
 
