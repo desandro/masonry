@@ -30,7 +30,6 @@
                         opts.$brickParent.children() :
                         opts.$brickParent.find(opts.itemSelector);
 
-
             if ( opts.columnWidth == undefined) {
                 props.colW = props.masoned ?
                         $wall.data('masonry').colW :
@@ -41,11 +40,10 @@
 
             props.colCount = Math.floor( $wall.width() / props.colW ) ;
             props.colCount = Math.max( props.colCount, 1 );
-            
         }
 
+
         function masonryArrange($wall, opts, props) {
-            
             // if masonry hasn't been called before
             if( !props.masoned ) $wall.css( 'position', 'relative' );            
             
@@ -71,7 +69,7 @@
                 *  but the colCount has changed from the previous time
                 *  masonry has been called
                 */
-                for (var i= $wall.data('masonry').colCount; i < props.colCount; i++) {
+                for (i= $wall.data('masonry').colCount; i < props.colCount; i++) {
                     props.colY[i] = props.posTop;
                 };
                 
@@ -203,13 +201,13 @@
 
     $.masonry = {
         defaults : {
-                    singleMode: false,
-                    columnWidth: undefined,
-                    itemSelector: undefined,
-                    appendedContent: undefined,
-                    saveOptions: true,
-                    resizeable: true
-                },
+            singleMode: false,
+            columnWidth: undefined,
+            itemSelector: undefined,
+            appendedContent: undefined,
+            saveOptions: true,
+            resizeable: true
+        },
         colW: undefined,
         colCount: undefined,
         colY: undefined,
@@ -221,6 +219,5 @@
         $bricks: undefined,
         $brickParent: undefined
     };
-
 
 })(jQuery);  
