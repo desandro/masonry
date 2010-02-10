@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/masonry-example.css" media="screen" charset="utf-8"  />    
 
-    <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.4.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.masonry.js"></script>
     <script type="text/javascript" src="js/jquery.infinitescroll.js"></script>
 
@@ -45,7 +45,7 @@
     itemSelector : <span class="string">'.box'</span>,       <span class="comment">// selector for all items you'll retrieve</span>
     loadingImg : <span class="string">'img/loader.gif'</span>,
     donetext  : <span class="string">'No more pages to load.'</span>,
-    debug: <span class="constant">false</span>,
+    debug: <span class="constant">true</span>,
     errorCallback: <span class="storage">function</span>() { 
         <span class="comment">// fade out the error message after 2 seconds</span>
         <span class="keyword">$</span>(<span class="string">'#infscr-loading'</span>).animate({opacity: .<span class="constant">8</span>},<span class="constant">2000</span>).fadeOut(<span class="string">'normal'</span>);     
@@ -54,6 +54,8 @@
     <span class="comment">// call masonry as a callback</span>
     <span class="storage">function</span>() { <span class="keyword">$</span>(<span class="string">'#primary'</span>).masonry({ appendedContent: <span class="keyword">$</span>(<span class="constant">this</span>) }); }
 );</code></pre>
+        
+        
         
     </div> <!-- /.copy -->
 
@@ -307,7 +309,7 @@
                 itemSelector : ".box",       // selector for all items you'll retrieve
                 loadingImg : 'img/loader.gif',
                 donetext  : "No more pages to load.",
-                debug: false,
+                debug: true,
                 errorCallback: function() { $('#infscr-loading').animate({opacity: .8},2000).fadeOut('normal');     // fade out the error message after 2 seconds
 
                     }
