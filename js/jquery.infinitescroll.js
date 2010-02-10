@@ -1,12 +1,10 @@
 /*!
 // Infinite Scroll jQuery plugin
 // copyright Paul Irish, licensed GPL & MIT
-// version 1.2.090804
+// version 1.4.091129
 
 // home and docs: http://www.infinite-scroll.com
 */
-
-// todo: add preloading option.
  
 ;(function($){
     
@@ -69,15 +67,16 @@
     
     
         
-    function isNearBottom(opts,props){
+    function isNearBottom(){
       
       // distance remaining in the scroll
       // computed as: document height - distance already scroll - viewport height - buffer
-      var pixelsFromWindowBottomToBottom = getDocumentHeight()  -
-                                            (opts.localMode ? $(props.container).scrollTop() : 
-                                              // have to do this bs because safari doesnt report a scrollTop on the html element
-                                              ($(props.container).scrollTop() || $(props.container.ownerDocument.body).scrollTop())) - 
-                                            $(opts.localMode ? props.container : window).height();
+      var pixelsFromWindowBottomToBottom = 0 +
+                getDocumentHeight()  - (
+                    opts.localMode ? $(props.container).scrollTop() : 
+                    // have to do this bs because safari doesnt report a scrollTop on the html element
+                    ($(props.container).scrollTop() || $(props.container.ownerDocument.body).scrollTop())
+                    ) - $(opts.localMode ? props.container : window).height();
       
       debug('math:',pixelsFromWindowBottomToBottom, props.pixelsFromNavToBottom);
       
@@ -95,74 +94,81 @@
       opts.errorCallback();
     }
     
-    function infscrSetup(path,opts,props,callback){
+    function infscrSetup(){
     
         if (props.isDuringAjax || props.isInvalidPage || props.isDone) return; 
-    
-            if ( !isNearBottom(opts,props) ) return; 
-              
-            // we dont want to fire the ajax multiple times
-            props.isDuringAjax = true; 
-            
-            // show the loading message and hide the previous/next links
-            props.loadingMsg.appendTo( opts.contentSelector ).show();
-            $( opts.navSelector ).hide(); 
-            
-            // increment the URL bit. e.g. /page/3/
-            props.currPage++;
-            
-            debug('heading into ajax',path);
-            
-            // if we're dealing with a table we can't use DIVs
-            var box = $(opts.contentSelector).is('table') ? $('<tbody/>') : $('<div/>');  
-            
-
-
-            box
-              .attr('id','infscr-page-'+props.currPage)
-              .addClass('infscr-pages')
-              .appendTo( opts.contentSelector )
-              .load( path.join( props.currPage ) + ' ' + opts.itemSelector,null,function(){
-                
-                    // if we've hit the last page...
-                    if (props.isDone){ 
-                    showDoneMsg();
-                          return false;    
-                          
-                  } else {
-                    
-                      // if it didn't return anything
-                      if (box.children().length == 0){
-                        // fake an ajaxError so we can quit.
-                        $.event.trigger( "ajaxError", [{status:404}] ); 
-                      } 
-                      
-                      // fadeout currently makes the <em>'d text ugly in IE6
-                        props.loadingMsg.fadeOut('normal' ); 
-  
-                        // smooth scroll to ease in the new content
-                        if (opts.animate){ 
-                          var scrollTo = $(window).scrollTop() + $('#infscr-loading').height() + opts.extraScrollPx + 'px';
-                      $('html,body').animate({scrollTop: scrollTo}, 800,function(){ props.isDuringAjax = false; }); 
-                        }
-                    
-                    // pass in the new DOM element as context for the callback
-                    callback.call( box[0] );
-                    
-                        if (!opts.animate) props.isDuringAjax = false; // once the call is done, we can allow it again.
-                  }
-                }); // end of load()
+        
+        if ( !isNearBottom(opts,props) ) return; 
+        
+        $(document).trigger('retrieve.infscr');
                 
                 
-      }  // end of infscrSetup()
+    }  // end of infscrSetup()
           
   
+      
+    function kickOffAjax(){
+        
+        // we dont want to fire the ajax multiple times
+        props.isDuringAjax = true; 
+        
+        // show the loading message and hide the previous/next links
+        props.loadingMsg.appendTo( opts.contentSelector ).show();
+        $( opts.navSelector ).hide(); 
+        
+        // increment the URL bit. e.g. /page/3/
+        props.currPage++;
+        
+        debug('heading into ajax',path);
+        
+        // if we're dealing with a table we can't use DIVs
+        box = $(opts.contentSelector).is('table') ? $('<tbody/>') : $('<div/>');  
+        
+        box
+          .attr('id','infscr-page-'+props.currPage)
+          .addClass('infscr-pages')
+          .appendTo( opts.contentSelector )
+          .load( path.join( props.currPage ) + ' ' + opts.itemSelector,null,loadCallback); 
+        
+    }
+    
+    function loadCallback(){
+        // if we've hit the last page...
+        if (props.isDone){ 
+            showDoneMsg();
+            return false;    
+              
+        } else {
+          
+            // if it didn't return anything
+            if (box.children().length == 0){
+              // fake an ajaxError so we can quit.
+              $.event.trigger( "ajaxError", [{status:404}] ); 
+            } 
+            
+            // fadeout currently makes the <em>'d text ugly in IE6
+            props.loadingMsg.fadeOut('normal' ); 
+
+            // smooth scroll to ease in the new content
+            if (opts.animate){ 
+                var scrollTo = $(window).scrollTop() + $('#infscr-loading').height() + opts.extraScrollPx + 'px';
+                $('html,body').animate({scrollTop: scrollTo}, 800,function(){ props.isDuringAjax = false; }); 
+            }
+        
+            // pass in the new DOM element as context for the callback
+            callback.call( box[0] );
+        
+            if (!opts.animate) props.isDuringAjax = false; // once the call is done, we can allow it again.
+        }
+    }
     
       
     // lets get started.
     
-    var opts    = $.extend({}, $.infinitescroll.defaults, options);
-    var props   = $.infinitescroll; // shorthand
+    var opts    = $.extend({}, $.infinitescroll.defaults, options),
+        props   = $.infinitescroll, // shorthand
+        box;
+        
     callback    = callback || function(){};
     
     if (!areSelectorsValid(opts)){ return false;  }
@@ -175,8 +181,8 @@
     
     
     // get the relative URL - everything past the domain name.
-    var relurl        = /(.*?\/\/).*?(\/.*)/;
-    var path          = $(opts.nextSelector).attr('href');
+    var relurl        = /(.*?\/\/).*?(\/.*)/,
+        path          = $(opts.nextSelector).attr('href');
     
     
     if (!path) { debug('Navigation selector not found'); return; }
@@ -191,7 +197,7 @@
     // distance from nav links to bottom
     // computed as: height of the document + top offset of container - top offset of nav link
     props.pixelsFromNavToBottom =  getDocumentHeight()  +
-                                     $(props.container).offset().top - 
+                                     (props.container == document.documentElement ? 0 : $(props.container).offset().top )- 
                                      $(opts.navSelector).offset().top;
     
     // define loading msg
@@ -199,7 +205,7 @@
                                   opts.loadingImg+'" /><div>'+opts.loadingText+'</div></div>');    
      // preload the image
     (new Image()).src    = opts.loadingImg;
-                
+              
 
   
     // set up our bindings
@@ -216,9 +222,10 @@
     
     // bind scroll handler to element (if its a local scroll) or window  
     $(opts.localMode ? this : window)
-      .bind('scroll.infscr', function(){ infscrSetup(path,opts,props,callback); } )
+      .bind('scroll.infscr', infscrSetup)
       .trigger('scroll.infscr'); // trigger the event, in case it's a short page
     
+    $(document).bind('retrieve.infscr',kickOffAjax);
     
     return this;
   
