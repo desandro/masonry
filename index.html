@@ -168,7 +168,7 @@
 
 	<div class="copy">
 
-        <h2>Minimum recommended configuration</h2>
+        <h2 id="min-config">Minimum recommended configuration</h2>
 
         <p>Configuring Masonry is fairly easy. Simply attach the <code>.masonry()</code> method to the wrapping container element. Depending on the layout, you&rsquo;ll most likely need to specify one option.</p>
 
@@ -181,7 +181,7 @@
         <pre><code><span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({ singleMode: <span class="constant">true</span> });</code></pre>
 
 
-        <h2>All options</h2>
+        <h2 id="options">All options</h2>
 
 <pre><code><span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({
 
@@ -220,11 +220,11 @@
 
         <p>No need to worry about how many columns, or width of gutters, or how big the container is. Thanks to the wonders of jQuery’s <code>outerWidth()</code> and <code>innerWidth()</code> methods, Masonry appropriately accounts for the space of any margin, padding, and border-width set with CSS. </p>
 
-        <h2>Window Resizing</h2>
+        <h2 id="resizing">Window Resizing</h2>
         
         <p>By default, Masonry binds a call to the browser window for resizing. But the rearrangement script is triggered only when the layout adds or loses a column, so you don&rsquo;t have to worry about Masonry slowing down window resizes, or with fixed layouts.</p>
 
-        <h2>Handling Images</h2>
+        <h2 id="images">Handling Images</h2>
 
         <p>Since Masonry measures the height of the elements when placing them, you will need to account for images that haven't loaded.  The best method is to specify the width and height of images inline.</p>
 
@@ -238,7 +238,7 @@
     <span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({ columnWidth: <span class="constant">200</span> });
 });</code></pre>
 
-        <h2>Resolving Anchor Links</h2>
+        <h2 id="anchor-links">Resolving Anchor Links</h2>
 
         <p>Since Masonry relies on absolute positioning, any anchor links that occur within or after the wrapping element will not work when the page first loads.  The following script is one solution.</p>
 
@@ -264,7 +264,7 @@
             <li><a href="http://jquerystyle.com">jQuery Style</a></li>
         </ul>
 
-        <h2>Changelog</h2>
+        <h2 id="changelog">Changelog</h2>
 
         <dl>
             <dt>v1.0.1: 19 Dec 2009</dt>
@@ -283,7 +283,7 @@
             <dd>Original release</dd>
         </dl>
 
-        <h2>License</h2>
+        <h2 id="license">License</h2>
         
         <p>jQuery Masonry is dual-licensed under <a href="http://www.gnu.org/licenses/gpl.html">GPL</a> and <a href="http://en.wikipedia.org/wiki/MIT_License">MIT</a>, just like <a href="http://docs.jquery.com/License">jQuery itself.</a> You can use it for both personal and commercial applications.</p>
 
