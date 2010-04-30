@@ -201,8 +201,21 @@
     // Required for Infinite Scroll with window resizing.</span>
 
     resizeable: <span class="constant">true</span>,
-    <span class="comment">// Binds a Masonry call to window resizes.
+    <span class="comment">// Binds a Masonry call to window resizes 
+    // so layout appears fluid.
     // default: true</span>
+
+    animate: <span class="constant">true</span>,
+    <span class="comment">// Animates layout rearrangements.
+    // default: false</span>
+
+    duration: <span class="constant">1500</span>,
+    <span class="comment">// If animated, speed of animation.
+    // default: 'normal'</span>
+
+    easing: <span class="string">'linear'</span>,
+    <span class="comment">// If animated, the easing function of the animation.
+    // default: 'swing'</span>
 
     appendedContent: <span class="keyword">$</span>(<span class="string">'.new_content'</span>),
     <span class="comment">// Additional container element for appended content.
@@ -250,9 +263,11 @@
     }
 });</code></pre>
 
-        <p>This will set the window of the document to the appropriate place.  These couple lines were taken from <a href="http://blog.position-absolute.com/javascript-jquery/the-end-of-the-html-anchor-scroll-the-scroll/">Cedric Dugas’s anchorAnything.</a></p>
+        <p>This will set the window of the document to the appropriate place.  These couple lines were taken from <a href="http://www.position-absolute.com/articles/better-html-anchor-a-jquery-script-to-slide-the-scrollbar/">Cedric Dugas’s anchorAnything.</a></p>
 
         <h2>Examples in the Wild</h2>
+
+        <p>In addition to the examples below, see <a href="http://delicious.com/desandro/jquerymasonry">delicious links tagged with jquerymasonry</a> and <a href="http://emberapp.com/desandro/collections/jquery-masonry">jQuery Masonry Collection on Ember for screenshots</a>.</p>
         
         <ul id="inthewild">
 
@@ -264,14 +279,14 @@
             <a href="http://photography.iamkoa.net/"></a>
             <li><a href="http://rathersplendid.net/">Rather Splendid</a></li>
             <li><a href="http://chromeography.com">Chromeography</a></li>
-            <li><a href="http://www.woothemes.com/demo/?t=41">Mortar WordPress Theme by WooThemes</a></li>
+            <li><a href="http://matthewanderson.cc/">Matthew Anderson</a></li>
         </ul>
         
-        <p><a href="http://delicious.com/desandro/jquerymasonry">And many more&hellip;</a></p>
-
         <h2 id="changelog">Changelog</h2>
 
         <dl>
+            <dt>v1.1.0: 29 Apr 2010</dt>
+            <dd>Add animation</dd>
             <dt>v1.0.1: 19 Dec 2009</dt>
             <dd>Bug fix, checks that container element exists and has children before running the script.</dd>
 
