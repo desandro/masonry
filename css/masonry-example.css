@@ -57,7 +57,7 @@ h1 {
     font-size: 36px;
 }
 
-h1, h2, h3, p, ul, ol, pre {
+h1, h2, h3, p, ul, ol, pre, dl {
     margin-bottom: 1.0em;
 }
 
