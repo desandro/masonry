@@ -1,10 +1,53 @@
 /*************************************************
-**  jQuery Masonry version 1.0.1
+**  jQuery Masonry version 1.1.0 beta
 **  copyright David DeSandro, licensed GPL & MIT
 **  http://desandro.com/resources/jquery-masonry
 **************************************************/
 ;(function($){  
 
+
+    /*!
+     * smartresize: debounced resize event for jQuery
+     * http://github.com/lrbabe/jquery-smartresize
+     *
+     * Copyright (c) 2009 Louis-Rémi Babé
+     * Licensed under the GPL license.
+     * http://docs.jquery.com/License
+     *
+     */
+    var event = $.event,
+    	resizeTimeout;
+
+    event.special[ "smartresize" ] = {
+    	setup: function() {
+    		$( this ).bind( "resize", event.special.smartresize.handler );
+    	},
+    	teardown: function() {
+    		$( this ).unbind( "resize", event.special.smartresize.handler );
+    	},
+    	handler: function( event, execAsap ) {
+    		// Save the context
+    		var context = this,
+    			args = arguments;
+
+    		// set correct event type
+            event.type = "smartresize";
+
+    		if(resizeTimeout)
+    			clearTimeout(resizeTimeout);
+    		resizeTimeout = setTimeout(function() {
+    			jQuery.event.handle.apply( context, args );
+    		}, execAsap === "execAsap"? 0 : 100);
+    	}
+    }
+
+    $.fn.smartresize = function( fn ) {
+    	return fn ? this.bind( "smartresize", fn ) : this.trigger( "smartresize", ["execAsap"] );
+    };
+
+
+
+    // masonry code begin
     $.fn.masonry = function(options, callback) { 
 
         function placeBrick($brick, setCount, setY, setSpan, props) {
