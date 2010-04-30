@@ -124,6 +124,9 @@ dd {
     margin-left: 1.0em;
 }
 
+button {
+    -webkit-appearance: push-button;
+}
 
 #footer {
     clear: both;
@@ -202,30 +205,6 @@ dd {
 }
 
 
-/**** In the wild examples ****/
-
-/*
-#inthewild { margin: 0; padding: 0;}
-
-#inthewild li {
-    width: 300px;
-    float: left;
-    list-style: none;
-    margin-bottom: 20px;
-}
-
-#inthewild li a {
-    display: block;
-    padding: 5px 10px 10px;
-    text-decoration: none;
-
-}
-#inthewild li a:hover { background: #C8C5C2 }
-
-#inthewild li img { 
-    margin-top: 5px;
-}
-*/
 
 /* Magazine page */
 
