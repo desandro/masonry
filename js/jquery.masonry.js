@@ -1,5 +1,5 @@
 /*************************************************
-**  jQuery Masonry version 1.1.0
+**  jQuery Masonry version 1.1.1
 **  copyright David DeSandro, licensed GPL & MIT
 **  http://desandro.com/resources/jquery-masonry
 **************************************************/
@@ -39,7 +39,7 @@
     			jQuery.event.handle.apply( context, args );
     		}, execAsap === "execAsap"? 0 : 100);
     	}
-    }
+    };
 
     $.fn.smartresize = function( fn ) {
     	return fn ? this.bind( "smartresize", fn ) : this.trigger( "smartresize", ["execAsap"] );
@@ -60,7 +60,7 @@
             var position = {
                 left: props.colW * shortCol + props.posLeft,
                 top: setY[ shortCol ]
-            }
+            };
 
 
             if( props.masoned && props.options.animate ) {
@@ -72,7 +72,7 @@
             for ( i=0; i < setSpan; i++ ) {
                 props.colY[ shortCol + i ] = setY[ shortCol ] + $brick.outerHeight(true) ;
             }
-        }
+        };
 
 
         function masonrySetup($wall, opts, props) {
@@ -90,7 +90,7 @@
 
             props.colCount = Math.floor( $wall.width() / props.colW ) ;
             props.colCount = Math.max( props.colCount, 1 );
-        }
+        };
 
 
         function masonryArrange($wall, opts, props) {
@@ -194,7 +194,7 @@
             $wall.data('masonry', props );
 
 
-        } //  /masonryArrange function
+        }; //  /masonryArrange function
 
 
         function masonryResize($wall, opts, props) {
@@ -202,7 +202,7 @@
             var prevColCount = $wall.data('masonry').colCount;
             masonrySetup($wall, opts, props);
             if ( props.colCount != prevColCount ) masonryArrange($wall, opts, props); 
-        }
+        };
 
 
         /*
