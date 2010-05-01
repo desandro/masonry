@@ -1,7 +1,7 @@
 /*!
 // Infinite Scroll jQuery plugin
 // copyright Paul Irish, licensed GPL & MIT
-// version 1.4.100211
+// version 1.4.091129
 
 // home and docs: http://www.infinite-scroll.com
 */
@@ -18,7 +18,7 @@
     // grab each selector option and see if any fail.
     function areSelectorsValid(opts){
       for (var key in opts){
-        if (key.indexOf && key.indexOf('Selector') > -1 && $(opts[key]).length === 0){
+        if (key.indexOf && key.indexOf('Selector') && $(opts[key]).length === 0){
             debug('Your ' + key + ' found no elements.');    
             return false;
         } 
@@ -123,10 +123,12 @@
         
         // if we're dealing with a table we can't use DIVs
         box = $(opts.contentSelector).is('table') ? $('<tbody/>') : $('<div/>');  
-        frag = document.createDocumentFragment();
-
-
-        box.load( path.join( props.currPage ) + ' ' + opts.itemSelector,null,loadCallback); 
+        
+        box
+          .attr('id','infscr-page-'+props.currPage)
+          .addClass('infscr-pages')
+          .appendTo( opts.contentSelector )
+          .load( path.join( props.currPage ) + ' ' + opts.itemSelector,null,loadCallback); 
         
     }
     
@@ -143,13 +145,6 @@
               // fake an ajaxError so we can quit.
               $.event.trigger( "ajaxError", [{status:404}] ); 
             } 
-            
-            // use a documentFragment because it works when content is going into a table or UL
-			while (box[0].firstChild){
-				frag.appendChild(  box[0].firstChild );
-			}
-
-           	$(opts.contentSelector)[0].appendChild(frag);
             
             // fadeout currently makes the <em>'d text ugly in IE6
             props.loadingMsg.fadeOut('normal' ); 
@@ -169,11 +164,10 @@
     
       
     // lets get started.
-    $.browser.ie6 = $.browser.msie && $.browser.version < 7;
     
     var opts    = $.extend({}, $.infinitescroll.defaults, options),
         props   = $.infinitescroll, // shorthand
-        box, frag;
+        box;
         
     callback    = callback || function(){};
     
@@ -271,3 +265,4 @@
 
 
 })(jQuery);
+
