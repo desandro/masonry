@@ -1,5 +1,5 @@
 /*************************************************
-**  jQuery Masonry version 1.1.1
+**  jQuery Masonry version 1.1.2
 **  copyright David DeSandro, licensed GPL & MIT
 **  http://desandro.com/resources/jquery-masonry
 **************************************************/
@@ -10,7 +10,7 @@
      * smartresize: debounced resize event for jQuery
      * http://github.com/lrbabe/jquery-smartresize
      *
-     * Copyright (c) 2009 Louis-Rémi Babé
+     * Copyright (c) 2009 Louis-Remi Babe
      * Licensed under the GPL license.
      * http://docs.jquery.com/License
      *
@@ -50,7 +50,7 @@
     // masonry code begin
     $.fn.masonry = function(options, callback) { 
 
-        function placeBrick($brick, setCount, setY, setSpan, props) {
+        function placeBrick($brick, setCount, setY, setSpan, props, opts) {
             var shortCol = 0;
             
             for ( i=0; i < setCount; i++ ) {
@@ -63,8 +63,8 @@
             };
 
 
-            if( props.masoned && props.options.animate ) {
-                $brick.animate( position, props.options.duration, props.options.easing );
+            if( props.masoned && opts.animate ) {
+                $brick.animate( position, opts.duration, opts.easing );
             } else {
                 $brick.css(position);
             }
@@ -131,13 +131,11 @@
             }
             
             
-            var aniOpts = opts.animationOptions;
-
             // layout logic
             if ( opts.singleMode ) {
                 props.$bricks.each(function(){
                     var $brick = $(this);
-                    placeBrick($brick, props.colCount, props.colY, 1, props);
+                    placeBrick($brick, props.colCount, props.colY, 1, props, opts);
                 });            
             } else {
                 props.$bricks.each(function() {
@@ -150,7 +148,7 @@
                     
                     if ( colSpan == 1 ) {
                         // if brick spans only one column, just like singleMode
-                        placeBrick($brick, props.colCount, props.colY, 1, props);
+                        placeBrick($brick, props.colCount, props.colY, 1, props, opts);
                     } else {
                         // brick spans more than one column
 
@@ -167,7 +165,7 @@
                             }
                         }
                 
-                        placeBrick($brick, groupCount, groupY, colSpan, props);
+                        placeBrick($brick, groupCount, groupY, colSpan, props, opts);
                     }
                 }); //        /props.bricks.each(function() {
             }  //         /layout logic
@@ -286,4 +284,4 @@
         $brickParent: undefined
     };
 
-})(jQuery);  
+})(jQuery);
