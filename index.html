@@ -243,15 +243,15 @@
         
         <p>By default, Masonry binds a call to the browser window for resizing. But the rearrangement script is triggered only when the layout adds or loses a column, so you don&rsquo;t have to worry about Masonry slowing down window resizes, or with fixed layouts.</p>
 
-        <h2 id="images">Handling Images</h2>
+        <h2 id="images">Handling Images &amp; Other Media</h2>
 
-        <p>Since Masonry measures the height of the elements when placing them, you will need to account for images that haven't loaded.  The best method is to specify the width and height of images inline.</p>
+        <p>Since Masonry measures the height of the elements when placing them, you will need to account for images and other media that haven&rsquo;t loaded yet.  For images, the best method is to specify the width and height of images inline.</p>
 
         <pre><code><span class="storage">&lt;img src=<span class="string">"img_file.jpg"</span> <span class="string">width="280"</span> <span class="string">height="160"</span> /&gt;</span></code></pre>
 
         <p>If you&rsquo;re using a PHP-based CMS, you can use the <a href="http://php.net/manual/en/function.getimagesize.php">getimagesize</a> function.</p>
 
-        <p>If this is not possible, another option is to call Masonry after all the images have loaded.  This is done by calling the function inside of <code>$(window).load()</code> instead of <code>$(document).ready()</code>.</p>
+        <p>If this is not possible or if you&rsquo;re dealing with @font-face fonts, another option is to call Masonry after all media has loaded. This is done by calling the function inside of <code>$(window).load()</code> instead of <code>$(document).ready()</code>.</p>
 
         <pre><code><span class="keyword">$</span>(<span class="string">'window'</span>).<span class="keyword">load</span>(<span class="storage">function</span>(){
     <span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({ columnWidth: <span class="constant">200</span> });
