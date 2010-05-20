@@ -9,6 +9,35 @@
     <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="js/jquery.masonry.js"></script>
     <script type="text/javascript" src="js/jquery.infinitescroll.js"></script>
+    <script type="text/javascript">
+        $(function(){
+
+            $('#primary').masonry({
+                columnWidth: 100, 
+                itemSelector: '.box:visible',
+                animate: true,
+                duration: 1500
+            });
+
+            $('#primary').infinitescroll({
+                navSelector  : "#page_nav",    // selector for the paged navigation 
+                nextSelector : "#page_nav a",    // selector for the NEXT link (to page 2)
+                itemSelector : ".box",       // selector for all items you'll retrieve
+                loadingImg : 'img/loader.gif',
+                donetext  : "No more pages to load.",
+                debug: true,
+                errorCallback: function() { $('#infscr-loading').animate({opacity: .8},2000).fadeOut('normal');     // fade out the error message after 2 seconds
+
+                    }
+            },
+                // call masonry as a callback.
+                function() { $('#primary').masonry({ appendedContent: $(this) }); }
+            );
+
+
+
+        });
+    </script>
 
 
 </head>
@@ -304,36 +333,6 @@
         jQuery Masonry by <a href="http://desandro.com/">David DeSandro</a> <br />
         <a href="http://www.infinite-scroll.com/">Infinite Scroll</a> by <a href="http://paulirish.com">Paul Irish</a>
     </p>
-
-
-    <script type="text/javascript">
-        $(function(){
-
-            $('#primary').masonry({
-                columnWidth: 100, 
-                itemSelector: '.box:visible' 
-            });
-
-            $('#primary').infinitescroll({
-                navSelector  : "#page_nav",    // selector for the paged navigation 
-                nextSelector : "#page_nav a",    // selector for the NEXT link (to page 2)
-                itemSelector : ".box",       // selector for all items you'll retrieve
-                loadingImg : 'img/loader.gif',
-                donetext  : "No more pages to load.",
-                debug: true,
-                errorCallback: function() { $('#infscr-loading').animate({opacity: .8},2000).fadeOut('normal');     // fade out the error message after 2 seconds
-
-                    }
-            },
-                // call masonry as a callback.
-                function() { $('#primary').masonry({ appendedContent: $(this) }); }
-            );
-
-
-
-        });
-    </script>
-
 
 
 </body>

@@ -8,6 +8,16 @@
 
     <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="js/jquery.masonry.js"></script>
+    <script type="text/javascript">
+        $(function(){
+
+            $('#primary').masonry({
+                columnWidth: 100, 
+                animate: true
+            });
+
+        });
+    </script>
     
 </head>
 <body>
@@ -155,18 +165,6 @@
         jQuery Masonry by <a href="http://desandro.com/">David DeSandro</a> <br />
         <a href="http://github.com/lrbabe/jquery-smartresize">smartresize jQuery event plugin</a> by Louis-Rémi Babé and <a href="http://paulirish.com/2009/throttled-smartresize-jquery-event-handler/">Paul Irish</a>
     </p>
-
-    <script type="text/javascript">
-        $(function(){
-
-            $('#primary').masonry({
-                columnWidth: 100, 
-                animate: true
-            });
-
-        });
-    </script>
-
 
 </body>
 </html>

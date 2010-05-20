@@ -8,6 +8,15 @@
 
     <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="../js/jquery.masonry.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#primary').masonry({
+                columnWidth: 100, 
+                itemSelector: '.box' 
+            });
+
+        });
+    </script>
 
 
 </head>
@@ -163,24 +172,6 @@
 
         jQuery Masonry by <a href="http://desandro.com/">David DeSandro</a>
     </p>
-
-    <script type="text/javascript">
-    $(function(){
-        function masonryCalls() {
-            $('#primary').masonry({columnWidth: 100, itemSelector: '.box' });
-        };
-
-        
-        masonryCalls();
-
-
-         $(window).resize(function() {
-            masonryCalls();
-         });
-
-    });
-    </script>
-
 
 
 </body>
