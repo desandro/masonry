@@ -14,9 +14,7 @@
 
             $('#primary').masonry({
                 columnWidth: 100, 
-                itemSelector: '.box:visible',
-                animate: true,
-                duration: 1500
+                itemSelector: '.box:visible'
             });
 
             $('#primary').infinitescroll({
@@ -26,9 +24,10 @@
                 loadingImg : 'img/loader.gif',
                 donetext  : "No more pages to load.",
                 debug: true,
-                errorCallback: function() { $('#infscr-loading').animate({opacity: .8},2000).fadeOut('normal');     // fade out the error message after 2 seconds
-
-                    }
+                errorCallback: function() { 
+                    // fade out the error message after 2 seconds
+                    $('#infscr-loading').animate({opacity: .8},2000).fadeOut('normal');     
+                }
             },
                 // call masonry as a callback.
                 function() { $('#primary').masonry({ appendedContent: $(this) }); }
@@ -56,7 +55,7 @@
     <h1>Infinite Scroll Example</h1>
 
     <div class="copy">
-        <p>Masonry integrates well with auto-paging scripts like <a href="http://www.infinite-scroll.com/">Infinite Scroll</a> by <a href="http://paulirish.com">Paul Irish</a>. <strong>Infinite Scroll v1.4.091129 is compatible with Masonry</strong>, later versions may not be supported. Using the <code>appendedContent</code> option, Masonry will only re-position the newly appended elements, and skip over all the previous elements that are already in their proper position, thus saving precious milliseconds of page load time.</p>
+        <p>Masonry integrates well with auto-paging scripts like <a href="http://www.infinite-scroll.com/">Infinite Scroll</a> by <a href="http://paulirish.com">Paul Irish</a>. <strong>Infinite Scroll v1.4.091129 is compatible with Masonry, the version included in this repository</strong>, later versions may not be supported. Using the <code>appendedContent</code> option, Masonry will only re-position the newly appended elements, and skip over all the previous elements that are already in their proper position, thus saving precious milliseconds of page load time.</p>
         
         <p>Setting up the Masonry call is just the same as normally would be. Since this layout uses both Infinite Scroll and resizable, <code>itemSelector</code> is required.</p>
         
