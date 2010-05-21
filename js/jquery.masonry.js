@@ -1,5 +1,5 @@
 /*************************************************
-**  jQuery Masonry version 1.1.2
+**  jQuery Masonry version 1.1.3
 **  copyright David DeSandro, licensed GPL & MIT
 **  http://desandro.com/resources/jquery-masonry
 **************************************************/
@@ -76,10 +76,6 @@
 
 
         function masonrySetup($wall, opts, props) {
-            props.$bricks = opts.itemSelector == undefined ?
-                        opts.$brickParent.children() :
-                        opts.$brickParent.find(opts.itemSelector);
-
             if ( opts.columnWidth == undefined) {
                 props.colW = props.masoned ?
                         $wall.data('masonry').colW :
@@ -216,7 +212,6 @@
             // checks if masonry has been called before on this object
             props.masoned = $wall.data('masonry') != undefined;
         
-    
             var previousOptions = props.masoned ? $wall.data('masonry').options : {};
 
             var opts =  $.extend(
@@ -232,6 +227,7 @@
             //picked up from Paul Irish
             callback = callback || function(){};
 
+
             if ( props.masoned && opts.appendedContent != undefined ) {
                 // if we're dealing with appendedContent
                 opts.$brickParent = opts.appendedContent;
@@ -239,7 +235,12 @@
                 opts.$brickParent = $wall;
             }
             
-            if ( opts.$brickParent.children().length > 0  ) {
+            
+            props.$bricks = opts.itemSelector == undefined ?
+                        opts.$brickParent.children() :
+                        opts.$brickParent.find(opts.itemSelector);
+
+            if ( props.$bricks.length ) {
                 // call masonry layout
                 masonrySetup($wall, opts, props);
                 masonryArrange($wall, opts, props);
