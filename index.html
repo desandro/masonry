@@ -215,13 +215,8 @@
     <span class="comment">// Animates layout rearrangements.
     // default: false</span>
 
-    duration: <span class="constant">1500</span>,
-    <span class="comment">// If animated, speed of animation.
-    // default: 'normal'</span>
-
-    easing: <span class="string">'linear'</span>,
-    <span class="comment">// If animated, the easing function of the animation.
-    // default: 'swing'</span>
+    animationOptions: {},
+    <span class="comment">// A map of options for animation.</span>
 
     appendedContent: <span class="keyword">$</span>(<span class="string">'.new_content'</span>),
     <span class="comment">// Additional container element for appended content.
@@ -254,7 +249,7 @@
 
         <p>If this is not possible or if you&rsquo;re dealing with @font-face fonts, another option is to call Masonry after all media has loaded. This is done by calling the function inside of <code>$(window).load()</code> instead of <code>$(document).ready()</code>.</p>
 
-        <pre><code><span class="keyword">$</span>(<span class="string">window</span>).<span class="keyword">load</span>(<span class="storage">function</span>(){
+        <pre><code><span class="keyword">$</span>(<span class="support">window</span>).<span class="keyword">load</span>(<span class="storage">function</span>(){
     <span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({ columnWidth: <span class="constant">200</span> });
 });</code></pre>
 
@@ -262,7 +257,7 @@
 
         <p>Since Masonry relies on absolute positioning, any anchor links that occur within or after the wrapping element will not work when the page first loads.  The following script is one solution.</p>
 
-        <pre><code><span class="keyword">$</span>(<span class="string">window</span>).<span class="keyword">load</span>(<span class="storage">function</span>(){
+        <pre><code><span class="keyword">$</span>(<span class="support">window</span>).<span class="keyword">load</span>(<span class="storage">function</span>(){
     <span class="keyword">if</span> ( <span class="keyword">window</span>.<span class="keyword">location</span>.<span class="keyword">hash</span> ) {
         <span class="storage">var</span> destination = <span class="keyword">$</span>( <span class="keyword">window</span>.<span class="keyword">location</span>.<span class="keyword">hash</span> ).offset().<span class="keyword">top</span>;
         <span class="keyword">$</span>(<span class="string">'html:not(:animated),body:not(:animated)'</span>).scrollTop( destination );
@@ -278,14 +273,12 @@
         <ul id="inthewild">
 
             <li><a href="http://bygonebureau.com/">The Bygone Bureau</a></li>
+            <li><a href="http://thoughtandtheory.com/collection/">Thought &amp; Theory - Collection</a></li>
             <li><a href="http://safe.tumblr.com/theme/preview/8951">Scaffold Tumblr Theme by Mike Harding</a></li>
+            <!-- <li><a href="http://alpha.patterntap.com">Pattern Tap</a></li> -->
             <li><a href="http://thomasmatthews.com/index.php/portfolio/print/">thomas.matthews</a></li>
-            <li><a href="http://www.inkoherence.com/">Inkoherence</a></li>
-            
-            <a href="http://photography.iamkoa.net/"></a>
             <li><a href="http://rathersplendid.net/">Rather Splendid</a></li>
             <li><a href="http://chromeography.com">Chromeography</a></li>
-            <li><a href="http://matthewanderson.cc/">Matthew Anderson</a></li>
         </ul>
         
         <h2 id="changelog">Changelog</h2>
@@ -293,9 +286,6 @@
         <dl>
             <dt>v1.1.0: 29 Apr 2010</dt>
             <dd>Add animation</dd>
-            <dt>v1.0.1: 19 Dec 2009</dt>
-            <dd>Bug fix, checks that container element exists and has children before running the script.</dd>
-
             <dt>v1.0: 7 Dec 2009</dt>
             <dd>Multi-column width support</dd>
             <dd>Appending elements and Infinite Scroll support</dd>
