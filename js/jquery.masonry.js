@@ -50,6 +50,12 @@
     // masonry code begin
     $.fn.masonry = function(options, callback) { 
 
+        function getBricks(props, opts) {
+            props.$bricks = opts.itemSelector == undefined ?
+                        opts.$brickParent.children() :
+                        opts.$brickParent.find(opts.itemSelector);
+        }
+
         function placeBrick($brick, setCount, setY, setSpan, props, opts) {
             var shortCol = 0;
             
@@ -64,7 +70,14 @@
 
 
             if( props.masoned && opts.animate ) {
-                $brick.animate( position, opts.duration, opts.easing );
+                $brick.animate( position, {
+                    duration: opts.animationOptions.duration, 
+                    easing: opts.animationOptions.easing,
+                    complete: opts.animationOptions.complete,
+                    step: opts.animationOptions.step,
+                    queue: opts.animationOptions.queue,
+                    specialEasing: opts.animationOptions.specialEasing
+                });
             } else {
                 $brick.css(position);
             }
@@ -76,6 +89,8 @@
 
 
         function masonrySetup($wall, opts, props) {
+             getBricks(props, opts);
+
             if ( opts.columnWidth == undefined) {
                 props.colW = props.masoned ?
                         $wall.data('masonry').colW :
@@ -174,7 +189,14 @@
             var wallCSS = { height: props.wallH - props.posTop };
             // $wall.height( props.wallH - props.posTop );
             if ( props.masoned && opts.animate ) {
-                $wall.animate(wallCSS, opts.duration, opts.easing);
+                $wall.animate(wallCSS, {
+                    duration: opts.animationOptions.duration, 
+                    easing: opts.animationOptions.easing,
+                    complete: opts.animationOptions.complete,
+                    step: opts.animationOptions.step,
+                    queue: opts.animationOptions.queue,
+                    specialEasing: opts.animationOptions.specialEasing
+                });
             } else {
                 $wall.css(wallCSS);
                 
@@ -235,10 +257,8 @@
                 opts.$brickParent = $wall;
             }
             
-            
-            props.$bricks = opts.itemSelector == undefined ?
-                        opts.$brickParent.children() :
-                        opts.$brickParent.find(opts.itemSelector);
+            getBricks(props, opts)
+
 
             if ( props.$bricks.length ) {
                 // call masonry layout
@@ -270,8 +290,7 @@
             saveOptions: true,
             resizeable: true,
             animate: false,
-            duration: 'normal',
-            easing: 'swing'
+            animationOptions: {}
         },
         colW: undefined,
         colCount: undefined,
