@@ -2,9 +2,18 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>jQuery Masonry &rsaquo; Animated Example</title>
+    <title>jQuery Masonry &rsaquo; Animated</title>
 
     <link rel="stylesheet" type="text/css" href="css/masonry-example.css" media="screen" />    
+
+    <style media="screen">
+        #secondary.masoned, #secondary.masoned .box  {
+            -webkit-transition: all .7s ease-out;
+               -moz-transition: all .7s ease-out;
+                 -o-transition: all .7s ease-out;
+                    transition: all .7s ease-out;
+        }
+    </style>
 
     <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="js/jquery.masonry.js"></script>
@@ -13,8 +22,21 @@
 
             $('#primary').masonry({
                 columnWidth: 100, 
-                animate: true
+                animate: true, 
+                animationOptions: {
+                    // duration: 1000,
+                    // easing: 'linear',
+                    // specialEasing: { top: 'linear'},
+                    // queue: false
+                }
             });
+
+            // call masonry then add class so transitions
+            // apply after the first arrangement
+            $('#secondary')
+                .masonry({ columnWidth: 100 })
+                .addClass('masoned')
+            ;
 
         });
     </script>
@@ -33,14 +55,26 @@
     </ol>
 
 
-    <h1>Animated Example</h1>    
+    <h1>Animated</h1>    
 
     <div class="copy">
-        <p>As of version 1.1, rearrangements can be animated when the container is resized. Animation can be modified using the <code>duration</code> and <code>easing</code> options.</p>
+        <p>As of version 1.1, rearrangements can be animated when the container is resized.</p>
         
         <pre><code><span class="keyword">$</span>(<span class="string">'#primary'</span>).masonry({
     columnWidth: <span class="constant">100</span>, 
     animate: <span class="constant">true</span>
+});</code></pre>
+
+        <p>Animation options are set with <code>animationOption</code>. See the <a href="http://api.jquery.com/animate/#animate-properties-options">jQuery API for animate options</a> for details on available animation options.</p>
+        
+<pre><code><span class="keyword">$</span>(<span class="string">'#primary'</span>).masonry({
+    columnWidth: <span class="constant">100</span>, 
+    animate: <span class="constant">true</span>,
+    animationOptions: {
+        duration: <span class="constant">750</span>,
+        easing: <span class="string">'linear'</span>,
+        queue: <span class="constant">false</span>
+    }
 });</code></pre>
 
 
