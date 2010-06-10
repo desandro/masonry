@@ -25,7 +25,7 @@
             $('#append_primary').click(function() {
                 var $moreContent = makeNewBoxes(3);
 
-                $('#primary').append( moreContent )
+                $('#primary').append( $moreContent )
                     .masonry({ appendedContent: $moreContent }
                         // using a callback to style the new elements
                         , function() { $(this).css({background: '#222', color: '#EEE' })}    
@@ -36,7 +36,7 @@
             $('#append_secondary').click(function() {
                 var $moreContent = makeNewBoxes(1);
 
-                $('#secondary').append( moreContent )
+                $('#secondary').append( $moreContent )
                     .masonry({ appendedContent: $moreContent }
                         // using a callback to style the new elements
                         , function() { $(this).css({background: '#222', color: '#EEE' })}
@@ -286,6 +286,8 @@
     <p><button id="append_primary">Append primary</button></p>
 
     <div class="copy">
+        
+        <h2 id="appending">Appending Content</h2>
 
 		<p>This button demonstrates how to append new content to a layout using Masonry. Each time this button is clicked, new <code>box</code> elements are created, wrapped in an unstyled <code>div</code>.  This content is first appended to the wrapping container, then the boxes are rearranged with a <code>.masonry()</code> call. <code>appendedContent</code> was the only option to specify since Masonry saves all previous options. Using <code>appendedContent</code>, the Masonry script saves some processing time as it only rearranges the box(es) inside that appended container. </p>
 		<p>Finally, using the callback function, the new boxes are dynamically styled. </p>
@@ -299,6 +301,8 @@
         )
     ;
 });</code></pre>
+
+        <h2 id="singlemode">singleMode</h2>
 
 		<p>The second example uses boxes with the same width, so <code>singleMode</code> is set to <code>true</code>. <code>columnWidth</code> does not need to be set if <code>singleMode</code> is set to <code>true</code>.</p>
 
@@ -491,6 +495,3 @@
 
 </body>
 </html>
-
-
-
