@@ -39,7 +39,7 @@ a:hover {
 
 #nav li {
     float: left;
-    margin-right: 2px;
+    margin-right: 8px;
 }
 
 #nav li a {
@@ -116,7 +116,7 @@ ul, ol { padding-left: 1.3em;}
 
 .copy {
     width: 600px;
-    line-height: 1.4em;
+    line-height: 1.55em;
 }
 
 blockquote {
