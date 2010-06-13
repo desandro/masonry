@@ -202,6 +202,9 @@
                 
             }
 
+            // add masoned class first time around
+            if ( !props.masoned ) $wall.addClass('masoned');
+
             // provide props.bricks as context for the callback
             callback.call( props.$bricks );
             
