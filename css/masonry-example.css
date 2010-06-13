@@ -29,7 +29,7 @@ a:hover {
     padding-left: 0;
 }
 
-#nav:after {
+.nav:after {
     content: '';
     clear: both;
     display: block;
@@ -290,8 +290,7 @@ button {
 
 #filtering-nav {
     padding: 0;
-    margin: 0 0 1.0em;
-    height: 2.0em;
+    margin: 2em 0;
 }
 
 #filtering-nav li {
