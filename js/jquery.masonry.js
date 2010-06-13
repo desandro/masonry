@@ -5,7 +5,6 @@
 **************************************************/
 ;(function($){  
 
-
     /*!
      * smartresize: debounced resize event for jQuery
      * http://github.com/lrbabe/jquery-smartresize
@@ -199,7 +198,6 @@
                 });
             } else {
                 $wall.css(wallCSS);
-                
             }
 
             // add masoned class first time around
@@ -260,7 +258,7 @@
                 opts.$brickParent = $wall;
             }
             
-            getBricks(props, opts)
+            getBricks(props, opts);
 
 
             if ( props.$bricks.length ) {
