@@ -29,21 +29,27 @@
             });
 
             $('#filtering-nav a').click(function(){
-                var colorClass = '.' + $(this).attr('class');
-                
-                if(colorClass=='.all') {
-                    // show all hidden boxes
-                    $('#primary').children('.invis')
-                        .toggleClass('invis').animate({opacity: 1},{ duration: speed });
-                } else {    
-                    // hide visible boxes 
-                    $('#primary').children().not(colorClass).not('.invis')
-                        .toggleClass('invis').animate({opacity: 0},{ duration: speed });
-                    // show hidden boxes
-                    $('#primary').children(colorClass+'.invis')
-                        .toggleClass('invis').animate({opacity: 1},{ duration: speed });
+                var 
+                    colorClass = '.' + $(this).attr('class'),
+                    $wall = $('#primary'),
+                    // default to all hidden boxes
+                    showableSelector = '.invis'
+                ;
+
+                // if the 'all' button was not clicked...
+                if( colorClass != '.all' )  {
+                    // grab matched boxes that are hidden
+                    showableSelector += colorClass;
+                    // hide visible, un-matched boxes 
+                    $wall.children().not(colorClass).not('.invis')
+                        .toggleClass('invis').fadeOut(speed);
                 }
-                $('#primary').masonry();
+                
+                $wall
+                    // show hidden boxes
+                    .children(showableSelector).toggleClass('invis').fadeIn(speed)
+                    // call masonry on $wall
+                    .end().masonry();
 
                 return false;
             });
