@@ -14,10 +14,12 @@
     <script>
         $(function(){
 
-            // animation speed
-            var speed = 1000;
+            var 
+                speed = 1000,   // animation speed
+                $wall = $('#primary')
+            ;
 
-            $('#primary').masonry({
+            $wall.masonry({
                 columnWidth: 100, 
                 // only apply masonry layout to visible elements
                 itemSelector: '.box:not(.invis)',
@@ -29,27 +31,21 @@
             });
 
             $('#filtering-nav a').click(function(){
-                var 
-                    colorClass = '.' + $(this).attr('class'),
-                    $wall = $('#primary'),
-                    // default to all hidden boxes
-                    showableSelector = '.invis'
-                ;
+                var colorClass = '.' + $(this).attr('class');
 
-                // if the 'all' button was not clicked...
-                if( colorClass != '.all' )  {
-                    // grab matched boxes that are hidden
-                    showableSelector += colorClass;
-                    // hide visible, un-matched boxes 
+                if(colorClass=='.all') {
+                    // show all hidden boxes
+                    $wall.children('.invis')
+                        .toggleClass('invis').fadeIn(speed);
+                } else {    
+                    // hide visible boxes 
                     $wall.children().not(colorClass).not('.invis')
                         .toggleClass('invis').fadeOut(speed);
-                }
-                
-                $wall
                     // show hidden boxes
-                    .children(showableSelector).toggleClass('invis').fadeIn(speed)
-                    // call masonry on $wall
-                    .end().masonry();
+                    $wall.children(colorClass+'.invis')
+                        .toggleClass('invis').fadeIn(speed);
+                }
+                $wall.masonry();
 
                 return false;
             });
@@ -78,10 +74,12 @@
     <div class="copy">
         <p>Filtering is supported by Masonry v1.2. This example demostrates how to show, hide, and rearrange visible items, using some basic logic. Each control button has a class that matches a class of arrangeable elements: <code>gray</code>, <code>red</code>, and <code>black</code>. When one of these buttons is clicked, the arrangeable elements that have a matching class are shown, and the elements that do not match are hidden. To keep track of what's visible, a class of <code>invis</code> is added and removed to each element. In this example, the masonry settings have <code>itemSelector</code> as <code><span class="string">'.box:not(.invis)'</span></code>, so only visible elements will be arranged in the layout. After the proper elements are hidden and the others shown, <code>.masonry()</code> is called and the layout is rearranged.</p>
         
-        <pre><code><span class="comment">// animation speed</span>
-<span class="storage">var</span> speed = <span class="constant">1000</span>;
+        <pre><code><span class="storage">var</span>
+    speed <span class="storage">=</span> <span class="constant">1000</span>,  <span class="comment">// animation speed</span>
+    <span class="keyword">$</span>wall = <span class="keyword">$</span>(<span class="string">'#primary'</span>)
+;
 
-<span class="keyword">$</span>(<span class="string">'#primary'</span>).masonry({
+<span class="keyword">$</span>wall.masonry({
     columnWidth: <span class="constant">100</span>, 
     <span class="comment">// only apply masonry layout to visible elements</span>
     itemSelector: <span class="string">'.box:not(.invis)'</span>,
@@ -93,21 +91,21 @@
 });
 
 <span class="keyword">$</span>(<span class="string">'#filtering-nav a'</span>).click(function(){
-    <span class="storage">var</span> colorClass = <span class="string">'.'</span> <span class="storage">+</span> <span class="keyword">$</span>(<span class="constant">this</span>).attr(<span class="string">'class'</span>);
+    <span class="storage">var</span> colorClass <span class="storage">=</span> <span class="string">'.'</span> <span class="storage">+</span> <span class="keyword">$</span>(<span class="constant">this</span>).attr(<span class="string">'class'</span>);
     
     <span class="keyword">if</span>(colorClass<span class="storage">==</span><span class="string">'.all'</span>) {
         <span class="comment">// show all hidden boxes</span>
-        <span class="keyword">$</span>(<span class="string">'#primary'</span>).children(<span class="string">'.invis'</span>)
-            .toggleClass(<span class="string">'invis'</span>).animate({opacity: <span class="constant">1</span>},{ duration: speed });
+        <span class="keyword">$</span>wall.children(<span class="string">'.invis'</span>)
+            .toggleClass(<span class="string">'invis'</span>).fadeIn(speed);
     } <span class="keyword">else</span> {    
         <span class="comment">// hide visible boxes </span>
-        <span class="keyword">$</span>(<span class="string">'#primary'</span>).children().not(colorClass).not(<span class="string">'.invis'</span>)
-            .toggleClass(<span class="string">'invis'</span>).animate({opacity: <span class="constant">0</span>},{ duration: speed });
+        <span class="keyword">$</span>wall.children().not(colorClass).not(<span class="string">'.invis'</span>)
+            .toggleClass(<span class="string">'invis'</span>).fadeOut(speed);
         <span class="comment">// show hidden boxes</span>
-        <span class="keyword">$</span>(<span class="string">'#primary'</span>).children(colorClass<span class="storage">+</span><span class="string">'.invis'</span>)
-            .toggleClass(<span class="string">'invis'</span>).animate({opacity: <span class="constant">1</span>},{ duration: speed });
+        <span class="keyword">$</span>wall.children(colorClass<span class="storage">+</span><span class="string">'.invis'</span>)
+            .toggleClass(<span class="string">'invis'</span>).fadeIn(speed);
     }
-    <span class="keyword">$</span>(<span class="string">'#primary'</span>).masonry();
+    <span class="keyword">$</span>wall.masonry();
 
     <span class="keyword">return</span> <span class="constant">false</span>;
 });</code></pre>
