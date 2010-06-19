@@ -1,5 +1,5 @@
 /*************************************************
-**  jQuery Masonry version 1.2.0
+**  jQuery Masonry version 1.2.1
 **  copyright David DeSandro, licensed GPL & MIT
 **  http://desandro.com/resources/jquery-masonry
 **************************************************/
@@ -67,19 +67,7 @@
                 top: setY[ shortCol ]
             };
 
-
-            if( props.masoned && opts.animate ) {
-                $brick.animate( position, {
-                    duration: opts.animationOptions.duration, 
-                    easing: opts.animationOptions.easing,
-                    complete: opts.animationOptions.complete,
-                    step: opts.animationOptions.step,
-                    queue: opts.animationOptions.queue,
-                    specialEasing: opts.animationOptions.specialEasing
-                });
-            } else {
-                $brick.css(position);
-            }
+            $brick.applyStyle(position, $.extend(true,{},opts.animationOptions) );
 
             for ( i=0; i < setSpan; i++ ) {
                 props.colY[ shortCol + i ] = setY[ shortCol ] + $brick.outerHeight(true) ;
@@ -140,6 +128,10 @@
                 }    
             }
             
+            // are we animating the rearrangement?
+            // use plugin-ish syntax for css or animate
+            $.fn.applyStyle = ( props.masoned && opts.animate ) ? $.fn.animate : $.fn.css;
+            
             
             // layout logic
             if ( opts.singleMode ) {
@@ -186,19 +178,7 @@
                 props.wallH = Math.max( props.wallH, props.colY[i] );
             }
             var wallCSS = { height: props.wallH - props.posTop };
-            // $wall.height( props.wallH - props.posTop );
-            if ( props.masoned && opts.animate ) {
-                $wall.animate(wallCSS, {
-                    duration: opts.animationOptions.duration, 
-                    easing: opts.animationOptions.easing,
-                    complete: opts.animationOptions.complete,
-                    step: opts.animationOptions.step,
-                    queue: opts.animationOptions.queue,
-                    specialEasing: opts.animationOptions.specialEasing
-                });
-            } else {
-                $wall.css(wallCSS);
-            }
+            $wall.applyStyle( wallCSS, $.extend(true,[],opts.animationOptions) )
 
             // add masoned class first time around
             if ( !props.masoned ) $wall.addClass('masoned');
