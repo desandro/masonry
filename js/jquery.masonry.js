@@ -174,7 +174,7 @@
 
                 // set the height of the wall to the tallest column
                 props.wallH = 0;
-                for ( i=0; i < props.colCount; i++ ) {
+                for ( var i in props.colY ) {
                     props.wallH = Math.max( props.wallH, props.colY[i] );
                 }
                 var wallCSS = { height: props.wallH - props.posTop };
