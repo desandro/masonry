@@ -212,7 +212,7 @@
             var props = $.extend( {}, $.masonry );
 
             // checks if masonry has been called before on this object
-            props.masoned = $wall.data('masonry') != undefined;
+            props.masoned = $wall.hasClass('masoned');
         
             var previousOptions = props.masoned ? $wall.data('masonry').options : {};
 
