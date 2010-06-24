@@ -15,33 +15,32 @@
      *
      */
     var event = $.event,
-    	resizeTimeout;
+        resizeTimeout;
 
-    event.special[ "smartresize" ] = {
-    	setup: function() {
-    		$( this ).bind( "resize", event.special.smartresize.handler );
-    	},
-    	teardown: function() {
-    		$( this ).unbind( "resize", event.special.smartresize.handler );
-    	},
-    	handler: function( event, execAsap ) {
-    		// Save the context
-    		var context = this,
-    			args = arguments;
+    event.special.smartresize = {
+        setup: function() {
+            $( this ).bind( "resize", event.special.smartresize.handler );
+        },
+        teardown: function() {
+            $( this ).unbind( "resize", event.special.smartresize.handler );
+        },
+        handler: function( event, execAsap ) {
+            // Save the context
+            var context = this,
+                args = arguments;
 
-    		// set correct event type
+            // set correct event type
             event.type = "smartresize";
 
-    		if(resizeTimeout)
-    			clearTimeout(resizeTimeout);
-    		resizeTimeout = setTimeout(function() {
-    			jQuery.event.handle.apply( context, args );
-    		}, execAsap === "execAsap"? 0 : 100);
-    	}
+            if (resizeTimeout) { clearTimeout(resizeTimeout); }
+            resizeTimeout = setTimeout(function() {
+                jQuery.event.handle.apply( context, args );
+            }, execAsap === "execAsap"? 0 : 100);
+        }
     };
 
     $.fn.smartresize = function( fn ) {
-    	return fn ? this.bind( "smartresize", fn ) : this.trigger( "smartresize", ["execAsap"] );
+        return fn ? this.bind( "smartresize", fn ) : this.trigger( "smartresize", ["execAsap"] );
     };
 
 
@@ -52,16 +51,17 @@
         // all my sweet methods
         var msnry = {
             getBricks : function(props, opts) {
-                props.$bricks = opts.itemSelector == undefined ?
+                props.$bricks = opts.itemSelector === undefined ?
                             opts.$brickParent.children() :
                             opts.$brickParent.find(opts.itemSelector);
             },
             
             placeBrick : function($brick, setCount, setY, setSpan, props, opts) {
-                var shortCol = 0;
+                var shortCol = 0,
+                    i;
 
                 for ( i=0; i < setCount; i++ ) {
-                    if ( setY[i] < setY[ shortCol ] ) shortCol = i;
+                    if ( setY[i] < setY[ shortCol ] ) { shortCol = i; }
                 }
 
                 var position = {
@@ -79,7 +79,7 @@
             setup : function($wall, opts, props) {
                  msnry.getBricks(props, opts);
 
-                if ( opts.columnWidth == undefined) {
+                if ( opts.columnWidth === undefined) {
                     props.colW = props.masoned ?
                             $wall.data('masonry').colW :
                             props.$bricks.outerWidth(true);
@@ -92,10 +92,11 @@
             },
             
             arrange : function($wall, opts, props) {
+                var i, j;
                 // if masonry hasn't been called before
-                if( !props.masoned ) $wall.css( 'position', 'relative' );            
+                if( !props.masoned ) { $wall.css( 'position', 'relative' ); }
 
-                if ( !props.masoned || opts.appendedContent != undefined ) {
+                if ( !props.masoned || opts.appendedContent !== undefined ) {
                     // just the new bricks
                     props.$bricks.css( 'position', 'absolute' );
                 }
@@ -108,7 +109,7 @@
                 cursor.remove();
 
                 // set up column Y array
-                if ( props.masoned && opts.appendedContent != undefined ) {
+                if ( props.masoned && opts.appendedContent !== undefined ) {
                     // if appendedContent is set, use colY from last call
                     props.colY = $wall.data('masonry').colY;
 
@@ -119,7 +120,7 @@
                     */
                     for (i= $wall.data('masonry').colCount; i < props.colCount; i++) {
                         props.colY[i] = props.posTop;
-                    };
+                    }
 
                 } else {
                     props.colY = [];
@@ -174,14 +175,14 @@
 
                 // set the height of the wall to the tallest column
                 props.wallH = 0;
-                for ( var i in props.colY ) {
+                for ( i=0; i < props.colCount; i++ ) {
                     props.wallH = Math.max( props.wallH, props.colY[i] );
                 }
                 var wallCSS = { height: props.wallH - props.posTop };
-                $wall.applyStyle( wallCSS, $.extend(true,[],opts.animationOptions) )
+                $wall.applyStyle( wallCSS, $.extend(true,[],opts.animationOptions) );
 
                 // add masoned class first time around
-                if ( !props.masoned ) $wall.addClass('masoned');
+                if ( !props.masoned ) { $wall.addClass('masoned'); }
 
                 // provide props.bricks as context for the callback
                 callback.call( props.$bricks );
@@ -193,10 +194,10 @@
             }, // /msnry.arrange
             
             resize : function($wall, opts, props) {
-                props.masoned = $wall.data('masonry') != undefined;
+                props.masoned = $wall.data('masonry') !== undefined;
                 var prevColCount = $wall.data('masonry').colCount;
                 msnry.setup($wall, opts, props);
-                if ( props.colCount != prevColCount ) msnry.arrange($wall, opts, props); 
+                if ( props.colCount != prevColCount ) { msnry.arrange($wall, opts, props); }
             }
         };
 
@@ -230,7 +231,7 @@
             callback = callback || function(){};
 
 
-            if ( props.masoned && opts.appendedContent != undefined ) {
+            if ( props.masoned && opts.appendedContent !== undefined ) {
                 // if we're dealing with appendedContent
                 opts.$brickParent = opts.appendedContent;
             } else {
@@ -250,7 +251,7 @@
                 if ( !resizeOn && opts.resizeable ) {
                     $(window).bind('smartresize.masonry', function() { msnry.resize($wall, opts, props); } );
                 }
-                if ( resizeOn && !opts.resizeable ) $(window).unbind('smartresize.masonry');
+                if ( resizeOn && !opts.resizeable ) { $(window).unbind('smartresize.masonry'); }
             } else {
                 // brickParent is empty, do nothing, go back home and eat chips
                 return this;
