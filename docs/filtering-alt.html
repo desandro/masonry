@@ -10,7 +10,7 @@
   </style>
 
   <script src="js/jquery-1.4.2.min.js"></script>
-  <script src="js/jquery.masonry.js"></script>
+  <script src="../jquery.masonry.js"></script>
   <script>
     $(function(){
 
@@ -19,16 +19,19 @@
         $wall = $('#primary')
       ;
 
+      $('.invis').hide();
+
       $wall.masonry({
         columnWidth: 100, 
         // only apply masonry layout to visible elements
-        itemSelector: '.box:not(.invis)',
-        animate: true,
+        itemSelector: '.box',
         animationOptions: {
           duration: speed,
           queue: false
         }
-      });
+      })
+      .masonry({ itemSelector: '.box:not(.invis)'})
+      ;
 
       $('#filtering-nav a').click(function(){
         var colorClass = '.' + $(this).attr('class');
@@ -45,7 +48,7 @@
           $wall.children(colorClass+'.invis')
             .toggleClass('invis').fadeIn(speed);
         }
-        $wall.masonry();
+        $wall.masonry({ animate: true});
 
         return false;
       });
@@ -122,7 +125,7 @@
   <div id="primary" class="wrap">
   
     
-    <div class="box col2 gray">
+    <div class="box col2 gray invis">
       <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.</p>
     </div>
 
@@ -130,11 +133,11 @@
       <p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. </p>
     </div>
     
-    <div class="box col1 black">
+    <div class="box col1 black invis">
       <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula  </p>
     </div>
 
-    <div class="box gray">
+    <div class="box gray invis">
       <h2>This is the box with no width set</h2>
     </div>
 
@@ -142,24 +145,24 @@
       <h2>Sit amet mi ullamcorper vehicula</h2>
     </div>
     
-    <div class="box col1 gray">
+    <div class="box col1 gray invis">
       <p>adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus.</p>
     </div>
 
-    <div class="box col2 gray">
+    <div class="box col2 gray invis">
       <p>Sit amet mi ullamcorper vehicula</p>
     </div>
   
-    <div class="box col1 black">
+    <div class="box col1 black invis">
       <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
     </div>
   
-    <div class="box col2 gray">
+    <div class="box col2 gray invis">
       <p>Ut condimentum mi vel tellus. Suspendisse laoreet. Fusce ut est sed dolor gravida convallis. Morbi vitae ante. Vivamus ultrices luctus nunc. Suspendisse et dolor. Etiam dignissim. Proin malesuada adipiscing lacus. Donec metus. Curabitur gravida.</p>
       <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
     </div>
     
-    <div class="box col3 black">
+    <div class="box col3 black invis">
       <p>Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.</p>
     </div>
 
@@ -167,24 +170,24 @@
       <p>Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis.</p>
     </div>
 
-    <div class="box col2 gray">
+    <div class="box col2 gray invis">
       <p>Vestibulum volutpat, lacus a ultrices sagittis,</p>
       <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula  </p>
     </div>
 
-    <div class="box col2 black">
+    <div class="box col2 black invis">
       <p>Sit amet mi ullamcorper vehicula</p>
     </div>
 
-    <div class="box col1 gray">
+    <div class="box col1 gray invis">
       <p>Morbi purus libero</p>
     </div>
 
-    <div class="box col1 black">
+    <div class="box col1 black invis">
       <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.</p>
     </div>
 
-    <div class="box col3 black">
+    <div class="box col3 black invis">
       <p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
       <p>Vestibulum volutpat, lacus a ultrices sagittis,</p>
       <ul>
@@ -198,21 +201,21 @@
       <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula  </p>
     </div>
   
-    <div class="box col1 gray">
+    <div class="box col1 gray invis">
       <p>Sit amet mi ullamcorper vehicula</p>
     </div>
 
-    <div class="box col1 black">
+    <div class="box col1 black invis">
       <h2>Morbi purus libero</h2>
     </div>
 
 
-    <div class="box col2 gray">
+    <div class="box col2 gray invis">
       <p>Ut condimentum mi vel tellus. Suspendisse laoreet. Fusce ut est sed dolor gravida convallis. Morbi vitae ante. Vivamus ultrices luctus nunc. Suspendisse et dolor. Etiam dignissim. Proin malesuada adipiscing lacus. Donec metus. Curabitur gravida.</p>
       <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
     </div>
   
-    <div class="box col1 gray">
+    <div class="box col1 gray invis">
       <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula</p>
     </div>
 
@@ -223,7 +226,7 @@
     </div>
 
 
-    <div class="box col1 black">
+    <div class="box col1 black invis">
       <p>adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus.</p>
     </div>
 
@@ -235,11 +238,11 @@
       <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
     </div>
 
-    <div class="box col1 black">
+    <div class="box col1 black invis">
       <h2>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula  </h2>
     </div>
 
-    <div class="box col2 black">
+    <div class="box col2 black invis">
       <p>Ut convallis, sem sit amet interdum consectetuer, odio augue aliquam leo, nec dapibus tortor nibh sed augue.</p>
       <p>Ut condimentum mi vel tellus. Suspendisse laoreet. Fusce ut est sed dolor gravida convallis. Morbi vitae ante. Vivamus ultrices luctus nunc. Suspendisse et dolor. Etiam dignissim. Proin malesuada adipiscing lacus. Donec metus. Curabitur gravida.</p>
     </div>
@@ -253,7 +256,7 @@
       </ul>
     </div>
 
-    <div class="box col1 gray">
+    <div class="box col1 gray invis">
       <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.</p>
     </div>
 
@@ -265,7 +268,7 @@
     </div>
 
 
-    <div class="box col1 black">
+    <div class="box col1 black invis">
       <p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. </p>
     </div>
     
@@ -273,10 +276,10 @@
       <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula  </p>
     </div>
 
-    <div class="box col1 gray">
+    <div class="box col1 gray invis">
       <h2>Sit amet mi ullamcorper vehicula  adipiscing varius</h2>
     </div>
-    <div class="box col1 gray">
+    <div class="box col1 gray invis">
       <p>Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.</p>
     </div>
 
@@ -287,7 +290,7 @@
       <p>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus.</p>
     </div>
   
-    <div class="box col2 gray">
+    <div class="box col2 gray invis">
       <p>adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus.</p>
       <p>Ut convallis, sem sit amet interdum consectetuer, odio augue aliquam leo, nec dapibus tortor nibh sed augue.  Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.</p>
     </div>
@@ -296,22 +299,22 @@
       <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
     </div>
   
-    <div class="box col1 black">
+    <div class="box col1 black invis">
       <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula</p>
     </div>
 
-    <div class="box col3 gray">
+    <div class="box col3 gray invis">
       <p>Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis.</p>
       <p>Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.</p>
     </div>
 
 
 
-    <div class="box col1 black">
+    <div class="box col1 black invis">
       <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.</p>
     </div>
 
-    <div class="box col1 black">
+    <div class="box col1 black invis">
       <p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. </p>
     </div>
   
@@ -319,7 +322,7 @@
       <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula  </p>
     </div>
 
-    <div class="box col2 gray">
+    <div class="box col2 gray invis">
       <p>Vestibulum volutpat, lacus a ultrices sagittis,</p>
       <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula  </p>
       <p>Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis.</p>
