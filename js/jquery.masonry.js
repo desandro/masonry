@@ -150,12 +150,12 @@
           });      
         } else {
           props.$bricks.each(function() {
-            var $brick = $(this);
-
-            //how many columns does this brick span
-            var colSpan = Math.ceil( $brick.outerWidth(true) / props.colW);
+            var
+              $brick = $(this),
+              //how many columns does this brick span
+              colSpan = Math.ceil( $brick.outerWidth(true) / props.colW)
+            ;
             colSpan = Math.min( colSpan, props.colCount );
-
 
             if ( colSpan == 1 ) {
               // if brick spans only one column, just like singleMode
@@ -164,8 +164,10 @@
               // brick spans more than one column
 
               //how many different places could this brick fit horizontally
-              var groupCount = props.colCount + 1 - colSpan; 
-              var groupY = [0];
+              var 
+                groupCount = props.colCount + 1 - colSpan,
+                groupY = [0]
+              ;
               // for each group potential horizontal position
               for ( i=0; i < groupCount; i++ ) {
                 groupY[i] = 0;
@@ -216,21 +218,24 @@
     */
     return this.each(function() {  
 
-      var $wall = $(this);
-
-      var props = $.extend( {}, $.masonry );
+      var 
+        $wall = $(this),
+        props = $.extend( {}, $.masonry )
+      ;
 
       // checks if masonry has been called before on this object
       props.masoned = $wall.hasClass('masoned');
     
-      var previousOptions = props.masoned ? $wall.data('masonry').options : {};
-
-      var opts =  $.extend(
-              {},
-              props.defaults,
-              previousOptions,
-              options
-            );  
+      var 
+        previousOptions = props.masoned ? $wall.data('masonry').options : {},
+        opts =  $.extend(
+                  {},
+                  props.defaults,
+                  previousOptions,
+                  options
+                ),
+        resizeOn = previousOptions.resizeable
+      ;
 
       // should we save these options for next time?
       props.options = opts.saveOptions ? opts : previousOptions;
@@ -250,7 +255,6 @@
       msnry.arrange($wall, opts, props);
     
       // binding window resizing
-      var resizeOn = previousOptions.resizeable;
       if ( !resizeOn && opts.resizeable ) {
         $(window).bind('smartresize.masonry', function() { msnry.resize($wall, opts, props); } );
       }
