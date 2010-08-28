@@ -23,17 +23,15 @@
         itemSelector : ".box",     // selector for all items you'll retrieve
         loadingImg : 'img/loader.gif',
         donetext  : "No more pages to load.",
-        debug: true,
+        debug: false,
         errorCallback: function() { 
           // fade out the error message after 2 seconds
           $('#infscr-loading').animate({opacity: .8},2000).fadeOut('normal');   
         }
       },
         // call masonry as a callback.
-        function() { $('#primary').masonry({ appendedContent: $(this) }); }
+        function( appendedEls ) { $(this).masonry({ appendedContent: $(appendedEls) }); }
       );
-
-
 
     });
   </script>

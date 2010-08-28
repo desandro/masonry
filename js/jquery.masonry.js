@@ -50,10 +50,18 @@
 
     // all my sweet methods
     var msnry = {
-      getBricks : function(props, opts) {
-        props.$bricks = opts.itemSelector === undefined ?
-              opts.$brickParent.children() :
-              opts.$brickParent.find(opts.itemSelector);
+      getBricks : function($wall, props, opts) {
+        if ( opts.appendedContent === undefined ) {
+          // if not appendedContent
+          props.$bricks = opts.itemSelector === undefined ?
+                $wall.children() :
+                $wall.find(opts.itemSelector);
+        } else {
+         //  if appendedContent...
+         props.$bricks = opts.itemSelector === undefined ?
+                opts.appendedContent : 
+                opts.appendedContent.filter( opts.itemSelector );
+        }
       },
       
       placeBrick : function($brick, setCount, setY, setSpan, props, opts) {
@@ -77,7 +85,7 @@
       },
       
       setup : function($wall, opts, props) {
-         msnry.getBricks(props, opts);
+         msnry.getBricks($wall, props, opts);
 
         if ( opts.columnWidth === undefined) {
           props.colW = props.masoned ?
@@ -230,17 +238,8 @@
       //picked up from Paul Irish
       callback = callback || function(){};
 
+      msnry.getBricks($wall, props, opts);
 
-      if ( props.masoned && opts.appendedContent !== undefined ) {
-        // if we're dealing with appendedContent
-        opts.$brickParent = opts.appendedContent;
-      } else {
-        opts.$brickParent = $wall;
-      }
-      
-      msnry.getBricks(props, opts);
-
-      
       // if brickParent is empty, do nothing, go back home and eat chips
       if ( !props.$bricks.length ) { 
         return this; 
