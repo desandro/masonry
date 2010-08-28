@@ -240,22 +240,23 @@
       
       msnry.getBricks(props, opts);
 
-
-      if ( props.$bricks.length ) {
-        // call masonry layout
-        msnry.setup($wall, opts, props);
-        msnry.arrange($wall, opts, props);
       
-        // binding window resizing
-        var resizeOn = previousOptions.resizeable;
-        if ( !resizeOn && opts.resizeable ) {
-          $(window).bind('smartresize.masonry', function() { msnry.resize($wall, opts, props); } );
-        }
-        if ( resizeOn && !opts.resizeable ) { $(window).unbind('smartresize.masonry'); }
-      } else {
-        // brickParent is empty, do nothing, go back home and eat chips
-        return this;
+      // if brickParent is empty, do nothing, go back home and eat chips
+      if ( !props.$bricks.length ) { 
+        return this; 
       }
+
+      // call masonry layout
+      msnry.setup($wall, opts, props);
+      msnry.arrange($wall, opts, props);
+    
+      // binding window resizing
+      var resizeOn = previousOptions.resizeable;
+      if ( !resizeOn && opts.resizeable ) {
+        $(window).bind('smartresize.masonry', function() { msnry.resize($wall, opts, props); } );
+      }
+      if ( resizeOn && !opts.resizeable ) { $(window).unbind('smartresize.masonry'); }
+       
 
     });    //    /return this.each(function()
   };      //    /$.fn.masonry = function(options)
