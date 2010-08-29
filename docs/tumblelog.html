@@ -6,14 +6,6 @@
 
   <link rel="stylesheet" href="css/style.css" media="screen" />  
 
-  <script src="js/jquery-1.4.2.min.js"></script>
-  <script src="../jquery.masonry.js"></script>
-
-  <script>
-    $(function(){
-      $('#tumblelog').masonry({columnWidth: 240})
-    })
-  </script>
 
 </head>
 <body>
@@ -33,10 +25,10 @@
       </li>
       <li><a href="appending.html">Appending</a></li>
       <li><a href="infinite-scroll.html">Infinite Scroll</a></li>
-      <li><a href="animation-jquery.html">Animation with jQuery</a></li>
-      <li><a href="animation-css-transitions.html">Animation with CSS Transitions</a></li>
+      <li><a href="animating-jquery.html">Animating with jQuery</a></li>
+      <li><a href="animating-css-transitions.html">Animating with CSS Transitions</a></li>
       <li><a href="filtering.html">Filtering</a></li>
-      <li><a href="filtering-hashes.html">Filtering with Hashes</a></li>
+      <li><a href="filtering-hashes.html">Filtering Hashes</a></li>
     </ul>
   </nav>
 
@@ -55,7 +47,7 @@
         <p>With 10px of margin on right and left sides that makes for a grid with columns 240px wide.</p>
 
         <pre id="code"><code><span class="keyword">$</span>(<span class="storage">function</span>(){
-  $(<span class="string">'#tumblelog'</span>).masonry({ columnWidth: <span class="constant">240</span> });
+  <span class="keyword">$</span>(<span class="string">'#tumblelog'</span>).masonry({ columnWidth: <span class="constant">240</span> });
 });</code></pre>
 
 
@@ -245,9 +237,17 @@
 
 
   <p id="footer">
-
     jQuery Masonry by <a href="http://desandro.com/">David DeSandro</a>
   </p>
+
+  <script src="js/jquery-1.4.2.min.js"></script>
+  <script src="../jquery.masonry.js"></script>
+  <script>
+    $(function(){
+      $('#tumblelog').masonry({columnWidth: 240})
+    })
+  </script>
+  
 
 </body>
 </html>

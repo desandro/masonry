@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>jQuery Masonry &rsaquo; Appending new bricks</title>
+  <title>jQuery Masonry &rsaquo; Appending new elements</title>
 
   <link rel="stylesheet" href="css/style.css" media="screen" />  
   
@@ -26,22 +26,22 @@
         </ul>
       </li>
       <li><a href="infinite-scroll.html">Infinite Scroll</a></li>
-      <li><a href="animation-jquery.html">Animation with jQuery</a></li>
-      <li><a href="animation-css-transitions.html">Animation with CSS Transitions</a></li>
+      <li><a href="animating-jquery.html">Animating with jQuery</a></li>
+      <li><a href="animating-css-transitions.html">Animating with CSS Transitions</a></li>
       <li><a href="filtering.html">Filtering</a></li>
-      <li><a href="filtering-hashes.html">Filtering with Hashes</a></li>
+      <li><a href="filtering-hashes.html">Filtering Hashes</a></li>
     </ul>
   </nav>
 
   <section id="content">
 
-      <h1>Appending new bricks</h1>  
+      <h1>Appending new elements</h1>  
 
       <div class="copy">
-    		<p>This button demonstrates how to append new content to a layout using Masonry. Each time this button is clicked, new <code>box</code> elements are created, wrapped in an unstyled <code>div</code>.  This content is first appended to the wrapping container, then the boxes are rearranged with a <code>.masonry()</code> call. <code>appendedContent</code> was the only option to specify since Masonry saves all previous options. Using <code>appendedContent</code>, the Masonry script saves some processing time as it only rearranges the box(es) inside that appended container. </p> 
-    		<p>Finally, using the callback function, the new boxes are dynamically styled. </p> 
+    		<p>New elements can be appended to &lsquo;masoned&rsquo; containers and then arranged to the layout using the <code>appendedContent</code> option. <code>appendedContent</code> accepts the a jQuery object of the newly appended elements.  In this example, each time <a href="#append_new_bricks">the button</a> is clicked, new <code>box</code> elements are created and then together made into a jQuery object.  This object is first appended to the wrapping container, then the boxes are rearranged with a <code>.masonry()</code> call. Finally, using the callback function, the new boxes are dynamically styled. </p> 
+    		<p><code>appendedContent</code> was the only option to specify since Masonry saves all previous options. Using <code>appendedContent</code>, the Masonry script saves some processing time as it only rearranges the box(es) inside that appended container.</p>
 
-        <pre><code><span class="comment">// cache masonry wrap</span>
+        <pre id="code"><code><span class="comment">// cache masonry wrap</span>
 <span class="storage">var</span> <span class="keyword">$</span>masonryWrap <span class="keyword">=</span> <span class="keyword">$</span>(<span class="string">'#demo'</span>).find(<span class="string">'.wrap'</span>);
 
 <span class="keyword">$</span>masonryWrap.masonry({
