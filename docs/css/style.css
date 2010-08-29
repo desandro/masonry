@@ -1,3 +1,5 @@
+/* Base styles*/
+
 * {
   margin: 0;
   padding: 0;
@@ -6,10 +8,8 @@
 section, nav { display: block; }
 
 body { 
-  margin: 0; 
   font: 13px 'Helvetica Neue', Arial, sans-serif;
   background: #D8D5D2;
-  padding: 10px 20px 20px;
   color: #222;
 }
 
@@ -23,9 +23,24 @@ a:hover {
   color: #D26;
 }
 
+h1, h2 {
+  font-weight:100;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h1, h2, h3, p, ul, ol, pre, dl {
+  margin-bottom: 1.0em;
+}
+
+/**** #site-nav ****/
+
 #site-nav {
   position: fixed;
   width: 200px;
+  padding: 10px;
 }
 
 #site-nav h1 {
@@ -75,20 +90,10 @@ a:hover {
   color: #D26;
 }
 
-h1, h2 {
-  font-weight:100;
-}
-
-h1 {
-  font-size: 36px;
-}
-
-h1, h2, h3, p, ul, ol, pre, dl {
-  margin-bottom: 1.0em;
-}
+/**** Content ****/
 
 #content {
-  padding-left: 220px;
+  padding: 10px 10px 10px 220px;
 }
 
 .copy h2 {
@@ -164,7 +169,7 @@ button {
 
 #footer {
   clear: both;
-  margin: 20px 0;
+  margin: 20px 10px;
   border-top: 1px solid #BBB;
   padding-top: 10px;
   line-height: 30px;
