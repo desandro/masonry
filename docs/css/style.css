@@ -39,8 +39,10 @@ h1, h2, h3, p, ul, ol, pre, dl {
 
 #site-nav {
   position: fixed;
-  width: 200px;
+  width: 180px;
   padding: 10px;
+  height: 100%;
+  overflow-y: auto;
 }
 
 #site-nav h1 {
@@ -53,9 +55,6 @@ h1, h2, h3, p, ul, ol, pre, dl {
   list-style: none;
   padding-left: 0;
   font-size: 12px;
-}
-
-#site-nav li {
 }
 
 #site-nav li a {
@@ -81,19 +80,19 @@ h1, h2, h3, p, ul, ol, pre, dl {
 }
 
 
-#site-nav li.selected  li a {
+#site-nav li.selected li a {
   padding: 3px;
   background: none;
 }
 
-#site-nav li.selected  li a:hover {
+#site-nav li.selected li a:hover {
   color: #D26;
 }
 
 /**** Content ****/
 
 #content {
-  padding: 10px 10px 10px 220px;
+  padding: 10px 10px 10px 210px;
 }
 
 .copy h2 {
@@ -190,14 +189,6 @@ button {
 	        border-radius: 5px;
 }
 
-.wrap:after {
-  content: ".";
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
-}
-
 .box {
   margin: 5px;
   padding: 5px;
@@ -254,14 +245,6 @@ button {
 	padding: 1.0em;
 }
 
-#tumblelog:after {
-	content: "";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;
-}
-
 #tumblelog .story {
 	margin: 10px;
 	border-top: 4px solid #DCB;
@@ -299,7 +282,7 @@ button {
   border-radius: 10px;
 }
 
-
+/**** Filtering nav ****/
 
 
 .box.black,
