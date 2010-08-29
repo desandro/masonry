@@ -16,29 +16,12 @@ var
       loremText = '',
       sentences = Math.random() * 5
     ;
-    for (j=0; j < sentences; j++ ) {
+    for (var j=0; j < sentences; j++ ) {
       var whichSentence = Math.floor( Math.random() * loremLen );
       loremText += lorem[whichSentence] + '. ';
     }
     return loremText;
-  },
-  
-  makeNewBoxes = function( varCol ) {
-    var 
-      newEls = [],
-      elCount = Math.random()*3,
-      fragment = document.createDocumentFragment(),
-      i
-    ;
-    for (i=0; i < elCount; i++ ) {
-      var 
-        colClass = 'col' +  Math.ceil( Math.random()*varCol ),
-        $box = $( document.createElement('div') ).addClass('box ' + colClass).text( randoLoremText() )
-      ;
-      newEls.push( $box[0] );
-      fragment.appendChild( $box[0] );
-    }
-    return { elements: newEls, frag: fragment };
   }
+
 ;
 

@@ -16,9 +16,9 @@
     <ul>
       <li><a href=".">Primer</a></li>
       <li><a href="basic-single-column.html">Basic Single-Column</a></li>
-      <li class="selected"><a href="basic-multi-column.html">Basic Multi-Column</a></li>
+      <li><a href="basic-multi-column.html">Basic Multi-Column</a></li>
       <li><a href="tumblelog.html">Tumblelog</a></li>
-      <li><a href="appending.html">Appending</a>
+      <li class="selected"><a href="appending.html">Appending</a>
         <ul>
           <li><a href="#content">Top</a></li>
           <li><a href="#code">Code</a></li>
@@ -41,15 +41,45 @@
     		<p>This button demonstrates how to append new content to a layout using Masonry. Each time this button is clicked, new <code>box</code> elements are created, wrapped in an unstyled <code>div</code>.  This content is first appended to the wrapping container, then the boxes are rearranged with a <code>.masonry()</code> call. <code>appendedContent</code> was the only option to specify since Masonry saves all previous options. Using <code>appendedContent</code>, the Masonry script saves some processing time as it only rearranges the box(es) inside that appended container. </p> 
     		<p>Finally, using the callback function, the new boxes are dynamically styled. </p> 
 
-    <pre><code><span class="keyword">$</span>(<span class="string">'#append_primary'</span>).click(<span class="storage">function</span>() {
-    <span class="storage">var</span> moreContent = makeNewBoxes(3);
-    <span class="keyword">$</span>(<span class="string">'#primary'</span>).append( moreContent )
-        .masonry({ appendedContent: moreContent }
-            <span class="comment">// using a callback to style the new elements</span> 
-            , <span class="storage">function</span>() { <span class="keyword">$</span>(<span class="constant">this</span>).css({background: <span class="string">'#222'</span>, color: <span class="string">'#EEE'</span> }); }
-        )
+        <pre><code><span class="comment">// cache masonry wrap</span>
+<span class="storage">var</span> <span class="keyword">$</span>masonryWrap <span class="keyword">=</span> <span class="keyword">$</span>(<span class="string">'#demo'</span>).find(<span class="string">'.wrap'</span>);
+
+<span class="keyword">$</span>masonryWrap.masonry({
+  columnWidth: <span class="constant">100</span>, 
+  itemSelector: <span class="string">'.box'</span>
+});
+
+<span class="keyword">$</span>(<span class="string">'#append_new_bricks'</span>).click(<span class="storage">function</span>() {
+  <span class="storage">var</span> 
+    newEls <span class="keyword">=</span> [],
+    elCount <span class="keyword">=</span> <span class="keyword">Math</span>.random()*<span class="constant">4</span>
+  ;
+  <span class="keyword">for</span> (<span class="storage">var</span> i=0; i < elCount; i++ ) {
+    <span class="storage">var</span> 
+      colClass <span class="keyword">=</span> <span class="string">'col'</span> <span class="keyword">+</span>  <span class="keyword">Math</span>.<span class="storage">ceil</span>( <span class="keyword">Math</span>.<span class="stroage">random</span>()*<span class="constant">3</span> ),
+      <span class="comment">// create new box</span>
+      <span class="keyword">$</span>box <span class="keyword">=</span> <span class="keyword">$</span>( <span class="keyword">document</span>.<span class="storage">createElement</span>(<span class="string">'div'</span>) )
+                .addClass(<span class="string">'box '</span> <span class="keyword">+</span> colClass).text( randoLoremText() )
     ;
-});</code></pre>
+    <span class="comment">// add box DOM node to array of new elements</span>
+    newEls.<span class="storage">push</span>( <span class="keyword">$</span>box[<span class="constant">0</span>] );
+  }
+
+  <span class="comment">// create jQuery object</span>
+  <span class="keyword">$</span>boxes <span class="keyword">=</span> <span class="keyword">$</span>( newEls );
+
+  <span class="keyword">$</span>masonryWrap
+    <span class="comment">// append new elements</span>
+    .append( <span class="keyword">$</span>boxes )
+    <span class="comment">// arrange new elements</span>
+    .masonry( { appendedContent: <span class="keyword">$</span>boxes } ,
+      <span class="comment">// using a callback to style new elements</span>
+      <span class="storage">function</span>() { 
+        <span class="keyword">$</span>(<span class="constant">this</span>).css({background: <span class="string">'#222'</span>, color: <span class="string">'#EEE'</span> });
+      }    
+    )
+  ;
+}</code></pre>
 
 
 
@@ -84,29 +114,7 @@
             <p>Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis.</p>
           </div>
 
-          <div>
-            <div class="box col2">
-              <p>Vestibulum volutpat, lacus a ultrices sagittis,</p>
-              <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula  </p>
-            </div>
 
-            <div class="box col2">
-              <p>Sit amet mi ullamcorper vehicula</p>
-            </div>
-
-            <div class="box col1">
-              <p>Morbi purus libero</p>
-            </div>
-
-            <div class="box col2">
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.</p>
-            </div>
-
-            <div class="box col1">
-              <h2>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula  </h2>
-            </div>
-
-          </div>
           <div class="box col1">
             <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula  </p>
           </div>
@@ -131,7 +139,7 @@
     $(function(){
       
       // cache masonry wrap
-      $masonryWrap = $('#demo').find('.wrap');
+      var $masonryWrap = $('#demo').find('.wrap');
 
       $masonryWrap.masonry({
         columnWidth: 100, 
@@ -141,24 +149,30 @@
       $('#append_new_bricks').click(function() {
         var 
           newEls = [],
-          elCount = Math.random()*3,
-          fragment = document.createDocumentFragment(),
-          i
+          elCount = Math.random()*4
         ;
-        for (i=0; i < elCount; i++ ) {
+        for (var i=0; i < elCount; i++ ) {
           var 
             colClass = 'col' +  Math.ceil( Math.random()*3 ),
+            // create new box
             $box = $( document.createElement('div') ).addClass('box ' + colClass).text( randoLoremText() )
           ;
+          // add box DOM node to array of new elements
           newEls.push( $box[0] );
-          fragment.appendChild( $box[0] );
         }
 
-        $masonryWrap[0].appendChild( fragment );
-
-        $masonryWrap.masonry({ appendedContent: $( newEls ) }
-            // using a callback to style the new elements
-            , function() { $(this).css({background: '#222', color: '#EEE' })}    
+        // create jQuery object
+        $boxes = $( newEls );
+        
+        $masonryWrap
+          // append new elements
+          .append( $boxes )
+          // arrange new elements
+          .masonry( { appendedContent: $boxes } ,
+            // using a callback to style new elements
+            function() { 
+              $(this).css({background: '#222', color: '#EEE' });
+            }    
           )
         ;
       });
