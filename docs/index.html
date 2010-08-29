@@ -5,15 +5,8 @@
 	<title>jQuery Masonry &rsaquo; Primer</title>
 
 	<link rel="stylesheet" href="css/style.css" media="screen" />
-
-	<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-	<script type="text/javascript" src="../jquery.masonry.min.js"></script>
-  <script type="text/javascript">
-  	$(function(){
-  		$('#secondary').masonry({columnWidth: 100});
-  	})
-  </script>
   
+  <!-- scripts are located at the bottom of the markup -->
 
 </head>
 <body>
@@ -346,13 +339,17 @@
     	</div>
   </section>
 
-
-
-
 	<p id="footer">
-
 		jQuery Masonry by <a href="http://desandro.com/">David DeSandro</a>
 	</p>
+
+  <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../jquery.masonry.min.js"></script>
+  <script type="text/javascript">
+  	$(function(){
+  		$('#secondary').masonry({columnWidth: 100});
+  	});
+  </script>
 
 </body>
 </html>
