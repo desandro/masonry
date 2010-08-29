@@ -48,10 +48,10 @@
       <div class="copy">
 
         <p>Alternatively, you can rely on CSS3 transitions to animate layout rearrangements. CSS transitions are supported by Firefox 4, Chrome 5, Safari 4, and Opera 10.5.</p>
-        <p> In your script, will leave out the <code>animate</code> option. Masonry will add a class of <code>masoned</code> to the container after the first arrangement so transitions can be applied afterward.</p>
+        <p> In your script, leave out the <code>animate</code> option. </p>
     <pre id="code"><code><span class="keyword">$</span>(<span class="string">'#demo'</span>).masonry({ columnWidth: <span class="constant">100</span> });</code></pre>
 
-        <p>In the CSS, add transition properties.</p>
+        <p>In the CSS, add transition properties. Masonry will add a class of <code>masoned</code> to the container after the first arrangement so transitions can be applied afterward.</p>
     <pre><code><span class="id">#demo</span><span class="class">.masoned</span>, <span class="id">#demo</span><span class="class">.masoned .box</span> {
   <span class="prop">-webkit-transition</span>: <span class="value">all .7s ease-out</span>;
      <span class="prop">-moz-transition</span>: <span class="value">all .7s ease-out</span>;

@@ -42,16 +42,16 @@
 
         <p>Setting up the Masonry call is just the same as normally would be. Since this layout uses both Infinite Scroll and resizable, <code>itemSelector</code> is recommended.</p>
 
-        <pre><code><span class="storage">var</span> <span class="keywoard">$</span>container <span class="keyword">= $</span>(<span class="string">'#demo'</span>);
+        <pre><code><span class="storage">var</span> <span class="keyword">$</span>wall <span class="keyword">= $</span>(<span class="string">'#demo'</span>);
 
-<span class="keyword">$</span>container.masonry({ 
+<span class="keyword">$</span>wall.masonry({ 
   columnWidth: <span class="constant">100</span>, 
   itemSelector: <span class="string">'.box:visible'</span> 
 });</code></pre>
 
-        <p>In the Infinite Scroll configuration, call Masonry as a callback. Infinite Scroll provides the newly loaded elements as an argument, <code>appendedEls</code> in the example code. As this argument is an array of the DOM nodes, it needs to be passed in as a jQuery object to be used for the value of <code>appendedContent</code>.</p>
+        <p>In the Infinite Scroll configuration, call Masonry as a callback. Infinite Scroll provides the newly loaded elements as an argument, <code>newElements</code> in the example code. As this argument is an array of the DOM nodes, it needs to be passed in as a jQuery object to be used for the value of <code>appendedContent</code>.</p>
 
-        <pre id="code"><code><span class="keyword">$</span>container.infinitescroll({
+        <pre id="code"><code><span class="keyword">$</span>wall.infinitescroll({
   navSelector  : <span class="string">'#page_nav'</span>,  <span class="comment">// selector for the paged navigation </span>
   nextSelector : <span class="string">'#page_nav a'</span>,  <span class="comment">// selector for the NEXT link (to page 2)</span>
   itemSelector : <span class="string">'.box'</span>,     <span class="comment">// selector for all items you'll retrieve</span>
@@ -64,8 +64,8 @@
   }
 },
   <span class="comment">// call masonry as a callback</span>
-  <span class="storage">function</span>( appendedEls ) { 
-    <span class="keyword">$</span>(<span class="constant">this</span>).masonry({ appendedContent: <span class="keyword">$</span>( appendedEls ) }); 
+  <span class="storage">function</span>( newElements ) { 
+    <span class="keyword">$</span>(<span class="constant">this</span>).masonry({ appendedContent: <span class="keyword">$</span>( newElements ) }); 
   }
 );</code></pre>
 
@@ -76,10 +76,9 @@
         <p>Of course, this is not a viable option in some CMSs, most notably <a href="http://tumblr.com">Tumblr</a>. In this situation, Masonry needs to be called after the newly-appended images are fully loaded. This is done by delaying the Masonry callback.</p>
 
     <pre><code><span class="comment">// call masonry as a callback, after 1000 milliseconds</span>
-<span class="storage">function</span>( newStuff ) {
-   <span class="storage">var</span> newStuff = <span class="keyword">$</span>(<span class="constant">this</span>);
+<span class="storage">function</span>( newElements ) {
    setTimeout(<span class="storage">function</span>() {
-     <span class="keyword">$</span>(<span class="constant">this</span>).masonry({ appendedContent: <span class="keyword">$</span>(newStuff) });
+     <span class="keyword">$</span>wall.masonry({ appendedContent: <span class="keyword">$</span>(newElements) });
    }, <span class="constant">1000</span>);
 }</code></pre>    
 
@@ -328,14 +327,14 @@
   <script>
     $(function(){
       
-      var $container = $('#demo');
+      var $wall = $('#demo');
 
-      $container.masonry({
+      $wall.masonry({
         columnWidth: 100, 
         itemSelector: '.box:visible'
       });
 
-      $container.infinitescroll({
+      $wall.infinitescroll({
         navSelector  : "#page_nav",  // selector for the paged navigation 
         nextSelector : "#page_nav a",  // selector for the NEXT link (to page 2)
         itemSelector : ".box",     // selector for all items you'll retrieve
@@ -348,7 +347,7 @@
         }
       },
         // call masonry as a callback.
-        function( appendedEls ) { $(this).masonry({ appendedContent: $(appendedEls) }); }
+        function( newElements ) { $(this).masonry({ appendedContent: $(newElements) }); }
       );
 
     });

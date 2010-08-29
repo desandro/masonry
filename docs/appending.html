@@ -42,9 +42,9 @@
     		<p><code>appendedContent</code> was the only option to specify since Masonry saves all previous options. Using <code>appendedContent</code>, the Masonry script saves some processing time as it only rearranges the box(es) inside that appended container.</p>
 
         <pre id="code"><code><span class="comment">// cache masonry wrap</span>
-<span class="storage">var</span> <span class="keyword">$</span>masonryWrap <span class="keyword">=</span> <span class="keyword">$</span>(<span class="string">'#demo'</span>).find(<span class="string">'.wrap'</span>);
+<span class="storage">var</span> <span class="keyword">$</span>wall <span class="keyword">=</span> <span class="keyword">$</span>(<span class="string">'#demo'</span>).find(<span class="string">'.wrap'</span>);
 
-<span class="keyword">$</span>masonryWrap.masonry({
+<span class="keyword">$</span>wall.masonry({
   columnWidth: <span class="constant">100</span>, 
   itemSelector: <span class="string">'.box'</span>
 });
@@ -68,7 +68,7 @@
   <span class="comment">// create jQuery object</span>
   <span class="keyword">$</span>boxes <span class="keyword">=</span> <span class="keyword">$</span>( newEls );
 
-  <span class="keyword">$</span>masonryWrap
+  <span class="keyword">$</span>wall
     <span class="comment">// append new elements</span>
     .append( <span class="keyword">$</span>boxes )
     <span class="comment">// arrange new elements</span>
@@ -139,9 +139,9 @@
     $(function(){
       
       // cache masonry wrap
-      var $masonryWrap = $('#demo').find('.wrap');
+      var $wall = $('#demo').find('.wrap');
 
-      $masonryWrap.masonry({
+      $wall.masonry({
         columnWidth: 100, 
         itemSelector: '.box'
       });
@@ -164,7 +164,7 @@
         // create jQuery object
         $boxes = $( newEls );
         
-        $masonryWrap
+        $wall
           // append new elements
           .append( $boxes )
           // arrange new elements
