@@ -97,6 +97,10 @@
           props.colW = opts.columnWidth;
         }
 
+        if ( props.masoned ) {
+          props.previousData = $wall.data('masonry');
+        }
+
         props.colCount = Math.floor( $wall.width() / props.colW ) ;
         props.colCount = Math.max( props.colCount, 1 );
       },
@@ -211,6 +215,7 @@
       }, // /msnry.arrange
       
       resize : function($wall, opts, props) {
+        props.masoned = $wall.hasClass('masoned');
         var prevColCount = $wall.data('masonry').colCount;
         msnry.setup($wall, opts, props);
         if ( props.colCount != prevColCount ) { msnry.arrange($wall, opts, props); }
@@ -231,12 +236,9 @@
 
       // checks if masonry has been called before on this object
       props.masoned = $wall.hasClass('masoned');
-      if ( props.masoned ) {
-        props.previousData = $wall.data('masonry');
-      }
     
       var 
-        previousOptions = props.masoned ? props.previousData.options : {},
+        previousOptions = props.masoned ? $wall.data('masonry').options : {},
         opts =  $.extend(
                   {},
                   $.fn.masonry.defaults,
