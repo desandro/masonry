@@ -203,7 +203,12 @@
         $wall.applyStyle( wallCSS, $.extend(true,[],opts.animationOptions) );
 
         // add masoned class first time around
-        if ( !props.masoned ) { $wall.addClass('masoned'); }
+        if ( !props.masoned ) { 
+          // wait 1 millisec for quell transitions
+          setTimeout(function(){
+            $wall.addClass('masoned'); 
+          }, 1);
+        }
 
         // provide props.bricks as context for the callback
         callback.call( props.$bricks );
