@@ -89,16 +89,16 @@
       setup : function($wall, opts, props) {
         msnry.getBricks($wall, props, opts);
 
+        if ( props.masoned ) {
+          props.previousData = $wall.data('masonry');
+        }
+
         if ( opts.columnWidth === undefined) {
           props.colW = props.masoned ?
               props.previousData.colW :
               props.$bricks.outerWidth(true);
         } else {
           props.colW = opts.columnWidth;
-        }
-
-        if ( props.masoned ) {
-          props.previousData = $wall.data('masonry');
         }
 
         props.colCount = Math.floor( $wall.width() / props.colW ) ;
@@ -269,7 +269,9 @@
       if ( !resizeOn && opts.resizeable ) {
         $(window).bind('smartresize.masonry', function() { msnry.resize($wall, opts, props); } );
       }
-      if ( resizeOn && !opts.resizeable ) { $(window).unbind('smartresize.masonry'); }
+      if ( resizeOn && !opts.resizeable ) { 
+        $(window).unbind('smartresize.masonry'); 
+      }
        
 
     });    //    /return this.each(function()
