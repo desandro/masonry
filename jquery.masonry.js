@@ -220,7 +220,7 @@
       }, // /msnry.arrange
       
       resize : function($wall, opts, props) {
-        props.masoned = $wall.hasClass('masoned');
+        props.masoned = ( $wall.data('masonry') !== null );
         var prevColCount = $wall.data('masonry').colCount;
         msnry.setup($wall, opts, props);
         if ( props.colCount != prevColCount ) { msnry.arrange($wall, opts, props); }
@@ -240,7 +240,7 @@
       ;
 
       // checks if masonry has been called before on this object
-      props.masoned = $wall.hasClass('masoned');
+      props.masoned = ( $wall.data('masonry') !== null );
     
       var 
         previousOptions = props.masoned ? $wall.data('masonry').options : {},
