@@ -35,13 +35,13 @@
 
   <section id="content">
 
-      <h1>Appending new elements</h1>  
+    <h1>Appending new elements</h1>  
 
-      <div class="copy">
-    		<p>New elements can be appended to &lsquo;masoned&rsquo; containers and then arranged to the layout using the <code>appendedContent</code> option. <code>appendedContent</code> accepts the a jQuery object of the newly appended elements.  In this example, each time <a href="#append_new_bricks">the button</a> is clicked, new <code>box</code> elements are created and then together made into a jQuery object.  This object is first appended to the wrapping container, then the boxes are rearranged with a <code>.masonry()</code> call. Finally, using the callback function, the new boxes are dynamically styled. </p> 
-    		<p><code>appendedContent</code> was the only option to specify since Masonry saves all previous options. Using <code>appendedContent</code>, the Masonry script saves some processing time as it only rearranges the box(es) inside that appended container.</p>
+    <div class="copy">
+  		<p>New elements can be appended to &lsquo;masoned&rsquo; containers and then arranged to the layout using the <code>appendedContent</code> option. <code>appendedContent</code> accepts the a jQuery object of the newly appended elements.  In this example, each time <a href="#append_new_bricks">the button</a> is clicked, new <code>box</code> elements are created and then together made into a jQuery object.  This object is first appended to the wrapping container, then the boxes are rearranged with a <code>.masonry()</code> call. Finally, using the callback function, the new boxes are dynamically styled. </p> 
+  		<p><code>appendedContent</code> was the only option to specify since Masonry saves all previous options. Using <code>appendedContent</code>, the Masonry script saves some processing time as it only rearranges the box(es) inside that appended container.</p>
 
-        <pre id="code"><code><span class="comment">// cache masonry wrap</span>
+      <pre id="code"><code><span class="comment">// cache masonry wrap</span>
 <span class="storage">var</span> <span class="keyword">$</span>wall <span class="keyword">=</span> <span class="keyword">$</span>(<span class="string">'#demo'</span>).find(<span class="string">'.wrap'</span>);
 
 <span class="keyword">$</span>wall.masonry({
@@ -83,46 +83,46 @@
 
 
 
-      </div><!-- .copy -->
+    </div><!-- .copy -->
+    
+    
+
+    <div id="demo">
       
+      <p><button id="append_new_bricks">Append new bricks</button></p>
       
-
-      <div id="demo">
+      <div class="wrap">
         
-        <p><button id="append_new_bricks">Append new bricks</button></p>
+        <div class="box col2">
+          <p>Sit amet mi ullamcorper vehicula</p>
+        </div>
+
+        <div class="box col1">
+          <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
+        </div>
+
+        <div class="box col2">
+          <p>Ut condimentum mi vel tellus. Suspendisse laoreet. Fusce ut est sed dolor gravida convallis. Morbi vitae ante. Vivamus ultrices luctus nunc. Suspendisse et dolor. Etiam dignissim. Proin malesuada adipiscing lacus. Donec metus. Curabitur gravida.</p>
+          <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
+        </div>
+
+        <div class="box col3">
+          <p>Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.</p>
+        </div>
+
+        <div class="box col1">
+          <p>Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis.</p>
+        </div>
+
+
+        <div class="box col1">
+          <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula  </p>
+        </div>
         
-        <div class="wrap">
-          
-          <div class="box col2">
-            <p>Sit amet mi ullamcorper vehicula</p>
-          </div>
-
-          <div class="box col1">
-            <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
-          </div>
-
-          <div class="box col2">
-            <p>Ut condimentum mi vel tellus. Suspendisse laoreet. Fusce ut est sed dolor gravida convallis. Morbi vitae ante. Vivamus ultrices luctus nunc. Suspendisse et dolor. Etiam dignissim. Proin malesuada adipiscing lacus. Donec metus. Curabitur gravida.</p>
-            <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
-          </div>
-
-          <div class="box col3">
-            <p>Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.</p>
-          </div>
-
-          <div class="box col1">
-            <p>Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis.</p>
-          </div>
+      </div> <!-- .wrap -->
 
 
-          <div class="box col1">
-            <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula  </p>
-          </div>
-          
-        </div> <!-- .wrap -->
-
-
-      </div> <!-- #demo --> 
+    </div> <!-- #demo --> 
 
     
   </section> <!-- #content -->

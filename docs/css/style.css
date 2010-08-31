@@ -40,7 +40,7 @@ h1, h2, h3, p, ul, ol, pre, dl {
 #site-nav {
   position: fixed;
   width: 180px;
-  padding: 10px;
+  padding:  0 10px;
   height: 100%;
   overflow-y: auto;
 }
@@ -49,6 +49,7 @@ h1, h2, h3, p, ul, ol, pre, dl {
   font-weight: 600;
   font-size: 18px;
   margin-bottom: 0.3em;
+  padding-top: 10px;
 }
 
 #site-nav ul {
