@@ -5,8 +5,6 @@
   padding: 0;
 }
 
-section, nav { display: block; }
-
 body { 
   font: 13px 'Helvetica Neue', Arial, sans-serif;
   background: #D8D5D2;
