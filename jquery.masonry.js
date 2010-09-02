@@ -145,10 +145,12 @@
           }
 
         } else {
+          // start new colY array, with starting values set to posTop
           props.colY = [];
-          for ( i=0; i < props.colCount; i++) {
-            props.colY[i] = props.posTop;
-          }  
+          i = props.colCount;
+          while (i--) {
+            props.colY.push(props.posTop);
+          }
         }
 
         // are we animating the rearrangement?
