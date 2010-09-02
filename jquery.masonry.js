@@ -65,23 +65,27 @@
         }
       },
       
-      placeBrick : function($brick, setCount, setY, setSpan, props, opts) {
-        var i,
-            shortCol = 0;
+      placeBrick : function($brick, setCount, setY, props, opts) {
+            // get the minimum Y value from the columns...
+        var minimumY = Math.min.apply(Math, setY),
+            // ...and which column that is
+            shortCol = setY.indexOf(minimumY),
+            setHeight = minimumY + $brick.outerHeight(true),
+            position = {
+              left: props.colW * shortCol + props.posLeft,
+              top: minimumY
+            },
+            setSpan = props.colCount + 1 - setY.length;
+            
 
-        for ( i=0; i < setCount; i++ ) {
-          if ( setY[i] < setY[ shortCol ] ) { shortCol = i; }
-        }
-
-        var position = {
-          left: props.colW * shortCol + props.posLeft,
-          top: setY[ shortCol ]
-        };
-
+        // position the brick
         $brick.applyStyle(position, $.extend(true,{},opts.animationOptions) );
 
-        for ( i=0; i < setSpan; i++ ) {
-          props.colY[ shortCol + i ] = setY[ shortCol ] + $brick.outerHeight(true) ;
+        // console.log(setY.length, props.colCount - setSpan +1);
+
+        // apply setHeight to necessary columns
+        for (var i=0; i < setSpan; i++ ) {
+          props.colY[ shortCol + i ] = setHeight;
         }
       },
       
@@ -156,7 +160,7 @@
         if ( opts.singleMode ) {
           props.$bricks.each(function(){
             var $brick = $(this);
-            msnry.placeBrick($brick, props.colCount, props.colY, 1, props, opts);
+            msnry.placeBrick($brick, props.colCount, props.colY, props, opts);
           });      
         } else {
           props.$bricks.each(function() {
@@ -168,7 +172,7 @@
 
             if ( colSpan === 1 ) {
               // if brick spans only one column, just like singleMode
-              msnry.placeBrick($brick, props.colCount, props.colY, 1, props, opts);
+              msnry.placeBrick($brick, props.colCount, props.colY, props, opts);
             } else {
               // brick spans more than one column
 
@@ -184,7 +188,7 @@
                 groupY[i] = Math.max.apply(Math, groupColY);
               }
 
-              msnry.placeBrick($brick, groupCount, groupY, colSpan, props, opts);
+              msnry.placeBrick($brick, groupCount, groupY, props, opts);
             }
           }); //    /props.bricks.each(function() {
         }  //     /layout logic
