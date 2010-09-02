@@ -173,6 +173,9 @@ button {
   line-height: 30px;
 }
 
+.license-copy {
+  font-size: 85%;
+}
 
 /**** Masonry CSS ****/
 
