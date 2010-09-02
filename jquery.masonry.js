@@ -19,10 +19,10 @@
 
   event.special.smartresize = {
     setup: function() {
-      $( this ).bind( "resize", event.special.smartresize.handler );
+      $(this).bind( "resize", event.special.smartresize.handler );
     },
     teardown: function() {
-      $( this ).unbind( "resize", event.special.smartresize.handler );
+      $(this).unbind( "resize", event.special.smartresize.handler );
     },
     handler: function( event, execAsap ) {
       // Save the context
@@ -166,7 +166,7 @@
 
             colSpan = Math.min( colSpan, props.colCount );
 
-            if ( colSpan == 1 ) {
+            if ( colSpan === 1 ) {
               // if brick spans only one column, just like singleMode
               msnry.placeBrick($brick, props.colCount, props.colY, 1, props, opts);
             } else {
