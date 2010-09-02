@@ -15,7 +15,7 @@
    *
    */
   var event = $.event,
-    resizeTimeout;
+      resizeTimeout;
 
   event.special.smartresize = {
     setup: function() {
@@ -27,7 +27,7 @@
     handler: function( event, execAsap ) {
       // Save the context
       var context = this,
-        args = arguments;
+          args = arguments;
 
       // set correct event type
       event.type = "smartresize";
@@ -66,10 +66,9 @@
       },
       
       placeBrick : function($brick, setCount, setY, setSpan, props, opts) {
-        var 
-          i,
-          shortCol = 0
-        ;
+        var i,
+            shortCol = 0;
+
         for ( i=0; i < setCount; i++ ) {
           if ( setY[i] < setY[ shortCol ] ) { shortCol = i; }
         }
@@ -161,11 +160,10 @@
           });      
         } else {
           props.$bricks.each(function() {
-            var
-              $brick = $(this),
-              //how many columns does this brick span
-              colSpan = Math.ceil( $brick.outerWidth(true) / props.colW)
-            ;
+            var $brick = $(this),
+                //how many columns does this brick span
+                colSpan = Math.ceil( $brick.outerWidth(true) / props.colW);
+
             colSpan = Math.min( colSpan, props.colCount );
 
             if ( colSpan == 1 ) {
@@ -175,10 +173,9 @@
               // brick spans more than one column
 
               //how many different places could this brick fit horizontally
-              var 
-                groupCount = props.colCount + 1 - colSpan,
-                groupY = [0]
-              ;
+              var groupCount = props.colCount + 1 - colSpan,
+                  groupY = [0];
+
               // for each group potential horizontal position
               for ( i=0; i < groupCount; i++ ) {
                 groupY[i] = 0;
@@ -234,24 +231,20 @@
     */
     return this.each(function() {  
 
-      var 
-        $wall = $(this),
-        props = {}
-      ;
+      var $wall = $(this),
+          props = {};
 
       // checks if masonry has been called before on this object
       props.masoned = ( $wall.data('masonry') !== null );
     
-      var 
-        previousOptions = props.masoned ? $wall.data('masonry').options : {},
-        opts =  $.extend(
-                  {},
-                  $.fn.masonry.defaults,
-                  previousOptions,
-                  options
-                ),
-        resizeOn = previousOptions.resizeable
-      ;
+      var previousOptions = props.masoned ? $wall.data('masonry').options : {},
+          opts =  $.extend(
+                    {},
+                    $.fn.masonry.defaults,
+                    previousOptions,
+                    options
+                  ),
+          resizeOn = previousOptions.resizeable;
 
       // should we save these options for next time?
       props.options = opts.saveOptions ? opts : previousOptions;
