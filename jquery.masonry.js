@@ -77,11 +77,8 @@
             },
             setSpan = props.colCount + 1 - setY.length;
             
-
         // position the brick
         $brick.applyStyle(position, $.extend(true,{},opts.animationOptions) );
-
-        // console.log(setY.length, props.colCount - setSpan +1);
 
         // apply setHeight to necessary columns
         for (var i=0; i < setSpan; i++ ) {
@@ -169,7 +166,6 @@
             var $brick = $(this),
                 //how many columns does this brick span
                 colSpan = Math.ceil( $brick.outerWidth(true) / props.colW);
-
             colSpan = Math.min( colSpan, props.colCount );
 
             if ( colSpan === 1 ) {
@@ -221,7 +217,9 @@
         props.masoned = ( $wall.data('masonry') !== null );
         var prevColCount = $wall.data('masonry').colCount;
         msnry.setup($wall, opts, props);
-        if ( props.colCount != prevColCount ) { msnry.arrange($wall, opts, props); }
+        if ( props.colCount != prevColCount ) {
+          msnry.arrange($wall, opts, props);
+        }
       }
     };
 
@@ -277,16 +275,16 @@
   };      //    /$.fn.masonry = function(options)
 
 
-
+  // Default plugin options
   $.fn.masonry.defaults = {
-      singleMode: false,
-      columnWidth: undefined,
-      itemSelector: undefined,
-      appendedContent: undefined,
-      saveOptions: true,
-      resizeable: true,
-      animate: false,
-      animationOptions: {}
-    };
+    singleMode: false,
+    columnWidth: undefined,
+    itemSelector: undefined,
+    appendedContent: undefined,
+    saveOptions: true,
+    resizeable: true,
+    animate: false,
+    animationOptions: {}
+  };
 
 })(jQuery);
