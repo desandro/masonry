@@ -105,7 +105,7 @@
       },
       
       arrange : function($wall, opts, props) {
-        var i, j;
+        var i;
         // if masonry hasn't been called before
         if ( !props.masoned ) { 
           $wall.css( 'position', 'relative' );
@@ -174,16 +174,14 @@
 
               //how many different places could this brick fit horizontally
               var groupCount = props.colCount + 1 - colSpan,
-                  groupY = [0];
+                  groupY = [];
 
               // for each group potential horizontal position
               for ( i=0; i < groupCount; i++ ) {
-                groupY[i] = 0;
-                // for each column in that group
-                for ( j=0; j < colSpan; j++ ) {
-                  // get the maximum column height in that group
-                  groupY[i] = Math.max( groupY[i], props.colY[i+j] );
-                }
+                // make an array of colY values for that one group
+                var groupColY = props.colY.slice(i, i+colSpan);
+                // and get the max value of the array
+                groupY[i] = Math.max.apply(Math, groupColY);
               }
 
               msnry.placeBrick($brick, groupCount, groupY, colSpan, props, opts);
@@ -192,10 +190,7 @@
         }  //     /layout logic
 
         // set the height of the wall to the tallest column
-        props.wallH = 0;
-        for ( i=0; i < props.colCount; i++ ) {
-          props.wallH = Math.max( props.wallH, props.colY[i] );
-        }
+        props.wallH = Math.max.apply(Math, props.colY);
         var wallCSS = { height: props.wallH - props.posTop };
         $wall.applyStyle( wallCSS, $.extend(true,[],opts.animationOptions) );
 
