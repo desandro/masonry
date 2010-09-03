@@ -193,11 +193,11 @@
 
       <p>Configuring Masonry is fairly easy. Simply call the <code>.masonry()</code> method on the container element. Depending on the layout, you&rsquo;ll most likely need to specify one option.</p>
 
-      <p>For layouts with elements that span multiple widths:</p>
+      <p>For layouts with elements that span multiple widths, like the <a href="basic-multi-column.html">basic multi-column example</a>:</p>
 
       <pre><code><span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({ columnWidth: <span class="constant">200</span> });</code></pre>
 
-      <p>For layouts with elements that span the same width:</p>
+      <p>For layouts with elements that span the same width, like the <a href="basic-single-column.html">basic single-column example</a>:</p>
 
       <pre><code><span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({ singleMode: <span class="constant">true</span> });</code></pre>
 
@@ -281,7 +281,7 @@
 
       <pre><code><span class="keyword">$</span>(<span class="support">window</span>).<span class="keyword">load</span>(<span class="storage">function</span>(){
   <span class="keyword">if</span> ( <span class="keyword">window</span>.<span class="keyword">location</span>.<span class="keyword">hash</span> ) {
-    <span class="storage">var</span> destination = <span class="keyword">$</span>( <span class="keyword">window</span>.<span class="keyword">location</span>.<span class="keyword">hash</span> ).offset().<span class="keyword">top</span>;
+    <span class="storage">var</span> destination <span class="keyword">=</span> <span class="keyword">$</span>( <span class="keyword">window</span>.<span class="keyword">location</span>.<span class="keyword">hash</span> ).offset().<span class="keyword">top</span>;
     <span class="keyword">$</span>(<span class="string">'html:not(:animated),body:not(:animated)'</span>).scrollTop( destination );
   }
 });</code></pre>
@@ -308,6 +308,10 @@
       <h2 id="changelog">Changelog</h2>
 
       <dl>
+        <dt>v1.3 3 Sep 2010</dt>
+        <dd>Revamped <code>appendedContent</code> to work with container elements.  Plays nice with latest Infinite Scroll.</dd>
+        <dd>Revised layout for documentation to allow for more pages.</dd>
+
         <dt>v1.2 12 Jun 2010</dt>
         <dd>Support for filtering added</dd>
 
@@ -330,7 +334,7 @@
       <h2 id="acknowledgments">Acknowledgments</h2>
       
       <ul>
-        <li><a href="http://paulirish.com">Paul Irish</a> for his <a href="http://www.infinite-scroll.com">Infinite Scroll</a> plugin, which served as a template I used to produce a plugin of my own. The <code>appendedContent</code> option was design to work specifically with Infinite Scroll. Infinite Scroll is packaged with these docs</li>
+        <li><a href="http://paulirish.com">Paul Irish</a> for his <a href="http://www.infinite-scroll.com">Infinite Scroll</a> plugin, which served as a template I used to produce a plugin of my own. The <code>appendedContent</code> option was design to work specifically with Infinite Scroll. Infinite Scroll is packaged with these docs.</li>
         <li>Louis-Rémi Babé and Paul Irish for the <a href="http://github.com/lrbabe/jquery-smartresize">jQuery SmartResize plugin</a>. This adds a special <em>smartresize</em> event to jQuery, so window resize events do not have to be executed on every frame. This plugin is used within jQuery Masonry.</li>
       </ul>
 
