@@ -39,7 +39,7 @@
 
     <div class="copy">
   		<p>New elements can be appended to &lsquo;masoned&rsquo; containers and then arranged to the layout using the <code>appendedContent</code> option. <code>appendedContent</code> accepts the a jQuery object of the newly appended elements.  In this example, each time <a href="#append_new_bricks">the button</a> is clicked, new <code>box</code> elements are created and then together made into a jQuery object.  This object is first appended to the wrapping container, then the boxes are rearranged with a <code>.masonry()</code> call. Finally, using the callback function, the new boxes are dynamically styled. </p> 
-  		<p><code>appendedContent</code> was the only option to specify since Masonry saves all previous options. Using <code>appendedContent</code>, the Masonry script saves some processing time as it only rearranges the box(es) inside that appended container.</p>
+  		<p>In the click function, <code>appendedContent</code> was the only option to specify in the masonry configuration since Masonry saves all previous options. Using <code>appendedContent</code>, the Masonry script saves some processing time as it only rearranges the box(es) inside that appended container.</p>
 
       <pre id="code"><code><span class="comment">// cache masonry wrap</span>
 <span class="storage">var</span> <span class="keyword">$</span>wall <span class="keyword">=</span> <span class="keyword">$</span>(<span class="string">'#demo'</span>).find(<span class="string">'.wrap'</span>);
