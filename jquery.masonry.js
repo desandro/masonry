@@ -1,6 +1,6 @@
 /*************************************************
 **  jQuery Masonry version 1.3.0
-**  copyright David DeSandro, licensed GPL & MIT
+**  Copyright David DeSandro, licensed MIT
 **  http://desandro.com/resources/jquery-masonry
 **************************************************/
 ;(function($){  
