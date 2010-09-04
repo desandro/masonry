@@ -167,10 +167,11 @@ button {
 
 #footer {
   clear: both;
-  margin: 20px 10px;
+  margin: 20px 0px;
   border-top: 1px solid #BBB;
   padding-top: 10px;
   line-height: 30px;
+  font-size: 95%;
 }
 
 .license-copy {
