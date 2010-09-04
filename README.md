@@ -5,4 +5,6 @@ Masonry is a layout plugin for jQuery. Think of it as the flip side of CSS float
 
 The primer in docs/index.html has all the documentation to get you started.
 
+Code Repository: http://github.com/desandro/masonry
+
 Copyright (c) 2010 David DeSandro, licensed MIT
