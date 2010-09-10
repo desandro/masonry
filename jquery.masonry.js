@@ -47,6 +47,18 @@
 
   // masonry code begin
   $.fn.masonry = function(options, callback) { 
+	
+	  // make indexOf work in IE
+		if ( !Array.indexOf ) {
+      Array.prototype.indexOf = function(obj) {
+        for ( var i=0; i<this.length; i++ ) {
+          if ( this[i]==obj ) {
+            return i;
+          }
+        }
+        return -1;
+      }
+		}
 
     // all my sweet methods
     var msnry = {
