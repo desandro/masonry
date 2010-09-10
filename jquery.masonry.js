@@ -68,20 +68,27 @@
       placeBrick : function($brick, setCount, setY, props, opts) {
             // get the minimum Y value from the columns...
         var minimumY = Math.min.apply(Math, setY),
-            // ...and which column that is
-            shortCol = setY.indexOf(minimumY),
             setHeight = minimumY + $brick.outerHeight(true),
-            position = {
-              left: props.colW * shortCol + props.posLeft,
-              top: minimumY
-            },
-            setSpan = props.colCount + 1 - setY.length;
+            i = setY.length,
+            shortCol = i,
+            setSpan = props.colCount + 1 - i;
+        // Which column has the minY value, closest to the left
+        while (i--) {
+          if ( setY[i] == minimumY ) {
+            shortCol = i;
+          }
+        }
+            
+        var position = {
+          left: props.colW * shortCol + props.posLeft,
+          top: minimumY
+        };
             
         // position the brick
         $brick.applyStyle(position, $.extend(true,{},opts.animationOptions) );
 
         // apply setHeight to necessary columns
-        for (var i=0; i < setSpan; i++ ) {
+        for ( i=0; i < setSpan; i++ ) {
           props.colY[ shortCol + i ] = setHeight;
         }
       },
