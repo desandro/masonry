@@ -125,11 +125,11 @@
           $wall.css( 'position', 'relative' );
 
           // get top left position of where the bricks should be
-          var cursor = $( document.createElement('div') );
-          $wall.prepend( cursor );
-          props.posTop =  Math.round( cursor.position().top );
-          props.posLeft = Math.round( cursor.position().left );
-          cursor.remove();
+          var $cursor = $( document.createElement('div') );
+          $wall.prepend( $cursor );
+          props.posTop =  Math.round( $cursor.position().top );
+          props.posLeft = Math.round( $cursor.position().left );
+          $cursor.remove();
         } else {
           props.posTop =  props.previousData.posTop;
           props.posLeft = props.previousData.posLeft;
