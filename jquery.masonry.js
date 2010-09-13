@@ -114,6 +114,12 @@
       
       arrange : function($wall, opts, props) {
         var i;
+
+        if ( !props.masoned || opts.appendedContent !== undefined ) {
+          // just the new bricks
+          props.$bricks.css( 'position', 'absolute' );
+        }
+
         // if masonry hasn't been called before
         if ( !props.masoned ) { 
           $wall.css( 'position', 'relative' );
@@ -129,11 +135,6 @@
           props.posLeft = props.previousData.posLeft;
         }
         
-        if ( !props.masoned || opts.appendedContent !== undefined ) {
-          // just the new bricks
-          props.$bricks.css( 'position', 'absolute' );
-        }
-
         // set up column Y array
         if ( props.masoned && opts.appendedContent !== undefined ) {
           // if appendedContent is set, use colY from last call
