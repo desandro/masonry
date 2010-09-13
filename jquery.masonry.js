@@ -1,5 +1,5 @@
 /*************************************************
-**  jQuery Masonry version 1.3.0
+**  jQuery Masonry version 1.3.1
 **  Copyright David DeSandro, licensed MIT
 **  http://desandro.com/resources/jquery-masonry
 **************************************************/
@@ -68,20 +68,27 @@
       placeBrick : function($brick, setCount, setY, props, opts) {
             // get the minimum Y value from the columns...
         var minimumY = Math.min.apply(Math, setY),
-            // ...and which column that is
-            shortCol = setY.indexOf(minimumY),
             setHeight = minimumY + $brick.outerHeight(true),
-            position = {
-              left: props.colW * shortCol + props.posLeft,
-              top: minimumY
-            },
-            setSpan = props.colCount + 1 - setY.length;
+            i = setY.length,
+            shortCol = i,
+            setSpan = props.colCount + 1 - i;
+        // Which column has the minY value, closest to the left
+        while (i--) {
+          if ( setY[i] == minimumY ) {
+            shortCol = i;
+          }
+        }
+            
+        var position = {
+          left: props.colW * shortCol + props.posLeft,
+          top: minimumY
+        };
             
         // position the brick
         $brick.applyStyle(position, $.extend(true,{},opts.animationOptions) );
 
         // apply setHeight to necessary columns
-        for (var i=0; i < setSpan; i++ ) {
+        for ( i=0; i < setSpan; i++ ) {
           props.colY[ shortCol + i ] = setHeight;
         }
       },
@@ -107,26 +114,27 @@
       
       arrange : function($wall, opts, props) {
         var i;
-        // if masonry hasn't been called before
-        if ( !props.masoned ) { 
-          $wall.css( 'position', 'relative' );
 
-          // get top left position of where the bricks should be
-          var cursor = $( document.createElement('div') );
-          $wall.prepend( cursor );
-          props.posTop =  Math.round( cursor.position().top );
-          props.posLeft = Math.round( cursor.position().left );
-          cursor.remove();
-        } else {
-          props.posTop =  props.previousData.posTop;
-          props.posLeft = props.previousData.posLeft;
-        }
-        
         if ( !props.masoned || opts.appendedContent !== undefined ) {
           // just the new bricks
           props.$bricks.css( 'position', 'absolute' );
         }
 
+        // if masonry hasn't been called before
+        if ( !props.masoned ) { 
+          $wall.css( 'position', 'relative' );
+
+          // get top left position of where the bricks should be
+          var $cursor = $( document.createElement('div') );
+          $wall.prepend( $cursor );
+          props.posTop =  Math.round( $cursor.position().top );
+          props.posLeft = Math.round( $cursor.position().left );
+          $cursor.remove();
+        } else {
+          props.posTop =  props.previousData.posTop;
+          props.posLeft = props.previousData.posLeft;
+        }
+        
         // set up column Y array
         if ( props.masoned && opts.appendedContent !== undefined ) {
           // if appendedContent is set, use colY from last call
