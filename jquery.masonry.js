@@ -68,7 +68,7 @@
       placeBrick : function($brick, setCount, setY, props, opts) {
             // get the minimum Y value from the columns...
         var minimumY = Math.min.apply(Math, setY),
-            setHeight = minimumY + $brick.outerHeight(true),
+            setHeight = minimumY + $brick[opts.columnsAreRows ? 'outerWidth' : 'outerHeight'](true),
             i = setY.length,
             shortCol = i,
             setSpan = props.colCount + 1 - i;
@@ -83,7 +83,12 @@
           left: props.colW * shortCol + props.posLeft,
           top: minimumY
         };
-            
+
+        if (opts.columnsAreRows) {
+          position.top  = position.left;
+          position.left = minimumY;
+        }
+
         // position the brick
         $brick.applyStyle(position, $.extend(true,{},opts.animationOptions) );
 
@@ -103,12 +108,12 @@
         if ( opts.columnWidth === undefined) {
           props.colW = props.masoned ?
               props.previousData.colW :
-              props.$bricks.outerWidth(true);
+              props.$bricks[opts.columnsAreRows ? 'outerHeight' : 'outerWidth'](true);
         } else {
           props.colW = opts.columnWidth;
         }
 
-        props.colCount = Math.floor( $wall.width() / props.colW ) ;
+        props.colCount = Math.floor( $wall[opts.columnsAreRows ? 'height' : 'width']() / props.colW ) ;
         props.colCount = Math.max( props.colCount, 1 );
       },
       
@@ -134,7 +139,13 @@
           props.posTop =  props.previousData.posTop;
           props.posLeft = props.previousData.posLeft;
         }
-        
+
+        if (opts.columnsAreRows) {
+          var columnPosTop = props.posTop;
+          props.posTop = props.posLeft;
+          props.posLeft = columnPosTop;
+        }
+
         // set up column Y array
         if ( props.masoned && opts.appendedContent !== undefined ) {
           // if appendedContent is set, use colY from last call
@@ -173,7 +184,7 @@
           props.$bricks.each(function() {
             var $brick = $(this),
                 //how many columns does this brick span
-                colSpan = Math.ceil( $brick.outerWidth(true) / props.colW);
+                colSpan = Math.ceil( $brick[opts.columnsAreRows ? 'outerHeight' : 'outerWidth'](true) / props.colW);
             colSpan = Math.min( colSpan, props.colCount );
 
             if ( colSpan === 1 ) {
@@ -201,7 +212,8 @@
 
         // set the height of the wall to the tallest column
         props.wallH = Math.max.apply(Math, props.colY);
-        var wallCSS = { height: props.wallH - props.posTop };
+        var wallCSS = {};
+        wallCSS[opts.columnsAreRows ? 'width' : 'height'] = props.wallH - props.posTop ;
         $wall.applyStyle( wallCSS, $.extend(true,[],opts.animationOptions) );
 
         // add masoned class first time around
@@ -292,7 +304,8 @@
     saveOptions: true,
     resizeable: true,
     animate: false,
-    animationOptions: {}
+    animationOptions: {},
+    columnsAreRows: false
   };
 
 })(jQuery);
