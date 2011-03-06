@@ -79,7 +79,10 @@
           }
         }
             
-        var position = {
+        var position = (opts.fromBottom) ? {
+          left: props.colW * shortCol + props.posLeft,
+          bottom: minimumY
+        } : {
           left: props.colW * shortCol + props.posLeft,
           top: minimumY
         };
@@ -289,6 +292,7 @@
     columnWidth: undefined,
     itemSelector: undefined,
     appendedContent: undefined,
+    fromBottom: false,
     saveOptions: true,
     resizeable: true,
     animate: false,
