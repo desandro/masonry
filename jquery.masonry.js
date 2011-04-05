@@ -15,7 +15,8 @@
    *
    */
   var event = $.event,
-      resizeTimeout;
+      resizeTimeout,
+      currentWall = 0;
 
   event.special.smartresize = {
     setup: function() {
@@ -65,7 +66,7 @@
         }
       },
       
-      placeBrick : function($brick, setCount, setY, props, opts) {
+      placeBrick : function($brick, index, setCount, setY, props, opts) {
             // get the minimum Y value from the columns...
         var minimumY = Math.min.apply(Math, setY),
             setHeight = minimumY + $brick.outerHeight(true),
@@ -83,9 +84,15 @@
           left: props.colW * shortCol + props.posLeft,
           top: minimumY
         };
-            
+        
         // position the brick
-        $brick.applyStyle(position, $.extend(true,{},opts.animationOptions) );
+        $brick.applyStyle(position, $.extend(true,{},opts.animationOptions) )
+        
+        if (props.options.printable) {
+        	var uniqueClass = props.prefix + index; 
+        	$brick.addClass(uniqueClass);
+            props.stylesObj[uniqueClass] = position;
+        }
 
         // apply setHeight to necessary columns
         for ( i=0; i < setSpan; i++ ) {
@@ -93,7 +100,53 @@
         }
       },
       
+      writeStyles: function(props) {
+    	  var screenStyles = props.stylesObj,
+    	  	  printStyles = {},
+    	  	  left = props.options.printOffset.left,
+    	  	  top = props.options.printOffset.top,
+    	  	  screenPositions = "",
+    	  	  printPositions = "",
+    	  	  classList = [];
+    	  $.each(screenStyles, function(key, val) {
+    		  printStyles[key] = {
+    			 left: this.left + left,
+    			 top: this.top + top
+    		  };
+    	  });
+    	  for (key in screenStyles) {
+    		  classList.push("." + key);
+    		  screenPositions += "." + key + "{" + 
+    		  	"left:" + screenStyles[key].left + "px;" +
+    		  	"top:" + screenStyles[key].top + "px" +
+    		  "} ";
+    		  printPositions += "." + key + "{" + 
+	  		  	"left:" + printStyles[key].left + "px;" +
+	  		  	"top:" + printStyles[key].top + "px" +
+	  		  "} ";
+    	  }
+    	  classList = classList.join(",");
+    	  props.screenStyles.html(classList + "{position: absolute} " + screenPositions);
+    	  props.printStyles.html(classList + "{position: fixed} " + printPositions);
+    	  props.$bricks.css({
+    		  position: "",
+    		  top:"",
+    		  left:""
+    	  });
+      },
+      
       setup : function($wall, opts, props) {
+    	if(props.options.printable) {
+	    	props.stylesObj = {};
+	    	props.screenStyles = $("<style>").attr({
+	    		type: "text/css",
+	    		media: "screen"
+	    	}).appendTo("head");
+	    	props.printStyles = $("<style>").attr({
+	    		type: "text/css",
+	    		media: "print"
+	    	}).appendTo("head");
+        }
         msnry.getBricks($wall, props, opts);
 
         if ( props.masoned ) {
@@ -165,10 +218,11 @@
 
         // layout logic
         if ( opts.singleMode ) {
-          props.$bricks.each(function(){
+          props.$bricks.each(function(i){
             var $brick = $(this);
-            msnry.placeBrick($brick, props.colCount, props.colY, props, opts);
-          });      
+            msnry.placeBrick($brick, i, props.colCount, props.colY, props, opts);
+          });   
+          
         } else {
           props.$bricks.each(function() {
             var $brick = $(this),
@@ -198,7 +252,7 @@
             }
           }); //    /props.bricks.each(function() {
         }  //     /layout logic
-
+        props.options.printable && msnry.writeStyles(props);
         // set the height of the wall to the tallest column
         props.wallH = Math.max.apply(Math, props.colY);
         var wallCSS = { height: props.wallH - props.posTop };
@@ -240,10 +294,11 @@
 
       var $wall = $(this),
           props = {};
+      	  
 
       // checks if masonry has been called before on this object
       props.masoned = !!$wall.data('masonry');
-    
+      props.prefix = "masonry_" + currentWall++ + "_";
       var previousOptions = props.masoned ? $wall.data('masonry').options : {},
           opts =  $.extend(
                     {},
@@ -292,7 +347,12 @@
     saveOptions: true,
     resizeable: true,
     animate: false,
-    animationOptions: {}
+    animationOptions: {},
+    printable: true,
+    printOffset: {
+    	left: 0,
+    	top: 0
+    }
   };
 
 })(jQuery);
