@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>jQuery Masonry &rsaquo; Primer</title>
+
+	<link rel="stylesheet" href="css/style.css" media="screen" />
+  
+  <!-- scripts are located at the bottom of the markup -->
+
+</head>
+<body>
+
+  <div id="site-nav">
+    <h1>jQuery Masonry</h1>
+    <ul>
+      <li class="selected"><a href=".">Primer</a>
+        <ul>
+          <li><a href="#comparison">Comparison Example</a></li>
+          <li><a href="#min-config">Minimum recommended configuration</a></li>
+          <li><a href="#options">Plugin options</a></li>
+          <li><a href="#code-repository">Code repository</a></li>
+          <li><a href="#resizing">Window resizing</a></li>
+          <li><a href="#images">Handling images &amp; other media</a></li>
+          <li><a href="#anchor-links">Resolving anchor links</a></li>
+          <li><a href="#inthewild">Examples in the wild</a></li>
+          <li><a href="#changelog">Changelog</a></li>
+          <li><a href="#acknowledgments">Acknowledgments</a></li>
+          <li><a href="#license">License</a></li>
+        </ul>
+      </li>
+      <li><a href="basic-single-column.html">Basic single-column</a></li>
+      <li><a href="basic-multi-column.html">Basic multi-column</a></li>
+      <li><a href="tumblelog.html">Tumblelog</a></li>
+      <li><a href="appending.html">Appending</a></li>
+      <li><a href="infinite-scroll.html">Infinite Scroll</a></li>
+      <li><a href="animating-jquery.html">Animating with jQuery</a></li>
+      <li><a href="animating-css-transitions.html">Animating with CSS transitions</a></li>
+      <li><a href="filtering.html">Filtering</a></li>
+      <li><a href="filtering-hashes.html#red">Filtering hashes</a></li>
+    </ul>
+  </div>
+  
+  <div id="content">
+  	<h1>Primer</h1>	
+
+    <div class="copy">
+      <p>Masonry is a layout plugin for jQuery. Think of it as the flip side of CSS floats. Whereas floating arranges elements horizontally then vertically, Masonry arranges elements vertically then horizontally according to a grid. The result minimizes vertical gaps between elements of varying height, just like a mason fitting stones in a wall.</p>
+
+    </div><!-- .copy -->
+
+    <div id="comparison">
+      <h2>Comparison Example</h2>
+      <div class="example">
+        <h3>CSS Floats</h3>
+        <div id="primary" class="wrap">
+          <div class="box col1">
+            <h5>1</h5>
+            <p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris. </p>
+          </div>
+
+          <div class="box col2">
+            <h5>2</h5>
+            <p>Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit.</p>
+          </div>
+
+          <div class="box col1">
+            <h5>3</h5>
+            <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula. Ut eget sem risus, et posuere velit.  Aenean ac mauris non ligula.  </p>
+          </div>
+
+          <div class="box col1">
+            <h5>4</h5>
+            <p>Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus.</p>
+          </div>
+
+          <div class="box col1">
+            <h5>5</h5>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.</p>
+          </div>
+
+          <div class="box col1">
+            <h5>6</h5>
+            <p>Cadipiscing in, lacinia vel, tellus. </p>
+          </div>
+
+          <div class="box col1">
+            <h5>7</h5>
+            <p>Pellentesque a diam sit amet mi ullamcorper vehicula.  adipiscing in, lacinia vel, tellus.</p>
+          </div>
+
+          <div class="box col3">
+            <h5>8</h5>
+            <p>Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus.  Suspendisse ac urna. Etiam pellentesque. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.  Suspendisse ac urna. Etiam pellentesque. </p>
+          </div>
+
+          <div class="box col2">
+            <h5>9</h5>
+            <p>Ut convallis, sem sit amet interdum consectetuer, odio augue aliquam leo, nec dapibus tortor nibh sed augue. Ut condimentum mi vel tellus. Suspendisse laoreet. Fusce ut est sed dolor gravida convallis. Morbi vitae ante. Vivamus ultrices luctus nunc. Suspendisse et dolor. Pellentesque a diam sit amet mi ullamcorper vehicula.  adipiscing in, lacinia vel, tellus.</p>
+          </div>
+
+          <div class="box col1">
+             <h5>10</h5>
+             <p>Etiam pellen tesque mauris ut lectus.</p>
+           </div>
+
+           <div class="box col1">
+             <h5>11</h5>
+             <p>Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspen disse ac urna. Ut condi mentum mi vel tellus.</p>
+           </div>
+
+           <div class="box col1">
+              <h5>12</h5>
+             <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
+           </div>
+
+        </div> <!-- /#primary.wrap -->
+      </div> 
+
+      <div class="example">
+        <h3>Masonry</h3>
+        <div id="secondary" class="wrap">
+          <div class="box col1">
+            <h5>1</h5>
+            <p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris. </p>
+          </div>
+
+          <div class="box col2">
+            <h5>2</h5>
+            <p>Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit.</p>
+          </div>
+
+          <div class="box col1">
+            <h5>3</h5>
+            <p>Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula. Ut eget sem risus, et posuere velit.  Aenean ac mauris non ligula.  </p>
+          </div>
+
+          <div class="box col1">
+            <h5>4</h5>
+            <p>Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus.</p>
+          </div>
+
+          <div class="box col1">
+            <h5>5</h5>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.</p>
+          </div>
+
+          <div class="box col1">
+            <h5>6</h5>
+            <p>Cadipiscing in, lacinia vel, tellus. </p>
+          </div>
+
+          <div class="box col1">
+            <h5>7</h5>
+            <p>Pellentesque a diam sit amet mi ullamcorper vehicula.  adipiscing in, lacinia vel, tellus.</p>
+          </div>
+
+          <div class="box col3">
+            <h5>8</h5>
+            <p>Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus.  Suspendisse ac urna. Etiam pellentesque. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.  Suspendisse ac urna. Etiam pellentesque. </p>
+          </div>
+
+          <div class="box col2">
+            <h5>9</h5>
+            <p>Ut convallis, sem sit amet interdum consectetuer, odio augue aliquam leo, nec dapibus tortor nibh sed augue. Ut condimentum mi vel tellus. Suspendisse laoreet. Fusce ut est sed dolor gravida convallis. Morbi vitae ante. Vivamus ultrices luctus nunc. Suspendisse et dolor. Pellentesque a diam sit amet mi ullamcorper vehicula.  adipiscing in, lacinia vel, tellus.</p>
+          </div>
+
+          <div class="box col1">
+             <h5>10</h5>
+             <p>Etiam pellen tesque mauris ut lectus.</p>
+           </div>
+
+           <div class="box col1">
+             <h5>11</h5>
+             <p>Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspen disse ac urna. Ut condi mentum mi vel tellus.</p>
+           </div>
+
+           <div class="box col1">
+              <h5>12</h5>
+             <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
+           </div>
+
+        </div> <!-- /#secondary.wrap -->
+      </div>    
+
+    </div> <!-- #comparison -->
+
+
+
+  	<div class="copy">
+
+      <h2 id="min-config">Minimum recommended configuration</h2>
+
+      <p>Configuring Masonry is fairly easy. Simply call the <code>.masonry()</code> method on the container element. Depending on the layout, you&rsquo;ll most likely need to specify one option.</p>
+
+      <p>For layouts with elements that span multiple widths, like the <a href="basic-multi-column.html">basic multi-column example</a>:</p>
+
+      <pre><code><span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({ columnWidth: <span class="constant">200</span> });</code></pre>
+
+      <p>For layouts with elements that span the same width, like the <a href="basic-single-column.html">basic single-column example</a>:</p>
+
+      <pre><code><span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({ singleMode: <span class="constant">true</span> });</code></pre>
+
+      <p>No need to worry about how many columns, or width of gutters, or how big the container is. Thanks to the wonders of jQuery’s <code>outerWidth()</code> and <code>innerWidth()</code> methods, Masonry appropriately accounts for the space of any margin, padding, and border-width set with CSS.</p>
+
+      <p>This plugin is designed to progressively enhance the layout, so &lsquo;brick&rsquo; elements should be floated if JavaScript is disabled. Floating also ensures that the bricks width will be measured correctly.</p>
+      
+      <h2 id="options">Plugin options</h2>
+
+      <pre><code><span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({
+
+  singleMode: <span class="constant">false</span>,
+  <span class="comment">// Disables measuring the width of each floated element.
+  // Set to true if floated elements have the same width.
+  // default: false</span>
+
+  columnWidth: <span class="constant">240</span>,
+  <span class="comment">// Width in pixels of 1 column of your grid.
+  // default: outer width of the first floated element.</span>
+
+  itemSelector: <span class="string">'.box:visible'</span>,
+  <span class="comment">// Additional selector to specify which elements inside
+  // the wrapping element will be rearranged.
+  // Required for Infinite Scroll with window resizing.</span>
+
+  resizeable: <span class="constant">true</span>,
+  <span class="comment">// Binds a Masonry call to window resizes 
+  // so layout appears fluid.
+  // default: true</span>
+
+  animate: <span class="constant">true</span>,
+  <span class="comment">// Animates layout rearrangements.
+  // default: false</span>
+
+  animationOptions: {},
+  <span class="comment">// A map of options for animation.</span>
+
+  appendedContent: <span class="keyword">$</span>(<span class="string">'.new_content'</span>),
+  <span class="comment">// Additional container element for appended content.
+  // Useful for Infinite Scroll integration.</span>
+
+  saveOptions: <span class="constant">true</span>,
+  <span class="comment">// Masonry will use the options from previous Masonry
+  // calls by default, so you only have to enter in options once
+  // default: true</span>
+
+},  <span class="storage">function</span>() {}
+  <span class="comment">// Optional callback.
+  // 'this' will refer to the applicable elements Masonry just rearranged</span>
+
+);</code></pre>
+
+
+      <h2 id="code-repository">Code repository</h2>
+
+      <p>This project lives on GitHub at <a href="http://github.com/desandro/masonry">github.com/desandro/masonry</a>, where you can follow progress, download all this documentation, grab the latest version of the script, or fork this project and make it better yourself.</p>
+
+      <p>There you can find an <a href="http://github.com/desandro/masonry/issues">issue tracker</a> where you can look through other people&rsquo;s <a href="http://github.com/desandro/masonry/issues/closed">resolved issues</a> or submit a new one for yourself. If you&rsquo;re still having trouble, try <a href="http://wiki.github.com/desandro/masonry/">looking over the FAQ</a>.</p>
+
+      <h2 id="resizing">Window resizing</h2>
+
+      <p>By default, Masonry binds a call to the browser window for resizing. But the rearrangement script is triggered only when the layout adds or loses a column, so you don&rsquo;t have to worry about Masonry slowing down window resizes, or with fixed layouts.</p>
+
+      <h2 id="images">Handling images &amp; other media</h2>
+
+      <p>Since Masonry measures the height of the elements when placing them, you will need to account for images and other media that haven&rsquo;t loaded yet.  For images, the best method is to specify the width and height of images inline.</p>
+
+      <pre><code><span class="storage">&lt;img src=<span class="string">"img_file.jpg"</span> width=<span class="string">"280"</span> height=<span class="string">"160"</span> /&gt;</span></code></pre>
+
+      <p>If you&rsquo;re using a PHP-based CMS, you can use the <a href="http://php.net/manual/en/function.getimagesize.php">getimagesize</a> function.</p>
+
+      <p>If this is not possible or if you&rsquo;re dealing with @font-face fonts, another option is to call Masonry after all media has loaded. This is done by calling the function inside of <code>$(window).load()</code> instead of <code>$(document).ready()</code>.</p>
+
+      <pre><code><span class="keyword">$</span>(<span class="support">window</span>).<span class="keyword">load</span>(<span class="storage">function</span>(){
+  <span class="keyword">$</span>(<span class="string">'#wrapper'</span>).masonry({ columnWidth: <span class="constant">200</span> });
+});</code></pre>
+
+      <h2 id="anchor-links">Resolving anchor links</h2>
+
+      <p>Since Masonry relies on absolute positioning, any anchor links that occur within or after the wrapping element will not work when the page first loads.  The following script is one solution.</p>
+
+      <pre><code><span class="keyword">$</span>(<span class="support">window</span>).<span class="keyword">load</span>(<span class="storage">function</span>(){
+  <span class="keyword">if</span> ( <span class="keyword">window</span>.<span class="keyword">location</span>.<span class="keyword">hash</span> ) {
+    <span class="storage">var</span> destination <span class="keyword">=</span> <span class="keyword">$</span>( <span class="keyword">window</span>.<span class="keyword">location</span>.<span class="keyword">hash</span> ).offset().<span class="keyword">top</span>;
+    <span class="keyword">$</span>(<span class="string">'html:not(:animated),body:not(:animated)'</span>).scrollTop( destination );
+  }
+});</code></pre>
+
+      <p>This will set the window of the document to the appropriate place.  These couple lines were taken from <a href="http://www.position-absolute.com/articles/better-html-anchor-a-jquery-script-to-slide-the-scrollbar/">Cedric Dugas’s anchorAnything.</a></p>
+
+      <h2 id="inthewild">Examples in the wild</h2>
+
+      <p>In addition to the examples below, see <a href="http://delicious.com/desandro/jquerymasonry">delicious links tagged with jquerymasonry</a> and <a href="http://emberapp.com/desandro/collections/jquery-masonry">jQuery Masonry Collection on Ember for screenshots</a>.</p>
+
+      <ul>
+
+        <li><a href="http://bygonebureau.com/">The Bygone Bureau</a></li>
+        <li><a href="http://thoughtandtheory.com/collection/">Thought &amp; Theory - Collection</a></li>
+        <li><a href="http://safe.tumblr.com/theme/preview/8951">Scaffold Tumblr Theme by Mike Harding</a></li>
+        <li><a href="http://alpha.patterntap.com">Pattern Tap</a></li>
+        <li><a href="http://www.puma.com/running/media">PUMA Running | Media</a></li>
+        <li><a href="http://veerle.duoh.com/inspiration">The Inspiration Stream | Veerle's blog 3.0</a></li>
+        <li><a href="http://thomasmatthews.com/index.php/portfolio/print/">thomas.matthews</a></li>
+        <li><a href="http://rathersplendid.net/">Rather Splendid</a></li>
+        <li><a href="http://chromeography.com">Chromeography</a></li>
+      </ul>
+
+      <h2 id="changelog">Changelog</h2>
+
+      <dl>
+        <dt>v1.3 3 Sep 2010</dt>
+        <dd>Revamped <code>appendedContent</code> to work with container elements.  Plays nice with latest Infinite Scroll.</dd>
+        <dd>Revised layout for documentation to allow for more pages.</dd>
+
+        <dt>v1.2 12 Jun 2010</dt>
+        <dd>Support for filtering added</dd>
+
+        <dt>v1.1: 29 Apr 2010</dt>
+        <dd>Add animation</dd>
+
+        <dt>v1.0: 7 Dec 2009</dt>
+        <dd>Multi-column width support</dd>
+        <dd>Appending elements and Infinite Scroll support</dd>
+        <dd>Less obstrusive layout. No inserting additional markup.</dd>
+        <dd>Automatically binds event to window resizing</dd>
+
+        <dt>v0.4: 14 Jun 2009</dt>
+        <dd>Better fluid rearrangement support</dd>
+
+        <dt>v0.1: Feb 2009</dt>
+        <dd>Original release</dd>
+      </dl>
+
+      <h2 id="acknowledgments">Acknowledgments</h2>
+      
+      <ul>
+        <li><a href="http://paulirish.com">Paul Irish</a> for his <a href="http://www.infinite-scroll.com">Infinite Scroll</a> plugin, which served as a template I used to produce a plugin of my own. The <code>appendedContent</code> option was design to work specifically with Infinite Scroll. Infinite Scroll is packaged with these docs.</li>
+        <li>Louis-Rémi Babé and Paul Irish for the <a href="http://github.com/lrbabe/jquery-smartresize">jQuery SmartResize plugin</a>. This adds a special <em>smartresize</em> event to jQuery, so window resize events do not have to be executed on every frame. This plugin is used within jQuery Masonry.</li>
+      </ul>
+
+      <h2 id="license">License</h2>
+
+      <p>jQuery Masonry is licensed under the MIT license, just like <a href="http://jquery.org/license">jQuery itself.</a> It may be used for personal and commercial applications.</p>
+
+      <div class="license-copy">
+        <h3>The MIT License</h3>
+
+        <p>Copyright &copy; 2010 David DeSandro</p>
+
+        <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+        <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+        <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+        
+      </div>
+
+  	</div> <!-- .copy -->
+
+    <p id="footer">
+  		jQuery Masonry by <a href="http://desandro.com/">David DeSandro</a>
+  	</p>
+    
+  </div> <!-- #content -->
+
+
+  <script src="js/jquery-1.4.2.min.js"></script>
+  <script src="../jquery.masonry.min.js"></script>
+  <script>
+  	$(function(){
+  		$('#secondary').masonry({columnWidth: 100});
+  	});
+  </script>
+
+</body>
+</html>
