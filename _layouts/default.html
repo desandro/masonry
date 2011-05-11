@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{{ page.title }} &middot; {{ site.name }} {% if page.category == 'docs' %}Docs{% elsif page.category == 'demos' %}Demo{% endif %}</title>
+  
+  <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+  <link rel="stylesheet" href="{{ page.root_path }}css/style.css" type="text/css" media="screen" />
+  
+  <!-- scripts at bottom of page -->
+
+</head>
+<body class="{% if page.category %}{{ page.category }}{% endif %}">
+  
+  <nav id="site-nav">
+    <h1><a href="{{ page.root_path }}/index.html">{{ site.name }}</a></h1>
+    
+    <h2>Docs</h2>
+    
+    <ul class="docs-list">
+      {% for doc in site.categories.docs reversed %}
+        {% if page.title == doc.title %}
+        <li class="current"><a href="#content">{{ doc.title }}</a>
+          <ul class="toc">
+            {% for item in page.toc %}
+            <li><a href="#{{ item.anchor }}">{{ item.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% else %}
+          {% if doc.layout != 'index-page' %}
+            <li><a href="..{{ doc.url }}">{{ doc.title }}</a>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+    <h2>Demos</h2>
+    
+    <ul class="demos-list">
+      {% for demo in site.categories.demos reversed %}
+        {% if page.title == demo.title %}
+        <li class="current"><a href="#content">{{ demo.title }}</a></li>
+        {% else %}
+          {% if demo.layout != 'index-page' %}
+            <li><a href="..{{ demo.url }}">{{ demo.title }}</a>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+    
+  </nav> <!-- #site-nav -->
+  
+  <section id="content">
+    
+    <h1>{{ page.title }}</h1>
+    
+    {{ content }}
+    
+    <footer id="site-footer">
+      {{ site.name }} by <a href="http://desandro.com">David DeSandro</a>
+    </footer>
+    
+  </section> <!-- #content -->
