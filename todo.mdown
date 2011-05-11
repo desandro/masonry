@@ -1,0 +1,27 @@
+## To do
+
+Jekyllify
+update jQuery to 1.6
+add imagesLoaded
+
+## Docs
+
+Intro
+Options
+Methods
+
+## Demos
+
+Images
+Infinite Scroll
+Animating
+
+## Methods
+
+appended
+layout
+
+## Options
+
+rtl
+gutterWidth 
