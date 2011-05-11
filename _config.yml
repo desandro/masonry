@@ -1,0 +1,6 @@
+name: jQuery Masonry
+permalink: /:categories/:title.html
+pygments: true
+isotope_js: jquery.masonry.min.js
+jquery_js: js/jquery-1.5.1.min.js
+exclude: [ Rakefile ]
