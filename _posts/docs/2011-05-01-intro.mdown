@@ -2,7 +2,50 @@
 
 title: Introduction
 category: docs
+root_path: ../
+layout: default
+toc:
+  - { title: Getting started, anchor: getting_started }
+  - { title: Code repository, anchor: code_repository }
 
 ---
 
-Masonry is a layout plugin for jQuery. Think of it as the flip side of CSS floats. Whereas floating arranges elements horizontally then vertically, Masonry arranges elements vertically then horizontally according to a grid. The result minimizes vertical gaps between elements of varying height, just like a mason fitting stones in a wall.
+Masonry is a dynamic layout plugin for jQuery. Think of it as the flip side of CSS floats. Whereas floating arranges elements horizontally then vertically, Masonry arranges elements vertically then horizontally according to a grid. The result minimizes vertical gaps between elements of varying height, just like a mason fitting stones in a wall.
+
+## Getting started
+
+Masonry requires jQuery 1.4.0 and greater.
+
+### Markup
+
+Masonry works on a container element with a group of similar child items.
+
+{% highlight html %}
+
+<div id="container">
+  <div class="item">...</div>
+  <div class="item">...</div>
+  <div class="item">...</div>
+  ...
+</div>
+
+{% endhighlight %}
+
+### Script
+
+{% highlight javascript %}
+
+$('#container').masonry({
+  // options
+  itemSelector : '.item'
+});
+
+{% endhighlight %}
+
+[**See Demo: Basic**](../demos/basic.html)
+
+There are a number of [options](options.html) you can specify.
+
+## Code repository
+
+This project lives on GitHub at [github.com/desandro/masonry](http://github.com/desandro/masonry). There you can grab the latest code and follow development.
