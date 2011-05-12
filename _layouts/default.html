@@ -4,14 +4,15 @@
   <meta charset="utf-8" />
   <title>{{ page.title }} &middot; {{ site.name }} {% if page.category == 'docs' %}Docs{% elsif page.category == 'demos' %}Demo{% endif %}</title>
   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
-  <link rel="stylesheet" href="{{ page.root_path }}css/style.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="{{ page.root_path }}css/style.css" />
   
   <!-- scripts at bottom of page -->
 
 </head>
-<body class="{% if page.category %}{{ page.category }}{% endif %}">
+<body class="{{ page.category }}">
   
   <nav id="site-nav">
     <h1><a href="{{ page.root_path }}/index.html">{{ site.name }}</a></h1>
