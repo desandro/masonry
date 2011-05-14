@@ -77,6 +77,8 @@
 
     _getBricks: function( $elems ) {
       var selector = this.options.itemSelector,
+          // if there is a selector
+          // filter/find appropriate item elements
           $bricks = !selector ? $elems : 
             $elems.filter( selector ).add( $elems.find( selector ) );
       $bricks
@@ -170,38 +172,37 @@
 
     // used on collection of atoms (should be filtered, and sorted before )
     // accepts atoms-to-be-laid-out to start with
-    layout : function( $elems, callback ) {
+    layout : function( $bricks, callback ) {
 
       // layout logic
-      var instance = this;
-      $elems.each(function(){
-        var $this  = $(this),
-            //how many columns does this brick span
-            colSpan = Math.ceil( $this.outerWidth(true) / instance.columnWidth );
-        colSpan = Math.min( colSpan, instance.cols );
+      var $brick, colSpan, groupCount, groupY, groupColY, j;
+      
+      for (var i=0, len = $bricks.length; i < len; i++) {
+        $brick = $( $bricks[i] );
+        //how many columns does this brick span
+        colSpan = Math.ceil( $brick.outerWidth(true) / this.columnWidth );
+        colSpan = Math.min( colSpan, this.cols );
 
         if ( colSpan === 1 ) {
           // if brick spans only one column, just like singleMode
-          instance._placeBrick( $this, instance.cols, instance.colYs );
+          this._placeBrick( $brick, this.cols, this.colYs );
         } else {
           // brick spans more than one column
           // how many different places could this brick fit horizontally
-          var groupCount = instance.cols + 1 - colSpan,
-              groupY = [],
-              groupColY,
-              i;
+          groupCount = this.cols + 1 - colSpan,
+          groupY = [];
 
           // for each group potential horizontal position
-          for ( i=0; i < groupCount; i++ ) {
+          for ( j=0; j < groupCount; j++ ) {
             // make an array of colY values for that one group
-            groupColY = instance.colYs.slice( i, i+colSpan );
+            groupColY = this.colYs.slice( j, j+colSpan );
             // and get the max value of the array
-            groupY[i] = Math.max.apply( Math, groupColY );
+            groupY[j] = Math.max.apply( Math, groupColY );
           }
         
-          instance._placeBrick( $this, groupCount, groupY );
+          this._placeBrick( $brick, groupCount, groupY );
         }
-      });
+      };
       
       // set the size of the container
       if ( this.options.resizesContainer ) {
@@ -217,9 +218,11 @@
           animOpts = this.options.animationOptions;
 
       // process styleQueue
-      $.each( this.styleQueue, function( i, obj ) {
+      var obj;
+      for (i=0, len = this.styleQueue.length; i < len; i++) {
+        obj = this.styleQueue[i];
         obj.$el[ styleFn ]( obj.style, animOpts );
-      });
+      };
 
       // clear out queue for next time
       this.styleQueue = [];
