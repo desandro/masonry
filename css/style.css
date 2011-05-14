@@ -229,6 +229,33 @@ button {
   padding-top: 10px;
 }
 
+.options dl dt { font-weight: normal; }
+
+.options dl dt,
+.options dl dd {
+  float: left;
+  padding: 0 1.2em;;
+  background: #161616;
+  line-height: 32px;
+  height: 32px;
+  margin: 0;
+}
+
+.options dl.header dt,
+.options dl.header dd {
+  background: #444;
+}
+
+.options dl .option-type {
+  font-size: 13px;
+  color: #AAA;
+  font-style: italic;
+}
+
+.options dl dd {
+  margin-left: 1px;
+}
+
 /**** Demos ****/
 
 #container {

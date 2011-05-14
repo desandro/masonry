@@ -10,9 +10,6 @@ Methods
 ## Demos
 
 Infinite Scroll
-jQuery Animation
-CSS transitions
-Animation progressive enhancement
 fluid
 
 ## Methods

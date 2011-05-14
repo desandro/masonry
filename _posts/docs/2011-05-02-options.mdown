@@ -1,0 +1,53 @@
+---
+
+title: Options
+category: docs
+layout: default
+root_path: ../
+body_class: options
+
+---
+
+<dl class="header clearfix">
+  <dt><code>option</code></dt>
+  <dd class="option-type">Type</dd>
+  <dd class="default">Default</dd>
+</dl>
+
+## animated
+
+<dl class="clearfix">
+  <dt><code>animated</code></dt>
+  <dd class="option-type">Boolean</dd>
+  <dd class="default"><code><span class="kc">false</span></code></dd>
+</dl>
+
+## animateOptions
+
+<dl class="clearfix">
+  <dt><code>animateOptions</code></dt>
+  <dd class="option-type">Object</dd>
+  <dd class="default"><code>{ queue: <span class="kc">false</span>, duration: <span class="mi">500</span> }</code></dd>
+</dl>
+
+## columnWidth
+
+<dl class="clearfix">
+  <dt><code>columnWidth</code></dt>
+  <dd class="option-type">Integer</dd>
+</dl>
+
+## itemSelector
+
+<dl class="clearfix">
+  <dt><code>itemSelector</code></dt>
+  <dd class="option-type">String</dd>
+</dl>
+
+## resizeable
+
+<dl class="clearfix">
+  <dt><code>resizeable</code></dt>
+  <dd class="option-type">Boolean</dd>
+  <dd class="default"><code><span class="kc">false</span></code></dd>
+</dl>
