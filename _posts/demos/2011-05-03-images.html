@@ -15,9 +15,9 @@ photos:
   - <a href="http://www.flickr.com/photos/nemoorange/5013040075/" title="Wonder by Dave DeSandro, on Flickr"><img src="http://farm5.static.flickr.com/4089/5013040075_bac12ff74e.jpg" alt="Wonder" /></a>
 ---
 
-  <section id="copy">
-    <p>Masonry is triggered after all images are loaded with the imagesLoaded plugin</a>. </p>
-    
+<section id="copy">
+  <p>Masonry is triggered after all images are loaded with the imagesLoaded plugin</a>. </p>
+  
 {% highlight javascript %}
 var $container = $('#container');
 
@@ -27,32 +27,32 @@ $container.imagesLoaded( function(){
   });
 });
 {% endhighlight %}
-  </section>
+</section>
 
-  <div id="container" class="clearfix">
-    {% for photo in page.photos %}
-      <div class="box photo col3">
-        {{ photo }}
-      </div>
-    {% endfor %}
-  </div> <!-- #container -->
+<div id="container" class="clearfix">
+  {% for photo in page.photos %}
+    <div class="box photo col3">
+      {{ photo }}
+    </div>
+  {% endfor %}
+</div> <!-- #container -->
+
+<nav id="page_nav">
+  <a href="../pages/2.html"></a>
+</nav>
+
+<script src="{{ page.root_path }}{{ site.jquery_js }}"></script>
+<script src="{{ page.root_path }}{{ site.masonry_js }}"></script>
+<script>
+  $(function(){
+
+    var $container = $('#container');
   
-  <nav id="page_nav">
-    <a href="../pages/2.html"></a>
-  </nav>
-
-  <script src="{{ page.root_path }}{{ site.jquery_js }}"></script>
-  <script src="{{ page.root_path }}{{ site.masonry_js }}"></script>
-  <script>
-    $(function(){
-
-      var $container = $('#container');
-    
-      $container.imagesLoaded( function(){
-        $container.masonry({
-          itemSelector : '.box'
-        });
+    $container.imagesLoaded( function(){
+      $container.masonry({
+        itemSelector : '.box'
       });
-    
     });
-  </script>
+  
+  });
+</script>

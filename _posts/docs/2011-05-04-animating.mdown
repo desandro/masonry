@@ -1,0 +1,92 @@
+---
+
+title: Animating
+category: docs
+root_path: ../
+layout: default
+toc:
+  - { title: With jQuery, anchor: with_jquery }
+  - { title: With CSS transitions, anchor: with_css_transitions }
+
+---
+
+Rearrangements can be animated when the container is resized.
+
+## With jQuery
+
+To animate Masonry layout changes with jQuery, set the `animated` option to `true`.
+
+{% highlight javascript %}
+
+$('#container').masonry({
+  itemSelector: '.box',
+  columnWidth: 100,
+  animated: true
+});
+
+{% endhighlight %}
+
+See [Demo: Animating with jQuery](../demos/animating-jquery.html).
+
+Animation options are set with `animationOptions`. See the [jQuery API for animate options](http://api.jquery.com/animate/#animate-properties-options) for details on available animation options.
+
+{% highlight javascript %}
+
+$('#container').masonry({
+  columnWidth: 100, 
+  animate: true,
+  animationOptions: {
+    duration: 750,
+    easing: 'linear',
+    queue: false
+  }
+});
+
+{% endhighlight %}
+
+## With CSS transitions
+
+Alternatively, you can rely on CSS3 transitions to animate layout rearrangements.
+
+In your the CSS, add transition properties. Masonry will add a class of `masonry` to the container after the first arrangement so transitions can be applied afterward. Item elements will have a class of `masonry-brick` added.</p>
+
+{% highlight css %}
+/**** Transitions ****/
+
+.masonry,
+.masonry .masonry-brick {
+  -webkit-transition: 0.7s;
+     -moz-transition: 0.7s;
+       -o-transition: 0.7s;
+          transition: 0.7s;
+}
+
+.masonry {
+  -webkit-transition-property: height;
+     -moz-transition-property: height;
+       -o-transition-property: height;
+          transition-property: height;
+}
+
+.masonry .masonry-brick {
+  -webkit-transition-property: left, top;
+     -moz-transition-property: left, top;
+       -o-transition-property: left, top;
+          transition-property: left, top;
+}
+{% endhighlight %}
+
+## With Modernizr
+
+But to get the best of both worlds, you can use [Modernizr](http://www.modernizr.com/) to detect browser support for CSS transitions. Then enable `animated` based on its support.
+
+{% highlight javascript %}
+
+$('#container').masonry({
+  // options...
+  animated: !Modernizr.csstransitions
+});
+
+{% endhighlight %}
+
+See [Demo: Animating with Modernizr](../demos/animating-modernizr.html).
