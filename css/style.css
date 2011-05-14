@@ -1,14 +1,32 @@
-/* Base styles*/
+/**** Base styles ****/
 
-* {
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
   margin: 0;
   padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
 }
 
 body { 
   font: 13px 'Helvetica Neue', Arial, sans-serif;
   background: #D8D5D2;
   color: #222;
+  line-height: 1.6em;
 }
 
 a {
@@ -22,16 +40,29 @@ a:hover {
 }
 
 h1, h2 {
-  font-weight:100;
+  font-weight: 100;
+  line-height: 1.2em;
+  margin-bottom: 0.6em;
 }
 
 h1 {
   font-size: 36px;
 }
 
-h1, h2, h3, p, ul, ol, pre, dl {
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+h3, p, ul, ol, pre, dl {
   margin-bottom: 1.0em;
 }
+
+
 
 /**** #site-nav ****/
 
@@ -64,7 +95,7 @@ h1, h2, h3, p, ul, ol, pre, dl {
           border-radius: 4px;
 }
 
-#site-nav li.selected a {
+#site-nav li.current a {
   background: #C8C5C2;
   color: #FFF;
 }
@@ -91,12 +122,30 @@ h1, h2, h3, p, ul, ol, pre, dl {
 /**** Content ****/
 
 #content {
+  max-width: 640px;
   padding: 10px 10px 10px 210px;
 }
 
+/* screens smaller than 768 */
+@media screen and (max-width: 768px) {
+
+  #site-nav {
+    width: auto;
+    position: relative;
+    left: auto;
+    top: auto;
+    padding-top: 0px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  #content {
+    padding-left: 10px;
+  }
+
+}
+
 .copy h2 {
-  border-top: 2px solid #FFF;
-  padding-top: 10px;
   clear: both;
 }
 
@@ -121,18 +170,6 @@ pre {
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 }
-
-pre .string { color: #3C3;}
-pre .constant { color: #66F;}
-pre .property { color: #A00;}
-pre .keyword { color: #E66;}
-pre .storage { color: #FC8;}
-pre .comment { color: #666; font-style: italic;}
-pre .class { color: #A85;}
-pre .prop { color: #CB8; }
-pre .value { color: #FFA; }
-pre .id { color: #9AB;}
-pre .support {color: #A9A;}
 
 ul, ol { padding-left: 1.3em;}
 
@@ -176,6 +213,13 @@ button {
 
 .license-copy {
   font-size: 85%;
+}
+
+/**** Docs ****/
+
+.docs #content h2 {
+  border-top: 2px solid #FFF;
+  padding-top: 10px;
 }
 
 /**** Masonry CSS ****/
@@ -336,14 +380,32 @@ button {
           box-shadow: inset 0 1px 8px hsla(0,0%,0%,.6);
 }
 
-/**** Clearfixes ****/
+/**** Pygments ****/
 
-.wrap:after,
-#tumblelog:after,
-#filtering-nav:after { 
-  content: ''; 
-  display: block; 
-  height: 0; 
-  clear: both; 
-  visibility: hidden;
-}
+code .s1,
+code .s { color: #78BD55; } /* string */
+code .mi, /* integer */
+code .cp, /* doctype */
+code .kc { color: #5298D4; } /*boolean*/
+code .k { color: #E39B79; } /* keyword */
+code .kd, /* storage */
+code .na { color: #A9D866; } /* markup attribute */
+code .p  { color: #EDB; } /* punctuation */
+code .o  { color: #F63; }   /* operator */
+code .nb { color: #AA97AC;} /* support */
+
+/* comment */
+code .c,
+code .c1 { color: #666; font-style: italic; }
+
+code .nt { color: #A0C8FC; } /* Markup open tag */
+
+code .nf { color: #9EA8B8; } /* css id */
+code .nc { color: #A78352; }  /* CSS class */
+code .m  { color: #DE8E50; } /* CSS value */
+code .nd { color: #9FAD7E; } /* CSS pseudo selector */
+
+/**** Clearfix ****/
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
