@@ -65,12 +65,11 @@
   var masonryContainerStyles = [ 'position', 'height' ];
   
   $.Mason.settings = {
-    resizable: true,
+    resizeable: true,
     animationOptions: {
       queue: false,
       duration: 500
     },
-    resizesContainer: true,
     animate: false
   };
 
@@ -125,7 +124,7 @@
       }, 0 );
       
       // bind resize method
-      if ( this.options.resizable ) {
+      if ( this.options.resizeable ) {
         $(window).bind( 'smartresize.masonry', function() { 
           instance.element.masonry('resize');
         });
@@ -206,10 +205,8 @@
       };
       
       // set the size of the container
-      if ( this.options.resizesContainer ) {
-        var containerHeight = Math.max.apply( Math, this.colYs ) - this.posTop;
-        this.styleQueue.push({ $el: this.element, style: { height: containerHeight } });
-      }
+      var containerHeight = Math.max.apply( Math, this.colYs ) - this.posTop;
+      this.styleQueue.push({ $el: this.element, style: { height: containerHeight } });
 
       // are we animating the layout arrangement?
       // use plugin-ish syntax for css or animate
