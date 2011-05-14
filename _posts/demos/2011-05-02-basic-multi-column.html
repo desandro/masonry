@@ -1,14 +1,21 @@
 ---
-
 title: Basic multi-column
 category: demos
 layout: default
 root_path: ../
-
 ---
 
 <div id="copy">
   <p>The width of item elements can span multiple columns. Set <code>columnWidth</code> to match the width of a column in your grid layout.</p>
+  
+{% highlight javascript %}
+
+$('#container').masonry({
+  itemSelector: '.box',
+  columnWidth: 100
+});
+
+{% endhighlight %}
 </div>
 
 <div id="container" class="clearfix">

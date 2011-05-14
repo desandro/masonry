@@ -1,8 +1,5 @@
 ## To do
 
-Jekyllify
-update jQuery to 1.6
-add imagesLoaded
 
 ## Docs
 
@@ -12,14 +9,17 @@ Methods
 
 ## Demos
 
-Images
 Infinite Scroll
-Animating
+jQuery Animation
+CSS transitions
+Animation progressive enhancement
+fluid
 
 ## Methods
 
 appended
 layout
+getAllBricks - if you prepend elements 
 
 ## Options
 
