@@ -122,9 +122,10 @@ h3, p, ul, ol, pre, dl {
 /**** Content ****/
 
 #content {
-  max-width: 640px;
   padding: 10px 10px 10px 210px;
 }
+
+
 
 /* screens smaller than 768 */
 @media screen and (max-width: 768px) {
@@ -217,6 +218,10 @@ button {
 
 /**** Docs ****/
 
+.docs #content {
+  max-width: 640px;
+}
+
 .docs #content h2 {
   border-top: 2px solid #FFF;
   padding-top: 10px;
@@ -224,16 +229,16 @@ button {
 
 /**** Masonry CSS ****/
 
-.wrap {
+#container {
   background: #FFF;
   border: 0px solid #456;
-  padding: 10px;
-	margin-bottom: 20px;
-	border-radius: 5px;
-	clear: both;
-	-webkit-border-radius: 5px;
-	   -moz-border-radius: 5px;
-	        border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  clear: both;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
 }
 
 .box {
@@ -241,10 +246,16 @@ button {
   padding: 5px;
   background: #D8D5D2;
   font-size: 11px;
+  line-height: 1.4em;
   float: left;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
+}
+
+.box h2 {
+  font-size: 14px;
+  font-weight: 200;
 }
 
 .col1 { width: 80px; }
