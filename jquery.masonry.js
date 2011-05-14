@@ -192,7 +192,7 @@
 
         if ( colSpan === 1 ) {
           // if brick spans only one column, just like singleMode
-          instance._masonryPlaceBrick( $this, instance.cols, instance.colYs );
+          instance._placeBrick( $this, instance.cols, instance.colYs );
         } else {
           // brick spans more than one column
           // how many different places could this brick fit horizontally
@@ -209,15 +209,14 @@
             groupY[i] = Math.max.apply( Math, groupColY );
           }
         
-          instance._masonryPlaceBrick( $this, groupCount, groupY );
+          instance._placeBrick( $this, groupCount, groupY );
         }
       });
       
       // set the size of the container
       if ( this.options.resizesContainer ) {
         var containerHeight = Math.max.apply( Math, this.colYs ) - this.posTop;
-        var containerStyle = { height: containerHeight };
-        this.styleQueue.push({ $el: this.element, style: containerStyle });
+        this.styleQueue.push({ $el: this.element, style: { height: containerHeight } });
       }
 
       // are we animating the layout arrangement?
@@ -243,6 +242,54 @@
       this.isLaidOut = true;
 
       return this;
+    },
+    
+    // calculates number of columns
+    // i.e. this.columnWidth = 200
+    _getColumns : function() {
+      this.width = this.element.width();
+
+      this.columnWidth = this.options.columnWidth ||
+                    // or use the size of the first item
+                    this.$filteredAtoms.outerWidth(true) ||
+                    // if there's no items, use size of container
+                    this[ size ];
+
+      this.cols = Math.floor( this.width / this.columnWidth );
+      this.cols = Math.max( this.cols, 1 );
+
+      return this;
+
+    },
+
+    _placeBrick : function( $brick, setCount, setY ) {
+      // here, `this` refers to a child element or "brick"
+          // get the minimum Y value from the columns
+      var minimumY  = Math.min.apply( Math, setY ),
+          setHeight = minimumY + $brick.outerHeight(true),
+          i         = setY.length,
+          shortCol  = i,
+          setSpan   = this.cols + 1 - i,
+          x, y ;
+      // Which column has the minY value, closest to the left
+      while (i--) {
+        if ( setY[i] === minimumY ) {
+          shortCol = i;
+        }
+      }
+
+      // position the brick
+      x = this.columnWidth * shortCol + this.posLeft;
+      y = minimumY;
+
+      var position = { left: x, top: y };
+      this.styleQueue.push({ $el: $brick, style: position });
+
+      // apply setHeight to necessary columns
+      for ( i=0; i < setSpan; i++ ) {
+        this.colYs[ shortCol + i ] = setHeight;
+      }
+
     },
     
     
@@ -271,6 +318,8 @@
 
       return this.layout( this.$filteredAtoms, callback );
     },
+    
+    
     
     // ====================== Convenience methods ======================
     
@@ -353,60 +402,6 @@
 
     },
     
-    // calculates number of columns
-    // i.e. this.columnWidth = 200
-    _getColumns : function() {
-      this.width = this.element.width();
-      
-      this.columnWidth = this.options.columnWidth ||
-                    // or use the size of the first item
-                    this.$filteredAtoms.outerWidth(true) ||
-                    // if there's no items, use size of container
-                    this[ size ];
-      
-      this.cols = Math.floor( this.width / this.columnWidth );
-      this.cols = Math.max( this.cols, 1 );
-      
-      return this;
-      
-    },
-
-  // ====================== LAYOUTS ======================
-  
-  
-  // ====================== Masonry ======================
-  
-    _masonryPlaceBrick : function( $brick, setCount, setY ) {
-      // here, `this` refers to a child element or "brick"
-          // get the minimum Y value from the columns
-      var minimumY  = Math.min.apply( Math, setY ),
-          setHeight = minimumY + $brick.outerHeight(true),
-          i         = setY.length,
-          shortCol  = i,
-          setSpan   = this.cols + 1 - i,
-          x, y ;
-      // Which column has the minY value, closest to the left
-      while (i--) {
-        if ( setY[i] === minimumY ) {
-          shortCol = i;
-        }
-      }
-    
-      // position the brick
-      x = this.columnWidth * shortCol + this.posLeft;
-      y = minimumY;
-
-      var position = { left: x, top: y };
-      this.styleQueue.push({ $el: $brick, style: position });
-
-      // apply setHeight to necessary columns
-      for ( i=0; i < setSpan; i++ ) {
-        this.colYs[ shortCol + i ] = setHeight;
-      }
-
-    },
-  
-  
   };
   
   
