@@ -176,21 +176,6 @@
       
     },
     
-    // ====================== Layout ======================
-
-    _positionAbs : function( x, y ) {
-      return { left: x, top: y };
-    },
-
-    _pushPosition : function( $elem, x, y ) {
-      var position = { left: x, top: y };
-      this.styleQueue.push({ $el: $elem, style: position });
-      if ( this.options.itemPositionDataEnabled ) {
-        $elem.data('masonry-item-position', {x: x, y: y} );
-      }
-    },
-
-
     // ====================== General Layout ======================
 
     // used on collection of atoms (should be filtered, and sorted before )
@@ -275,10 +260,7 @@
     
     
     reLayout : function( callback ) {
-      
       // reset
-      // layout-specific props
-      this.masonry = {};
       // FIXME shouldn't have to call this again
       this._getColumns('masonry');
       var i = this.cols;
@@ -288,7 +270,6 @@
       }
 
       return this.layout( this.$filteredAtoms, callback );
-      
     },
     
     // ====================== Convenience methods ======================
@@ -414,7 +395,9 @@
       // position the brick
       x = this.columnWidth * shortCol + this.posLeft;
       y = minimumY;
-      this._pushPosition( $brick, x, y );
+
+      var position = { left: x, top: y };
+      this.styleQueue.push({ $el: $brick, style: position });
 
       // apply setHeight to necessary columns
       for ( i=0; i < setSpan; i++ ) {
@@ -423,10 +406,6 @@
 
     },
   
-  
-    _masonryGetContainerSize : function() {
-    },
-
   
   };
   
