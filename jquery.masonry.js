@@ -69,7 +69,8 @@
     animationOptions: {
       queue: false,
       duration: 500
-    }
+    },
+    resizesContainer: true
   };
 
   $.Mason.prototype = {
@@ -84,7 +85,6 @@
       this.options = $.extend( true, {}, $.Mason.settings, options );
       
       this.styleQueue = [];
-      this.elemCount = 0;
       // need to get atoms
       this.$allAtoms = this._filterFind( this.element.children(), this.options.itemSelector );
 
@@ -97,19 +97,9 @@
       }
       
       this.element.css({
-        overflow : 'hidden',
         position : 'relative'
       });
       
-      // sorting
-      var originalOrderSorter = {
-        'original-order' : function( $elem, instance ) {
-          return instance.elemCount;
-        }
-      };
-
-      this.options.getSortData = $.extend( this.options.getSortData, originalOrderSorter );
-
       this._setupAtoms( this.$allAtoms );
       
       
@@ -141,8 +131,7 @@
     // after it has already been initialized.
     _init : function( callback ) {
       
-      this.$filteredAtoms = this._filter( this.$allAtoms );
-      this._sort();
+      this.$filteredAtoms = this.$allAtoms;
       
       this.reLayout( callback );
 
@@ -174,142 +163,19 @@
       return this; // make sure to return the instance!
     },
     
-    // ====================== updaters ====================== //
-    // kind of like setters
-    
-    // trigger _updateOptionName if it exists
-    _updateOption : function( optionName ) {
-      var updateOptionFn = '_update' + optionName.charAt(0).toUpperCase() + optionName.slice(1);
-      if ( this[ updateOptionFn ] ) {
-        this[ updateOptionFn ]();
-      }
-    },
-    
-    _updateAnimationEngine : function() {
-      var animationEngine = this.options.animationEngine.toLowerCase().replace( /[ _\-]/g, '');
-      // set applyStyleFnName
-      switch ( animationEngine ) {
-        case 'css' :
-        case 'none' :
-          this.isUsingJQueryAnimation = false;
-          break;
-        case 'jquery' :
-          this.isUsingJQueryAnimation = true;
-          break;
-        default : // best available
-          this.isUsingJQueryAnimation = !Modernizr.csstransitions;
-      }
-      
-      this._updateUsingTransforms();
-    },
-    
-    _updateTransformsEnabled : function() {
-      this._updateUsingTransforms();
-    },
-    
-    _updateUsingTransforms : function() {
-      this.usingTransforms = this.options.transformsEnabled && Modernizr.csstransforms && Modernizr.csstransitions && !this.isUsingJQueryAnimation;
-
-      this.getPositionStyles = this.usingTransforms ? this._translate : this._positionAbs;
-    },
-
-    
     // ====================== Adding ======================
     
     _setupAtoms : function( $atoms ) {
       
       // base style for atoms
       var atomStyle = { position: 'absolute' };
-      if ( this.usingTransforms ) {
-        atomStyle.left = 0;
-        atomStyle.top = 0;
-      }
 
-      $atoms.css( atomStyle ).addClass( this.options.itemClass );
+      $atoms.css({
+        position: 'absolute'
+      }).addClass( this.options.itemClass );
       
-      this.updateSortData( $atoms, true );
-
     },
     
-    // ====================== Filtering ======================
-
-    _filter : function( $atoms ) {
-      var $filteredAtoms,
-          filter = this.options.filter === '' ? '*' : this.options.filter;
-
-      if ( !filter ) {
-        $filteredAtoms = $atoms;
-      } else {
-        var hiddenClass    = this.options.hiddenClass,
-            hiddenSelector = '.' + hiddenClass,
-            $visibleAtoms  = $atoms.not( hiddenSelector ),
-            $hiddenAtoms   = $atoms.filter( hiddenSelector ),
-            $atomsToShow   = $hiddenAtoms;
-
-        $filteredAtoms = $atoms.filter( filter );
-
-        if ( filter !== '*' ) {
-          $atomsToShow = $hiddenAtoms.filter( filter );
-
-          var $atomsToHide = $visibleAtoms.not( filter ).toggleClass( hiddenClass );
-          $atomsToHide.addClass( hiddenClass );
-          this.styleQueue.push({ $el: $atomsToHide, style: this.options.hiddenStyle });
-        }
-        
-        this.styleQueue.push({ $el: $atomsToShow, style: this.options.visibleStyle });
-        $atomsToShow.removeClass( hiddenClass );
-      }
-      
-      return $filteredAtoms;
-    },
-    
-    // ====================== Sorting ======================
-    
-    updateSortData : function( $atoms, isIncrementingElemCount ) {
-      var instance = this,
-          getSortData = this.options.getSortData,
-          $this, sortData;
-      $atoms.each(function(){
-        $this = $(this);
-        sortData = {};
-        // get value for sort data based on fn( $elem ) passed in
-        for ( var key in getSortData ) {
-          sortData[ key ] = getSortData[ key ]( $this, instance );
-        }
-        // apply sort data to $element
-        $this.data( 'masonry-sort-data', sortData );
-        if ( isIncrementingElemCount ) {
-          instance.elemCount ++;
-        }
-      });
-    },
-    
-    // used on all the filtered atoms
-    _sort : function() {
-      
-      var sortBy = this.options.sortBy,
-          getSorter = this._getSorter,
-          sortDir = this.options.sortAscending ? 1 : -1,
-          sortFn = function( alpha, beta ) {
-            var a = getSorter( alpha, sortBy ),
-                b = getSorter( beta, sortBy );
-            // fall back to original order if data matches
-            if ( a === b && sortBy !== 'original-order') {
-              a = getSorter( alpha, 'original-order' );
-              b = getSorter( beta, 'original-order' );
-            }
-            return ( ( a > b ) ? 1 : ( a < b ) ? -1 : 0 ) * sortDir;
-          };
-      
-      this.$filteredAtoms.sort( sortFn );
-      
-      return this;
-    },
-
-    _getSorter : function( elem, sortBy ) {
-      return $(elem).data('masonry-sort-data')[ sortBy ];
-    },
-
     // ====================== Layout ======================
 
     _positionAbs : function( x, y ) {
@@ -317,7 +183,7 @@
     },
 
     _pushPosition : function( $elem, x, y ) {
-      var position = this._positionAbs( x, y );
+      var position = { left: x, top: y };
       this.styleQueue.push({ $el: $elem, style: position });
       if ( this.options.itemPositionDataEnabled ) {
         $elem.data('masonry-item-position', {x: x, y: y} );
@@ -369,7 +235,7 @@
     
     
     resize : function() {
-      return this[ '_' + this.options.layoutMode + 'Resize' ]();
+      return this._masonryResize();
     },
     
     
