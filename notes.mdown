@@ -1,0 +1,6 @@
+
+
+## update to v2.0
+
+
+`animate` option is now `animated`

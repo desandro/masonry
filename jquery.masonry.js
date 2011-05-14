@@ -70,7 +70,8 @@
       queue: false,
       duration: 500
     },
-    resizesContainer: true
+    resizesContainer: true,
+    animate: false
   };
 
   $.Mason.prototype = {
@@ -213,7 +214,7 @@
       // are we animating the layout arrangement?
       // use plugin-ish syntax for css or animate
       var styleFn = !this.isLaidOut ? 'css' : (
-            this.isUsingJQueryAnimation ? 'animate' : 'css'
+            this.options.animated ? 'animate' : 'css'
           ),
           animOpts = this.options.animationOptions;
 
