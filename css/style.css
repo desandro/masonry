@@ -216,18 +216,20 @@ button {
   font-size: 85%;
 }
 
-/**** Docs ****/
-
+.demos #copy,
 .docs #content {
   max-width: 640px;
+  
 }
+
+/**** Docs ****/
 
 .docs #content h2 {
   border-top: 2px solid #FFF;
   padding-top: 10px;
 }
 
-/**** Masonry CSS ****/
+/**** Demos ****/
 
 #container {
   background: #FFF;
