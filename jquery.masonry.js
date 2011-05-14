@@ -62,7 +62,7 @@
   };
   
   // styles of container element we want to keep track of
-  var isoContainerStyles = [ 'overflow', 'position', 'width', 'height' ];
+  var masonryContainerStyles = [ 'overflow', 'position', 'width', 'height' ];
   
   $.Mason.settings = {
     resizable: true,
@@ -91,8 +91,8 @@
       // get original styles in case we re-apply them in .destroy()
       var elemStyle = this.element[0].style;
       this.originalStyle = {};
-      for ( var i=0, len = isoContainerStyles.length; i < len; i++ ) {
-        var prop = isoContainerStyles[i];
+      for ( var i=0, len = masonryContainerStyles.length; i < len; i++ ) {
+        var prop = masonryContainerStyles[i];
         this.originalStyle[ prop ] = elemStyle[ prop ] || null;
       }
       
@@ -197,14 +197,41 @@
     // accepts atoms-to-be-laid-out to start with
     layout : function( $elems, callback ) {
 
-      var layoutMode = this.options.layoutMode;
-
       // layout logic
-      this._masonryLayout( $elems );
+      var instance = this;
+      $elems.each(function(){
+        var $this  = $(this),
+            //how many columns does this brick span
+            colSpan = Math.ceil( $this.outerWidth(true) / instance.masonry.columnWidth );
+        colSpan = Math.min( colSpan, instance.masonry.cols );
+
+        if ( colSpan === 1 ) {
+          // if brick spans only one column, just like singleMode
+          instance._masonryPlaceBrick( $this, instance.masonry.cols, instance.masonry.colYs );
+        } else {
+          // brick spans more than one column
+          // how many different places could this brick fit horizontally
+          var groupCount = instance.masonry.cols + 1 - colSpan,
+              groupY = [],
+              groupColY,
+              i;
+
+          // for each group potential horizontal position
+          for ( i=0; i < groupCount; i++ ) {
+            // make an array of colY values for that one group
+            groupColY = instance.masonry.colYs.slice( i, i+colSpan );
+            // and get the max value of the array
+            groupY[i] = Math.max.apply( Math, groupColY );
+          }
+        
+          instance._masonryPlaceBrick( $this, groupCount, groupY );
+        }
+      });
       
       // set the size of the container
       if ( this.options.resizesContainer ) {
-        var containerStyle = this._masonryGetContainerSize();
+        var containerHeight = Math.max.apply( Math, this.masonry.colYs ) - this.posTop;
+        var containerStyle = { height: containerHeight };
         this.styleQueue.push({ $el: this.element, style: containerStyle });
       }
 
@@ -235,14 +262,32 @@
     
     
     resize : function() {
-      return this._masonryResize();
+      var prevColCount = this.masonry.cols;
+      // get updated colCount
+      this._getSegments('masonry');
+      if ( this.masonry.cols !== prevColCount ) {
+        // if column count has changed, do a new column cound
+        this.reLayout();
+      }
+
+      return this;
     },
     
     
     reLayout : function( callback ) {
       
-      return this._masonryReset()
-        .layout( this.$filteredAtoms, callback );
+      // reset
+      // layout-specific props
+      this.masonry = {};
+      // FIXME shouldn't have to call this again
+      this._getSegments('masonry');
+      var i = this.masonry.cols;
+      this.masonry.colYs = [];
+      while (i--) {
+        this.masonry.colYs.push( this.posTop );
+      }
+
+      return this.layout( this.$filteredAtoms, callback );
       
     },
     
@@ -294,30 +339,6 @@
       
     },
     
-    _shuffleArray : function ( array ) {
-      var tmp, current, i = array.length;
-      
-      if ( i ){ 
-        while(--i) {
-          current = ~~( Math.random() * (i + 1) );
-          tmp = array[current];
-          array[current] = array[i];
-          array[i] = tmp;
-        }
-      }
-      return array;
-    },
-    
-    // HACKy should probably remove
-    shuffle : function( callback ) {
-      this.options.sortBy = 'shuffle';
-      
-      this.$allAtoms = this._shuffleArray( this.$allAtoms );
-      this.$filteredAtoms = this._filter( this.$allAtoms );
-      
-      return this.reLayout( callback );
-    },
-    
     // destroys widget, returns elements and container back (close) to original style
     destroy : function() {
 
@@ -337,8 +358,8 @@
       
       // re-apply saved container styles
       var elemStyle = this.element[0].style;
-      for ( var i=0, len = isoContainerStyles.length; i < len; i++ ) {
-        var prop = isoContainerStyles[i];
+      for ( var i=0, len = masonryContainerStyles.length; i < len; i++ ) {
+        var prop = masonryContainerStyles[i];
         elemStyle[ prop ] = this.originalStyle[ prop ];
       }
       
@@ -417,68 +438,7 @@
     },
   
   
-    _masonryLayout : function( $elems ) {
-      var instance = this;
-      $elems.each(function(){
-        var $this  = $(this),
-            //how many columns does this brick span
-            colSpan = Math.ceil( $this.outerWidth(true) / instance.masonry.columnWidth );
-        colSpan = Math.min( colSpan, instance.masonry.cols );
-
-        if ( colSpan === 1 ) {
-          // if brick spans only one column, just like singleMode
-          instance._masonryPlaceBrick( $this, instance.masonry.cols, instance.masonry.colYs );
-        } else {
-          // brick spans more than one column
-          // how many different places could this brick fit horizontally
-          var groupCount = instance.masonry.cols + 1 - colSpan,
-              groupY = [],
-              groupColY,
-              i;
-
-          // for each group potential horizontal position
-          for ( i=0; i < groupCount; i++ ) {
-            // make an array of colY values for that one group
-            groupColY = instance.masonry.colYs.slice( i, i+colSpan );
-            // and get the max value of the array
-            groupY[i] = Math.max.apply( Math, groupColY );
-          }
-        
-          instance._masonryPlaceBrick( $this, groupCount, groupY );
-        }
-      });
-      return this;
-    },
-  
-    // reset
-    _masonryReset : function() {
-      // layout-specific props
-      this.masonry = {};
-      // FIXME shouldn't have to call this again
-      this._getSegments('masonry');
-      var i = this.masonry.cols;
-      this.masonry.colYs = [];
-      while (i--) {
-        this.masonry.colYs.push( this.posTop );
-      }
-      return this;
-    },
-  
-    _masonryResize : function() {
-      var prevColCount = this.masonry.cols;
-      // get updated colCount
-      this._getSegments('masonry');
-      if ( this.masonry.cols !== prevColCount ) {
-        // if column count has changed, do a new column cound
-        this.reLayout();
-      }
-
-      return this;
-    },
-  
     _masonryGetContainerSize : function() {
-      var containerHeight = Math.max.apply( Math, this.masonry.colYs ) - this.posTop;
-      return { height: containerHeight };
     },
 
   
