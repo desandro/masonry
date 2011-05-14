@@ -1,5 +1,5 @@
 /**
- * jQuery Masonry v2.0.110514
+ * jQuery Masonry v2.0.110514 beta
  * The flip-side of CSS Floats.
  * jQuery plugin that rearranges item elements to a grid.
  * http://masonry.desandro.com
@@ -62,7 +62,7 @@
   };
   
   // styles of container element we want to keep track of
-  var masonryContainerStyles = [ 'overflow', 'position', 'width', 'height' ];
+  var masonryContainerStyles = [ 'position', 'height' ];
   
   $.Mason.settings = {
     resizable: true,
@@ -75,8 +75,14 @@
 
   $.Mason.prototype = {
 
-    _filterFind: function( $elems, selector ) {
-      return selector ? $elems.filter( selector ).add( $elems.find( selector ) ) : $elems;
+    _getBricks: function( $elems ) {
+      var selector = this.options.itemSelector,
+          $bricks = !selector ? $elems : 
+            $elems.filter( selector ).add( $elems.find( selector ) );
+      $bricks
+        .css({ position: 'absolute' })
+        .addClass('masonry-brick');
+      return $bricks;
     },
     
     // sets up widget
@@ -85,8 +91,8 @@
       this.options = $.extend( true, {}, $.Mason.settings, options );
       
       this.styleQueue = [];
-      // need to get atoms
-      this.$allAtoms = this._filterFind( this.element.children(), this.options.itemSelector );
+      // need to get bricks
+      this.$bricks = this._getBricks( this.element.children() );
 
       // get original styles in case we re-apply them in .destroy()
       var elemStyle = this.element[0].style;
@@ -100,7 +106,6 @@
         position : 'relative'
       });
       
-      this._setupAtoms( this.$allAtoms );
       
       
       // get top left position of where the bricks should be
@@ -131,8 +136,6 @@
     // after it has already been initialized.
     _init : function( callback ) {
       
-      this.$filteredAtoms = this.$allAtoms;
-      
       this.reLayout( callback );
 
     },
@@ -161,19 +164,6 @@
       }
     
       return this; // make sure to return the instance!
-    },
-    
-    // ====================== Adding ======================
-    
-    _setupAtoms : function( $atoms ) {
-      
-      // base style for atoms
-      var atomStyle = { position: 'absolute' };
-
-      $atoms.css({
-        position: 'absolute'
-      }).addClass( this.options.itemClass );
-      
     },
     
     // ====================== General Layout ======================
@@ -251,7 +241,7 @@
 
       this.columnWidth = this.options.columnWidth ||
                     // or use the size of the first item
-                    this.$filteredAtoms.outerWidth(true) ||
+                    this.$bricks.outerWidth(true) ||
                     // if there's no items, use size of container
                     this[ size ];
 
@@ -308,7 +298,6 @@
     
     reLayout : function( callback ) {
       // reset
-      // FIXME shouldn't have to call this again
       this._getColumns('masonry');
       var i = this.cols;
       this.colYs = [];
@@ -316,7 +305,7 @@
         this.colYs.push( this.posTop );
       }
 
-      return this.layout( this.$filteredAtoms, callback );
+      return this.layout( this.$bricks, callback );
     },
     
     
@@ -325,14 +314,12 @@
     
     // adds a jQuery object of items to a masonry container
     addItems : function( $content, callback ) {
-      var $newAtoms = this._filterFind( $content, this.options.itemSelector );
-      this._setupAtoms( $newAtoms );
-      // add new atoms to atoms pools
-      // FIXME : this breaks shuffle order and returns to original order
-      this.$allAtoms = this.$allAtoms.add( $newAtoms );
+      var $newBricks = this._getBricks( $content );
+      // add new bricks to brick pool
+      this.$bricks = this.$bricks.add( $newBricks );
 
       if ( callback ) {
-        callback( $newAtoms );
+        callback( $newBricks );
       }
     },
     
@@ -342,8 +329,8 @@
       
       var instance = this;
       this.addItems( $content, function( $newAtoms ) {
-        var $filteredAtoms = instance._filter( $newAtoms );
-        instance.$filteredAtoms = instance.$filteredAtoms.add( $filteredAtoms );
+        var $bricks = instance._filter( $newAtoms );
+        instance.$bricks = instance.$bricks.add( $bricks );
       });
       
       this._sort().reLayout( callback );
@@ -354,7 +341,7 @@
     appended : function( $content, callback ) {
       var instance = this;
       this.addItems( $content, function( $newAtoms ){
-        instance.$filteredAtoms = instance.$filteredAtoms.add( $newAtoms );
+        instance.$bricks = instance.$bricks.add( $newAtoms );
         instance.layout( $newAtoms, callback );
       });
     },
@@ -362,8 +349,7 @@
     // removes elements from Masonry widget
     remove : function( $content ) {
 
-      this.$allAtoms = this.$allAtoms.not( $content );
-      this.$filteredAtoms = this.$filteredAtoms.not( $content );
+      this.$bricks = this.$bricks.not( $content );
 
       $content.remove();
       
@@ -372,18 +358,12 @@
     // destroys widget, returns elements and container back (close) to original style
     destroy : function() {
 
-      var usingTransforms = this.usingTransforms;
-
-      this.$allAtoms
-        .removeClass( this.options.hiddenClass + ' ' + this.options.itemClass )
+      this.$bricks
+        .removeClass('masonry-brick')
         .each(function(){
           this.style.position = null;
           this.style.top = null;
           this.style.left = null;
-          this.style.opacity = null;
-          if ( usingTransforms ) {
-            this.style[ transformProp ] = null;
-          }
         });
       
       // re-apply saved container styles
@@ -395,7 +375,7 @@
       
       this.element
         .unbind('.masonry')
-        .removeClass( this.options.containerClass )
+        .removeClass('masonry')
         .removeData('masonry');
       
       $(window).unbind('.masonry');
