@@ -9,6 +9,9 @@
   
   <link rel="stylesheet" href="{{ page.root_path }}css/style.css" />
   
+  {% if page.has_modernizr %}
+    <script src="{{ page.root_path }}js/modernizr-transitions.js"></script>
+  {% endif %}
   <!-- scripts at bottom of page -->
 
 </head>
@@ -64,3 +67,6 @@
     </footer>
     
   </section> <!-- #content -->
+
+</body>
+</html>
