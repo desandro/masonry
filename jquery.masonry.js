@@ -94,7 +94,8 @@
       
       this.styleQueue = [];
       // need to get bricks
-      this.$bricks = this._getBricks( this.element.children() );
+      this.reloadItems();
+
 
       // get original styles in case we re-apply them in .destroy()
       var elemStyle = this.element[0].style;
@@ -126,7 +127,7 @@
       // bind resize method
       if ( this.options.resizeable ) {
         $(window).bind( 'smartresize.masonry', function() { 
-          instance.element.masonry('resize');
+          instance.resize();
         });
       }
       
@@ -238,15 +239,13 @@
     // calculates number of columns
     // i.e. this.columnWidth = 200
     _getColumns : function() {
-      this.width = this.element.width();
-
       this.columnWidth = this.options.columnWidth ||
                     // or use the size of the first item
                     this.$bricks.outerWidth(true) ||
                     // if there's no items, use size of container
                     this[ size ];
 
-      this.cols = Math.floor( this.width / this.columnWidth );
+      this.cols = Math.floor( this.element.width() / this.columnWidth );
       this.cols = Math.max( this.cols, 1 );
 
       return this;
@@ -290,70 +289,53 @@
       this._getColumns('masonry');
       if ( this.cols !== prevColCount ) {
         // if column count has changed, do a new column cound
-        this.reLayout();
+        this._reloadLayout();
       }
-
-      return this;
     },
     
     
     reLayout : function( callback ) {
-      // reset
       this._getColumns('masonry');
+      this._reloadLayout( callback );
+    },
+    
+    _reloadLayout : function( callback ) {
+      // reset columns
       var i = this.cols;
       this.colYs = [];
       while (i--) {
         this.colYs.push( this.posTop );
       }
-
-      return this.layout( this.$bricks, callback );
+      // apply layout logic to all bricks
+      this.layout( this.$bricks, callback );
     },
-    
-    
     
     // ====================== Convenience methods ======================
     
-    // adds a jQuery object of items to a masonry container
-    addItems : function( $content, callback ) {
+    // goes through all children again and gets bricks in proper order
+    reloadItems : function() {
+      this.$bricks = this._getBricks( this.element.children() );
+    },
+    
+    
+    reload : function( callback ) {
+      this.reloadItems();
+      this.reLayout( callback );
+    },
+    
+
+    // convienence method for working with Infinite Scroll
+    appended : function( $content, callback ) {
       var $newBricks = this._getBricks( $content );
       // add new bricks to brick pool
       this.$bricks = this.$bricks.add( $newBricks );
-
-      if ( callback ) {
-        callback( $newBricks );
-      }
-    },
-    
-    // convienence method for adding elements properly to any layout
-    insert : function( $content, callback ) {
-      this.element.append( $content );
-      
-      var instance = this;
-      this.addItems( $content, function( $newAtoms ) {
-        var $bricks = instance._filter( $newAtoms );
-        instance.$bricks = instance.$bricks.add( $bricks );
-      });
-      
-      this._sort().reLayout( callback );
-      
-    },
-    
-    // convienence method for working with Infinite Scroll
-    appended : function( $content, callback ) {
-      var instance = this;
-      this.addItems( $content, function( $newAtoms ){
-        instance.$bricks = instance.$bricks.add( $newAtoms );
-        instance.layout( $newAtoms, callback );
-      });
+      this.layout( $newBricks, callback );
     },
     
     // removes elements from Masonry widget
     remove : function( $content ) {
-
       this.$bricks = this.$bricks.not( $content );
-
       $content.remove();
-      
     },
     
     // destroys widget, returns elements and container back (close) to original style
