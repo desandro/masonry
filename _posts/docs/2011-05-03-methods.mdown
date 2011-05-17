@@ -33,9 +33,38 @@ $('#container').masonry( 'methodName', [optionalParameters] )
 
 {% endhighlight %}
 
-Convenience method for trigging `layout` on item elements that have been appended to the container. Useful to be used in the callback for Infinite Scroll.
+Convenience method for trigging `layout` on item elements that have been appended to the container.
 
-[See Demo: Adding items](../demos/adding-items.html). [See Demo: Infinite Scroll](../demos/infinite-scroll.html).
+[See Demo: Adding items](../demos/adding-items.html).
+
+{% highlight javascript %}
+
+var $boxes = $('<div class="box"/><div class="box"/><div class="box"/>');
+$('#container').append( $boxes ).masonry( 'appended', $boxes );
+
+{% endhighlight %}
+
+
+The `appended` method is ideal to use Masonry with Infinite Scroll, in its callback.
+
+[See Demo: Infinite Scroll](../demos/infinite-scroll.html).
+
+{% highlight javascript %}
+
+
+var $container = $('#container');
+$container.infinitescroll({
+    // infinite scroll options...
+  },
+  // trigger Masonry as a callback
+  function( newElements ) {
+    var $newElems = $( newElements );
+    $container.masonry( 'appended', $newElems );
+  }
+);
+
+{% endhighlight %}
+
 
 ## destroy
 
@@ -113,6 +142,15 @@ Re-collects all item elements in their current order in the DOM.
 {% endhighlight %}
 
 Convenience method for trigging `reloadItems` then `reLayout`. Useful for prepending or inserting items.
+
+[See Demo: Adding items](../demos/adding-items.html).
+
+{% highlight javascript %}
+
+var $boxes = $('<div class="box"/><div class="box"/><div class="box"/>');
+$('#container').prepend( $boxes ).masonry( 'reload' );
+
+{% endhighlight %}
 
 ## remove
 
