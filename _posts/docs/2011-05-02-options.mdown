@@ -12,6 +12,7 @@ toc :
   - { title: gutterWidth, anchor: gutterwidth }
   - { title: itemSelector, anchor: itemselector }
   - { title: resizable, anchor: resizable }
+  - { title: rtl, anchor: rtl }
 
 ---
 
@@ -29,6 +30,8 @@ toc :
   <dd class="default"><code><span class="kc">false</span></code></dd>
 </dl>
 
+Enables jQuery animation on layout changes. [See Docs: Animating](animating.html).
+
 ## animationOptions
 
 <dl class="clearfix">
@@ -37,12 +40,18 @@ toc :
   <dd class="default"><code>{ queue: <span class="kc">false</span>, duration: <span class="mi">500</span> }</code></dd>
 </dl>
 
+Options used for jQuery animation. See the [jQuery API for animate options](http://api.jquery.com/animate/#animate-properties-options) for details.
+
 ## columnWidth
 
 <dl class="clearfix">
   <dt><code>columnWidth</code></dt>
   <dd class="option-type">Integer</dd>
 </dl>
+
+Width in pixels of 1 column of your grid. If no columnWidth is specified, Masonry uses the width of the first item element.
+
+**Recommended** if your layout has item elements that have multiple-column widths.
 
 ## gutterWidth
 
@@ -63,10 +72,34 @@ Adds additional spacing between columns.
   <dd class="option-type">String</dd>
 </dl>
 
-## resizeable
+Filters item elements to selector. If not set, Masonry defaults to using the child elements of the container.
+
+**Recommended** to avoid Masonry using any other hidden elements in its layout logic.
+
+{% highlight javascript %}
+
+$('#container').masonry({ itemSelector: '.box' });
+
+{% endhighlight %}
+
+## resizable
 
 <dl class="clearfix">
-  <dt><code>resizeable</code></dt>
+  <dt><code>resizable</code></dt>
+  <dd class="option-type">Boolean</dd>
+  <dd class="default"><code><span class="kc">true</span></code></dd>
+</dl>
+
+Triggers layout logic when browser window is resized.
+
+## rtl
+
+<dl class="clearfix">
+  <dt><code>rtl</code></dt>
   <dd class="option-type">Boolean</dd>
   <dd class="default"><code><span class="kc">false</span></code></dd>
 </dl>
+
+Enables right-to-left layout for languages like Hebrew and Arabic.
+
+[See Demo: Right-to-left](../demos/right-to-left.html).

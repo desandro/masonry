@@ -70,7 +70,7 @@ h3, p, ul, ol, pre, dl {
   margin-bottom: 1.0em;
 }
 
-
+strong { font-weight: bold; }
 
 /**** #site-nav ****/
 
@@ -131,7 +131,7 @@ h3, p, ul, ol, pre, dl {
 }
 
 #site-nav li li a {
-  padding-left: 15px;
+  padding: 1px 5px 1px 15px;
 }
 
 

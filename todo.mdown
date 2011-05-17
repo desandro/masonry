@@ -10,10 +10,10 @@ Adding items
 
 ## Demos
 
+relayout
 fluid
 
 ## Methods
 
 ## Options
 
-rtl

@@ -19,8 +19,7 @@ To animate Masonry layout changes with jQuery, set the `animated` option to `tru
 {% highlight javascript %}
 
 $('#container').masonry({
-  itemSelector: '.box',
-  columnWidth: 100,
+  // options...
   animated: true
 });
 
@@ -28,12 +27,12 @@ $('#container').masonry({
 
 [See Demo: Animating with jQuery](../demos/animating-jquery.html).
 
-Animation options are set with `animationOptions`. See the [jQuery API for animate options](http://api.jquery.com/animate/#animate-properties-options) for details on available animation options.
+You can pass in jQuery animation options are set with the [`animationOptions` option](options.html#animationoptions).
 
 {% highlight javascript %}
 
 $('#container').masonry({
-  columnWidth: 100, 
+  // options...
   animate: true,
   animationOptions: {
     duration: 750,

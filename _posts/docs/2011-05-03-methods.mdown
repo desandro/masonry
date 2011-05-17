@@ -29,11 +29,13 @@ $('#container').masonry( 'methodName', [optionalParameters] )
 
 {% highlight javascript %}
 
-.masonry( 'appended' )
+.masonry( 'appended', $content )
 
 {% endhighlight %}
 
 Convenience method for trigging `layout` on item elements that have been appended to the container. Useful to be used in the callback for Infinite Scroll.
+
+[See Demo: Adding items](../demos/adding-items.html). [See Demo: Infinite Scroll](../demos/infinite-scroll.html).
 
 ## destroy
 
