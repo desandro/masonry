@@ -420,70 +420,42 @@
   };
 
   
+  // =======================  Plugin bridge  ===============================
+  // leverages data method to either create or return $.Mason constructor
+  // A bit from jQuery UI
+  //   https://github.com/jquery/jquery-ui/blob/master/ui/jquery.ui.widget.js
+  // A bit from jcarousel 
+  //   https://github.com/jsor/jcarousel/blob/master/lib/jquery.jcarousel.js
 
-// ======================= jQuery Widget bridge  ===============================
+  $.fn.masonry = function( options ) {
+    if ( typeof options === 'string' ) {
+      // call method
+      var args = Array.prototype.slice.call( arguments, 1 );
 
-
-/*!
- * jQuery UI Widget 1.8.5
- *
- * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Widget
- */
-
-  $.widget = $.widget || {};
-
-  $.widget.bridge = $.widget.bridge || function( name, object ) {
-    $.fn[ name ] = function( options ) {
-      var isMethodCall = typeof options === "string",
-        args = Array.prototype.slice.call( arguments, 1 ),
-        returnValue = this;
-
-      // allow multiple hashes to be passed on init
-      options = !isMethodCall && args.length ?
-        $.extend.apply( null, [ true, options ].concat(args) ) :
-        options;
-
-      // prevent calls to internal methods
-      if ( isMethodCall && options.charAt( 0 ) === "_" ) {
-        return returnValue;
-      }
-
-      if ( isMethodCall ) {
-        this.each(function() {
-          var instance = $.data( this, name );
-          if ( !instance ) {
-            return $.error( "cannot call methods on " + name + " prior to initialization; " +
-              "attempted to call method '" + options + "'" );
-          }
-          if ( !$.isFunction( instance[options] ) ) {
-            return $.error( "no such method '" + options + "' for " + name + " widget instance" );
-          }
-          var methodValue = instance[ options ].apply( instance, args );
-          if ( methodValue !== instance && methodValue !== undefined ) {
-            returnValue = methodValue;
-            return false;
-          }
-        });
-      } else {
-        this.each(function() {
-          var instance = $.data( this, name );
-          if ( instance ) {
-            instance.option( options || {} )._init();
-          } else {
-            $.data( this, name, new object( options, this ) );
-          }
-        });
-      }
-
-      return returnValue;
-    };
+      return this.each(function(){
+        var instance = $.data( this, 'masonry' );
+        if ( !instance ) {
+          return $.error( "cannot call methods on masonry prior to initialization; " +
+            "attempted to call method '" + options + "'" );
+        }
+        if ( !$.isFunction( instance[options] ) || options.charAt(0) === "_" ) {
+          return $.error( "no such method '" + options + "' for masonry instance" );
+        }
+        // apply method
+        instance[ options ].apply( instance, args );
+      });
+    } else {
+      return this.each(function() {
+        var instance = $.data( this, 'masonry' );
+        if ( instance ) {
+          // apply options & init
+          instance.option( options || {} )._init();
+        } else {
+          // initialize new instance
+          $.data( this, 'masonry', new $.Mason( options, this ) );
+        }
+      });
+    }
   };
-  
-  
-  $.widget.bridge( 'masonry', $.Mason );
 
 })( window, jQuery );
