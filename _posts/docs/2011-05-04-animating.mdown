@@ -63,10 +63,10 @@ In your the CSS, add transition properties. Masonry will add a class of `masonry
 }
 
 .masonry {
-  -webkit-transition-property: height;
-     -moz-transition-property: height;
-       -o-transition-property: height;
-          transition-property: height;
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
 }
 
 .masonry .masonry-brick {

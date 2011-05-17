@@ -75,11 +75,9 @@ strong { font-weight: bold; }
 /**** #site-nav ****/
 
 #site-nav {
-  position: fixed;
+  position: absolute;
   width: 180px;
   padding:  0 10px;
-  height: 100%;
-  overflow-y: auto;
 }
 
 #site-nav h1 {
@@ -295,6 +293,8 @@ button {
           border-radius: 5px;
 }
 
+.centered { margin: 0 auto; }
+
 .box {
   margin: 5px;
   padding: 5px;
@@ -360,10 +360,10 @@ button {
 }
 
 .transitions-enabled.masonry {
-  -webkit-transition-property: height;
-     -moz-transition-property: height;
-       -o-transition-property: height;
-          transition-property: height;
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
 }
 
 .transitions-enabled.masonry  .masonry-brick {

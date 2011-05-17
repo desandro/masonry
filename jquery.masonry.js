@@ -72,7 +72,8 @@
       duration: 500
     },
     gutterWidth: 0,
-    isRTL: false
+    isRTL: false,
+    isFitWidth: false
   };
 
   $.Mason.prototype = {
@@ -215,8 +216,12 @@
       };
       
       // set the size of the container
-      var containerHeight = Math.max.apply( Math, this.colYs ) - this.offset.y;
-      this.styleQueue.push({ $el: this.element, style: { height: containerHeight } });
+      var containerSize = {};
+      containerSize.height = Math.max.apply( Math, this.colYs ) - this.offset.y;
+      if ( this.options.isFitWidth ) {
+        containerSize.width = this.cols * this.columnWidth - this.options.gutterWidth;
+      }
+      this.styleQueue.push({ $el: this.element, style: containerSize });
 
       // are we animating the layout arrangement?
       // use plugin-ish syntax for css or animate
@@ -253,10 +258,12 @@
                     this.$bricks.outerWidth(true) ||
                     // if there's no items, use size of container
                     this[ size ];
-                    
+
       this.columnWidth += this.options.gutterWidth;
 
-      this.cols = Math.floor( ( this.element.width() + this.options.gutterWidth ) / this.columnWidth );
+      var container = this.options.isFitWidth ? this.element.parent() : this.element;
+      
+      this.cols = Math.floor( ( container.width() + this.options.gutterWidth ) / this.columnWidth );
       this.cols = Math.max( this.cols, 1 );
 
       return this;

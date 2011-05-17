@@ -10,6 +10,7 @@ toc :
   - { title: columnWidth, anchor: columnwidth }
   - { title: gutterWidth, anchor: gutterwidth }
   - { title: isAnimated, anchor: isanimated }
+  - { title: isFitWidth, anchor: isfitwidth }
   - { title: isResizable, anchor: isresizable }
   - { title: isRTL, anchor: isrtl }
   - { title: itemSelector, anchor: itemselector }
@@ -64,6 +65,18 @@ Adds additional spacing between columns.
 </dl>
 
 Enables jQuery animation on layout changes. [See Docs: Animating](animating.html).
+
+## isFitWidth
+
+<dl class="clearfix">
+  <dt><code>isFitWidth</code></dt>
+  <dd class="option-type">Boolean</dd>
+  <dd class="default"><code><span class="kc">false</span></code></dd>
+</dl>
+
+If enabled, Masonry will size the width of the container to the nearest column. When enabled, Masonry will measure the width of the container's parent element, not the width of the container. This option is ideal for centering Masonry layouts.
+
+[See Demo: Centered](../demos/centered.html).
 
 ## isResizable
 
