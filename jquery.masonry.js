@@ -1,11 +1,14 @@
 /**
- * jQuery Masonry v2.0.110514 beta
+ * jQuery Masonry v2.0.110517 beta
  * The flip-side of CSS Floats.
  * jQuery plugin that rearranges item elements to a grid.
  * http://masonry.desandro.com
  *
  * Copyright 2011 David DeSandro
  */
+ 
+/*jshint forin: false */
+/*global jQuery: true */
 
 (function( window, $, undefined ){
 
@@ -162,9 +165,6 @@
       // signature: $('#foo').bar({ cool:false });
       if ( $.isPlainObject( key ) ){
         this.options = $.extend(true, this.options, key);
-        for ( optionName in key ) {
-          this._updateOption( optionName );
-        }
     
       // signature: $('#foo').option('cool');  - getter
       } else if ( key && typeof value === "undefined" ){
@@ -173,7 +173,6 @@
       // signature: $('#foo').bar('option', 'baz', false);
       } else {
         this.options[ key ] = value;
-        this._updateOption( key );
       }
     
       return this; // make sure to return the instance!
@@ -200,7 +199,7 @@
         } else {
           // brick spans more than one column
           // how many different places could this brick fit horizontally
-          groupCount = this.cols + 1 - colSpan,
+          groupCount = this.cols + 1 - colSpan;
           groupY = [];
 
           // for each group potential horizontal position
@@ -213,7 +212,7 @@
         
           this._placeBrick( $brick, groupCount, groupY );
         }
-      };
+      }
       
       // set the size of the container
       var containerSize = {};
@@ -235,14 +234,14 @@
       for (i=0, len = this.styleQueue.length; i < len; i++) {
         obj = this.styleQueue[i];
         obj.$el[ styleFn ]( obj.style, animOpts );
-      };
+      }
 
       // clear out queue for next time
       this.styleQueue = [];
 
       // provide $elems as context for the callback
       if ( callback ) {
-        callback.call( $elems );
+        callback.call( $bricks );
       }
       
       this.isLaidOut = true;
@@ -253,17 +252,18 @@
     // calculates number of columns
     // i.e. this.columnWidth = 200
     _getColumns : function() {
+      var container = this.options.isFitWidth ? this.element.parent() : this.element,
+          containerWidth = container.width();
+      
       this.columnWidth = this.options.columnWidth ||
                     // or use the size of the first item
                     this.$bricks.outerWidth(true) ||
                     // if there's no items, use size of container
-                    this[ size ];
+                    containerWidth;
 
       this.columnWidth += this.options.gutterWidth;
 
-      var container = this.options.isFitWidth ? this.element.parent() : this.element;
-      
-      this.cols = Math.floor( ( container.width() + this.options.gutterWidth ) / this.columnWidth );
+      this.cols = Math.floor( ( containerWidth + this.options.gutterWidth ) / this.columnWidth );
       this.cols = Math.max( this.cols, 1 );
 
       return this;
@@ -379,7 +379,7 @@
       
       $(window).unbind('.masonry');
 
-    },
+    }
     
   };
   
