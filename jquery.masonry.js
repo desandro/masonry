@@ -65,7 +65,7 @@
   var masonryContainerStyles = [ 'position', 'height' ];
   
   $.Mason.settings = {
-    resizeable: true,
+    resizable: true,
     animated: false,
     animationOptions: {
       queue: false,
@@ -126,7 +126,7 @@
       }, 0 );
       
       // bind resize method
-      if ( this.options.resizeable ) {
+      if ( this.options.resizable ) {
         $(window).bind( 'smartresize.masonry', function() { 
           instance.resize();
         });
