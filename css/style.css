@@ -332,6 +332,17 @@ button {
 .col4 img { max-width: 380px; }
 .col5 img { max-width: 480px; }
 
+/**** Gutters ****/
+
+.has-gutters .box {
+  margin: 5px 0;
+}
+
+.has-gutters .col1 { width: 90px; }
+.has-gutters .col2 { width: 230px; }
+.has-gutters .col3 { width: 370px; }
+.has-gutters .col4 { width: 550px; }
+
 /**** Transitions ****/
 
 .transitions-enabled.masonry,

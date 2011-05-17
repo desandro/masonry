@@ -66,11 +66,12 @@
   
   $.Mason.settings = {
     resizeable: true,
+    animated: false,
     animationOptions: {
       queue: false,
       duration: 500
     },
-    animate: false
+    gutterWidth: 0
   };
 
   $.Mason.prototype = {
@@ -244,8 +245,10 @@
                     this.$bricks.outerWidth(true) ||
                     // if there's no items, use size of container
                     this[ size ];
+                    
+      this.columnWidth += this.options.gutterWidth;
 
-      this.cols = Math.floor( this.element.width() / this.columnWidth );
+      this.cols = Math.floor( ( this.element.width() + this.options.gutterWidth ) / this.columnWidth );
       this.cols = Math.max( this.cols, 1 );
 
       return this;

@@ -5,6 +5,12 @@ category: docs
 layout: default
 root_path: ../
 body_class: options
+- { title: animated, anchor: animated }
+- { title: animationOptions, anchor: animationoptions }
+- { title: columnWidth, anchor: columnwidth }
+- { title: gutterWidth, anchor: gutterwidth }
+- { title: itemSelector, anchor: itemselector }
+- { title: resizable, anchor: resizable }
 
 ---
 
@@ -22,10 +28,10 @@ body_class: options
   <dd class="default"><code><span class="kc">false</span></code></dd>
 </dl>
 
-## animateOptions
+## animationOptions
 
 <dl class="clearfix">
-  <dt><code>animateOptions</code></dt>
+  <dt><code>animationOptions</code></dt>
   <dd class="option-type">Object</dd>
   <dd class="default"><code>{ queue: <span class="kc">false</span>, duration: <span class="mi">500</span> }</code></dd>
 </dl>
@@ -36,6 +42,18 @@ body_class: options
   <dt><code>columnWidth</code></dt>
   <dd class="option-type">Integer</dd>
 </dl>
+
+## gutterWidth
+
+<dl class="clearfix">
+  <dt><code>gutterWidth</code></dt>
+  <dd class="option-type">Integer</dd>
+  <dd class="default"><code><span class="mi">0</span></code></dd>
+</dl>
+
+Adds additional spacing between columns.
+
+[See Demo: Gutters](../demos/gutters.html).
 
 ## itemSelector
 
