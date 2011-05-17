@@ -57,10 +57,10 @@ In your the CSS, add transition properties. Masonry will add a class of `masonry
 
 .masonry,
 .masonry .masonry-brick {
-  -webkit-transition: 0.7s;
-     -moz-transition: 0.7s;
-       -o-transition: 0.7s;
-          transition: 0.7s;
+  -webkit-transition-duration: 0.7s;
+     -moz-transition-duration: 0.7s;
+       -o-transition-duration: 0.7s;
+          transition-duration: 0.7s;
 }
 
 .masonry {

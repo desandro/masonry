@@ -312,6 +312,14 @@ button {
   font-weight: 200;
 }
 
+.box img,
+#tumblelog img {
+  display: block;
+  width: 100%;
+}
+
+
+
 .col1 { width: 80px; }
 .col2 { width: 180px; }
 .col3 { width: 280px; }
@@ -328,10 +336,10 @@ button {
 
 .transitions-enabled.masonry,
 .transitions-enabled.masonry .masonry-brick {
-  -webkit-transition: 0.7s;
-     -moz-transition: 0.7s;
-       -o-transition: 0.7s;
-          transition: 0.7s;
+  -webkit-transition-duration: 0.7s;
+     -moz-transition-duration: 0.7s;
+       -o-transition-duration: 0.7s;
+          transition-duration: 0.7s;
 }
 
 .transitions-enabled.masonry {
@@ -346,6 +354,15 @@ button {
      -moz-transition-property: left, top;
        -o-transition-property: left, top;
           transition-property: left, top;
+}
+
+
+/* disable transitions on container */
+.transitions-enabled.infinite-scroll.masonry {
+  -webkit-transition-property: none;
+     -moz-transition-property: none;
+       -o-transition-property: none;
+          transition-property: none;
 }
 
 /**** Primer comparison ****/
@@ -377,11 +394,6 @@ button {
 #tumblelog {
   background: #FFF;
   padding: 1.0em;
-}
-
-#tumblelog img {
-  display: block;
-  width: 100%;
 }
 
 #tumblelog .story {
