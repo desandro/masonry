@@ -10,7 +10,7 @@ has_modernizr: true
 
 
 <div id="copy">
-  <p>This layout is animated with CSS transitions if the browser supports it, but falls back to jQuery animation if not available. Modernizr has been implemented to detect support.</p>
+  <p>After adding items to a Masonry-ed container, you can properly lay them out using methods.   <code>appended</code> will layout new items to the end of the layout.  <code>reload</code> will layout all the item elements in the container, which is useful for prepending or inserting.</p>
 </div>
 
 <p>
@@ -85,8 +85,6 @@ has_modernizr: true
       var $boxes = $( boxMaker.makeBoxes() );
       $container.append( $boxes ).masonry( 'appended', $boxes );
     });
-    
-    
     
   });
 </script>

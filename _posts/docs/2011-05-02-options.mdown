@@ -5,12 +5,13 @@ category: docs
 layout: default
 root_path: ../
 body_class: options
-- { title: animated, anchor: animated }
-- { title: animationOptions, anchor: animationoptions }
-- { title: columnWidth, anchor: columnwidth }
-- { title: gutterWidth, anchor: gutterwidth }
-- { title: itemSelector, anchor: itemselector }
-- { title: resizable, anchor: resizable }
+toc :
+  - { title: animated, anchor: animated }
+  - { title: animationOptions, anchor: animationoptions }
+  - { title: columnWidth, anchor: columnwidth }
+  - { title: gutterWidth, anchor: gutterwidth }
+  - { title: itemSelector, anchor: itemselector }
+  - { title: resizable, anchor: resizable }
 
 ---
 

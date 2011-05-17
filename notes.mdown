@@ -6,5 +6,3 @@
 `animate` option is now `animated`
 
 filtering is removed. Use Isotope
-
-`resizable` -> `resizeable`

@@ -6,19 +6,14 @@
 Intro
 Options
 Methods
+Adding items
 
 ## Demos
 
-Infinite Scroll
 fluid
 
 ## Methods
 
-appended
-layout
-getAllBricks - if you prepend elements 
-
 ## Options
 
 rtl
-gutterWidth 
