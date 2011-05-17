@@ -71,7 +71,8 @@
       queue: false,
       duration: 500
     },
-    gutterWidth: 0
+    gutterWidth: 0,
+    rtl: false
   };
 
   $.Mason.prototype = {
@@ -105,18 +106,25 @@
         var prop = masonryContainerStyles[i];
         this.originalStyle[ prop ] = elemStyle[ prop ] || null;
       }
-      
+
       this.element.css({
         position : 'relative'
       });
       
-      
+      this.horizontalDirection = this.options.rtl ? 'right' : 'left';
+      this.offset = {};
       
       // get top left position of where the bricks should be
-      var $cursor   = $( document.createElement('div') );
+      var $cursor = $( document.createElement('div') );
       this.element.prepend( $cursor );
-      this.posTop  = Math.round( $cursor.position().top );
-      this.posLeft = Math.round( $cursor.position().left );
+      this.offset.y = Math.round( $cursor.position().top );
+      // get horizontal offset
+      if ( this.options.rtl ) {
+        this.offset.x = Math.round( $cursor.position().left );
+      } else {
+        $cursor.css({ 'float': 'right', display: 'inline-block'});
+        this.offset.x = Math.round( this.element.outerWidth() - $cursor.position().left );
+      }
       $cursor.remove();
 
       // add masonry class first time around
@@ -207,7 +215,7 @@
       };
       
       // set the size of the container
-      var containerHeight = Math.max.apply( Math, this.colYs ) - this.posTop;
+      var containerHeight = Math.max.apply( Math, this.colYs ) - this.offset.y;
       this.styleQueue.push({ $el: this.element, style: { height: containerHeight } });
 
       // are we animating the layout arrangement?
@@ -256,14 +264,13 @@
     },
 
     _placeBrick : function( $brick, setCount, setY ) {
-      // here, `this` refers to a child element or "brick"
           // get the minimum Y value from the columns
       var minimumY  = Math.min.apply( Math, setY ),
           setHeight = minimumY + $brick.outerHeight(true),
           i         = setY.length,
           shortCol  = i,
           setSpan   = this.cols + 1 - i,
-          x, y ;
+          position  = {};
       // Which column has the minY value, closest to the left
       while (i--) {
         if ( setY[i] === minimumY ) {
@@ -272,10 +279,9 @@
       }
 
       // position the brick
-      x = this.columnWidth * shortCol + this.posLeft;
-      y = minimumY;
-
-      var position = { left: x, top: y };
+      position.top = minimumY;
+      // position.left or position.right
+      position[ this.horizontalDirection ] = this.columnWidth * shortCol + this.offset.x;
       this.styleQueue.push({ $el: $brick, style: position });
 
       // apply setHeight to necessary columns
@@ -307,7 +313,7 @@
       var i = this.cols;
       this.colYs = [];
       while (i--) {
-        this.colYs.push( this.posTop );
+        this.colYs.push( this.offset.y );
       }
       // apply layout logic to all bricks
       this.layout( this.$bricks, callback );

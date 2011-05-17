@@ -318,6 +318,12 @@ button {
   width: 100%;
 }
 
+.rtl .box {
+  float: right;
+  text-align: right; 
+  direction: rtl;
+}
+
 
 
 .col1 { width: 80px; }
@@ -361,10 +367,10 @@ button {
 }
 
 .transitions-enabled.masonry  .masonry-brick {
-  -webkit-transition-property: left, top;
-     -moz-transition-property: left, top;
-       -o-transition-property: left, top;
-          transition-property: left, top;
+  -webkit-transition-property: left, right, top;
+     -moz-transition-property: left, right, top;
+       -o-transition-property: left, right, top;
+          transition-property: left, right, top;
 }
 
 
