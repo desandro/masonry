@@ -22,6 +22,10 @@ footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 body { 
   font: 13px 'Helvetica Neue', Arial, sans-serif;
   background: #D8D5D2;
