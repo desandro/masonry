@@ -1,0 +1,126 @@
+---
+
+title: Methods
+category: docs
+layout: default
+root_path: ../
+toc:
+  - { title: appended, anchor: appended }
+  - { title: destroy, anchor: destroy }
+  - { title: layout, anchor: layout }
+  - { title: option, anchor: option }
+  - { title: reLayout, anchor: relayout }
+  - { title: reloadItems, anchor: reloaditems }
+  - { title: reload, anchor: reload }
+  - { title: remove, anchor: remove }
+
+---
+
+Masonry offers several methods to extend functionality. Isotope's methods follow the jQuery UI pattern.
+
+{% highlight javascript %}
+
+$('#container').masonry( 'methodName', [optionalParameters] )
+
+{% endhighlight %}
+
+
+## appended
+
+{% highlight javascript %}
+
+.masonry( 'appended' )
+
+{% endhighlight %}
+
+Convenience method for trigging `layout` on item elements that have been appended to the container. Useful to be used in the callback for Infinite Scroll.
+
+## destroy
+
+{% highlight javascript %}
+
+.masonry( 'destroy' )
+
+{% endhighlight %}
+
+Removes Masonry functionality completely. Returns element back to pre-init state.
+
+## layout
+
+{% highlight javascript %}
+
+.masonry( 'layout', $items, callback )
+
+{% endhighlight %}
+
+Positions specified item elements in layout.
+
+`layout` will only position specified elements, and those elements will be positioned at the end of layout. Whereas `reLayout` will position all items in the Masonry instance.
+
+## option
+
+{% highlight javascript %}
+
+.masonry( 'option', options )
+
+{% endhighlight %}
+
+Modifies options for plugin instance. Can be used to get and set options. Unlike passing options through `.masonry()`, using the `option` method will not trigger layout.
+
+{% highlight javascript %}
+
+// sets multiple options
+.masonry( 'option', { columnWidth: 120, animated: false } )
+
+// set single option
+.isotope( 'option', 'columnWidth', 120 )
+
+// get option
+.isotope( 'option', 'columnWidth' )
+// returns 120
+
+{% endhighlight %}
+
+
+## reLayout
+
+{% highlight javascript %}
+
+.masonry( 'reLayout', callback )
+
+{% endhighlight %}
+
+Resets layout properties and lays-out every item element.
+
+## reloadItems
+
+{% highlight javascript %}
+
+.masonry( 'reloadItems' )
+
+{% endhighlight %}
+
+Re-collects all item elements in their current order in the DOM.  
+
+## reload
+
+{% highlight javascript %}
+
+.masonry( 'reload' )
+
+{% endhighlight %}
+
+Convenience method for trigging `reloadItems` then `reLayout`. Useful for prepending or inserting items.
+
+## remove
+
+{% highlight javascript %}
+
+.isotope( 'remove', $items )
+
+{% endhighlight %}
+
+Removes specified item elements from Masonry instance and the DOM.
+
+
+
