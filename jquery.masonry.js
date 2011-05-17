@@ -65,14 +65,14 @@
   var masonryContainerStyles = [ 'position', 'height' ];
   
   $.Mason.settings = {
-    resizable: true,
-    animated: false,
+    isResizable: true,
+    isAnimated: false,
     animationOptions: {
       queue: false,
       duration: 500
     },
     gutterWidth: 0,
-    rtl: false
+    isRTL: false
   };
 
   $.Mason.prototype = {
@@ -111,7 +111,7 @@
         position : 'relative'
       });
       
-      this.horizontalDirection = this.options.rtl ? 'right' : 'left';
+      this.horizontalDirection = this.options.isRTL ? 'right' : 'left';
       this.offset = {};
       
       // get top left position of where the bricks should be
@@ -119,7 +119,7 @@
       this.element.prepend( $cursor );
       this.offset.y = Math.round( $cursor.position().top );
       // get horizontal offset
-      if ( this.options.rtl ) {
+      if ( this.options.isRTL ) {
         this.offset.x = Math.round( $cursor.position().left );
       } else {
         $cursor.css({ 'float': 'right', display: 'inline-block'});
@@ -134,7 +134,7 @@
       }, 0 );
       
       // bind resize method
-      if ( this.options.resizable ) {
+      if ( this.options.isResizable ) {
         $(window).bind( 'smartresize.masonry', function() { 
           instance.resize();
         });
@@ -221,7 +221,7 @@
       // are we animating the layout arrangement?
       // use plugin-ish syntax for css or animate
       var styleFn = !this.isLaidOut ? 'css' : (
-            this.options.animated ? 'animate' : 'css'
+            this.options.isAnimated ? 'animate' : 'css'
           ),
           animOpts = this.options.animationOptions;
 

@@ -101,7 +101,7 @@ Modifies options for plugin instance. Can be used to get and set options. Unlike
 {% highlight javascript %}
 
 // sets multiple options
-.masonry( 'option', { columnWidth: 120, animated: false } )
+.masonry( 'option', { columnWidth: 120, isAnimated: false } )
 
 // set single option
 .isotope( 'option', 'columnWidth', 120 )

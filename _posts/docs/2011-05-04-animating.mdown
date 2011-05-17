@@ -14,13 +14,13 @@ Rearrangements can be animated when the container is resized.
 
 ## With jQuery
 
-To animate Masonry layout changes with jQuery, set the `animated` option to `true`.
+To animate Masonry layout changes with jQuery, set the `isAnimated` option to `true`.
 
 {% highlight javascript %}
 
 $('#container').masonry({
   // options...
-  animated: true
+  isAnimated: true
 });
 
 {% endhighlight %}
@@ -33,7 +33,7 @@ You can pass in jQuery animation options are set with the [`animationOptions` op
 
 $('#container').masonry({
   // options...
-  animate: true,
+  isAnimated: true,
   animationOptions: {
     duration: 750,
     easing: 'linear',
@@ -87,7 +87,7 @@ But to get the best of both worlds, you can use [Modernizr](http://www.modernizr
 
 $('#container').masonry({
   // options...
-  animated: !Modernizr.csstransitions
+  isAnimated: !Modernizr.csstransitions
 });
 
 {% endhighlight %}

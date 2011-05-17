@@ -6,13 +6,13 @@ layout: default
 root_path: ../
 body_class: options
 toc :
-  - { title: animated, anchor: animated }
   - { title: animationOptions, anchor: animationoptions }
   - { title: columnWidth, anchor: columnwidth }
   - { title: gutterWidth, anchor: gutterwidth }
+  - { title: isAnimated, anchor: isanimated }
+  - { title: isResizable, anchor: isresizable }
+  - { title: isRTL, anchor: isrtl }
   - { title: itemSelector, anchor: itemselector }
-  - { title: resizable, anchor: resizable }
-  - { title: rtl, anchor: rtl }
 
 ---
 
@@ -21,16 +21,6 @@ toc :
   <dd class="option-type">Type</dd>
   <dd class="default">Default</dd>
 </dl>
-
-## animated
-
-<dl class="clearfix">
-  <dt><code>animated</code></dt>
-  <dd class="option-type">Boolean</dd>
-  <dd class="default"><code><span class="kc">false</span></code></dd>
-</dl>
-
-Enables jQuery animation on layout changes. [See Docs: Animating](animating.html).
 
 ## animationOptions
 
@@ -65,6 +55,38 @@ Adds additional spacing between columns.
 
 [See Demo: Gutters](../demos/gutters.html).
 
+## isAnimated
+
+<dl class="clearfix">
+  <dt><code>isAnimated</code></dt>
+  <dd class="option-type">Boolean</dd>
+  <dd class="default"><code><span class="kc">false</span></code></dd>
+</dl>
+
+Enables jQuery animation on layout changes. [See Docs: Animating](animating.html).
+
+## isResizable
+
+<dl class="clearfix">
+  <dt><code>isResizable</code></dt>
+  <dd class="option-type">Boolean</dd>
+  <dd class="default"><code><span class="kc">true</span></code></dd>
+</dl>
+
+Triggers layout logic when browser window is resized.
+
+## isRTL
+
+<dl class="clearfix">
+  <dt><code>isRTL</code></dt>
+  <dd class="option-type">Boolean</dd>
+  <dd class="default"><code><span class="kc">false</span></code></dd>
+</dl>
+
+Enables right-to-left layout for languages like Hebrew and Arabic.
+
+[See Demo: Right-to-left](../demos/right-to-left.html).
+
 ## itemSelector
 
 <dl class="clearfix">
@@ -81,25 +103,3 @@ Filters item elements to selector. If not set, Masonry defaults to using the chi
 $('#container').masonry({ itemSelector: '.box' });
 
 {% endhighlight %}
-
-## resizable
-
-<dl class="clearfix">
-  <dt><code>resizable</code></dt>
-  <dd class="option-type">Boolean</dd>
-  <dd class="default"><code><span class="kc">true</span></code></dd>
-</dl>
-
-Triggers layout logic when browser window is resized.
-
-## rtl
-
-<dl class="clearfix">
-  <dt><code>rtl</code></dt>
-  <dd class="option-type">Boolean</dd>
-  <dd class="default"><code><span class="kc">false</span></code></dd>
-</dl>
-
-Enables right-to-left layout for languages like Hebrew and Arabic.
-
-[See Demo: Right-to-left](../demos/right-to-left.html).
