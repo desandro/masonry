@@ -39,6 +39,10 @@ a:hover {
   color: #D26;
 }
 
+a:active {
+  background: hsla( 0, 100%, 100%, 0.5 );
+}
+
 h1, h2 {
   font-weight: 100;
   line-height: 1.2em;
@@ -77,8 +81,17 @@ h3, p, ul, ol, pre, dl {
 #site-nav h1 {
   font-weight: 600;
   font-size: 18px;
-  margin-bottom: 0.3em;
+  margin-bottom: 0.8em;
   padding-top: 10px;
+}
+
+#site-nav h1 a { color: #D26; }
+#site-nav h1 a:hover { color: #A2C; }
+
+#site-nav h2 {
+  font-size: 17px;
+  font-weight: normal;
+  margin-bottom: 0.3em;
 }
 
 #site-nav ul {
@@ -87,26 +100,34 @@ h3, p, ul, ol, pre, dl {
   font-size: 12px;
 }
 
-#site-nav li a {
-  display: block;
-  padding: 5px;
+#site-nav li {
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
           border-radius: 4px;
 }
 
-#site-nav li.current a {
-  background: #C8C5C2;
-  color: #FFF;
+#site-nav li a {
+  display: block;
+  padding: 3px 5px;
 }
+
+#site-nav li.current {
+  background: #C8C5C2;
+}
+
+#site-nav li.current a { color: white; }
+#site-nav li.current a:hover { color: #D26; }
 
 #site-nav li ul { 
   margin-bottom: 0;
-  margin-left: 10px;
 }
 
 #site-nav li li {
   font-size: 11px;
+}
+
+#site-nav li li a {
+  padding-left: 15px;
 }
 
 
