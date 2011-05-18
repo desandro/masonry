@@ -8,6 +8,7 @@ toc:
   - { title: Getting started, anchor: getting_started }
   - { title: Code repository, anchor: code_repository }
   - { title: Acknowledgments, anchor: acknowledgments }
+  - { title: Changelog, anchor: changelog }
   - { title: License, anchor: license }
 
 ---
@@ -47,6 +48,24 @@ $('#container').masonry({
 [**See Demo: Basic**](../demos/basic.html)
 
 There are a number of [options](options.html) you can specify.
+
+### imagesLoaded plugin
+
+If your content contains any images, you'll want to ensure that Masonry is triggered after all the images your content has loaded. The included imagesLoaded plugin makes this easy.
+
+{% highlight javascript %}
+
+var $container = $('#container');
+$container.imagesLoaded(function(){
+  $container.masonry({
+    // options
+    itemSelector : '.item'
+  });
+});
+
+{% endhighlight %}
+
+[See Demo: Images](../demos/images.html)
 
 ## Code repository
 
