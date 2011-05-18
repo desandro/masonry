@@ -4,6 +4,7 @@
  * jQuery plugin that rearranges item elements to a grid.
  * http://masonry.desandro.com
  *
+ * Licensed under the MIT license.
  * Copyright 2011 David DeSandro
  */
  
@@ -393,14 +394,17 @@
   $.fn.imagesLoaded = function(callback){
     var elems = this.find('img'),
         len   = elems.length,
+        blank = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==",
         _this = this;
 
-    if ( !elems.length ) {
+    // if no images, trigger immediately
+    if ( !len ) {
       callback.call( this );
+      return this;
     }
-
-    elems.bind('load',function(){
-      if (--len <= 0){ 
+    
+    elems.bind('load', function() {
+      if ( --len <= 0 && this.src !== blank ) {
         callback.call( _this ); 
       }
     }).each(function(){
@@ -409,7 +413,7 @@
         var src = this.src;
         // webkit hack from http://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
         // data uri bypasses webkit log warning (thx doug jones)
-        this.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+        this.src = blank;
         this.src = src;
       }  
     }); 
