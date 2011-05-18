@@ -7,6 +7,8 @@ layout: default
 toc:
   - { title: Getting started, anchor: getting_started }
   - { title: Code repository, anchor: code_repository }
+  - { title: Acknowledgments, anchor: acknowledgments }
+  - { title: License, anchor: license }
 
 ---
 
@@ -49,3 +51,50 @@ There are a number of [options](options.html) you can specify.
 ## Code repository
 
 This project lives on GitHub at [github.com/desandro/masonry](http://github.com/desandro/masonry). There you can grab the latest code and follow development.
+
+## Acknowledgments
+
++ Louis-Rémi Babé and Paul Irish for the [jQuery SmartResize plugin](http://github.com/louisremi/jquery-smartresize). De-bounced window resize event handler. Used within Masonry.
++ Paul Irish and Luke Shumard for [Infinite Scroll](http://www.infinite-scroll.com). Pretty much Masony's BFF &lt;3.
++ The Modernizr team for [Modernizr](http://www.modernizr.com/). Used in most of these demos.
++ Paul Irish et. al. for [imagesLoaded plugin](https://gist.github.com/268257). Used within Masonry.
++ [Ralph Holzmann](http://twitter.com/ralphholzmann) for re-writing the [jQuery Plugins/Authoring tutorial](http://docs.jquery.com/Plugins/Authoring) and opened my eyes to [Plugin Methods](http://docs.jquery.com/Plugins/Authoring#Plugin_Methods) pattern.
++ [Eric Hynds](http://www.erichynds.com/) for his article [Using $.widget.bridge Outside of the Widget Factory](http://www.erichynds.com/jquery/using-jquery-ui-widget-factory-bridge/) which provided the architecture for Masonry.
+
+## Changelog
+
+<dl>
+  <dt>v2.0: May 2011</dt>
+    <dd>Complete re-write. Uses <code>$.Mason</code> constructor, like jQuery UI widget</dd>
+    <dd>Add options <code>gutterWidth</code>, <code>isFitWidth</code> for centering layout, <code>isRTL</code> for right-to-left layout</dd>
+    <dd>Add all new methods like <code>appended</code>, <code>reLayout</code>, and <code>reload</code></dd>
+    <dd>Remove filtering demos</dd>
+  <dt>v1.3: 3 Sep 2010</dt>
+    <dd>Revamped <code>appendedContent</code> to work with container elements.  Plays nice with latest Infinite Scroll.</dd>
+    <dd>Revised layout for documentation to allow for more pages.</dd>
+  <dt>v1.2: 12 Jun 2010</dt>
+    <dd>Support for filtering added</dd>
+  <dt>v1.1: 29 Apr 2010</dt>
+    <dd>Add animation</dd>
+  <dt>v1.0: 7 Dec 2009</dt>
+    <dd>Multi-column width support</dd>
+  <dd>Appending elements and Infinite Scroll support</dd>
+    <dd>Less obstrusive layout. No inserting additional markup.</dd>
+    <dd>Automatically binds event to window resizing</dd>
+  <dt>v0.4: 14 Jun 2009</dt>
+    <dd>Better fluid rearrangement support</dd>
+  <dt>v0.1: Feb 2009</dt>
+    <dd>Original release</dd>
+</dl>
+
+## License
+
+jQuery Masonry is licensed under the MIT license. It may be used for personal and commercial applications.
+
+<div class="license-copy">
+  <h3>The MIT License</h3>
+  <p>Copyright &copy; 2011 David DeSandro</p>
+  <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+  <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+  <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+</div>

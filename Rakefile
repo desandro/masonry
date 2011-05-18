@@ -16,7 +16,7 @@ task :min do
     # Adds header comment
     min = File.read( min_js )
     File.open( min_js, 'w') do |f|
-      f.write File.readlines( js )[0..7].join()
+      f.write File.readlines( js )[0..8].join()
       f.write min
     end
   end

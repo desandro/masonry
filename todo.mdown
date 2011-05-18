@@ -6,7 +6,6 @@
 Intro
 Options
 Methods
-Adding items
 
 ## Demos
 
