@@ -8,9 +8,6 @@
  * Copyright 2011 David DeSandro
  */
  
-/*jshint forin: false */
-/*global jQuery: true */
-
 (function( window, $, undefined ){
 
   /*
