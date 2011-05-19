@@ -10,7 +10,7 @@ min: ${ISO}
 		echo "Minifying" ${JS}; \
 		uglifyjs ${JS} > ${JS_MIN}.tmp; \
 		echo ';' >> ${JS_MIN}.tmp; \
-		sed 's/\*\//&§/; y/§/\n/;' ${JS_MIN}.tmp > ${JS_MIN}; \
+		sed 's/\*\//&§/g; y/§/\n/;' ${JS_MIN}.tmp > ${JS_MIN}; \
 		rm ${JS_MIN}.tmp; \
 	else \
 		echo "NodeJS required for minification."; \
