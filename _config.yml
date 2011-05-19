@@ -3,4 +3,4 @@ permalink: /:categories/:title.html
 pygments: true
 masonry_js: jquery.masonry.js
 jquery_js: js/jquery-1.6.1.min.js
-exclude: [ Rakefile, Makefile, docs-old ]
+exclude: [ Makefile, docs-old ]
