@@ -7,3 +7,22 @@
 `resizable` option is now `isResizable`
 
 filtering is removed. Use Isotope
+
+## To do
+
+
+**Docs**
+
+Intro
+Options
+Methods
+
+**Demos**
+
+relayout
+fluid
+
+**Methods**
+
+**Options**
+
