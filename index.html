@@ -2,6 +2,44 @@
 title: jQuery Masonry
 layout: default
 category: homepage
+has_modernizr: true
 ---
 
-<p>jQuery Masonry index</p>
+
+<div id="container" class="transitions-enabled clearfix">
+  
+  <div class="item col2">
+    &larr; View docs and demos
+  </div>
+  
+  <div class="item">
+    The flip-side of CSS floats
+  </div>
+  
+  <div class="item col2 link">
+    <a href="https://github.com/desandro/masonry">Masonry on GitHub</a>
+  </div>
+  
+  <div class="item col2 link">
+    <a href="jquery.masonry.min.js">Download the script jquery.&#8203;masonry.&#8203;min.js</a>
+  </div>
+  
+  <div class="item col2 link">
+    <a href="#">Download this project</a>
+  </div>
+  
+</div> <!-- #container -->
+
+<script src="{{ page.root_path }}{{ site.jquery_js }}"></script>
+<script src="{{ page.root_path }}{{ site.masonry_js }}"></script>
+<script>
+  $(function(){
+    
+    $('#container').masonry({
+      itemSelector: '.item',
+      columnWidth: 220,
+      isAnimated: !Modernizr.csstransitions
+    });
+    
+  });
+</script>
