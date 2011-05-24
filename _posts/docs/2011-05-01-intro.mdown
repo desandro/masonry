@@ -17,7 +17,7 @@ Masonry is a dynamic layout plugin for jQuery. Think of it as the flip side of C
 
 ## Getting started
 
-Masonry requires jQuery 1.4.0 and greater.
+
 
 ### Markup
 
@@ -34,13 +34,38 @@ Masonry works on a container element with a group of similar child items.
 
 {% endhighlight %}
 
+Add jQuery and the Masonry script. Masonry requires jQuery v1.4.0 and greater.
+
+{% highlight html %}
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script src="/path/to/jquery.masonry.min.js"></script>
+
+{% endhighlight %}
+
+### CSS
+
+All sizing of items is handled by your CSS. Items should be floated.
+
+{% highlight css %}
+
+.item {
+  width: 90px;
+  margin: 5px;
+  float: left;
+}
+
+{% endhighlight %}
+
 ### Script
 
 {% highlight javascript %}
 
-$('#container').masonry({
-  // options
-  itemSelector : '.item'
+$(function(){
+  $('#container').masonry({
+    // options
+    itemSelector : '.item'
+  });
 });
 
 {% endhighlight %}
