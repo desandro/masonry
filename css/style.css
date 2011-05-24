@@ -150,8 +150,8 @@ strong { font-weight: bold; }
 
 
 
-/* screens smaller than 768 */
-@media screen and (max-width: 768px) {
+/* screens smaller than 640 */
+@media screen and (max-width: 640px) {
 
   #site-nav {
     width: auto;
