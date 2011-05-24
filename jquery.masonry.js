@@ -251,27 +251,28 @@
     },
 
     _placeBrick : function( $brick, setY ) {
-          // get the minimum Y value from the columns
-      var minimumY  = Math.min.apply( Math, setY ),
-          setHeight = minimumY + $brick.outerHeight(true),
-          i         = setY.length,
-          shortCol  = i,
-          setSpan   = this.cols + 1 - i,
-          position  = {};
-      // Which column has the minY value, closest to the left
-      while (i--) {
+      // get the minimum Y value from the columns
+      var minimumY  = Math.min.apply( Math, setY );
+      
+      // Find index of short column, the first from the left
+      for (var i=0, len = setY.length; i < len; i++) {
         if ( setY[i] === minimumY ) {
           shortCol = i;
+          break;
         }
-      }
+      };
 
       // position the brick
-      position.top = minimumY;
+      var position = {
+        top : minimumY
+      };
       // position.left or position.right
       position[ this.horizontalDirection ] = this.columnWidth * shortCol + this.offset.x;
       this.styleQueue.push({ $el: $brick, style: position });
 
       // apply setHeight to necessary columns
+      var setHeight = minimumY + $brick.outerHeight(true),
+          setSpan = this.cols + 1 - len;
       for ( i=0; i < setSpan; i++ ) {
         this.colYs[ shortCol + i ] = setHeight;
       }
