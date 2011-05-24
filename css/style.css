@@ -226,13 +226,14 @@ button {
   -webkit-appearance: push-button;
 }
 
-#footer {
+#site-footer {
   clear: both;
   margin: 20px 0px;
-  border-top: 1px solid #BBB;
+  border-top: 2px solid white;
   padding-top: 10px;
   line-height: 30px;
   font-size: 95%;
+  font-style: italic;
 }
 
 .license-copy {
@@ -242,15 +243,22 @@ button {
 .demos #copy,
 .docs #content {
   max-width: 640px;
-  
+}
+
+#content h2 {
+  border-top: 2px solid #FFF;
+  padding-top: 10px;
+}
+
+#content h2:target { 
+  background: #D26;
+  color: white;
+  padding: 10px 5px 5px;
 }
 
 /**** Docs ****/
 
-.docs #content h2 {
-  border-top: 2px solid #FFF;
-  padding-top: 10px;
-}
+
 
 .options dl dt { font-weight: normal; }
 
@@ -283,7 +291,6 @@ button {
 
 #container {
   background: #FFF;
-  border: 0px solid #456;
   padding: 5px;
   margin-bottom: 20px;
   border-radius: 5px;
