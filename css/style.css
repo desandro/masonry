@@ -126,12 +126,12 @@ strong { font-weight: bold; }
 
 #site-nav li li {
   font-size: 11px;
+  line-height: 1.4em;
 }
 
 #site-nav li li a {
-  padding: 1px 5px 1px 15px;
+  padding-left: 15px;
 }
-
 
 #site-nav li.selected li a {
   padding: 3px;
