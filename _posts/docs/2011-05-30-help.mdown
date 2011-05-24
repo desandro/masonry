@@ -1,0 +1,81 @@
+---
+
+title: Help
+category: docs
+root_path: ../
+layout: default
+toc:
+  - { title: Reporting bugs and issues, anchor: reporting_bugs_and_issues }
+  - { title: Support license, anchor: support_license }
+  - { title: Additional resources, anchor: additional_resources }
+  - { title: Unloaded media and overlapping, anchor: unloaded_media_and_overlapping }
+  - { title: @font-face fonts, anchor: fontface_fonts }
+
+---
+
+jQuery Masonry is a fairly popular plugin. Chances are your issue has already been encountered by someone else.
+
+## Reporting bugs and issues
+
+[Report bugs and issues on GitHub](http://github.com/desandro/masonry/issues). 
+
+### Guidelines {: #issues-guidelines}
+
++ Look over open and closed issues before submitting yours.
++ Add a link to a live site with the bug. If the project is confidential, try re-creating it in [jsFiddle](http://jsfiddle.net).
+
+The issues tracker is for bugs and issues -- when Masonry doesn't work as expected. It is not for implementation issues -- when you are having trouble setting up Masonry. Consider a [Support License](http://metafizzy.co/#support-license) for implementation issues. If you're not sure, go ahead and submit an issue.
+
+## Support license
+
+If you've tried everything and would really like to get my eyes looking at your code, you can purchase a [Support License from Metafizzy](http://metafizzy.co/#support-license).
+
+## Additional resources
+
++ The [Metafizzy blog](http://metafizzy.co/blog/) has posts that cover specialized use cases
++ [Sites using Masonry](http://www.delicious.com/desandro/jquerymasonry)
++ [Stack Overflow questions about Masonry](http://stackoverflow.com/search?q=masonry)
+
+## Unloaded media and overlapping
+
+The number one issue that pops up is overlapping content. This is most likely due to unloaded images.
+
+### imagesLoaded plugin
+
+The easiest solution is to use the <a href="intro.html#imagesloaded_plugin">imagesLoaded plugin</a> as shown in the intro. This small plugin will trigger a callback after all the images in the specified content have been loaded.
+
+[See Demo: Images](../demos/images.html).
+
+### Inline dimensions
+
+Or you can specify the width and height of images inline.
+
+{% highlight html %}
+
+<img src="img-file.jpg" width="280" height="160" />
+
+{% endhighlight %}
+
+If you’re using a PHP-based CMS, you can use the [getimagesize](http://php.net/manual/en/function.getimagesize.php) function.
+
+### $(window).load()
+
+Another solution is to initialize Masonry inside `$(window).load()` instead of `$(document).ready()`. This will trigger Masonry after all the media on the page has loaded -- images, fonts, external scripts and stylesheets, etc. This method is not recommended as it can cause ugly wait times.
+
+{% highlight javascript %}
+
+$(window).load(function(){
+  $('#container').masonry({
+    // options...
+  });
+});
+
+{% endhighlight %}
+
+## @font-face fonts
+
+Both Typekit and Google WebFont Loader provide font events to control scripts based on how fonts are loaded. 
+
++ [Typekit font events](http://blog.typekit.com/2010/10/18/more-control-with-typekits-font-events/)
++ [Google WebFont Loader: Events](http://code.google.com/apis/webfonts/docs/webfont_loader.html#Events)
+
