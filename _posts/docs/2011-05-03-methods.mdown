@@ -96,7 +96,7 @@ Positions specified item elements in layout.
 
 {% endhighlight %}
 
-Modifies options for plugin instance. Can be used to get and set options. Unlike passing options through `.masonry()`, using the `option` method will not trigger layout.
+Sets options for plugin instance. Unlike passing options through `.masonry()`, using the `option` method will not trigger layout.
 
 {% highlight javascript %}
 
@@ -105,10 +105,6 @@ Modifies options for plugin instance. Can be used to get and set options. Unlike
 
 // set single option
 .isotope( 'option', 'columnWidth', 120 )
-
-// get option
-.isotope( 'option', 'columnWidth' )
-// returns 120
 
 {% endhighlight %}
 

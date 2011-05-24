@@ -155,20 +155,13 @@
     },
 
     option: function( key, value ){
-      
-      // get/change options AFTER initialization:
-      // you don't have to support all these cases,
-      // but here's how:
+      // set options AFTER initialization:
     
       // signature: $('#foo').bar({ cool:false });
       if ( $.isPlainObject( key ) ){
         this.options = $.extend(true, this.options, key);
     
       // signature: $('#foo').option('cool');  - getter
-      } else if ( key && typeof value === "undefined" ){
-        return this.options[ key ];
-        
-      // signature: $('#foo').bar('option', 'baz', false);
       } else {
         this.options[ key ] = value;
       }
