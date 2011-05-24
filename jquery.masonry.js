@@ -144,14 +144,11 @@
       
     },
   
-    // _init fires when your instance is first created
-    // (from the constructor above), and when you
-    // attempt to initialize the widget again (by the bridge)
-    // after it has already been initialized.
+    // _init fires when instance is first created
+    // and when instance is triggered again -> $el.masonry();
     _init : function( callback ) {
-      
-      this.reLayout( callback );
-
+      this._getColumns('masonry');
+      this._reLayout( callback );
     },
 
     option: function( key, value ){
@@ -285,18 +282,13 @@
       // get updated colCount
       this._getColumns('masonry');
       if ( this.cols !== prevColCount ) {
-        // if column count has changed, do a new column cound
-        this._reloadLayout();
+        // if column count has changed, trigger new layout
+        this._reLayout();
       }
     },
     
     
-    reLayout : function( callback ) {
-      this._getColumns('masonry');
-      this._reloadLayout( callback );
-    },
-    
-    _reloadLayout : function( callback ) {
+    _reLayout : function( callback ) {
       // reset columns
       var i = this.cols;
       this.colYs = [];
@@ -317,7 +309,7 @@
     
     reload : function( callback ) {
       this.reloadItems();
-      this.reLayout( callback );
+      this._init( callback );
     },
     
 

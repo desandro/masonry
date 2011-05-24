@@ -9,7 +9,6 @@ toc:
   - { title: destroy, anchor: destroy }
   - { title: layout, anchor: layout }
   - { title: option, anchor: option }
-  - { title: reLayout, anchor: relayout }
   - { title: reloadItems, anchor: reloaditems }
   - { title: reload, anchor: reload }
   - { title: remove, anchor: remove }
@@ -86,7 +85,7 @@ Removes Masonry functionality completely. Returns element back to pre-init state
 
 Positions specified item elements in layout.
 
-`layout` will only position specified elements, and those elements will be positioned at the end of layout. Whereas `reLayout` will position all items in the Masonry instance.
+`layout` will only position specified elements, and those elements will be positioned at the end of layout. Whereas `.masonry()` will position all items in the Masonry instance.
 
 ## option
 
@@ -106,16 +105,6 @@ Sets options for plugin instance. Unlike passing options through `.masonry()`, u
 {% endhighlight %}
 
 
-## reLayout
-
-{% highlight javascript %}
-
-.masonry( 'reLayout', callback )
-
-{% endhighlight %}
-
-Resets layout properties and lays-out every item element.
-
 ## reloadItems
 
 {% highlight javascript %}
@@ -134,7 +123,7 @@ Re-collects all item elements in their current order in the DOM.
 
 {% endhighlight %}
 
-Convenience method for trigging `reloadItems` then `reLayout`. Useful for prepending or inserting items.
+Convenience method for trigging `reloadItems` then `.masonry()`. Useful for prepending or inserting items.
 
 [See Demo: Adding items](../demos/adding-items.html).
 
