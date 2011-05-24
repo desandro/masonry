@@ -156,15 +156,10 @@
 
     option: function( key, value ){
       // set options AFTER initialization:
-    
       // signature: $('#foo').bar({ cool:false });
       if ( $.isPlainObject( key ) ){
         this.options = $.extend(true, this.options, key);
-    
-      // signature: $('#foo').option('cool');  - getter
-      } else {
-        this.options[ key ] = value;
-      }
+      } 
     },
     
     // ====================== General Layout ======================

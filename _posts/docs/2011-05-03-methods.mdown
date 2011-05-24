@@ -103,9 +103,6 @@ Sets options for plugin instance. Unlike passing options through `.masonry()`, u
 // sets multiple options
 .masonry( 'option', { columnWidth: 120, isAnimated: false } )
 
-// set single option
-.isotope( 'option', 'columnWidth', 120 )
-
 {% endhighlight %}
 
 
