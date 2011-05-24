@@ -184,7 +184,7 @@
 
         if ( colSpan === 1 ) {
           // if brick spans only one column, just like singleMode
-          this._placeBrick( $brick, this.cols, this.colYs );
+          this._placeBrick( $brick, this.colYs );
         } else {
           // brick spans more than one column
           // how many different places could this brick fit horizontally
@@ -199,7 +199,7 @@
             groupY[j] = Math.max.apply( Math, groupColY );
           }
         
-          this._placeBrick( $brick, groupCount, groupY );
+          this._placeBrick( $brick, groupY );
         }
       }
       
@@ -255,7 +255,7 @@
 
     },
 
-    _placeBrick : function( $brick, setCount, setY ) {
+    _placeBrick : function( $brick, setY ) {
           // get the minimum Y value from the columns
       var minimumY  = Math.min.apply( Math, setY ),
           setHeight = minimumY + $brick.outerHeight(true),
