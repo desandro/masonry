@@ -31,7 +31,7 @@ toc :
   <dd class="default"><code>{ queue: <span class="kc">false</span>, duration: <span class="mi">500</span> }</code></dd>
 </dl>
 
-Options used for jQuery animation. See the [jQuery API for animate options](http://api.jquery.com/animate/#animate-properties-options) for details.
+Options used for jQuery animation. See the [jQuery API for animate options](http://api.jquery.com/animate/#animate-properties-options) for details. More details in [Animating](animating.html).
 
 ## columnWidth
 
@@ -64,7 +64,7 @@ Adds additional spacing between columns.
   <dd class="default"><code><span class="kc">false</span></code></dd>
 </dl>
 
-Enables jQuery animation on layout changes. [See Docs: Animating](animating.html).
+Enables jQuery animation on layout changes. [See Docs: Animating](animating.html). More details in [Animating](animating.html).
 
 ## isFitWidth
 

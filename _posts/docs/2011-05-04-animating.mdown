@@ -5,14 +5,15 @@ category: docs
 root_path: ../
 layout: default
 toc:
-  - { title: With jQuery, anchor: with_jquery }
-  - { title: With CSS transitions, anchor: with_css_transitions }
+  - { title: jQuery, anchor: jquery }
+  - { title: CSS transitions, anchor: css_transitions }
+  - { title: Modernizr, anchor: modernizr }
 
 ---
 
 Rearrangements can be animated when the container is resized.
 
-## With jQuery
+## jQuery
 
 To animate Masonry layout changes with jQuery, set the `isAnimated` option to `true`.
 
@@ -43,11 +44,11 @@ $('#container').masonry({
 
 {% endhighlight %}
 
-## With CSS transitions
+## CSS transitions
 
-Alternatively, you can rely on CSS3 transitions to animate layout rearrangements.
+Alternatively, you can rely on CSS3 transitions to animate layout rearrangements. Enabling transitions is recommended, as they provide for better browser performance over jQuery animation.
 
-In your the CSS, add transition properties. Masonry will add a class of `masonry` to the container after the first arrangement so transitions can be applied afterward. Item elements will have a class of `masonry-brick` added.
+In your CSS, add transition styles below. The Masonry plugin will add a class of `masonry` to the container after the first arrangement so transitions can be applied afterward. Item elements will have a class of `masonry-brick` added.
 
 [See Demo: Animating with CSS transitions](../demos/animating-css-transitions.html).
 
@@ -77,9 +78,9 @@ In your the CSS, add transition properties. Masonry will add a class of `masonry
 }
 {% endhighlight %}
 
-## With Modernizr
+## Modernizr
 
-But to get the best of both worlds, you can use [Modernizr](http://www.modernizr.com/) to detect browser support for CSS transitions. Then enable `animated` based on its support.
+But to get the best of both worlds, you can use [Modernizr](http://www.modernizr.com/) to detect browser support for CSS transitions. Add the transitions styles above, then enable `animated` based on Modernizr's detected support for transitions.
 
 [See Demo: Animating with Modernizr](../demos/animating-modernizr.html).
 
@@ -91,5 +92,3 @@ $('#container').masonry({
 });
 
 {% endhighlight %}
-
-See [Demo: Animating with Modernizr](../demos/animating-modernizr.html).
