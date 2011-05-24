@@ -245,12 +245,12 @@ button {
   max-width: 640px;
 }
 
-#content h2 {
+.docs #content h2 {
   border-top: 2px solid #FFF;
   padding-top: 10px;
 }
 
-#content h2:target { 
+.docs #content h2:target { 
   background: #D26;
   color: white;
   padding: 10px 5px 5px;
