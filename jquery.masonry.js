@@ -1,5 +1,5 @@
 /**
- * jQuery Masonry v2.0.110517 beta
+ * jQuery Masonry v2.0.110523 beta
  * The flip-side of CSS Floats.
  * jQuery plugin that rearranges item elements to a grid.
  * http://masonry.desandro.com
@@ -423,7 +423,8 @@
         var instance = $.data( this, 'masonry' );
         if ( instance ) {
           // apply options & init
-          instance.option( options || {} )._init();
+          instance.option( options || {} );
+          instance._init();
         } else {
           // initialize new instance
           $.data( this, 'masonry', new $.Mason( options, this ) );
