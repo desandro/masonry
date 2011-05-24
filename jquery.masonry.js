@@ -165,8 +165,6 @@
       } else {
         this.options[ key ] = value;
       }
-    
-      return this; // make sure to return the instance!
     },
     
     // ====================== General Layout ======================
@@ -236,8 +234,6 @@
       }
       
       this.isLaidOut = true;
-
-      return this;
     },
     
     // calculates number of columns
@@ -256,8 +252,6 @@
 
       this.cols = Math.floor( ( containerWidth + this.options.gutterWidth ) / this.columnWidth );
       this.cols = Math.max( this.cols, 1 );
-
-      return this;
 
     },
 
@@ -424,7 +418,7 @@
       // call method
       var args = Array.prototype.slice.call( arguments, 1 );
 
-      return this.each(function(){
+      this.each(function(){
         var instance = $.data( this, 'masonry' );
         if ( !instance ) {
           return $.error( "cannot call methods on masonry prior to initialization; " +
@@ -437,7 +431,7 @@
         instance[ options ].apply( instance, args );
       });
     } else {
-      return this.each(function() {
+      this.each(function() {
         var instance = $.data( this, 'masonry' );
         if ( instance ) {
           // apply options & init
@@ -448,6 +442,7 @@
         }
       });
     }
+    return this;
   };
 
 })( window, jQuery );
