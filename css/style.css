@@ -190,9 +190,9 @@ p code {
 
 pre {
   padding: 10px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
 }
 
 ul, ol { padding-left: 1.3em;}
@@ -411,7 +411,40 @@ button {
   color: #FFF;
 }
 
+/* Homepage */
 
+.homepage .item {
+  width: 180px;
+  float: left;
+  padding: 10px;
+  margin: 10px;
+  background: #D8D5D2;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 1.2em;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+
+.homepage .link {
+  padding: 0;
+}
+
+.homepage .link a {
+  display: block;
+  padding: 10px;
+  width: 180px;
+  background: #D26;
+  color: white;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+
+.homepage .link a:hover {
+  background: #A2C;
+}
 
 /* Tumblelog example */
 
