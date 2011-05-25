@@ -472,6 +472,17 @@ button {
   color: white;
 }
 
+.homepage .loading {
+  background: black;
+  color: #D8D5D2;
+}
+
+.homepage .loading img {
+  float: left; 
+  padding-right: 5px;
+  width: 54px;
+}
+
 /* mini example */
 
 .homepage .mini div {
