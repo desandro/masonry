@@ -15,7 +15,7 @@ toc:
 
 ---
 
-Masonry offers several methods to extend functionality. Isotope's methods follow the jQuery UI pattern.
+Masonry offers several methods to extend functionality. Masonry's methods follow the jQuery UI pattern.
 
 {% highlight javascript %}
 
@@ -146,7 +146,7 @@ $('#container').prepend( $boxes ).masonry( 'reload' );
 
 {% highlight javascript %}
 
-.isotope( 'remove', $items )
+.masonry( 'remove', $items )
 
 {% endhighlight %}
 
