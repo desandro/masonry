@@ -32,7 +32,7 @@ $('#container').masonry( 'methodName', [optionalParameters] )
 
 {% endhighlight %}
 
-Convenience method for trigging `layout` on item elements that have been appended to the container.
+Triggers `layout` on item elements that have been appended to the container.
 
 [See Demo: Adding items](../demos/adding-items.html).
 
@@ -43,7 +43,7 @@ $('#container').append( $boxes ).masonry( 'appended', $boxes );
 
 {% endhighlight %}
 
-Setting the `isAnimatedFromBottom` argument to <code><span class="kc">true</span></code> will enable the newly appended items to be animated from the bottom.
+Setting the `isAnimatedFromBottom` argument to <code><span class="kc">true</span></code> will enable the newly appended items to be animated from the bottom, if animation is enabled.
 
 {% highlight javascript %}
 
@@ -81,7 +81,7 @@ $container.infinitescroll({
 
 {% endhighlight %}
 
-Removes Masonry functionality completely. Returns element back to pre-init state.
+Removes Masonry functionality completely. Returns element back to pre-initialized state.
 
 ## layout
 
@@ -107,7 +107,7 @@ Sets options for plugin instance. Unlike passing options through `.masonry()`, u
 
 {% highlight javascript %}
 
-// sets multiple options
+// set multiple options
 .masonry( 'option', { columnWidth: 120, isAnimated: false } )
 
 {% endhighlight %}
@@ -131,7 +131,7 @@ Re-collects all item elements in their current order in the DOM.
 
 {% endhighlight %}
 
-Convenience method for trigging `reloadItems` then `.masonry()`. Useful for prepending or inserting items.
+Convenience method for triggering `reloadItems` then `.masonry()`. Useful for prepending or inserting items.
 
 [See Demo: Adding items](../demos/adding-items.html).
 
