@@ -80,7 +80,7 @@ In your CSS, add transition styles below. The Masonry plugin will add a class of
 
 ## Modernizr
 
-But to get the best of both worlds, you can use [Modernizr](http://www.modernizr.com/) to detect browser support for CSS transitions. Add the transitions styles above, then enable `animated` based on Modernizr's detected support for transitions.
+To get the best of both worlds, you can use [Modernizr](http://www.modernizr.com/) to detect browser support for CSS transitions. Add the transitions styles above, then enable `animated` based on Modernizr's detected support for transitions. This will allow browsers that support CSS transitions to use them, and browsers without support to use jQuery animation.
 
 [See Demo: Animating with Modernizr](../demos/animating-modernizr.html).
 
