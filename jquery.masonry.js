@@ -1,7 +1,7 @@
 /**
  * jQuery Masonry v2.0.110523 beta
- * The flip-side of CSS Floats.
- * jQuery plugin that rearranges item elements to a grid.
+ * A dynamic layout plugin for jQuery
+ * The flip-side of CSS Floats
  * http://masonry.desandro.com
  *
  * Licensed under the MIT license.

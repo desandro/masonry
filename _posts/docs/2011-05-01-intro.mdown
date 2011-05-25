@@ -13,7 +13,7 @@ toc:
 
 ---
 
-Masonry is a dynamic layout plugin for jQuery. Think of it as the flip-side of CSS floats. Whereas floating arranges elements horizontally then vertically, Masonry arranges elements vertically, positioning each element in the next open spot in a grid. The result minimizes vertical gaps between elements of varying height, just like a mason fitting stones in a wall.
+Masonry is a dynamic grid layout plugin for jQuery. Think of it as the flip-side of CSS floats. Whereas floating arranges elements horizontally then vertically, Masonry arranges elements vertically, positioning each element in the next open spot in the grid. The result minimizes vertical gaps between elements of varying height, just like a mason fitting stones in a wall.
 
 ## Getting started
 
