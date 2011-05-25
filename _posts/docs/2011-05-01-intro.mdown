@@ -115,7 +115,7 @@ This project lives on GitHub at [github.com/desandro/masonry](http://github.com/
   <dt>v2.0: May 2011</dt>
     <dd>Complete re-write. Uses <code>$.Mason</code> constructor, like jQuery UI widget</dd>
     <dd>Add options <code>gutterWidth</code>, <code>isFitWidth</code> for centering layout, <code>isRTL</code> for right-to-left layout</dd>
-    <dd>Add all new methods like <code>appended</code>, <code>reLayout</code>, and <code>reload</code></dd>
+    <dd>Add all new methods like <code>appended</code>, and <code>reload</code></dd>
     <dd>Remove filtering demos</dd>
   <dt>v1.3: 3 Sep 2010</dt>
     <dd>Revamped <code>appendedContent</code> to work with container elements.  Plays nice with latest Infinite Scroll.</dd>
