@@ -86,7 +86,7 @@ mini_bricks:
       isAnimated: !Modernizr.csstransitions
     });
     
-    // Sites using Isotope markup
+    // Sites using Masonry markup
     var $sites = $('#sites'),
         $loadingItem = $container.find('.loading');
         
@@ -94,7 +94,7 @@ mini_bricks:
       $loadingItem.text('Could not load examples :(');
     };
     
-    // dynamically load sites using Isotope from Ember app
+    // dynamically load sites using Masonry from Ember app
     $.getJSON('http://api.emberapp.com/users/view/' + 
                 'desandro/collections/view/jquery-masonry.json?callback=?')
       .error( ajaxError )
