@@ -10,8 +10,10 @@
   <link rel="stylesheet" href="{{ page.root_path }}css/style.css" />
   
   {% if page.has_modernizr %}
-    <script src="{{ page.root_path }}js/modernizr-transitions.js"></script>
+  <script src="{{ page.root_path }}js/modernizr-transitions.js"></script>
   {% endif %}
+  <script src="http://desandro.com/mint/?js"></script> <!-- analytics -->
+
   <!-- scripts at bottom of page -->
 
 </head>
@@ -71,7 +73,6 @@
   </section> <!-- #content -->
 
   <!-- analytics -->
-  <script src="http://desandro.com/mint/?js"></script>
   <script>
     var _gaq=[['_setAccount','UA-592624-3'],['_setDomainName', '.desandro.com'],['_trackPageview'],['_trackPageLoadTime']];
     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
