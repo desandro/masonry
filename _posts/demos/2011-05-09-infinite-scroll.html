@@ -3,7 +3,6 @@ title: Infinite Scroll
 category: demos
 layout: default
 root_path: ../
-has_modernizr: true
 ---
 
 <div id="copy">
@@ -240,8 +239,7 @@ has_modernizr: true
     $container.imagesLoaded(function(){
       $container.masonry({
         itemSelector: '.box',
-        columnWidth: 100,
-        isAnimated: !Modernizr.csstransitions
+        columnWidth: 100
       });
     });
     
