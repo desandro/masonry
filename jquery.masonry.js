@@ -79,13 +79,15 @@
 
   $.Mason.prototype = {
 
+    _filterFindBricks: function( $elems ) {
+      var selector = this.options.itemSelector;
+      // if there is a selector
+      // filter/find appropriate item elements
+      return !selector ? $elems : $elems.filter( selector ).add( $elems.find( selector ) );
+    },
+
     _getBricks: function( $elems ) {
-      var selector = this.options.itemSelector,
-          // if there is a selector
-          // filter/find appropriate item elements
-          $bricks = !selector ? $elems : 
-            $elems.filter( selector ).add( $elems.find( selector ) );
-      $bricks
+      var $bricks = this._filterFindBricks( $elems )
         .css({ position: 'absolute' })
         .addClass('masonry-brick');
       return $bricks;
@@ -121,7 +123,7 @@
       this.element.prepend( $cursor );
       this.offset.y = Math.round( $cursor.position().top );
       // get horizontal offset
-      if ( this.options.isRTL ) {
+      if ( !this.options.isRTL ) {
         this.offset.x = Math.round( $cursor.position().left );
       } else {
         $cursor.css({ 'float': 'right', display: 'inline-block'});
@@ -314,7 +316,20 @@
     
 
     // convienence method for working with Infinite Scroll
-    appended : function( $content, callback ) {
+    appended : function( $content, isAnimatedFromBottom, callback ) {
+      if ( isAnimatedFromBottom ) {
+        // set new stuff to the bottom
+        this._filterFindBricks( $content ).css({ top: this.element.height() });
+        var instance = this;
+        setTimeout( function(){
+          instance._appended( $content, callback );
+        }, 1 );
+      } else {
+        this._appended( $content, callback );
+      }
+    },
+    
+    _appended : function( $content, callback ) {
       var $newBricks = this._getBricks( $content );
       // add new bricks to brick pool
       this.$bricks = this.$bricks.add( $newBricks );

@@ -22,7 +22,8 @@ mini_bricks:
 <div id="container" class="transitions-enabled clearfix">
   
   <div class="item big-text col2">
-    This layout was made with Masonry<br />
+    A dynamic layout plugin for jQuery<br />
+    The flip-side of CSS floats<br />
     <br />
     &larr; View docs and demos
   </div>
@@ -61,7 +62,7 @@ mini_bricks:
     <a href="https://github.com/desandro/masonry">Masonry on GitHub</a>
   </div>
   
-  <div class="item big-text loading col2">
+  <div class="item big-text loading">
     <img src="http://i.imgur.com/6RMhx.gif" />
     Loading Examples
   </div>
@@ -118,10 +119,10 @@ mini_bricks:
         }
         
         var $items = $( items.join('') );
-        
         $items.imagesLoaded(function(){
-          $loadingItem.text('Sites using Masonry');
-          $container.append( $items ).masonry( 'reload' );
+          $container
+            .masonry( 'remove', $loadingItem ).masonry()
+            .append( $items ).masonry( 'appended', $items, true );
         });
         
       });

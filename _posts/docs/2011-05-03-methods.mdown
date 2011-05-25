@@ -28,7 +28,7 @@ $('#container').masonry( 'methodName', [optionalParameters] )
 
 {% highlight javascript %}
 
-.masonry( 'appended', $content )
+.masonry( 'appended', $content, isAnimatedFromBottom )
 
 {% endhighlight %}
 
@@ -40,6 +40,14 @@ Convenience method for trigging `layout` on item elements that have been appende
 
 var $boxes = $('<div class="box"/><div class="box"/><div class="box"/>');
 $('#container').append( $boxes ).masonry( 'appended', $boxes );
+
+{% endhighlight %}
+
+Setting the `isAnimatedFromBottom` argument to <code><span class="kc">true</span></code> will enable the newly appended items to be animated from the bottom.
+
+{% highlight javascript %}
+
+$('#container').append( $boxes ).masonry( 'appended', $boxes, true );
 
 {% endhighlight %}
 

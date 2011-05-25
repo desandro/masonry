@@ -260,21 +260,10 @@ has_modernizr: true
       // call Masonry as a callback
       function( newElements ) {
         var $newElems = $( newElements );
-        // position elements at the bottom center
-        $newElems.css({
-          left: $container.width() / 2,
-          top: $container.height(),
-        })
-        
-        // pause so it appears new items get added from bottom 
-        setTimeout( function(){
-          // ensure that images load before adding to masonry layout
-          $newElems.imagesLoaded(function(){
-            $container.masonry( 'appended', $newElems ); 
-          });
-          
-        }, 10 );
-        
+        // ensure that images load before adding to masonry layout
+        $newElems.imagesLoaded(function(){
+          $container.masonry( 'appended', $newElems, true ); 
+        });
       }
     );
     
