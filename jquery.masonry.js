@@ -1,5 +1,5 @@
 /**
- * jQuery Masonry v2.0.110523 beta
+ * jQuery Masonry v2.0.110524 beta
  * A dynamic layout plugin for jQuery
  * The flip-side of CSS Floats
  * http://masonry.desandro.com
