@@ -1,5 +1,5 @@
 /**
- * jQuery Masonry v2.0.110524 beta
+ * jQuery Masonry v2.0.110524
  * A dynamic layout plugin for jQuery
  * The flip-side of CSS Floats
  * http://masonry.desandro.com
@@ -251,7 +251,8 @@
 
     _placeBrick : function( $brick, setY ) {
       // get the minimum Y value from the columns
-      var minimumY  = Math.min.apply( Math, setY );
+      var minimumY = Math.min.apply( Math, setY ),
+          shortCol = 0;
       
       // Find index of short column, the first from the left
       for (var i=0, len = setY.length; i < len; i++) {
@@ -259,7 +260,7 @@
           shortCol = i;
           break;
         }
-      };
+      }
 
       // position the brick
       var position = {
