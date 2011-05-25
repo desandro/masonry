@@ -414,17 +414,21 @@ button {
 /* Homepage */
 
 .homepage .item {
-  width: 180px;
+  width: 200px;
   float: left;
   padding: 10px;
   margin: 10px;
   background: #D8D5D2;
   font-weight: 300;
-  font-size: 24px;
-  line-height: 1.2em;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
+}
+
+.homepage .big-text,
+.homepage .link {
+  font-size: 24px;
+  line-height: 1.2em;
 }
 
 .homepage .link {
@@ -434,7 +438,7 @@ button {
 .homepage .link a {
   display: block;
   padding: 10px;
-  width: 180px;
+  width: 200px;
   background: #D26;
   color: white;
   -webkit-border-radius: 5px;
@@ -445,6 +449,49 @@ button {
 .homepage .link a:hover {
   background: #A2C;
 }
+
+.homepage .col2 {
+  width: 440px;
+}
+
+.homepage .example {
+  padding: 0;
+  width: 220px;
+  background: transparent;
+}
+
+.homepage .example a { display: block; }
+
+.homepage .example img {
+  display: block;
+  width: 100%;
+}
+
+.homepage .example a:hover { 
+  background: #D26;
+  color: white;
+}
+
+/* mini example */
+
+.homepage .mini div {
+  float: left;
+  background: white;
+  margin: 3px;
+  color: #D8D5D2;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 46px;
+  text-align: center;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+}
+
+.homepage .mini .w1 { width: 44px; }
+.homepage .mini .h1 { height: 44px; }
+.homepage .mini .w2 { width: 94px; }
+.homepage .mini .h2 { height: 94px; }
 
 /* Tumblelog example */
 

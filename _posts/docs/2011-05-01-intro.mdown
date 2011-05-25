@@ -13,7 +13,7 @@ toc:
 
 ---
 
-Masonry is a dynamic layout plugin for jQuery. Think of it as the flip side of CSS floats. Whereas floating arranges elements horizontally then vertically, Masonry arranges elements vertically then horizontally according to a grid. The result minimizes vertical gaps between elements of varying height, just like a mason fitting stones in a wall.
+Masonry is a dynamic layout plugin for jQuery. Think of it as the flip-side of CSS floats. Whereas floating arranges elements horizontally then vertically, Masonry arranges elements vertically, positioning each element in the next open spot in a grid. The result minimizes vertical gaps between elements of varying height, just like a mason fitting stones in a wall.
 
 ## Getting started
 
@@ -50,8 +50,8 @@ All sizing of items is handled by your CSS. Items should be floated.
 {% highlight css %}
 
 .item {
-  width: 90px;
-  margin: 5px;
+  width: 220px;
+  margin: 10px;
   float: left;
 }
 
@@ -59,20 +59,24 @@ All sizing of items is handled by your CSS. Items should be floated.
 
 ### Script
 
+It is recommended you specify an `itemSelector` and `columnWidth`. There are a number of other [options](options.html) you can specify.
+
 {% highlight javascript %}
 
 $(function(){
   $('#container').masonry({
     // options
-    itemSelector : '.item'
+    itemSelector : '.item',
+    columnWidth : 240
   });
 });
 
 {% endhighlight %}
 
+That's it!
+
 [**See Demo: Basic**](../demos/basic.html)
 
-There are a number of [options](options.html) you can specify.
 
 ### imagesLoaded plugin
 
@@ -83,8 +87,8 @@ If your content contains any images, you'll want to ensure that Masonry is trigg
 var $container = $('#container');
 $container.imagesLoaded(function(){
   $container.masonry({
-    // options
-    itemSelector : '.item'
+    itemSelector : '.item',
+    columnWidth : 240
   });
 });
 

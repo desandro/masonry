@@ -3,29 +3,67 @@ title: jQuery Masonry
 layout: default
 category: homepage
 has_modernizr: true
+mini_bricks: 
+  - w1 h1
+  - w1 h1
+  - w1 h2
+  - w1 h1
+  - w2 h1
+  - w1 h2
+  - w1 h1
+  - w2 h2
+  - w2 h1
+  - w1 h1
+  - w2 h2
+  - w2 h1
 ---
 
 
 <div id="container" class="transitions-enabled clearfix">
   
-  <div class="item col2">
+  <div class="item big-text col2">
+    This layout was made with Masonry<br />
+    <br />
     &larr; View docs and demos
   </div>
   
-  <div class="item">
+  <!-- <div class="item big-text">
     The flip-side of CSS floats
+  </div> -->
+  
+  <div class="item big-text">
+    Before: CSS Floats
+    <div class="mini">
+      {% for brick in page.mini_bricks %}
+        <div class="{{ brick }}">{{ forloop.index }}</div>
+      {% endfor %}
+    </div>
   </div>
   
-  <div class="item col2 link">
-    <a href="https://github.com/desandro/masonry">Masonry on GitHub</a>
+  <div class="item big-text">
+    After: Masonry
+    <div id="mini-container" class="mini">
+      {% for brick in page.mini_bricks %}
+        <div class="{{ brick }}">{{ forloop.index }}</div>
+      {% endfor %}
+    </div>
   </div>
   
-  <div class="item col2 link">
+  <div class="item link">
     <a href="jquery.masonry.min.js">Download the script jquery.&#8203;masonry.&#8203;min.js</a>
   </div>
   
-  <div class="item col2 link">
+  <div class="item link">
     <a href="#">Download this project</a>
+  </div>
+  
+  <div class="item link">
+    <a href="https://github.com/desandro/masonry">Masonry on GitHub</a>
+  </div>
+  
+  <div class="item big-text loading col2">
+    <img src="http://i.imgur.com/6RMhx.gif" />
+    Loading Examples
   </div>
   
 </div> <!-- #container -->
@@ -35,11 +73,58 @@ has_modernizr: true
 <script>
   $(function(){
     
-    $('#container').masonry({
+    var $container = $('#container');
+    
+    $('#mini-container').masonry({
+      columnWidth: 50
+    });
+    
+    $container.masonry({
       itemSelector: '.item',
-      columnWidth: 220,
+      columnWidth: 240,
       isAnimated: !Modernizr.csstransitions
     });
+    
+    // Sites using Isotope markup
+    var $sites = $('#sites'),
+        $loadingItem = $container.find('.loading');
+        
+    var ajaxError = function(){
+      $loadingItem.text('Could not load examples :(');
+    };
+    
+    // dynamically load sites using Isotope from Ember app
+    $.getJSON('http://api.emberapp.com/users/view/' + 
+                'desandro/collections/view/jquery-masonry.json?callback=?')
+      .error( ajaxError )
+      .success(function( data ){
+        
+        // proceed only if we have images
+        if ( !data.response || !data.response.images ) {
+          ajaxError();
+          return;
+        }
+        var images = data.response.images,
+            items = [],
+            item, image;
+        
+        for ( var i=0, len = images.length; i < len; i++ ) {
+          image = images[i];
+          item = '<div class="item example"><a href="' + image.url + '">'
+            + '<img src="' + image.file.src.replace('/m.', '/s.') + '" />'
+            + '<b>' + image.name + '</b>'
+            + '</a></div>';
+          items.push( item );
+        }
+        
+        var $items = $( items.join('') );
+        
+        $items.imagesLoaded(function(){
+          $loadingItem.text('Sites using Masonry');
+          $container.append( $items ).masonry( 'reload' );
+        });
+        
+      });
     
   });
 </script>
