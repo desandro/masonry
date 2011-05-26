@@ -1,5 +1,5 @@
 /**
- * jQuery Masonry v2.0.110524
+ * jQuery Masonry v2.0.110526
  * A dynamic layout plugin for jQuery
  * The flip-side of CSS Floats
  * http://masonry.desandro.com
@@ -383,7 +383,13 @@
     var elems = this.find('img'),
         len   = elems.length,
         blank = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==",
-        _this = this;
+        _this = this,
+        loadImage = function(){
+          if ( --len <= 0 && this.src !== blank ) {
+            callback.call( _this );
+            elems.unbind( 'load', loadImage )
+          }
+        };
 
     // if no images, trigger immediately
     if ( !len ) {
@@ -391,11 +397,7 @@
       return this;
     }
     
-    elems.bind('load', function() {
-      if ( --len <= 0 && this.src !== blank ) {
-        callback.call( _this ); 
-      }
-    }).each(function(){
+    elems.bind( 'load', loadImage ).each(function(){
       // cached images don't fire load sometimes, so we reset src.
       if (this.complete || this.complete === undefined){
         var src = this.src;
