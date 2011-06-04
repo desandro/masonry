@@ -411,6 +411,14 @@
     return this;
   };
 
+
+  // helper function for logging errors
+  // $.error breaks jQuery chaining
+  var logError = function( message ) {
+    if ( this.console ) {
+      console.error( message );
+    }
+  };
   
   // =======================  Plugin bridge  ===============================
   // leverages data method to either create or return $.Mason constructor
@@ -427,11 +435,13 @@
       this.each(function(){
         var instance = $.data( this, 'masonry' );
         if ( !instance ) {
-          return $.error( "cannot call methods on masonry prior to initialization; " +
+          logError( "cannot call methods on masonry prior to initialization; " +
             "attempted to call method '" + options + "'" );
+          return;
         }
         if ( !$.isFunction( instance[options] ) || options.charAt(0) === "_" ) {
-          return $.error( "no such method '" + options + "' for masonry instance" );
+          logError( "no such method '" + options + "' for masonry instance" );
+          return;
         }
         // apply method
         instance[ options ].apply( instance, args );
