@@ -34,7 +34,8 @@ If you've tried everything and would really like to get my eyes looking at your 
 ## Additional resources
 
 + The [Metafizzy blog](http://metafizzy.co/blog/) has posts that cover specialized use cases
-+ [Sites using Masonry](http://www.delicious.com/desandro/jquerymasonry)
++ [Sites using Masonry on Delicious](http://www.delicious.com/desandro/jquerymasonry)
++ [Sites using Masonry on Zootool](http://zootool.com/user/desandro/tag:masonry) (has screenshots)
 + [Stack Overflow questions about Masonry](http://stackoverflow.com/search?q=masonry)
 
 ## Unloaded media and overlapping

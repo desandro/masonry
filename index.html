@@ -94,26 +94,26 @@ mini_bricks:
       $loadingItem.text('Could not load examples :(');
     };
     
-    // dynamically load sites using Masonry from Ember app
-    $.getJSON('http://api.emberapp.com/users/view/' + 
-                'desandro/collections/view/jquery-masonry.json?callback=?')
+    // dynamically load sites using Masonry from Zootool
+    $.getJSON('http://zootool.com/api/users/items/?username=desandro' +
+        '&apikey=8b604e5d4841c2cd976241dd90d319d7' +
+        '&tag=bestofmasonry&callback=?')
       .error( ajaxError )
       .success(function( data ){
         
-        // proceed only if we have images
-        if ( !data.response || !data.response.images ) {
+        // proceed only if we have data
+        if ( !data || !data.length ) {
           ajaxError();
           return;
         }
-        var images = data.response.images,
-            items = [],
-            item, image;
+        var items = [],
+            item, datum;
         
-        for ( var i=0, len = images.length; i < len; i++ ) {
-          image = images[i];
-          item = '<div class="item example"><a href="' + image.url + '">'
-            + '<img src="' + image.file.src.replace('/m.', '/s.') + '" />'
-            + '<b>' + image.name + '</b>'
+        for ( var i=0, len = data.length; i < len; i++ ) {
+          datum = data[i];
+          item = '<div class="item example"><a href="' + datum.url + '">'
+            + '<img src="' + datum.image.replace('/l.', '/m.') + '" />'
+            + '<b>' + datum.title + '</b>'
             + '</a></div>';
           items.push( item );
         }
