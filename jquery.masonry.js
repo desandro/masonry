@@ -392,8 +392,8 @@
   $.fn.imagesLoaded = function( callback ){
     var elems = this.find( 'img' ),
         elems_src = [],
+        self = this,
         len = elems.length;
-
 
     if ( !elems.length ) {
       callback.call( this );
@@ -406,7 +406,7 @@
         len = elems.length;
         elems.one( 'load error', function() {
           if ( --len === 0 ) {
-            callback.call( elems, this );
+            callback.call( self );
           }
         }).each(function() {
           this.src = elems_src.shift();
