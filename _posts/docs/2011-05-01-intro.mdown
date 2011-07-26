@@ -2,7 +2,6 @@
 
 title: Introduction
 category: docs
-root_path: ../
 layout: default
 toc:
   - { title: Getting started, anchor: getting_started }

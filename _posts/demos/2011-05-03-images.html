@@ -2,7 +2,6 @@
 title: Images
 layout: default
 category: demos
-root_path: ../
 photos:
   - <a href="http://www.flickr.com/photos/nemoorange/5013039951/" title="Stanley by Dave DeSandro, on Flickr"><img src="http://farm5.static.flickr.com/4113/5013039951_3a47ccd509.jpg" alt="Stanley" /></a>
   - <a href="http://www.flickr.com/photos/nemoorange/5013039885/" title="Officer by Dave DeSandro, on Flickr"><img src="http://farm5.static.flickr.com/4131/5013039885_0d16ac87bc.jpg" alt="Officer" /></a>
@@ -41,8 +40,8 @@ $container.imagesLoaded( function(){
   <a href="../pages/2.html"></a>
 </nav>
 
-<script src="{{ page.root_path }}{{ site.jquery_js }}"></script>
-<script src="{{ page.root_path }}{{ site.masonry_js }}"></script>
+<script src="../{{ site.jquery_js }}"></script>
+<script src="../{{ site.masonry_js }}"></script>
 <script>
   $(function(){
 
