@@ -3,4 +3,4 @@ permalink: /:categories/:title.html
 pygments: true
 masonry_js: jquery.masonry.min.js
 jquery_js: js/jquery-1.6.1.min.js
-exclude: [ Makefile, notes.mdown ]
+exclude: [ minify.sh, notes.mdown ]
