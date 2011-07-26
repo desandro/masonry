@@ -11,6 +11,8 @@ toc:
   - { title: Unloaded media and overlapping, anchor: unloaded_media_and_overlapping }
   - { title: @font-face fonts, anchor: fontface_fonts }
   - { title: Filtering, anchor: filtering }
+  - { title: Getting data, anchor: getting_data }
+  - { title: Other frameworks, anchor: other_frameworks }
 
 ---
 
@@ -37,6 +39,7 @@ If you've tried everything and would really like to get my eyes looking at your 
 + [Sites using Masonry on Delicious](http://www.delicious.com/desandro/jquerymasonry)
 + [Sites using Masonry on Zootool](http://zootool.com/user/desandro/tag:masonry) (has screenshots)
 + [Stack Overflow questions about Masonry](http://stackoverflow.com/search?q=masonry)
++ Other resources that are [like Masonry but not](http://www.delicious.com/desandro/likemasonrybutnot)
 
 ## Unloaded media and overlapping
 
@@ -84,3 +87,18 @@ Both Typekit and Google WebFont Loader provide font events to control scripts ba
 ## Filtering
 
 Filtering with Masonry is officially unsupported as of v2.0. Use [Isotope](http://isotope.metafizzy.co) instead. Isotope shares a majority Masonry's features. It also has additional powerful features like filtering and sorting built right in, so you probably won't be missing any functionality.
+
+## Getting data
+
+You can access all the options and properties in a Masonry instance using the `.data()` method with the namespace `'masonry'`.
+
+{% highlight javascript %}
+
+$('#container').data('masonry');
+
+{% endhighlight %}
+
+## Other frameworks
+
++ [mooMasonry for MooTools](http://mootools.net/forge/p/moomasonry)
++ [Prototype Masonry for Prototype JS](http://www.sthoughts.com/prototype-masonry/)
