@@ -3,7 +3,6 @@
 title: Methods
 category: docs
 layout: default
-root_path: ../
 toc:
   - { title: appended, anchor: appended }
   - { title: destroy, anchor: destroy }

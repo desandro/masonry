@@ -548,7 +548,20 @@ button {
   border-radius: 10px;
 }
 
+/**** Fluid ****/
 
+#container.fluid  {
+  padding: 5px 0;
+}
+
+.fluid .box {
+  margin: 5px 1%;
+  padding: 5px 1%;
+}
+
+.fluid .box.col1 { width: 16%; }
+.fluid .box.col2 { width: 36%; }
+.fluid .box.col3 { width: 56%; }
 
 /**** Pygments ****/
 

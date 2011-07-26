@@ -3,7 +3,6 @@
 title: Options
 category: docs
 layout: default
-root_path: ../
 body_class: options
 toc :
   - { title: animationOptions, anchor: animationoptions }
