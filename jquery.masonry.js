@@ -1,5 +1,5 @@
 /**
- * jQuery Masonry v2.0.110721
+ * jQuery Masonry v2.0.110808
  * A dynamic layout plugin for jQuery
  * The flip-side of CSS Floats
  * http://masonry.desandro.com
@@ -108,7 +108,7 @@
       this.originalStyle = {};
       for ( var i=0, len = masonryContainerStyles.length; i < len; i++ ) {
         var prop = masonryContainerStyles[i];
-        this.originalStyle[ prop ] = elemStyle[ prop ] || null;
+        this.originalStyle[ prop ] = elemStyle[ prop ] || '';
       }
 
       this.element.css({
@@ -349,9 +349,9 @@
       this.$bricks
         .removeClass('masonry-brick')
         .each(function(){
-          this.style.position = null;
-          this.style.top = null;
-          this.style.left = null;
+          this.style.position = '';
+          this.style.top = '';
+          this.style.left = '';
         });
       
       // re-apply saved container styles
