@@ -74,7 +74,7 @@ $(function(){
 
 That's it!
 
-[**See Demo: Basic**](../demos/basic.html)
+[**See Demo: Basic multi-column**](../demos/basic-multi-column.html)
 
 
 ### imagesLoaded plugin
