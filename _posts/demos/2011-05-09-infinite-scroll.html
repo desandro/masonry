@@ -246,15 +246,12 @@ layout: default
       navSelector  : '#page-nav',    // selector for the paged navigation 
       nextSelector : '#page-nav a',  // selector for the NEXT link (to page 2)
       itemSelector : '.box',     // selector for all items you'll retrieve
-      donetext  : 'No more pages to load.',
-      loadingImg : 'http://i.imgur.com/6RMhx.gif',
-      debug: false,
-      errorCallback: function() { 
-        // fade out the error message after 2 seconds
-        $('#infscr-loading').animate({opacity: .8},2000).fadeOut('normal');   
-      }
+      loading: {
+          finishedMsg: 'No more pages to load.',
+          img: 'http://i.imgur.com/6RMhx.gif'
+        }
       },
-      // call Masonry as a callback
+      // trigger Masonry as a callback
       function( newElements ) {
         var $newElems = $( newElements );
         // ensure that images load before adding to masonry layout

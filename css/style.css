@@ -533,19 +533,19 @@ button {
 
 /* Infinite Scroll loader */
 #infscr-loading { 
-  z-index: 5000;
+  text-align: center;
+  z-index: 100;
   position: fixed;
-  left: 40%;
+  left: 45%;
   bottom: 40px;
   width: 200px;
-  height: 100px;
   padding: 10px;
   background: #000; 
   opacity: 0.8;
   color: #FFF;
-  -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
-  border-radius: 10px;
+     -moz-border-radius: 10px;
+          border-radius: 10px;
 }
 
 /**** Fluid ****/
