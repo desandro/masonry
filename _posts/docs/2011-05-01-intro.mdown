@@ -79,7 +79,7 @@ That's it!
 
 ### imagesLoaded plugin
 
-If your content contains any images, you'll want to ensure that Masonry is triggered after all the images your content has loaded. The included imagesLoaded plugin makes this easy.
+If your content contains any images, you'll want to ensure that Masonry is triggered after all the images your content has loaded. The included [imagesLoaded plugin](https://github.com/desandro/imagesloaded) makes this easy.
 
 {% highlight javascript %}
 
