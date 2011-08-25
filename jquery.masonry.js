@@ -1,5 +1,5 @@
 /**
- * jQuery Masonry v2.0.110808
+ * jQuery Masonry v2.0.110825
  * A dynamic layout plugin for jQuery
  * The flip-side of CSS Floats
  * http://masonry.desandro.com
@@ -373,50 +373,49 @@
   };
   
   
-  // ======================= imagesLoaded Plugin  ===============================
-  // https://gist.github.com/964345
+  // ======================= imagesLoaded Plugin ===============================
+  // https://github.com/desandro/imagesloaded
 
-  // $('img.photo',this).imagesLoaded(myFunction)
+  // $('#my-container').imagesLoaded(myFunction)
   // execute a callback when all images have loaded.
   // needed because .load() doesn't work on cached images
 
-  // modified by yiannis chatzikonstantinou.
+  // callback function gets image collection as argument
+  //  `this` is the container
 
-  // original:
-  // mit license. paul irish. 2010.
-  // webkit fix from Oren Solomianik. thx!
+  // original: mit license. paul irish. 2010.
+  // contributors: Oren Solomianik, David DeSandro, Yiannis Chatzikonstantinou
 
-  // callback function is passed the last image to load
-  //   as an argument, and the collection as `this`
+  $.fn.imagesLoaded = function( callback ) {
+    var $images = this.find('img'),
+        len = $images.length,
+        _this = this,
+        blank = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 
-  $.fn.imagesLoaded = function( callback ){
-    var elems = this.find( 'img' ),
-        elems_src = [],
-        self = this,
-        len = elems.length;
-
-    if ( !elems.length ) {
-      callback.call( this );
-      return this;
+    function triggerCallback() {
+      callback.call( _this, $images );
     }
 
-    elems.one('load error', function() {
-      if ( --len === 0 ) {
-        // Rinse and repeat.
-        len = elems.length;
-        elems.one( 'load error', function() {
-          if ( --len === 0 ) {
-            callback.call( self );
-          }
-        }).each(function() {
-          this.src = elems_src.shift();
-        });
+    function imgLoaded() {
+      if ( --len <= 0 && this.src !== blank ){
+        setTimeout( triggerCallback );
+        $images.unbind( 'load error', imgLoaded );
       }
-    }).each(function() {
-      elems_src.push( this.src );
-      // webkit hack from http://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
-      // data uri bypasses webkit log warning (thx doug jones)
-      this.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+    }
+
+    if ( !len ) {
+      triggerCallback();
+    }
+
+    $images.bind( 'load error',  imgLoaded ).each( function() {
+      // cached images don't fire load sometimes, so we reset src.
+      if (this.complete || this.complete === undefined){
+        var src = this.src;
+        // webkit hack from http://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
+        // data uri bypasses webkit log warning (thx doug jones)
+        this.src = blank;
+        this.src = src;
+      }
     });
 
     return this;
