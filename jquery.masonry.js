@@ -374,26 +374,32 @@
   
   
   // ======================= imagesLoaded Plugin ===============================
-  // https://github.com/desandro/imagesloaded
+  /*!
+   * jQuery imagesLoaded plugin v1.0.3
+   * http://github.com/desandro/imagesloaded
+   *
+   * MIT License. by Paul Irish et al.
+   */
+
 
   // $('#my-container').imagesLoaded(myFunction)
+  // or
+  // $('img').imagesLoaded(myFunction)
+
   // execute a callback when all images have loaded.
   // needed because .load() doesn't work on cached images
 
   // callback function gets image collection as argument
   //  `this` is the container
 
-  // original: mit license. paul irish. 2010.
-  // contributors: Oren Solomianik, David DeSandro, Yiannis Chatzikonstantinou
-
   $.fn.imagesLoaded = function( callback ) {
-    var $images = this.find('img'),
+    var $this = this,
+        $images = $this.find('img').add( $this.filter('img') ),
         len = $images.length,
-        _this = this,
         blank = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 
     function triggerCallback() {
-      callback.call( _this, $images );
+      callback.call( $this, $images );
     }
 
     function imgLoaded() {
@@ -418,7 +424,7 @@
       }
     });
 
-    return this;
+    return $this;
   };
 
 
