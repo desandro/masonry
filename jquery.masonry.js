@@ -1,5 +1,5 @@
 /**
- * jQuery Masonry v2.0.110901
+ * jQuery Masonry v2.0.110927
  * A dynamic layout plugin for jQuery
  * The flip-side of CSS Floats
  * http://masonry.desandro.com
@@ -201,7 +201,17 @@
       var containerSize = {};
       containerSize.height = Math.max.apply( Math, this.colYs ) - this.offset.y;
       if ( this.options.isFitWidth ) {
-        containerSize.width = this.cols * this.columnWidth - this.options.gutterWidth;
+        var unusedCols = 0,
+            i = this.cols;
+        // count unused columns
+        while ( --i ) {
+          if ( this.colYs[i] !== this.offset.y ) {
+            break;
+          }
+          unusedCols++;
+        }
+        // fit container to columns that have been used;
+        containerSize.width = (this.cols - unusedCols) * this.columnWidth - this.options.gutterWidth;
       }
       this.styleQueue.push({ $el: this.element, style: containerSize });
 
