@@ -1,0 +1,50 @@
+---
+title: Centered few
+category: tests
+layout: default
+has_modernizr: true
+---
+
+<div id="copy">
+  <p>When there's only a couple items, the container should shrink to fit the layout, and not leave any empty columns.</p>
+</div>
+
+<div id="container" class="transitions-enabled centered clearfix">
+
+  <div class="box col2">
+    <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
+    <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
+    <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
+  </div>
+
+  <div class="box col2">
+    <p>Ut condimentum mi vel tellus. Suspendisse laoreet. Fusce ut est sed dolor gravida convallis. Morbi vitae ante. Vivamus ultrices luctus nunc. Suspendisse et dolor. Etiam dignissim. Proin malesuada adipiscing lacus. Donec metus. Curabitur gravida.</p>
+    <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
+  </div>
+
+  <div class="box col2">
+    <p>Ut condimentum mi vel tellus. Suspendisse laoreet. Fusce ut est sed dolor gravida convallis. Morbi vitae ante. Vivamus ultrices luctus nunc. Suspendisse et dolor. Etiam dignissim. Proin malesuada adipiscing lacus. Donec metus. Curabitur gravida.</p>
+    <p>Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
+  </div>
+
+  <div class="box col4">
+    <p>Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.</p>
+  </div>
+
+</div> <!-- #container -->
+
+
+<script src="../{{ site.jquery_js }}"></script>
+<script src="../{{ site.masonry_js }}"></script>
+<script>
+  $(function(){
+    
+    $('#container').masonry({
+      itemSelector: '.box',
+      columnWidth: 200,
+      isAnimated: !Modernizr.csstransitions,
+      isFitWidth: true
+    });
+    
+  });
+</script>
