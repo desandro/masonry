@@ -1,5 +1,5 @@
 /**
- * jQuery Masonry v2.0.110927
+ * jQuery Masonry v2.0.111015
  * A dynamic layout plugin for jQuery
  * The flip-side of CSS Floats
  * http://masonry.desandro.com
@@ -149,7 +149,7 @@
     // _init fires when instance is first created
     // and when instance is triggered again -> $el.masonry();
     _init : function( callback ) {
-      this._getColumns('masonry');
+      this._getColumns();
       this._reLayout( callback );
     },
 
@@ -293,7 +293,7 @@
     resize : function() {
       var prevColCount = this.cols;
       // get updated colCount
-      this._getColumns('masonry');
+      this._getColumns();
       if ( this.cols !== prevColCount ) {
         // if column count has changed, trigger new layout
         this._reLayout();

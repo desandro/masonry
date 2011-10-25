@@ -563,6 +563,21 @@ button {
 .fluid .box.col2 { width: 36%; }
 .fluid .box.col3 { width: 56%; }
 
+/**** Corner stamp ****/
+
+.corner-stamp {
+  width: 280px;
+  height: 340px;
+  padding: 10px;
+  margin: 10px;
+  float: right;
+  background: red;
+  color: white;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+
 /**** Pygments ****/
 
 code .s1,
