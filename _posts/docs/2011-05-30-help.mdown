@@ -83,6 +83,38 @@ Both Typekit and Google WebFont Loader provide font events to control scripts ba
 + [Typekit font events](http://blog.typekit.com/2010/10/18/more-control-with-typekits-font-events/)
 + [Google WebFont Loader: Events](http://code.google.com/apis/webfonts/docs/webfont_loader.html#Events)
 
+### Typekit
+
+Try the script below when using Masonry on a page with Typekit. This will trigger Masonry when the document is ready and again when fonts have loaded. Be sure to remove Typekit's default script,  `try{Typekit.load();}catch(e){}`.
+
+{% highlight javascript %}
+
+var $container;
+
+function triggerMasonry() {
+  // don't proceed if $container has not selected
+  if ( !$container ) {
+    return
+  }
+  $container.masonry({
+    // options...
+  });
+}
+
+$(function(){
+  $container = $('#container');
+  // trigger masonry on doc ready
+  triggerMasonry();
+});
+
+// trigger masonry when fonts have loaded
+Typekit.load({
+  active: triggerMasonry,
+  inactive: triggerMasonry
+});
+
+{% endhighlight %}
+
 ## Filtering
 
 Filtering with Masonry is officially unsupported as of v2.0. Use [Isotope](http://isotope.metafizzy.co) instead. Isotope shares a majority Masonry's features. It also has additional powerful features like filtering and sorting built right in, so you probably won't be missing any functionality.
