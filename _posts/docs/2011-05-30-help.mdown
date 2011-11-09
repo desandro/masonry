@@ -9,6 +9,7 @@ toc:
   - { title: Additional resources, anchor: additional_resources }
   - { title: Unloaded media and overlapping, anchor: unloaded_media_and_overlapping }
   - { title: @font-face fonts, anchor: fontface_fonts }
+  - { title: First item breaks grid, anchor: first_item_breaks_grid }
   - { title: Filtering, anchor: filtering }
   - { title: Getting data, anchor: getting_data }
   - { title: Other frameworks, anchor: other_frameworks }
@@ -111,6 +112,18 @@ $(function(){
 Typekit.load({
   active: triggerMasonry,
   inactive: triggerMasonry
+});
+
+{% endhighlight %}
+
+## First item breaks grid
+
+If you run into an issue where you re-size the first item, and all the rest of the items no longer fit together in the grid, you most likely need to set [`columnWidth` option](options.html#columnwidth). Without `columnWidth` set, Masonry will use the width of the first item for the size of its columns.
+
+{% highlight javascript %}
+
+$('#container').masonry({
+  columnWidth: 220
 });
 
 {% endhighlight %}
