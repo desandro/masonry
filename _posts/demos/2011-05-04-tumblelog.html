@@ -7,11 +7,15 @@ layout: default
 <div id="copy">
   <p>A tumblelog is a good example of a typical use case for Masonry.</p>
   <p>There are three sizes of columns used:</p>
-    <ul>
-      <li><code>.col1</code> : 220px</li>
-      <li><code>.col2</code> : 460px</li>
-      <li><code>.col3</code> : 700px</li>
-    </ul>
+
+{% highlight css %}
+
+#tumblelog .col1 { width: 220px; }
+#tumblelog .col2 { width: 460px; }
+#tumblelog .col3 { width: 700px; }
+
+{% endhighlight %}
+
   <p>With 10px of margin on right and left sides that makes for a grid with columns 240px wide. The imagesLoaded plugin is used to trigger Masonry once all images are loaded</p>
 
 {% highlight javascript %}
