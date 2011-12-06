@@ -521,9 +521,9 @@ button {
 
 #tumblelog h1, #tumblelog h2, #tumblelog h3 { font-weight: bold;}
 
-#tumblelog .col1 { width: 220px;}
-#tumblelog .col2 { width: 460px;}
-#tumblelog .col3 { width: 700px;}
+#tumblelog .col1 { width: 220px; }
+#tumblelog .col2 { width: 460px; }
+#tumblelog .col3 { width: 700px; }
 
 #tumblelog .col1 img,
 #tumblelog .col2 img,
