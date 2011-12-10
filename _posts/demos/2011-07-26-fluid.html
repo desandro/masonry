@@ -5,21 +5,17 @@ layout: default
 ---
 
 <div id="copy">
-  <p>Masonry supports fluid layouts, where the width of the column is a percentage of the container's width.</p>
+  <p>For fluid or responsive layouts, where the width of the column is a percentage of the container's width, you can pass in a function for <a href="../docs/options.html#columnwidth"><code>columnWidth</code></a>.</p>
   
 {% highlight javascript %}
 
-var $container = $('#container');
-
-$(window).resize(function(){
-  $container.masonry({
-      itemSelector: '.box',
-      isResizable: false,
-      // set columnWidth a fraction of the container width
-      columnWidth: $container.width() / 5
-  });
-// trigger resize to set up masonry on start-up
-}).resize();
+$('#container').masonry({
+  itemSelector: '.box',
+  // set columnWidth a fraction of the container width
+  columnWidth: function( containerWidth ) {
+    return containerWidth / 5;
+  }
+});
 
 {% endhighlight %}
 
@@ -211,17 +207,13 @@ $(window).resize(function(){
 <script>
   $(function(){
     
-    var $container = $('#container');
-    
-    $(window).resize(function(){
-      $container.masonry({
-          itemSelector: '.box',
-          isResizable: false,
-          // set columnWidth a fraction of the container width
-          columnWidth: $container.width() / 5
-      });
-    // trigger resize to set up masonry on start-up
-    }).resize();
+    $('#container').masonry({
+      itemSelector: '.box',
+      // set columnWidth a fraction of the container width
+      columnWidth: function( containerWidth ) {
+        return containerWidth / 5;
+      }
+    });
     
   });
 </script>

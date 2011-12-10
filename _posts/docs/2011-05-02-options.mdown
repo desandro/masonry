@@ -16,6 +16,20 @@ toc :
 
 ---
 
+Options are set with an object as second argument to the `.masonry()` method. All options are optional, and do not need to be set, but [`itemSelector`](#itemselector) and [`columnWidth`](#columnwidth) are recommended.
+
+{% highlight javascript %}
+
+$('#container').masonry({
+  itemSelector: '.box',
+  columnWidth: 240,
+  animationOptions: {
+    duration: 400
+  }
+});
+
+{% endhighlight %}
+
 <dl class="header clearfix">
   <dt><code>option</code></dt>
   <dd class="option-type">Type</dd>
@@ -42,6 +56,21 @@ Options used for jQuery animation. See the [jQuery API for animate options](http
 Width in pixels of 1 column of your grid. If no columnWidth is specified, Masonry uses the width of the first item element.
 
 **Recommended** if your layout has item elements that have multiple-column widths.
+
+To set a dynamic column width, you can pass in a function that returns the value column width. The function provides an argument for the width of the container. Use this technique for fluid or responsive layouts.
+
+{% highlight javascript %}
+
+$('#container').masonry({
+  // set columnWidth a fraction of the container width
+  columnWidth: function( containerWidth ) {
+    return containerWidth / 5;
+  }
+});
+
+{% endhighlight %}
+
+[See Demo: Fluid](../demos/fluid.html).
 
 ## gutterWidth
 
