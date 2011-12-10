@@ -13,6 +13,7 @@ toc :
   - { title: isResizable, anchor: isresizable }
   - { title: isRTL, anchor: isrtl }
   - { title: itemSelector, anchor: itemselector }
+  - { title: minColumns, anchor: mincolumns }
 
 ---
 
@@ -144,3 +145,13 @@ Filters item elements to selector. If not set, Masonry defaults to using the chi
 $('#container').masonry({ itemSelector: '.box' });
 
 {% endhighlight %}
+
+## minColumns
+
+<dl class="clearfix">
+  <dt><code>minColumns</code></dt>
+  <dd class="option-type">Integer</dd>
+  <dd class="default"><code><span class="kc">1</span></code></dd>
+</dl>
+
+Sets the minimum number of columns visible at any time.

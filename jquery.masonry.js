@@ -74,7 +74,8 @@
     },
     gutterWidth: 0,
     isRTL: false,
-    isFitWidth: false
+    isFitWidth: false,
+    minColumns: 1
   };
 
   $.Mason.prototype = {
@@ -226,7 +227,7 @@
       this.columnWidth += this.options.gutterWidth;
 
       this.cols = Math.floor( ( containerWidth + this.options.gutterWidth ) / this.columnWidth );
-      this.cols = Math.max( this.cols, 1 );
+      this.cols = Math.max( this.cols, this.options.minColumns, 1);
 
     },
 
