@@ -111,6 +111,8 @@ This project lives on GitHub at [github.com/desandro/masonry](http://github.com/
 ## Changelog
 
 <dl>
+  <dt>v2.1: 9 Dec 2011</dt>
+    <dd>Pass in a function for <code>columnWidth</code> for easier fluid layouts</dd>
   <dt>v2.0: May 2011</dt>
     <dd>Complete re-write. Uses <code>$.Mason</code> constructor, like jQuery UI widget</dd>
     <dd>Add options <code>gutterWidth</code>, <code>isFitWidth</code> for centering layout, <code>isRTL</code> for right-to-left layout</dd>

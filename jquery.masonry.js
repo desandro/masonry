@@ -1,5 +1,5 @@
 /**
- * jQuery Masonry v2.0.111015
+ * jQuery Masonry v2.1.0
  * A dynamic layout plugin for jQuery
  * The flip-side of CSS Floats
  * http://masonry.desandro.com
@@ -116,20 +116,13 @@
       });
       
       this.horizontalDirection = this.options.isRTL ? 'right' : 'left';
-      this.offset = {};
+
+      this.offset = {
+        x: parseInt( this.element.css( 'padding-' + this.horizontalDirection ), 10 ),
+        y: parseInt( this.element.css( 'padding-top' ), 10 )
+      };
       
-      // get top left position of where the bricks should be
-      var $cursor = $( document.createElement('div') );
-      this.element.prepend( $cursor );
-      this.offset.y = Math.round( $cursor.position().top );
-      // get horizontal offset
-      if ( !this.options.isRTL ) {
-        this.offset.x = Math.round( $cursor.position().left );
-      } else {
-        $cursor.css({ 'float': 'right', display: 'inline-block'});
-        this.offset.x = Math.round( this.element.outerWidth() - $cursor.position().left );
-      }
-      $cursor.remove();
+      this.isFluid = this.options.columnWidth && typeof this.options.columnWidth === 'function';
 
       // add masonry class first time around
       var instance = this;
@@ -167,45 +160,20 @@
     // accepts atoms-to-be-laid-out to start with
     layout : function( $bricks, callback ) {
 
-      // layout logic
-      var $brick, colSpan, groupCount, groupY, groupColY, j;
-      
+      // place each brick
       for (var i=0, len = $bricks.length; i < len; i++) {
-        $brick = $( $bricks[i] );
-        //how many columns does this brick span
-        colSpan = Math.ceil( $brick.outerWidth(true) / this.columnWidth );
-        colSpan = Math.min( colSpan, this.cols );
-
-        if ( colSpan === 1 ) {
-          // if brick spans only one column, just like singleMode
-          this._placeBrick( $brick, this.colYs );
-        } else {
-          // brick spans more than one column
-          // how many different places could this brick fit horizontally
-          groupCount = this.cols + 1 - colSpan;
-          groupY = [];
-
-          // for each group potential horizontal position
-          for ( j=0; j < groupCount; j++ ) {
-            // make an array of colY values for that one group
-            groupColY = this.colYs.slice( j, j+colSpan );
-            // and get the max value of the array
-            groupY[j] = Math.max.apply( Math, groupColY );
-          }
-        
-          this._placeBrick( $brick, groupY );
-        }
+        this._placeBrick( $bricks[i] );
       }
       
       // set the size of the container
       var containerSize = {};
-      containerSize.height = Math.max.apply( Math, this.colYs ) - this.offset.y;
+      containerSize.height = Math.max.apply( Math, this.colYs );
       if ( this.options.isFitWidth ) {
         var unusedCols = 0,
             i = this.cols;
         // count unused columns
         while ( --i ) {
-          if ( this.colYs[i] !== this.offset.y ) {
+          if ( this.colYs[i] !== 0 ) {
             break;
           }
           unusedCols++;
@@ -245,8 +213,11 @@
     _getColumns : function() {
       var container = this.options.isFitWidth ? this.element.parent() : this.element,
           containerWidth = container.width();
-      
-      this.columnWidth = this.options.columnWidth ||
+
+                         // use fluid columnWidth function if there
+      this.columnWidth = this.isFluid ? this.options.columnWidth( containerWidth ) :
+                    // if not, how about the explicitly set option?
+                    this.options.columnWidth ||
                     // or use the size of the first item
                     this.$bricks.outerWidth(true) ||
                     // if there's no items, use size of container
@@ -259,14 +230,42 @@
 
     },
 
-    _placeBrick : function( $brick, setY ) {
+    // layout logic
+    _placeBrick: function( brick ) {
+      var $brick = $(brick),
+          colSpan, groupCount, groupY, groupColY, j;
+
+      //how many columns does this brick span
+      colSpan = Math.ceil( $brick.outerWidth(true) /
+        ( this.columnWidth + this.options.gutterWidth ) );
+      colSpan = Math.min( colSpan, this.cols );
+
+      if ( colSpan === 1 ) {
+        // if brick spans only one column, just like singleMode
+        groupY = this.colYs
+      } else {
+        // brick spans more than one column
+        // how many different places could this brick fit horizontally
+        groupCount = this.cols + 1 - colSpan;
+        groupY = [];
+
+        // for each group potential horizontal position
+        for ( j=0; j < groupCount; j++ ) {
+          // make an array of colY values for that one group
+          groupColY = this.colYs.slice( j, j+colSpan );
+          // and get the max value of the array
+          groupY[j] = Math.max.apply( Math, groupColY );
+        }
+
+      }
+
       // get the minimum Y value from the columns
-      var minimumY = Math.min.apply( Math, setY ),
+      var minimumY = Math.min.apply( Math, groupY ),
           shortCol = 0;
       
       // Find index of short column, the first from the left
-      for (var i=0, len = setY.length; i < len; i++) {
-        if ( setY[i] === minimumY ) {
+      for (var i=0, len = groupY.length; i < len; i++) {
+        if ( groupY[i] === minimumY ) {
           shortCol = i;
           break;
         }
@@ -274,7 +273,7 @@
 
       // position the brick
       var position = {
-        top : minimumY
+        top: minimumY + this.offset.y
       };
       // position.left or position.right
       position[ this.horizontalDirection ] = this.columnWidth * shortCol + this.offset.x;
@@ -290,11 +289,11 @@
     },
     
     
-    resize : function() {
+    resize: function() {
       var prevColCount = this.cols;
       // get updated colCount
       this._getColumns();
-      if ( this.cols !== prevColCount ) {
+      if ( this.isFluid || this.cols !== prevColCount ) {
         // if column count has changed, trigger new layout
         this._reLayout();
       }
@@ -306,7 +305,7 @@
       var i = this.cols;
       this.colYs = [];
       while (i--) {
-        this.colYs.push( this.offset.y );
+        this.colYs.push( 0 );
       }
       // apply layout logic to all bricks
       this.layout( this.$bricks, callback );
