@@ -1,0 +1,14 @@
+---
+title: Tests
+category: tests
+layout: default
+is_index: true
+---
+
+<ul>
+  {% for test in site.categories.tests reversed %}
+    {% unless test.is_index %}
+      <li><a href="{{ test.url }}">{{ test.title }}</a>
+    {% endunless %}
+  {% endfor %}
+</ul>
