@@ -5,7 +5,6 @@ category: docs
 layout: default
 toc:
   - { title: Reporting bugs and issues, anchor: reporting_bugs_and_issues }
-  - { title: Support license, anchor: support_license }
   - { title: Additional resources, anchor: additional_resources }
   - { title: Unloaded media and overlapping, anchor: unloaded_media_and_overlapping }
   - { title: @font-face fonts, anchor: fontface_fonts }
@@ -27,11 +26,7 @@ jQuery Masonry is a fairly popular plugin. Chances are your issue has already be
 + Look over open and closed issues before submitting yours.
 + Add a link to a live site with the bug. If the project is confidential, try re-creating it in [jsFiddle](http://jsfiddle.net).
 
-The issues tracker is for bugs and issues -- when Masonry doesn't work as expected. It is not for implementation issues -- when you are having trouble setting up Masonry. Consider a [Support License](http://metafizzy.co/#support-license) for implementation issues. If you're not sure, go ahead and submit an issue.
-
-## Support license
-
-If you've tried everything and would really like to get my eyes looking at your code, you can purchase a [Support License from Metafizzy](http://metafizzy.co/#support-license).
+The issues tracker is for bugs and issues -- when Masonry doesn't work as expected. It is not for implementation issues -- when you are having trouble setting up Masonry. I am unable to personally help with implementation issues but [don't give up](http://metafizzy.co/blog/frustrated-stuck-tired-defeated/)!
 
 ## Additional resources
 
