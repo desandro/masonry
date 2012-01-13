@@ -554,8 +554,10 @@ button {
   padding: 5px 0;
 }
 
+/* right margin value is 0.1% less than calculated,
+  to allow for rounding errors in Firefox */
 .fluid .box {
-  margin: 5px 1%;
+  margin: 5px 0.9% 5px 1%;
   padding: 5px 1%;
 }
 
