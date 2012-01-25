@@ -7,6 +7,7 @@ body_class: options
 toc :
   - { title: animationOptions, anchor: animationoptions }
   - { title: columnWidth, anchor: columnwidth }
+  - { title: containerStyle, anchor: containerstyle }
   - { title: gutterWidth, anchor: gutterwidth }
   - { title: isAnimated, anchor: isanimated }
   - { title: isFitWidth, anchor: isfitwidth }
@@ -71,6 +72,16 @@ $('#container').masonry({
 {% endhighlight %}
 
 [See Demo: Fluid](../demos/fluid.html).
+
+## containerStyle
+
+<dl class="clearfix">
+  <dt><code>columnWidth</code></dt>
+  <dd class="option-type">Object</dd>
+  <dd class="default"><code>{ position: <span class="s1">'relative'</span> }</code></dd>
+</dl>
+
+CSS properties applied to the container. Masonry uses relative/absolute positioning to position item elements.
 
 ## gutterWidth
 
