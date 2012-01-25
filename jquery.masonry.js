@@ -1,5 +1,5 @@
 /**
- * jQuery Masonry v2.1.01
+ * jQuery Masonry v2.1.02
  * A dynamic layout plugin for jQuery
  * The flip-side of CSS Floats
  * http://masonry.desandro.com
@@ -61,10 +61,7 @@
     this._create( options );
     this._init();
   };
-  
-  // styles of container element we want to keep track of
-  var masonryContainerStyles = [ 'position', 'height' ];
-  
+
   $.Mason.settings = {
     isResizable: true,
     isAnimated: false,
@@ -74,7 +71,10 @@
     },
     gutterWidth: 0,
     isRTL: false,
-    isFitWidth: false
+    isFitWidth: false,
+    containerStyle: {
+      position: 'relative'
+    }
   };
 
   $.Mason.prototype = {
@@ -97,24 +97,22 @@
     _create : function( options ) {
       
       this.options = $.extend( true, {}, $.Mason.settings, options );
-      
       this.styleQueue = [];
-      // need to get bricks
-      this.reloadItems();
-
 
       // get original styles in case we re-apply them in .destroy()
       var elemStyle = this.element[0].style;
-      this.originalStyle = {};
-      for ( var i=0, len = masonryContainerStyles.length; i < len; i++ ) {
-        var prop = masonryContainerStyles[i];
+      this.originalStyle = {
+        // get height
+        height: elemStyle.height || ''
+      };
+      // get other styles that will be overwritten
+      var containerStyle = this.options.containerStyle;
+      for ( var prop in containerStyle ) {
         this.originalStyle[ prop ] = elemStyle[ prop ] || '';
       }
 
-      this.element.css({
-        position : 'relative'
-      });
-      
+      this.element.css( containerStyle );
+
       this.horizontalDirection = this.options.isRTL ? 'right' : 'left';
 
       this.offset = {
@@ -136,7 +134,11 @@
           instance.resize();
         });
       }
-      
+
+
+      // need to get bricks
+      this.reloadItems();
+
     },
   
     // _init fires when instance is first created
@@ -365,11 +367,10 @@
       
       // re-apply saved container styles
       var elemStyle = this.element[0].style;
-      for ( var i=0, len = masonryContainerStyles.length; i < len; i++ ) {
-        var prop = masonryContainerStyles[i];
+      for ( var prop in this.originalStyle ) {
         elemStyle[ prop ] = this.originalStyle[ prop ];
       }
-      
+
       this.element
         .unbind('.masonry')
         .removeClass('masonry')
