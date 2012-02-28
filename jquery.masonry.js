@@ -1,5 +1,5 @@
 /**
- * jQuery Masonry v2.1.02
+ * jQuery Masonry v2.1.03
  * A dynamic layout plugin for jQuery
  * The flip-side of CSS Floats
  * http://masonry.desandro.com
@@ -7,8 +7,13 @@
  * Licensed under the MIT license.
  * Copyright 2011 David DeSandro
  */
- 
+
+/*jshint browser: true, curly: true, eqeqeq: true, forin: false, immed: false, newcap: true, noempty: true, strict: true, undef: true */
+/*global jQuery: false */
+
 (function( window, $, undefined ){
+
+  'use strict';
 
   /*
    * smartresize: debounced resize event for jQuery
@@ -171,8 +176,8 @@
       var containerSize = {};
       containerSize.height = Math.max.apply( Math, this.colYs );
       if ( this.options.isFitWidth ) {
-        var unusedCols = 0,
-            i = this.cols;
+        var unusedCols = 0;
+        i = this.cols;
         // count unused columns
         while ( --i ) {
           if ( this.colYs[i] !== 0 ) {
@@ -244,7 +249,7 @@
 
       if ( colSpan === 1 ) {
         // if brick spans only one column, just like singleMode
-        groupY = this.colYs
+        groupY = this.colYs;
       } else {
         // brick spans more than one column
         // how many different places could this brick fit horizontally
@@ -414,8 +419,9 @@
     }
 
     function imgLoaded( event ) {
-      if ( event.target.src !== blank && $.inArray( this, loaded ) === -1 ){
-        loaded.push(this);
+      var img = event.target;
+      if ( img.src !== blank && $.inArray( img, loaded ) === -1 ){
+        loaded.push( img );
         if ( --len <= 0 ){
           setTimeout( triggerCallback );
           $images.unbind( '.imagesLoaded', imgLoaded );
@@ -444,8 +450,8 @@
   // helper function for logging errors
   // $.error breaks jQuery chaining
   var logError = function( message ) {
-    if ( this.console ) {
-      console.error( message );
+    if ( window.console ) {
+      window.console.error( message );
     }
   };
   
