@@ -93,7 +93,6 @@
 
     _getBricks: function( $elems ) {
       var $bricks = this._filterFindBricks( $elems )
-        .css({ position: 'absolute' })
         .addClass('masonry-brick');
       return $bricks;
     },
@@ -280,7 +279,8 @@
 
       // position the brick
       var position = {
-        top: minimumY + this.offset.y
+        top: minimumY + this.offset.y,
+        position: 'absolute'
       };
       // position.left or position.right
       position[ this.horizontalDirection ] = this.columnWidth * shortCol + this.offset.x;
