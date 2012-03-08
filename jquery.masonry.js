@@ -187,7 +187,8 @@
         // fit container to columns that have been used;
         containerSize.width = (this.cols - unusedCols) * this.columnWidth - this.options.gutterWidth;
       }
-      this.styleQueue.push({ $el: this.element, style: containerSize });
+      // push the container style to the start of the queue
+      this.styleQueue = [{ $el: this.element, style: containerSize }].concat(this.styleQueue);
 
       // are we animating the layout arrangement?
       // use plugin-ish syntax for css or animate
