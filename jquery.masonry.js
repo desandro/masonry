@@ -234,7 +234,9 @@
 
       this.cols = Math.floor( ( containerWidth + this.options.gutterWidth ) / this.columnWidth );
       this.cols = Math.max( this.cols, 1 );
-
+      if (this.options.maxColumns) {
+        this.cols = Math.min(this.options.maxColumns, this.cols);
+      }
     },
 
     // layout logic
