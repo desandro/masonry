@@ -26,4 +26,4 @@ Then view the live site at [http://localhost:4000](http://localhost:4000).
 
 * * *
 
-Copyright (c) 2011 David DeSandro
+Copyright (c) 2012 David DeSandro
