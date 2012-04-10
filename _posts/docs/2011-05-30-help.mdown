@@ -19,21 +19,17 @@ jQuery Masonry is a fairly popular plugin. Chances are your issue has already be
 
 ## Reporting bugs and issues
 
-[Report bugs and issues on GitHub](http://github.com/desandro/masonry/issues). 
-
-### Guidelines {: #issues-guidelines}
-
-+ Look over open and closed issues before submitting yours.
-+ Add a link to a live site with the bug. If the project is confidential, try re-creating it in [jsFiddle](http://jsfiddle.net).
-
-The issues tracker is for bugs and issues -- when Masonry doesn't work as expected. It is not for implementation issues -- when you are having trouble setting up Masonry. I am unable to personally help with implementation issues but [don't give up](http://metafizzy.co/blog/frustrated-stuck-tired-defeated/)!
+Please read my [Issues Agreement](https://github.com/desandro/issues-agreement/#readme) and then [report bugs and issues on GitHub](http://github.com/desandro/masonry/issues). 
 
 ## Additional resources
 
 + The [Metafizzy blog](http://metafizzy.co/blog/) has posts that cover specialized use cases
++ [My answers on Stack Overflow](http://stackoverflow.com/users/182183/desandro?tab=answers)
++ [Various Masonry tests on jsFiddle](http://www.delicious.com/desandro/re:masonry+fiddle)
 + [Sites using Masonry on Delicious](http://www.delicious.com/desandro/jquerymasonry)
 + [Sites using Masonry on Zootool](http://zootool.com/user/desandro/tag:masonry) (has screenshots)
 + [Stack Overflow questions about Masonry](http://stackoverflow.com/search?q=masonry)
++ [Related Masonry links](http://www.delicious.com/desandro/re:masonry)
 + Other resources that are [like Masonry but not](http://www.delicious.com/desandro/likemasonrybutnot)
 
 ## Unloaded media and overlapping
