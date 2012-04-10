@@ -1,0 +1,3 @@
+softTabs = true
+tabSize = 2
+excludeInFileChooser = "{$exclude,_site/*}"
