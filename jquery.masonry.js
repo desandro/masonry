@@ -5,7 +5,7 @@
  * http://masonry.desandro.com
  *
  * Licensed under the MIT license.
- * Copyright 2011 David DeSandro
+ * Copyright 2012 David DeSandro
  */
 
 /*jshint browser: true, curly: true, eqeqeq: true, forin: false, immed: false, newcap: true, noempty: true, strict: true, undef: true */
@@ -45,7 +45,7 @@
 
       if ( resizeTimeout ) { clearTimeout( resizeTimeout ); }
       resizeTimeout = setTimeout(function() {
-        jQuery.event.handle.apply( context, args );
+        $.event.handle.apply( context, args );
       }, execAsap === "execAsap"? 0 : 100 );
     }
   };

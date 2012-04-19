@@ -7,8 +7,8 @@ This package has all the documentation and demos to get you started.
 
 View this project live at [http://masonry.desandro.com](http://masonry.desandro.com).
 
-Viewing this project locally
-----------------------------
+## Viewing this project locally
+
 
 ### Via download
 
@@ -24,6 +24,28 @@ The documentation and demo pages are generated using [Jekyll](http://github.com/
 
 Then view the live site at [http://localhost:4000](http://localhost:4000).
 
+## Including Masonry as a submodule
+
+The _module_ branch has just `jquery.masonry.js` and `jquery.masonry.min.js`, perfect for adding to your repo as a [submodule](http://dropshado.ws/post/20058825150/git-submodules).
+
+``` bash
+git submodule add https://github.com/desandro/masonry.git
+cd masonry/
+git checkout module
+git pull origin module
+cd ../
+git submodule update --init
+```
+
+Then you can reference `masonry/jquery.masonry.min.js` within your own project.
+
+To pull in the lastest version of the masonry submodule:
+
+``` bash
+cd masonry/
+git pull origin module
+```
+
 * * *
 
-Copyright (c) 2011 David DeSandro
+Copyright (c) 2012 David DeSandro
