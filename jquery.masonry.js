@@ -1,5 +1,5 @@
 /**
- * jQuery Masonry v2.1.04
+ * jQuery Masonry v2.1.05
  * A dynamic layout plugin for jQuery
  * The flip-side of CSS Floats
  * http://masonry.desandro.com
@@ -243,8 +243,7 @@
           colSpan, groupCount, groupY, groupColY, j;
 
       //how many columns does this brick span
-      colSpan = Math.ceil( $brick.outerWidth(true) /
-        ( this.columnWidth + this.options.gutterWidth ) );
+      colSpan = Math.ceil( $brick.outerWidth(true) / this.columnWidth );
       colSpan = Math.min( colSpan, this.cols );
 
       if ( colSpan === 1 ) {
