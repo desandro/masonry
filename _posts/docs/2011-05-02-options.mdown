@@ -76,7 +76,7 @@ $('#container').masonry({
 ## containerStyle
 
 <dl class="clearfix">
-  <dt><code>columnWidth</code></dt>
+  <dt><code>containerStyle</code></dt>
   <dd class="option-type">Object</dd>
   <dd class="default"><code>{ position: <span class="s1">'relative'</span> }</code></dd>
 </dl>
