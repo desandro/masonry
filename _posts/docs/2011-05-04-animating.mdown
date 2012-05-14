@@ -58,6 +58,7 @@ In your CSS, add transition styles below. The Masonry plugin will add a class of
 .masonry .masonry-brick {
   -webkit-transition-duration: 0.7s;
      -moz-transition-duration: 0.7s;
+      -ms-transition-duration: 0.7s;
        -o-transition-duration: 0.7s;
           transition-duration: 0.7s;
 }
@@ -65,6 +66,7 @@ In your CSS, add transition styles below. The Masonry plugin will add a class of
 .masonry {
   -webkit-transition-property: height, width;
      -moz-transition-property: height, width;
+      -ms-transition-property: height, width;
        -o-transition-property: height, width;
           transition-property: height, width;
 }
@@ -72,6 +74,7 @@ In your CSS, add transition styles below. The Masonry plugin will add a class of
 .masonry .masonry-brick {
   -webkit-transition-property: left, right, top;
      -moz-transition-property: left, right, top;
+      -ms-transition-property: left, right, top;
        -o-transition-property: left, right, top;
           transition-property: left, right, top;
 }

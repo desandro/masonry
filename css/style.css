@@ -363,6 +363,7 @@ button {
 .transitions-enabled.masonry .masonry-brick {
   -webkit-transition-duration: 0.7s;
      -moz-transition-duration: 0.7s;
+      -ms-transition-duration: 0.7s;
        -o-transition-duration: 0.7s;
           transition-duration: 0.7s;
 }
@@ -370,6 +371,7 @@ button {
 .transitions-enabled.masonry {
   -webkit-transition-property: height, width;
      -moz-transition-property: height, width;
+      -ms-transition-property: height, width;
        -o-transition-property: height, width;
           transition-property: height, width;
 }
@@ -377,6 +379,7 @@ button {
 .transitions-enabled.masonry  .masonry-brick {
   -webkit-transition-property: left, right, top;
      -moz-transition-property: left, right, top;
+      -ms-transition-property: left, right, top;
        -o-transition-property: left, right, top;
           transition-property: left, right, top;
 }
@@ -386,6 +389,7 @@ button {
 .transitions-enabled.infinite-scroll.masonry {
   -webkit-transition-property: none;
      -moz-transition-property: none;
+      -ms-transition-property: none;
        -o-transition-property: none;
           transition-property: none;
 }
