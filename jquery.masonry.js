@@ -250,6 +250,7 @@
       if ( colSpan === 1 ) {
         // if brick spans only one column, just like singleMode
         groupY = this.colYs;
+        // it's impossible for a single column brick to waste space, so fill the wastedY array with zeros.
         wastedY = [];
         for ( var i=0; i < this.colYs.length; i++) wastedY[i] = 0;
       } else {
@@ -265,9 +266,10 @@
           groupColY = this.colYs.slice( j, j+colSpan );
           // and get the max value of the array
           groupY[j] = Math.max.apply( Math, groupColY );
+          // find out how much space each column option would waste
           wastedY[j] = 0;
           for( k=0; k < groupColY.length; k++ ) {
-            wastedY[j] += (groupY[j] - groupColY[k]);
+            wastedY[j] += groupY[j] - groupColY[k];
           }
         }
       }
@@ -279,7 +281,7 @@
           potentialColumns = [],
           potentialY = [];
       
-      // find the columns that waste the same amount of space
+      // find the columns that waste the minimum amount of space
       for (var i=0, len = wastedY.length; i < len; i++) {
         if ( wastedY[i] <= minimumWasted + this.options.wastedSpaceThreshold ) {
           potentialColumns.push(i);
@@ -287,7 +289,7 @@
         }
       }
 
-      // find the shortest column that wastes the minimum amount of space
+      // find the shortest column that wastes less than the wastedSpaceThreshold
       minimumY = Math.min.apply( Math, potentialY );
       for (var i=0, len = potentialColumns.length; i < len; i++) {
         if ( potentialY[i] === minimumY ) {
