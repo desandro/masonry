@@ -241,7 +241,7 @@
     // layout logic
     _placeBrick: function( brick ) {
       var $brick = $(brick),
-          colSpan, groupCount, groupY, groupColY, j, k, wastedY, yToCheck;
+          colSpan, groupCount, groupY, groupColY, j, k, wastedY;
 
       //how many columns does this brick span
       colSpan = Math.ceil( $brick.outerWidth(true) / this.columnWidth );
@@ -270,7 +270,6 @@
             wastedY[j] += (groupY[j] - groupColY[k]);
           }
         }
-        yToCheck = wastedY
       }
 
       // get the minimum wasted Y value from the columns
