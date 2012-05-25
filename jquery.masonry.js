@@ -79,7 +79,8 @@
     isFitWidth: false,
     containerStyle: {
       position: 'relative'
-    }
+    },
+    wastedSpaceThreshold: 75
   };
 
   $.Mason.prototype = {
@@ -266,7 +267,7 @@
           groupY[j] = Math.max.apply( Math, groupColY );
           wastedY[j] = 0;
           for(var k=0; k < groupColY.length; k++ ) {
-            wastedY[j] += Math.floor((groupY[j] - groupColY[k])/(75*colSpan))*75;
+            wastedY[j] += (groupY[j] - groupColY[k]);
           }
         }
         yToCheck = wastedY
@@ -281,7 +282,7 @@
       
       // find the columns that waste the same amount of space
       for (var i=0, len = wastedY.length; i < len; i++) {
-        if ( wastedY[i] === minimumWasted ) {
+        if ( wastedY[i] <= minimumWasted + this.options.wastedSpaceThreshold ) {
           potentialColumns.push(i);
           potentialY.push(groupY[i])
         }
@@ -290,7 +291,7 @@
       // find the shortest column that wastes the minimum amount of space
       minimumY = Math.min.apply( Math, potentialY );
       for (var i=0, len = potentialColumns.length; i < len; i++) {
-        if ( potentialY[i] === minimumY ) {
+        if ( potentialY[i] <= minimumY) {
           shortCol = potentialColumns[i];
           break;
         }
