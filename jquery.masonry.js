@@ -241,7 +241,7 @@
     // layout logic
     _placeBrick: function( brick ) {
       var $brick = $(brick),
-          colSpan, groupCount, groupY, groupColY, j, wastedY, yToCheck;
+          colSpan, groupCount, groupY, groupColY, j, k, wastedY, yToCheck;
 
       //how many columns does this brick span
       colSpan = Math.ceil( $brick.outerWidth(true) / this.columnWidth );
@@ -251,7 +251,7 @@
         // if brick spans only one column, just like singleMode
         groupY = this.colYs;
         wastedY = [];
-        for (var i = 0; i < this.colYs.length; i++) wastedY[i] = 0;
+        for ( var i=0; i < this.colYs.length; i++) wastedY[i] = 0;
       } else {
         // brick spans more than one column
         // how many different places could this brick fit horizontally
@@ -266,7 +266,7 @@
           // and get the max value of the array
           groupY[j] = Math.max.apply( Math, groupColY );
           wastedY[j] = 0;
-          for(var k=0; k < groupColY.length; k++ ) {
+          for( k=0; k < groupColY.length; k++ ) {
             wastedY[j] += (groupY[j] - groupColY[k]);
           }
         }
@@ -284,14 +284,14 @@
       for (var i=0, len = wastedY.length; i < len; i++) {
         if ( wastedY[i] <= minimumWasted + this.options.wastedSpaceThreshold ) {
           potentialColumns.push(i);
-          potentialY.push(groupY[i])
+          potentialY.push(groupY[i]);
         }
       }
 
       // find the shortest column that wastes the minimum amount of space
       minimumY = Math.min.apply( Math, potentialY );
       for (var i=0, len = potentialColumns.length; i < len; i++) {
-        if ( potentialY[i] <= minimumY) {
+        if ( potentialY[i] === minimumY ) {
           shortCol = potentialColumns[i];
           break;
         }
