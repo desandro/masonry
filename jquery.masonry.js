@@ -80,7 +80,8 @@
     containerStyle: {
       position: 'relative'
     },
-    wastedSpaceThreshold: 75
+    wastedSpaceThreshold: 75,
+    yThreshold: 72
   };
 
   $.Mason.prototype = {
@@ -307,7 +308,7 @@
       // find the shortest column that wastes less than the wastedSpaceThreshold
       minimumY = Math.min.apply( Math, potentialY );
       for (var i=0, len = potentialColumns.length; i < len; i++) {
-        if ( potentialY[i] === minimumY ) {
+        if ( potentialY[i] <= minimumY + this.options.yThreshold ) {
           shortCol = potentialColumns[i];
           break;
         }
