@@ -284,7 +284,7 @@
           // find out how much space each column option would waste
           wastedY[j] = 0;
           for( k=0; k < groupColY.length; k++ ) {
-            wastedY[j] += groupY[j] - groupColY[k];
+            wastedY[j] += (groupY[j] - groupColY[k]) / colSpan;
           }
         }
       }
