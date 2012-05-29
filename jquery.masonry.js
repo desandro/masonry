@@ -167,6 +167,7 @@
     // used on collection of atoms (should be filtered, and sorted before )
     // accepts atoms-to-be-laid-out to start with
     layout : function( $bricks, callback ) {
+      this.element.trigger('masonry.beforelayout');
 
       // place each brick
       for (var i=0, len = $bricks.length; i < len; i++) {
@@ -305,10 +306,22 @@
       position[ this.horizontalDirection ] = this.columnWidth * shortCol + this.offset.x;
       this.styleQueue.push({ $el: $brick, style: position });
 
-      // apply setHeight to necessary columns
+      // apply setHeight to necessary columns, triggering wastedspace event if needed.
       var setHeight = groupY[shortCol] + $brick.outerHeight(true),
-          setSpan = this.cols + 1 - groupY.length;
+          setSpan = this.cols + 1 - groupY.length,
+          wastedSpaceCss;
       for ( i=0; i < setSpan; i++ ) {
+        var wastedHeight = position.top - this.colYs[ shortCol + i ] - this.offset.y;
+        if ( wastedHeight ) {
+          // get the top, height, width, and right/left of a box that takes up the entire area of wasted space.
+          wastedSpaceCss = {
+            top: this.colYs[ shortCol + i ] + this.offset.y,
+            height: wastedHeight,
+            width: this.columnWidth
+          };
+          wastedSpaceCss[ this.horizontalDirection ] = this.columnWidth * (shortCol+i) + this.offset.x;
+          this.element.trigger( "masonry.wastedspace", [wastedSpaceCss] );
+        }
         this.colYs[ shortCol + i ] = setHeight;
       }
 
