@@ -173,6 +173,20 @@
       for (var i=0, len = $bricks.length; i < len; i++) {
         this._placeBrick( $bricks[i] );
       }
+      var maxY = Math.max.apply( Math, this.colYs ) + this.offset.y;
+      for (var i=0, len = this.colYs.length; i < len; i++) {
+        var wastedHeight = maxY - this.colYs[i] - this.offset.y;
+        if ( wastedHeight ) {
+          // get the top, height, width, and right/left of a box that takes up the entire area of wasted space.
+          var wastedSpaceCss = {
+            top: this.colYs[i] + this.offset.y,
+            height: wastedHeight,
+            width: this.columnWidth
+          };
+          wastedSpaceCss[ this.horizontalDirection ] = this.columnWidth * i + this.offset.x;
+          this.element.trigger( "masonry.wastedspace", [wastedSpaceCss] );
+        }
+      }
       
       // set the size of the container
       var containerSize = {};
