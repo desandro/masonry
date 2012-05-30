@@ -230,6 +230,7 @@
       }
       
       this.isLaidOut = true;
+      this.element.trigger( "masonry.complete", [wastedSpace] );
     },
     
     // calculates number of columns
