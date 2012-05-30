@@ -80,8 +80,8 @@
     containerStyle: {
       position: 'relative'
     },
-    wastedSpaceThreshold: 75,
-    yThreshold: 72
+    wastedSpaceJitter: 75,
+    yJitter: 72
   };
 
   $.Mason.prototype = {
@@ -303,16 +303,16 @@
       
       // find the columns that waste the minimum amount of space
       for (var i=0, len = wastedY.length; i < len; i++) {
-        if ( wastedY[i] <= minimumWasted + this.options.wastedSpaceThreshold ) {
+        if ( wastedY[i] <= minimumWasted + this.options.wastedSpaceJitter ) {
           potentialColumns.push(i);
           potentialY.push(groupY[i]);
         }
       }
 
-      // find the shortest column that wastes less than the wastedSpaceThreshold
+      // find the shortest column that wastes less than the wastedSpaceJitter
       minimumY = Math.min.apply( Math, potentialY );
       for (var i=0, len = potentialColumns.length; i < len; i++) {
-        if ( potentialY[i] <= minimumY + this.options.yThreshold ) {
+        if ( potentialY[i] <= minimumY + this.options.yJitter ) {
           shortCol = potentialColumns[i];
           break;
         }
