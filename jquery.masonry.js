@@ -154,6 +154,7 @@
     _init : function( callback ) {
       this._getColumns();
       this._reLayout( callback );
+      this.element.trigger( "masonry.columncountchange", [this.cols] );
     },
 
     option: function( key, value ){
@@ -366,6 +367,7 @@
       this._getColumns();
       if ( this.isFluid || this.cols !== prevColCount ) {
         // if column count has changed, trigger new layout
+        this.element.trigger( "masonry.columncountchange", [this.cols] );
         this._reLayout();
       }
     },
