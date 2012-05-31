@@ -293,7 +293,7 @@
           // find out how much space each column option would waste
           wastedY[j] = 0;
           for( k=0; k < groupColY.length; k++ ) {
-            wastedY[j] += (groupY[j] - groupColY[k]) / colSpan;
+            wastedY[j] += (groupY[j] - groupColY[k]);
           }
         }
       }
@@ -310,19 +310,19 @@
         var spaceBetweenThisYandMinimum = groupY[i] - minimumY;
         var wastedSpacePenalty = spaceBetweenThisYandMinimum * this.options.wastedSpacePenalty;
         //console.log( wastedSpacePenalty, brick );
-        if ( wastedY[i] <= minimumWasted + this.options.wastedSpaceJitter - wastedSpacePenalty) {
+        if ( wastedY[i] / colSpan <= minimumWasted + this.options.wastedSpaceJitter - wastedSpacePenalty) {
           potentialColumns.push(i);
           potentialY.push(groupY[i]);
         }
       }
       if (potentialColumns.length === 0) {
-        for (var i=0; i < groupColY.length; i++) {
+        for (var i=0, len = groupY.length+1; i < len; i++) {
           potentialColumns.push(i);
         }
         potentialY = groupY;
       }
 
-      // find the shortest column that wastes less than the wastedSpaceJitter
+      // find the shortest, leftmost column
       minimumY = Math.min.apply( Math, potentialY );
       for (var i=0, len = potentialColumns.length; i < len; i++) {
         if ( potentialY[i] <= minimumY + this.options.yJitter ) {
