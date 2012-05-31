@@ -313,7 +313,7 @@
         }
       }
       if (potentialColumns.length === 0) {
-        for (var i=0; i < this.cols; i++) {
+        for (var i=0; i < groupColY.length; i++) {
           potentialColumns.push(i);
         }
         potentialY = groupY;
