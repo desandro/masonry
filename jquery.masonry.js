@@ -212,22 +212,7 @@
       }
       this.styleQueue.push({ $el: this.element, style: containerSize });
 
-      // are we animating the layout arrangement?
-      // use plugin-ish syntax for css or animate
-      var styleFn = !this.isLaidOut ? 'css' : (
-            this.options.isAnimated ? 'animate' : 'css'
-          ),
-          animOpts = this.options.animationOptions;
-
-      // process styleQueue
-      var obj;
-      for (i=0, len = this.styleQueue.length; i < len; i++) {
-        obj = this.styleQueue[i];
-        obj.$el[ styleFn ]( obj.style, animOpts );
-      }
-
-      // clear out queue for next time
-      this.styleQueue = [];
+      this._processStyleQueue();
 
       // provide $elems as context for the callback
       if ( callback ) {
@@ -237,7 +222,24 @@
       this.isLaidOut = true;
       this.element.trigger( "masonry.complete", [wastedSpace] );
     },
-    
+    _processStyleQueue: function() {
+      // are we animating the layout arrangement?
+      // use plugin-ish syntax for css or animate
+      var styleFn = !this.isLaidOut ? 'css' : (
+            this.options.isAnimated ? 'animate' : 'css'
+          ),
+          animOpts = this.options.animationOptions;
+
+      // process styleQueue
+      var obj;
+      for (var i=0, len = this.styleQueue.length; i < len; i++) {
+        obj = this.styleQueue[i];
+        obj.$el[ styleFn ]( obj.style, animOpts );
+      }
+
+      // clear out queue for next time
+      this.styleQueue = [];
+    },
     // calculates number of columns
     // i.e. this.columnWidth = 200
     _getColumns : function() {
