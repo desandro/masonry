@@ -354,10 +354,10 @@
           wastedSpaceItem[ this.horizontalDirection ] = this.columnWidth * (shortCol+i) + this.offset.x;
           wastedSpace.push(wastedSpaceItem)
         }
-        if (wastedSpace.length) {
-          this.element.trigger( "masonry.wastedspace", [wastedSpace] );
-        }
         this.colYs[ shortCol + i ] = setHeight;
+      }
+      if (wastedSpace.length) {
+        this.element.trigger( "masonry.wastedspace", [wastedSpace] );
       }
 
     },
