@@ -244,7 +244,8 @@
     // i.e. this.columnWidth = 200
     _getColumns : function() {
       var container = this.options.isFitWidth ? this.element.parent() : this.element,
-          containerWidth = container.width();
+          containerWidth = container.width(),
+          containerPadding = this.element.outerWidth() - this.element.width();
 
                          // use fluid columnWidth function if there
       this.columnWidth = this.isFluid ? this.options.columnWidth( containerWidth ) :
@@ -257,7 +258,7 @@
 
       this.columnWidth += this.options.gutterWidth;
 
-      this.cols = Math.floor( ( containerWidth + this.options.gutterWidth ) / this.columnWidth );
+      this.cols = Math.floor( ( containerWidth + this.options.gutterWidth - containerPadding ) / this.columnWidth );
       this.cols = Math.max( this.cols, 1 );
 
     },
