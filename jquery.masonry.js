@@ -88,7 +88,7 @@
       var selector = this.options.itemSelector;
       // if there is a selector
       // filter/find appropriate item elements
-      return !selector ? $elems : $elems.filter( selector ).add( $elems.find( selector ) );
+      return !selector ? $elems : $($elems).filter( selector ).add( $($elems).find( selector ) );
     },
 
     _getBricks: function( $elems ) {
