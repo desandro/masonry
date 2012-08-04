@@ -79,7 +79,8 @@
     isFitWidth: false,
     containerStyle: {
       position: 'relative'
-    }
+    },
+    reLayoutCallback: function() {},
   };
 
   $.Mason.prototype = {
@@ -313,8 +314,11 @@
       while (i--) {
         this.colYs.push( 0 );
       }
+
       // apply layout logic to all bricks
       this.layout( this.$bricks, callback );
+
+      this.options.reLayoutCallback();
     },
     
     // ====================== Convenience methods ======================
