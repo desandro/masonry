@@ -120,9 +120,11 @@
 
       this.horizontalDirection = this.options.isRTL ? 'right' : 'left';
 
+      var x = this.element.css( 'padding-' + this.horizontalDirection );
+      var y = this.element.css( 'padding-top' );
       this.offset = {
-        x: parseInt( this.element.css( 'padding-' + this.horizontalDirection ), 10 ),
-        y: parseInt( this.element.css( 'padding-top' ), 10 )
+        x: x.length === 0 ? 0 : parseInt(x, 10),
+        y: y.length === 0 ? 0 : parseInt(y, 10),
       };
       
       this.isFluid = this.options.columnWidth && typeof this.options.columnWidth === 'function';
