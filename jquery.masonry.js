@@ -140,6 +140,10 @@
         });
       }
 
+      // add resize listener if provided
+      if ( options.onResize ) {
+        this.element.on( 'masonry.resize', options.onResize );
+      }
 
       // need to get bricks
       this.reloadItems();
@@ -187,6 +191,7 @@
         }
         // fit container to columns that have been used;
         containerSize.width = (this.cols - unusedCols) * this.columnWidth - this.options.gutterWidth;
+        this.element.trigger( 'masonry.resize', containerSize.width );
       }
       this.styleQueue.push({ $el: this.element, style: containerSize });
 
@@ -378,7 +383,8 @@
       this.element
         .unbind('.masonry')
         .removeClass('masonry')
-        .removeData('masonry');
+        .removeData('masonry')
+        .off('masonry.resize', this.options.onResize);
       
       $(window).unbind('.masonry');
 
