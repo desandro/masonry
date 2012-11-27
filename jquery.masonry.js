@@ -1,5 +1,5 @@
 /**
- * jQuery Masonry v2.1.05
+ * jQuery Masonry v2.1.06
  * A dynamic layout plugin for jQuery
  * The flip-side of CSS Floats
  * http://masonry.desandro.com
@@ -120,9 +120,11 @@
 
       this.horizontalDirection = this.options.isRTL ? 'right' : 'left';
 
+      var x = this.element.css( 'padding-' + this.horizontalDirection );
+      var y = this.element.css( 'padding-top' );
       this.offset = {
-        x: parseInt( this.element.css( 'padding-' + this.horizontalDirection ), 10 ),
-        y: parseInt( this.element.css( 'padding-top' ), 10 )
+        x: x ? parseInt( x, 10 ) : 0,
+        y: y ? parseInt( y, 10 ) : 0
       };
       
       this.isFluid = this.options.columnWidth && typeof this.options.columnWidth === 'function';
