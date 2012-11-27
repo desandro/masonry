@@ -123,8 +123,8 @@
       var x = this.element.css( 'padding-' + this.horizontalDirection );
       var y = this.element.css( 'padding-top' );
       this.offset = {
-        x: x.length === 0 ? 0 : parseInt(x, 10),
-        y: y.length === 0 ? 0 : parseInt(y, 10),
+        x: x ? parseInt( x, 10 ) : 0,
+        y: y ? parseInt( y, 10 ) : 0
       };
       
       this.isFluid = this.options.columnWidth && typeof this.options.columnWidth === 'function';
