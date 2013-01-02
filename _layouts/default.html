@@ -13,6 +13,8 @@
   {% if page.has_modernizr %}
     <script src="{{ root_path }}js/modernizr-transitions.js"></script>
   {% endif %}
+  <script src="http://desandro.com/mint/?js"></script> <!-- analytics -->
+
   <!-- scripts at bottom of page -->
 
 </head>
@@ -70,6 +72,14 @@
     </footer>
     
   </section> <!-- #content -->
+
+  <!-- analytics -->
+  <script>
+    var _gaq=[['_setAccount','UA-592624-3'],['_setDomainName', '.desandro.com'],['_trackPageview'],['_trackPageLoadTime']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+  </script>
 
 </body>
 </html>
