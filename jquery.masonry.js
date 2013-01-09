@@ -97,10 +97,10 @@
         .addClass('masonry-brick');
       return $bricks;
     },
-    
+
     // sets up widget
     _create : function( options ) {
-      
+
       this.options = $.extend( true, {}, $.Mason.settings, options );
       this.styleQueue = [];
 
@@ -126,18 +126,18 @@
         x: x ? parseInt( x, 10 ) : 0,
         y: y ? parseInt( y, 10 ) : 0
       };
-      
-      this.isFluid = this.options.columnWidth && typeof this.options.columnWidth === 'function';
+
+      this._detectFluid();
 
       // add masonry class first time around
       var instance = this;
       setTimeout( function() {
         instance.element.addClass('masonry');
       }, 0 );
-      
+
       // bind resize method
       if ( this.options.isResizable ) {
-        $(window).bind( 'smartresize.masonry', function() { 
+        $(window).bind( 'smartresize.masonry', function() {
           instance.resize();
         });
       }
@@ -147,7 +147,7 @@
       this.reloadItems();
 
     },
-  
+
     // _init fires when instance is first created
     // and when instance is triggered again -> $el.masonry();
     _init : function( callback ) {
@@ -155,14 +155,19 @@
       this._reLayout( callback );
     },
 
+    _detectFluid: function() {
+      this.isFluid = this.options.columnWidth && typeof this.options.columnWidth === 'function';
+    },
+
     option: function( key, value ){
       // set options AFTER initialization:
       // signature: $('#foo').bar({ cool:false });
       if ( $.isPlainObject( key ) ){
         this.options = $.extend(true, this.options, key);
-      } 
+        this._detectFluid();
+      }
     },
-    
+
     // ====================== General Layout ======================
 
     // used on collection of atoms (should be filtered, and sorted before )
@@ -173,7 +178,7 @@
       for (var i=0, len = $bricks.length; i < len; i++) {
         this._placeBrick( $bricks[i] );
       }
-      
+
       // set the size of the container
       var containerSize = {};
       containerSize.height = Math.max.apply( Math, this.colYs );
@@ -213,10 +218,10 @@
       if ( callback ) {
         callback.call( $bricks );
       }
-      
+
       this.isLaidOut = true;
     },
-    
+
     // calculates number of columns
     // i.e. this.columnWidth = 200
     _getColumns : function() {
@@ -270,7 +275,7 @@
       // get the minimum Y value from the columns
       var minimumY = Math.min.apply( Math, groupY ),
           shortCol = 0;
-      
+
       // Find index of short column, the first from the left
       for (var i=0, len = groupY.length; i < len; i++) {
         if ( groupY[i] === minimumY ) {
@@ -295,8 +300,8 @@
       }
 
     },
-    
-    
+
+
     resize: function() {
       var prevColCount = this.cols;
       // get updated colCount
@@ -306,8 +311,8 @@
         this._reLayout();
       }
     },
-    
-    
+
+
     _reLayout : function( callback ) {
       // reset columns
       var i = this.cols;
@@ -318,20 +323,20 @@
       // apply layout logic to all bricks
       this.layout( this.$bricks, callback );
     },
-    
+
     // ====================== Convenience methods ======================
-    
+
     // goes through all children again and gets bricks in proper order
     reloadItems : function() {
       this.$bricks = this._getBricks( this.element.children() );
     },
-    
-    
+
+
     reload : function( callback ) {
       this.reloadItems();
       this._init( callback );
     },
-    
+
 
     // convienence method for working with Infinite Scroll
     appended : function( $content, isAnimatedFromBottom, callback ) {
@@ -346,20 +351,20 @@
         this._appended( $content, callback );
       }
     },
-    
+
     _appended : function( $content, callback ) {
       var $newBricks = this._getBricks( $content );
       // add new bricks to brick pool
       this.$bricks = this.$bricks.add( $newBricks );
       this.layout( $newBricks, callback );
     },
-    
+
     // removes elements from Masonry widget
     remove : function( $content ) {
       this.$bricks = this.$bricks.not( $content );
       $content.remove();
     },
-    
+
     // destroys widget, returns elements and container back (close) to original style
     destroy : function() {
 
@@ -370,7 +375,7 @@
           this.style.top = '';
           this.style.left = '';
         });
-      
+
       // re-apply saved container styles
       var elemStyle = this.element[0].style;
       for ( var prop in this.originalStyle ) {
@@ -381,14 +386,14 @@
         .unbind('.masonry')
         .removeClass('masonry')
         .removeData('masonry');
-      
+
       $(window).unbind('.masonry');
 
     }
-    
+
   };
-  
-  
+
+
   // ======================= imagesLoaded Plugin ===============================
   /*!
    * jQuery imagesLoaded plugin v1.1.0
@@ -455,12 +460,12 @@
       window.console.error( message );
     }
   };
-  
+
   // =======================  Plugin bridge  ===============================
   // leverages data method to either create or return $.Mason constructor
   // A bit from jQuery UI
   //   https://github.com/jquery/jquery-ui/blob/master/ui/jquery.ui.widget.js
-  // A bit from jcarousel 
+  // A bit from jcarousel
   //   https://github.com/jsor/jcarousel/blob/master/lib/jquery.jcarousel.js
 
   $.fn.masonry = function( options ) {
