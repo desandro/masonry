@@ -45,7 +45,7 @@
 
       if ( resizeTimeout ) { clearTimeout( resizeTimeout ); }
       resizeTimeout = setTimeout(function() {
-        $.event.handle.apply( context, args );
+        $.event[$.event.handle ? "handle" : "trigger"].apply( context, args );
       }, execAsap === "execAsap"? 0 : 100 );
     }
   };
