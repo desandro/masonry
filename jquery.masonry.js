@@ -308,7 +308,7 @@
       var prevColCount = this.cols;
       // get updated colCount
       this._getColumns();
-      if ( this.isFluid || this.cols !== prevColCount ) {
+      if ( this.isFluid || this.isFluidGutter || this.cols !== prevColCount ) {
         // if column count has changed, trigger new layout
         this._reLayout();
       }
