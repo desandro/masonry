@@ -130,6 +130,7 @@
       };
 
       this.isFluid = this.options.columnWidth && typeof this.options.columnWidth === 'function';
+      this.isFluidGutter = this.options.gutterWidth && typeof this.options.gutterWidth === 'function';
 
       // add masonry class first time around
       var instance = this;
@@ -190,7 +191,7 @@
           unusedCols++;
         }
         // fit container to columns that have been used;
-        containerSize.width = (this.cols - unusedCols) * this.columnWidth - this.options.gutterWidth;
+        containerSize.width = (this.cols - unusedCols) * this.columnWidth - this.gutterWidth;
       }
       this.styleQueue.push({ $el: this.element, style: containerSize });
 
@@ -234,9 +235,13 @@
                     // if there's no items, use size of container
                     containerWidth;
 
-      this.columnWidth += this.options.gutterWidth;
+      // use fluid gutterWidth function if there
+      this.gutterWidth = this.isFluidGutter ? this.options.gutterWidth( containerWidth ) :
+        this.options.gutterWidth
 
-      this.cols = Math.floor( ( containerWidth + this.options.gutterWidth ) / this.columnWidth );
+      this.columnWidth += gutterWidth;
+
+      this.cols = Math.floor( ( containerWidth + this.gutterWidth ) / this.columnWidth );
       this.cols = Math.max( this.cols, 1 );
 
     },
