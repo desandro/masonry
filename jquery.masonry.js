@@ -239,7 +239,7 @@
       this.gutterWidth = this.isFluidGutter ? this.options.gutterWidth( containerWidth ) :
         this.options.gutterWidth
 
-      this.columnWidth += gutterWidth;
+      this.columnWidth += this.gutterWidth;
 
       this.cols = Math.floor( ( containerWidth + this.gutterWidth ) / this.columnWidth );
       this.cols = Math.max( this.cols, 1 );
