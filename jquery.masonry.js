@@ -1,5 +1,5 @@
 /**
- * jQuery Masonry v2.1.07
+ * jQuery Masonry v2.1.08
  * A dynamic layout plugin for jQuery
  * The flip-side of CSS Floats
  * http://masonry.desandro.com
@@ -26,7 +26,6 @@
    */
 
   var $event = $.event,
-      dispatchMethod = $.event.handle ? 'handle' : 'dispatch',
       resizeTimeout;
 
   $event.special.smartresize = {
@@ -46,7 +45,7 @@
 
       if ( resizeTimeout ) { clearTimeout( resizeTimeout ); }
       resizeTimeout = setTimeout(function() {
-        $event[ dispatchMethod ].apply( context, args );
+        $event.dispatch.apply( context, args );
 
       }, execAsap === "execAsap"? 0 : 100 );
     }
