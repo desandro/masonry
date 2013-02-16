@@ -1,0 +1,16 @@
+## Submitting issues
+
+### Read the Help page
+
+[The Help page in the docs](http://masonry.desandro.com/docs/help.html) covers most issues. Please look it over first before submitting an issue.
+
+### Provide an isolated example with a live URL
+
+**A live URL is required** for any bug report or personal issue request. Try re-creating the issue in jsFiddle or CodePen using these templates:
+
++ [jsFiddle jQuery Masonry template](http://jsfiddle.net/desandro/7ZVb7/)
++ [CodePen jQuery Masonry template](http://codepen.io/desandro/pen/BLzoK)
+
+### Look over the Issues Agreement
+
+I wrote an [Issues Agreement](https://github.com/desandro/issues-agreement/#readme) that covers how to submit a good issue.

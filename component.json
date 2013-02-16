@@ -1,0 +1,9 @@
+{
+  "name": "jquery-masonry",
+  "version": "2.1.08",
+  "description": "Layout elements in a grid, like a mason fitting stones in a wall",
+  "main": "jquery.masonry.js",
+  "dependencies": {
+    "jquery": ">=1.5"
+  }
+}
