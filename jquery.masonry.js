@@ -142,6 +142,11 @@
           instance.resize();
         });
       }
+      
+      // bind add children event
+      instance.element.bind('DOMNodeInserted', function(e) {
+        instance.reload();
+      });
 
 
       // need to get bricks
