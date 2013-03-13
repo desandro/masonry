@@ -222,14 +222,18 @@
     // i.e. this.columnWidth = 200
     _getColumns : function() {
       var container = this.options.isFitWidth ? this.element.parent() : this.element,
-          containerWidth = container.width();
+          containerWidth = container.width(),
+          minWidth = this.$bricks.outerWidth(true); // initially minWidth equals the size of the first item
 
+      for (var i=0, len = this.$bricks.length; i < len; i++) {
+        minWidth = Math.min( $(this.$bricks[i]).outerWidth(true), minWidth );
+      }
                          // use fluid columnWidth function if there
       this.columnWidth = this.isFluid ? this.options.columnWidth( containerWidth ) :
                     // if not, how about the explicitly set option?
                     this.options.columnWidth ||
-                    // or use the size of the first item
-                    this.$bricks.outerWidth(true) ||
+                    // or use the minimal width of items
+                    minWidth ||
                     // if there's no items, use size of container
                     containerWidth;
 
