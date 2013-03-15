@@ -7,6 +7,14 @@ This package has all the documentation and demos to get you started.
 
 View this project live at [http://masonry.desandro.com](http://masonry.desandro.com).
 
+## Bower
+
+If you are cool with the command line, install jQuery Masonry as a [Bower](http://twitter.github.com/bower) package:
+
+``` bash
+bower install jquery-masonry
+```
+
 ## Viewing this project locally
 
 
