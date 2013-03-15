@@ -488,6 +488,11 @@ button {
   width: 54px;
 }
 
+.homepage .bower,
+.homepage .bower code {
+  font-size: 17px;
+}
+
 /* mini example */
 
 .homepage .mini div {

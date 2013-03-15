@@ -33,7 +33,7 @@ Masonry works on a container element with a group of similar child items.
 
 {% endhighlight %}
 
-Add jQuery and the Masonry script. Masonry requires jQuery v1.5 and greater.
+Add jQuery and the Masonry script. Masonry requires jQuery v1.6 and greater.
 
 {% highlight html %}
 
