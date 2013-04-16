@@ -94,7 +94,6 @@
 
     _getBricks: function( $elems ) {
       var $bricks = this._filterFindBricks( $elems )
-        .css({ position: 'absolute' })
         .addClass('masonry-brick');
       return $bricks;
     },
@@ -191,7 +190,8 @@
         // fit container to columns that have been used;
         containerSize.width = (this.cols - unusedCols) * this.columnWidth - this.options.gutterWidth;
       }
-      this.styleQueue.push({ $el: this.element, style: containerSize });
+      // push the container style to the start of the queue
+      this.styleQueue = [{ $el: this.element, style: containerSize }].concat(this.styleQueue);
 
       // are we animating the layout arrangement?
       // use plugin-ish syntax for css or animate
@@ -282,7 +282,8 @@
 
       // position the brick
       var position = {
-        top: minimumY + this.offset.y
+        top: minimumY + this.offset.y,
+        position: 'absolute'
       };
       // position.left or position.right
       position[ this.horizontalDirection ] = this.columnWidth * shortCol + this.offset.x;
