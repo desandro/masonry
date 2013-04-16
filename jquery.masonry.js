@@ -80,7 +80,10 @@
     isFitWidth: false,
     containerStyle: {
       position: 'relative'
-    }
+    },
+    wastedSpaceJitter: 75,
+    wastedSpacePenalty: 30,
+    yJitter: 72
   };
 
   $.Mason.prototype = {
@@ -154,6 +157,7 @@
     _init : function( callback ) {
       this._getColumns();
       this._reLayout( callback );
+      this.element.trigger( "masonry.columncountchange", [this.cols] );
     },
 
     option: function( key, value ){
@@ -169,10 +173,28 @@
     // used on collection of atoms (should be filtered, and sorted before )
     // accepts atoms-to-be-laid-out to start with
     layout : function( $bricks, callback ) {
+      this.element.trigger('masonry.beforelayout');
 
       // place each brick
       for (var i=0, len = $bricks.length; i < len; i++) {
         this._placeBrick( $bricks[i] );
+      }
+      var maxY = Math.max.apply( Math, this.colYs ) + this.offset.y, wastedSpaceItem, wastedSpace = [];
+      for (var i=0, len = this.colYs.length; i < len; i++) {
+        var wastedHeight = maxY - this.colYs[i] - this.offset.y;
+        if ( wastedHeight ) {
+          // get the top, height, width, and right/left of a box that takes up the entire area of wasted space.
+          var wastedSpaceItem = {
+            top: this.colYs[i] + this.offset.y,
+            height: wastedHeight,
+            width: this.columnWidth
+          };
+          wastedSpaceItem[ this.horizontalDirection ] = this.columnWidth * i + this.offset.x;
+          wastedSpace.push(wastedSpaceItem);
+        }
+      }
+      if ( wastedSpace.length ) {
+        this.element.trigger( "masonry.wastedspace", [wastedSpace] );
       }
       
       // set the size of the container
@@ -193,6 +215,17 @@
       }
       this.styleQueue.push({ $el: this.element, style: containerSize });
 
+      this._processStyleQueue();
+
+      // provide $elems as context for the callback
+      if ( callback ) {
+        callback.call( $bricks );
+      }
+      
+      this.isLaidOut = true;
+      this.element.trigger( "masonry.complete", [wastedSpace] );
+    },
+    _processStyleQueue: function() {
       // are we animating the layout arrangement?
       // use plugin-ish syntax for css or animate
       var styleFn = !this.isLaidOut ? 'css' : (
@@ -202,27 +235,20 @@
 
       // process styleQueue
       var obj;
-      for (i=0, len = this.styleQueue.length; i < len; i++) {
+      for (var i=0, len = this.styleQueue.length; i < len; i++) {
         obj = this.styleQueue[i];
         obj.$el[ styleFn ]( obj.style, animOpts );
       }
 
       // clear out queue for next time
       this.styleQueue = [];
-
-      // provide $elems as context for the callback
-      if ( callback ) {
-        callback.call( $bricks );
-      }
-      
-      this.isLaidOut = true;
     },
-    
     // calculates number of columns
     // i.e. this.columnWidth = 200
     _getColumns : function() {
       var container = this.options.isFitWidth ? this.element.parent() : this.element,
-          containerWidth = container.width();
+          containerWidth = container.width(),
+          containerPadding = this.element.outerWidth() - this.element.width();
 
                          // use fluid columnWidth function if there
       this.columnWidth = this.isFluid ? this.options.columnWidth( containerWidth ) :
@@ -235,7 +261,7 @@
 
       this.columnWidth += this.options.gutterWidth;
 
-      this.cols = Math.floor( ( containerWidth + this.options.gutterWidth ) / this.columnWidth );
+      this.cols = Math.floor( ( containerWidth + this.options.gutterWidth - containerPadding ) / this.columnWidth );
       this.cols = Math.max( this.cols, 1 );
 
     },
@@ -243,7 +269,7 @@
     // layout logic
     _placeBrick: function( brick ) {
       var $brick = $(brick),
-          colSpan, groupCount, groupY, groupColY, j;
+          colSpan, groupCount, groupY, groupColY, j, k, wastedY;
 
       //how many columns does this brick span
       colSpan = Math.ceil( $brick.outerWidth(true) / this.columnWidth );
@@ -252,11 +278,15 @@
       if ( colSpan === 1 ) {
         // if brick spans only one column, just like singleMode
         groupY = this.colYs;
+        // it's impossible for a single column brick to waste space, so fill the wastedY array with zeros.
+        wastedY = [];
+        for ( var i=0; i < this.colYs.length; i++) wastedY[i] = 0;
       } else {
         // brick spans more than one column
         // how many different places could this brick fit horizontally
         groupCount = this.cols + 1 - colSpan;
         groupY = [];
+        wastedY = [];
 
         // for each group potential horizontal position
         for ( j=0; j < groupCount; j++ ) {
@@ -264,35 +294,74 @@
           groupColY = this.colYs.slice( j, j+colSpan );
           // and get the max value of the array
           groupY[j] = Math.max.apply( Math, groupColY );
+          // find out how much space each column option would waste
+          wastedY[j] = 0;
+          for( k=0; k < groupColY.length; k++ ) {
+            wastedY[j] += (groupY[j] - groupColY[k]);
+          }
         }
-
       }
 
-      // get the minimum Y value from the columns
+      // get the minimum wasted Y value from the columns
       var minimumY = Math.min.apply( Math, groupY ),
-          shortCol = 0;
+          minimumWasted = Math.min.apply( Math, wastedY ),
+          shortCol = 0,
+          potentialColumns = [],
+          potentialY = [];
       
-      // Find index of short column, the first from the left
-      for (var i=0, len = groupY.length; i < len; i++) {
-        if ( groupY[i] === minimumY ) {
-          shortCol = i;
+      // find the columns that waste the minimum amount of space
+      for (var i=0, len = wastedY.length; i < len; i++) {
+        var spaceBetweenThisYandMinimum = groupY[i] - minimumY;
+        var wastedSpacePenalty = spaceBetweenThisYandMinimum * this.options.wastedSpacePenalty;
+        //console.log( wastedSpacePenalty, brick );
+        if ( wastedY[i] / colSpan <= minimumWasted + this.options.wastedSpaceJitter - wastedSpacePenalty) {
+          potentialColumns.push(i);
+          potentialY.push(groupY[i]);
+        }
+      }
+      if (potentialColumns.length === 0) {
+        for (var i=0, len = groupY.length+1; i < len; i++) {
+          potentialColumns.push(i);
+        }
+        potentialY = groupY;
+      }
+
+      // find the shortest, leftmost column
+      minimumY = Math.min.apply( Math, potentialY );
+      for (var i=0, len = potentialColumns.length; i < len; i++) {
+        if ( potentialY[i] <= minimumY + this.options.yJitter ) {
+          shortCol = potentialColumns[i];
           break;
         }
       }
-
       // position the brick
       var position = {
-        top: minimumY + this.offset.y
+        top: groupY[shortCol] + this.offset.y
       };
       // position.left or position.right
       position[ this.horizontalDirection ] = this.columnWidth * shortCol + this.offset.x;
       this.styleQueue.push({ $el: $brick, style: position });
 
-      // apply setHeight to necessary columns
-      var setHeight = minimumY + $brick.outerHeight(true),
-          setSpan = this.cols + 1 - len;
+      // apply setHeight to necessary columns, triggering wastedspace event if needed.
+      var setHeight = groupY[shortCol] + $brick.outerHeight(true),
+          setSpan = this.cols + 1 - groupY.length,
+          wastedSpaceItem, wastedSpace = [];
       for ( i=0; i < setSpan; i++ ) {
+        var wastedHeight = position.top - this.colYs[ shortCol + i ] - this.offset.y;
+        if ( wastedHeight ) {
+          // get the top, height, width, and right/left of a box that takes up the entire area of wasted space.
+          wastedSpaceItem = {
+            top: this.colYs[ shortCol + i ] + this.offset.y,
+            height: wastedHeight,
+            width: this.columnWidth
+          };
+          wastedSpaceItem[ this.horizontalDirection ] = this.columnWidth * (shortCol+i) + this.offset.x;
+          wastedSpace.push(wastedSpaceItem)
+        }
         this.colYs[ shortCol + i ] = setHeight;
+      }
+      if (wastedSpace.length) {
+        this.element.trigger( "masonry.wastedspace", [wastedSpace] );
       }
 
     },
@@ -304,6 +373,7 @@
       this._getColumns();
       if ( this.isFluid || this.cols !== prevColCount ) {
         // if column count has changed, trigger new layout
+        this.element.trigger( "masonry.columncountchange", [this.cols] );
         this._reLayout();
       }
     },
