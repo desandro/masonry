@@ -15,15 +15,19 @@
 
 // -------------------------- helpers -------------------------- //
 
-function indexOf( items, value ) {
-  for ( var i=0, len = items.length; i < len; i++ ) {
-    var item = items[i];
-    if ( item === value ) {
-      return i;
+var indexOf = Array.prototype.indexOf ?
+  function( items, value ) {
+    return items.indexOf( value );
+  } :
+  function ( items, value ) {
+    for ( var i=0, len = items.length; i < len; i++ ) {
+      var item = items[i];
+      if ( item === value ) {
+        return i;
+      }
     }
+    return -1;
   }
-  return -1;
-}
 
 // -------------------------- masonryDefinition -------------------------- //
 
@@ -53,7 +57,7 @@ function masonryDefinition( Outlayer, getSize ) {
     var firstItemElem = this.items[0].element;
     this.columnWidth = this.columnWidth || getSize( firstItemElem ).outerWidth;
 
-    this.cols = Math.floor( ( this.size.innerWidth + this.gutterWidth ) / this.columnWidth );
+    this.cols = Math.floor( ( this.size.innerWidth + this.gutter ) / this.columnWidth );
     this.cols = Math.max( this.cols, 1 );
   };
 
@@ -88,26 +92,7 @@ function masonryDefinition( Outlayer, getSize ) {
     var colSpan = Math.ceil( item.size.outerWidth / this.columnWidth );
     colSpan = Math.min( colSpan, this.cols );
 
-    var colGroup;
-
-    if ( colSpan === 1 ) {
-      // if brick spans only one column, just like singleMode
-      colGroup = this.colYs;
-    } else {
-      // brick spans more than one column
-      // how many different places could this brick fit horizontally
-      var groupCount = this.cols + 1 - colSpan;
-      colGroup = [];
-
-      // for each group potential horizontal position
-      for ( var j=0; j < groupCount; j++ ) {
-        // make an array of colY values for that one group
-        var groupColY = this.colYs.slice( j, j + colSpan );
-        // and get the max value of the array
-        colGroup[j] = Math.max.apply( Math, groupColY );
-      }
-    }
-
+    var colGroup = this._getColGroup( colSpan );
     // get the minimum Y value from the columns
     var minimumY = Math.min.apply( Math, colGroup );
     var shortColIndex = indexOf( colGroup, minimumY );
@@ -126,6 +111,29 @@ function masonryDefinition( Outlayer, getSize ) {
     }
 
     return position;
+  };
+
+  /**
+   * @param {Number} colSpan - number of columns the element spans
+   * @returns {Array} colGroup
+   */
+  Masonry.prototype._getColGroup = function( colSpan ) {
+    if ( colSpan === 1 ) {
+      // if brick spans only one column, use all the column Ys
+      return this.colYs;
+    }
+
+    var colGroup = [];
+    // how many different places could this brick fit horizontally
+    var groupCount = this.cols + 1 - colSpan;
+    // for each group potential horizontal position
+    for ( var i = 0; i < groupCount; i++ ) {
+      // make an array of colY values for that one group
+      var groupColYs = this.colYs.slice( i, i + colSpan );
+      // and get the max value of the array
+      colGroup[i] = Math.max.apply( Math, groupColYs );
+    }
+    return colGroup
   };
 
   Masonry.prototype._setElementSize = function() {
