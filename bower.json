@@ -1,9 +1,9 @@
 {
-  "name": "jquery-masonry",
-  "version": "2.1.08",
+  "name": "masonry",
+  "version": "3.0.0-dev",
   "description": "Layout elements in a grid, like a mason fitting stones in a wall",
-  "main": "jquery.masonry.js",
+  "main": "masonry.js",
   "dependencies": {
-    "jquery": ">=1.5"
+    "outlayer": "metafizzy/outlayer"
   }
 }
