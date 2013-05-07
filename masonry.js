@@ -27,7 +27,7 @@ var indexOf = Array.prototype.indexOf ?
       }
     }
     return -1;
-  }
+  };
 
 // -------------------------- masonryDefinition -------------------------- //
 
@@ -61,32 +61,7 @@ function masonryDefinition( Outlayer, getSize ) {
     this.cols = Math.max( this.cols, 1 );
   };
 
-  Masonry.prototype.layoutItems = function( items, isInstant ) {
-    if ( !items || !items.length ) {
-      return;
-    }
-
-    // emit layoutComplete when done
-    this._itemsOn( items, 'layout', function onItemsLayout() {
-      this.emitEvent( 'layoutComplete', [ this, items ] );
-    });
-
-    for ( var i=0, len = items.length; i < len; i++ ) {
-      var item = items[i];
-      var position = this._getBrickPosition( item );
-      this._layoutItem( item, position.x, position.y, isInstant );
-    }
-
-    this.maxY = Math.max.apply( Math, this.colYs );
-    this._setElementSize();
-
-  };
-
-  /**
-   * get position to set item in masonry layout
-   * @param {Masonry.Item} item
-   */
-  Masonry.prototype._getBrickPosition = function( item ) {
+  Masonry.prototype._getItemLayoutPosition = function( item ) {
     item.getSize();
     //how many columns does this brick span
     var colSpan = Math.ceil( item.size.outerWidth / this.columnWidth );
@@ -113,6 +88,18 @@ function masonryDefinition( Outlayer, getSize ) {
     return position;
   };
 
+  Masonry.prototype._postLayout = function() {
+    this.maxY = Math.max.apply( Math, this.colYs );
+
+    var elemH = this.maxY;
+    // add padding and border width if border box
+    if ( this.size.isBorderBox ) {
+      elemH += this.size.paddingBottom + this.size.paddingTop +
+        this.size.borderTopWidth + this.size.borderBottomWidth;
+    }
+    this.element.style.height = elemH + 'px';
+  };
+
   /**
    * @param {Number} colSpan - number of columns the element spans
    * @returns {Array} colGroup
@@ -133,17 +120,7 @@ function masonryDefinition( Outlayer, getSize ) {
       // and get the max value of the array
       colGroup[i] = Math.max.apply( Math, groupColYs );
     }
-    return colGroup
-  };
-
-  Masonry.prototype._setElementSize = function() {
-    var elemH = this.maxY;
-    // add padding and border width if border box
-    if ( this.size.isBorderBox ) {
-      elemH += this.size.paddingBottom + this.size.paddingTop +
-        this.size.borderTopWidth + this.size.borderBottomWidth;
-    }
-    this.element.style.height = elemH + 'px';
+    return colGroup;
   };
 
   return Masonry;
