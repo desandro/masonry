@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>stamps</title>
+
+  <style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .container {
+    background: #EEE;
+    width: 50%;
+    margin-bottom: 1.0em;
+  }
+
+  .item {
+    width:  60px;
+    height: 60px;
+    float: left;
+    border: 1px solid;
+    background: #09F;
+  }
+
+  .item.w2 { width: 120px; }
+  .item.w3 { width: 180px; }
+
+  .item.h2 { height: 100px; }
+  .item.h3 { height: 160px; }
+  .item.h4 { height: 220px; }
+  .item.h5 { height: 280px; }
+
+  .stamp {
+    background: red;
+    opacity: 0.75;
+    position: absolute;
+    border: 1px solid;
+  }
+
+  #alpha .stamp1 {
+    width: 30%;
+    height: 100px;
+    left: 30%;
+    top: 20px;
+  }
+
+  #alpha .stamp2 {
+    width: 200px;
+    height: 50px;
+    left: 20px;
+    top: 50px;
+  }
+
+  #beta .stamp1 {
+    width: 30%;
+    height: 100px;
+    left: 10%;
+    top: 20px;
+  }
+
+  #beta .stamp2 {
+    width: 200px;
+    height: 50px;
+    right: 20px;
+    top: 50px;
+  }
+
+  </style>
+
+</head>
+<body>
+
+  <h1>stamps</h1>
+
+  <div id="alpha" class="container">
+    <div class="stamp stamp1"></div>
+    <div class="stamp stamp2"></div>
+    <div class="item"></div>
+    <div class="item h4"></div>
+    <div class="item h2"></div>
+    <div class="item"></div>
+    <div class="item h3"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item h4"></div>
+    <div class="item"></div>
+    <div class="item h4"></div>
+    <div class="item"></div>
+  </div>
+
+  <div id="beta" class="container">
+    <div class="stamp stamp2"></div>
+    <div class="stamp stamp1"></div>
+    <div class="item"></div>
+    <div class="item h4"></div>
+    <div class="item h2"></div>
+    <div class="item"></div>
+    <div class="item h3"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item h4"></div>
+    <div class="item"></div>
+    <div class="item h4"></div>
+    <div class="item"></div>
+  </div>
+
+<script src="../components/classie/classie.js"></script>
+<script src="../components/eventEmitter/EventEmitter.js"></script>
+<script src="../components/eventEmitter/EventEmitter.min.js"></script>
+<script src="../components/eventie/eventie.js"></script>
+<script src="../components/doc-ready/doc-ready.js"></script>
+<script src="../components/get-style-property/get-style-property.js"></script>
+<script src="../components/get-size/get-size.js"></script>
+<script src="../components/jquery-bridget/jquery.bridget.js"></script>
+<script src="../components/matches-selector/matches-selector.js"></script>
+<script src="../components/outlayer/item.js"></script>
+<script src="../components/outlayer/outlayer.js"></script>
+
+<script src="../masonry.js"></script>
+
+<script>
+docReady( function() {
+  ( function() {
+    var container = document.querySelector('#alpha');
+    var msnry = new Masonry( container, {
+      columnWidth: 60,
+      gutter: 10,
+      stamp: '.stamp'
+    });
+  
+  })();
+  ( function() {
+    var container = document.querySelector('#beta');
+    var msnry = new Masonry( container, {
+      columnWidth: 60,
+      gutter: 10,
+      stamp: '.stamp'
+    });
+  
+  })();
+});
+</script>
+
+</body>
+</html>

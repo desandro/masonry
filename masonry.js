@@ -56,6 +56,7 @@ function masonryDefinition( Outlayer, getSize ) {
     // if columnWidth is 0, default to outerWidth of first item
     var firstItemElem = this.items[0].element;
     this.columnWidth = this.columnWidth || getSize( firstItemElem ).outerWidth;
+    this.columnWidth += this.gutter;
 
     this.cols = Math.floor( ( this.size.innerWidth + this.gutter ) / this.columnWidth );
     this.cols = Math.max( this.cols, 1 );
@@ -63,7 +64,7 @@ function masonryDefinition( Outlayer, getSize ) {
 
   Masonry.prototype._getItemLayoutPosition = function( item ) {
     item.getSize();
-    //how many columns does this brick span
+    // how many columns does this brick span
     var colSpan = Math.ceil( item.size.outerWidth / this.columnWidth );
     colSpan = Math.min( colSpan, this.cols );
 
@@ -121,6 +122,26 @@ function masonryDefinition( Outlayer, getSize ) {
       colGroup[i] = Math.max.apply( Math, groupColYs );
     }
     return colGroup;
+  };
+
+  // ----- stamps ----- //
+
+  Masonry.prototype._manageStamp = function( stamp ) {
+    var stampSize = getSize( stamp );
+    var offset = this._getElementOffset( stamp );
+    // get the columns that this stamp affects
+    var firstCol = Math.floor( offset.x / this.columnWidth );
+    var rightX = offset.x + stampSize.outerWidth;
+    var lastCol = Math.floor( rightX / this.columnWidth );
+    // set colYs to bottom of the stamp
+    for ( var i = firstCol; i <= lastCol; i++ ) {
+      var colY = this.colYs[i];
+      if ( colY === undefined ) {
+        continue;
+      }
+      var stampBottom = offset.y + stampSize.outerHeight;
+      this.colYs[i] = Math.max( stampBottom, colY );
+    }
   };
 
   return Masonry;
