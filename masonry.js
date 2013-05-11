@@ -33,11 +33,16 @@ var indexOf = Array.prototype.indexOf ?
 
 // used for AMD definition and requires
 function masonryDefinition( Outlayer, getSize ) {
-
+  // create an Outlayer layout class
   var Masonry = Outlayer.create('masonry');
+  // default options
+  var defaultOptions = Masonry.prototype.options;
+  defaultOptions.isOriginLeft = true;
 
   Masonry.prototype._resetLayout = function() {
     this.getSize();
+    this.isOriginLeft = this.options.isOriginLeft;
+    // this.isOriginTop = this.options.isOriginTop;
     this._getMeasurement( 'columnWidth', 'outerWidth' );
     this._getMeasurement( 'gutter', 'outerWidth' );
     this.measureColumns();
@@ -129,10 +134,12 @@ function masonryDefinition( Outlayer, getSize ) {
   Masonry.prototype._manageStamp = function( stamp ) {
     var stampSize = getSize( stamp );
     var offset = this._getElementOffset( stamp );
-    // get the columns that this stamp affects
-    var firstCol = Math.floor( offset.x / this.columnWidth );
     var rightX = offset.x + stampSize.outerWidth;
-    var lastCol = Math.floor( rightX / this.columnWidth );
+    // get the columns that this stamp affects
+    var firstX = this.isOriginLeft ? offset.x : this.size.innerWidth - rightX;
+    var firstCol = Math.floor( firstX / this.columnWidth );
+    var lastX = this.isOriginLeft ? rightX : this.size.innerWidth - offset.x;
+    var lastCol = Math.floor( lastX / this.columnWidth );
     // set colYs to bottom of the stamp
     for ( var i = firstCol; i <= lastCol; i++ ) {
       var colY = this.colYs[i];
