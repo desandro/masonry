@@ -35,15 +35,9 @@ var indexOf = Array.prototype.indexOf ?
 function masonryDefinition( Outlayer, getSize ) {
   // create an Outlayer layout class
   var Masonry = Outlayer.create('masonry');
-  // default options
-  var defaultOptions = Masonry.prototype.options;
-  defaultOptions.isOriginLeft = true;
-  defaultOptions.isOriginTop = true;
 
   Masonry.prototype._resetLayout = function() {
     this.getSize();
-    this.isOriginLeft = this.options.isOriginLeft;
-    this.isOriginTop = this.options.isOriginTop;
     this._getMeasurement( 'columnWidth', 'outerWidth' );
     this._getMeasurement( 'gutter', 'outerWidth' );
     this.measureColumns();
@@ -95,18 +89,6 @@ function masonryDefinition( Outlayer, getSize ) {
     return position;
   };
 
-  Masonry.prototype._postLayout = function() {
-    this.maxY = Math.max.apply( Math, this.colYs );
-
-    var elemH = this.maxY;
-    // add padding and border width if border box
-    if ( this.size.isBorderBox ) {
-      elemH += this.size.paddingBottom + this.size.paddingTop +
-        this.size.borderTopWidth + this.size.borderBottomWidth;
-    }
-    this.element.style.height = elemH + 'px';
-  };
-
   /**
    * @param {Number} colSpan - number of columns the element spans
    * @returns {Array} colGroup
@@ -130,18 +112,16 @@ function masonryDefinition( Outlayer, getSize ) {
     return colGroup;
   };
 
-  // ----- stamps ----- //
-
   Masonry.prototype._manageStamp = function( stamp ) {
     var stampSize = getSize( stamp );
     var offset = this._getElementOffset( stamp );
     // get the columns that this stamp affects
-    var firstX = this.isOriginLeft ? offset.left : offset.right;
+    var firstX = this.options.isOriginLeft ? offset.left : offset.right;
     var lastX = firstX + stampSize.outerWidth;
     var firstCol = Math.floor( firstX / this.columnWidth );
     var lastCol = Math.floor( lastX / this.columnWidth );
     // set colYs to bottom of the stamp
-    var stampMaxY = ( this.isOriginTop ? offset.top : offset.bottom ) +
+    var stampMaxY = ( this.options.isOriginTop ? offset.top : offset.bottom ) +
       stampSize.outerHeight;
     for ( var i = firstCol; i <= lastCol; i++ ) {
       var colY = this.colYs[i];
@@ -150,6 +130,13 @@ function masonryDefinition( Outlayer, getSize ) {
       }
       this.colYs[i] = Math.max( stampMaxY, colY );
     }
+  };
+
+  Masonry.prototype._sizeContainerPostLayout = function() {
+    this.maxY = Math.max.apply( Math, this.colYs );
+    return {
+      height: this.maxY
+    };
   };
 
   return Masonry;
