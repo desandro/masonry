@@ -5,7 +5,7 @@
   "main": "masonry.js",
   "dependencies": {
     "get-size": "desandro/get-size",
-    "outlayer": "metafizzy/outlayer#>=0.2.0"
+    "outlayer": "metafizzy/outlayer#>=0.4.0"
   },
   "devDependencies": {
     "doc-ready": "desandro/doc-ready"

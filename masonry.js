@@ -132,7 +132,7 @@ function masonryDefinition( Outlayer, getSize ) {
     }
   };
 
-  Masonry.prototype._sizeContainerPostLayout = function() {
+  Masonry.prototype._getContainerSize = function() {
     this.maxY = Math.max.apply( Math, this.colYs );
     return {
       height: this.maxY
