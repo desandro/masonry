@@ -8,7 +8,7 @@ test( 'basic layout top left', function() {
     columnWidth: 60
   });
 
-  var positions = {
+  checkItemPositions( msnry, {
     0: {
       left: 0,
       top: 0
@@ -29,17 +29,7 @@ test( 'basic layout top left', function() {
       left: 60,
       top: 90
     }
-  };
-  
-  for ( var i = 0; i < 5; i++ ) {
-    var position = positions[i];
-    var style = msnry.items[i].element.style;
-    for ( var prop in position ) {
-      var value = position[ prop ] + 'px';
-      var message = 'item ' + i + ' ' + prop + ' = ' + value;
-      equal( style[ prop ], value, message );
-    }
-  }
+  });
 
 });
 
@@ -50,7 +40,7 @@ test( 'basic layout top right', function() {
     columnWidth: 60
   });
 
-  var positions = {
+  checkItemPositions( msnry, {
     0: {
       right: 0,
       top: 0
@@ -71,17 +61,7 @@ test( 'basic layout top right', function() {
       right: 60,
       top: 90
     }
-  };
-  
-  for ( var i = 0; i < 5; i++ ) {
-    var position = positions[i];
-    var style = msnry.items[i].element.style;
-    for ( var prop in position ) {
-      var value = position[ prop ] + 'px';
-      var message = 'item ' + i + ' ' + prop + ' = ' + value;
-      equal( style[ prop ], value, message );
-    }
-  }
+  });
 
 });
 
@@ -92,7 +72,7 @@ test( 'basic layout bottom left', function() {
     columnWidth: 60
   });
 
-  var positions = {
+  checkItemPositions( msnry, {
     0: {
       left: 0,
       bottom: 0
@@ -113,17 +93,7 @@ test( 'basic layout bottom left', function() {
       left: 60,
       bottom: 90
     }
-  };
-  
-  for ( var i = 0; i < 5; i++ ) {
-    var position = positions[i];
-    var style = msnry.items[i].element.style;
-    for ( var prop in position ) {
-      var value = position[ prop ] + 'px';
-      var message = 'item ' + i + ' ' + prop + ' = ' + value;
-      equal( style[ prop ], value, message );
-    }
-  }
+  });
 
 });
 
@@ -135,7 +105,7 @@ test( 'basic layout bottom right', function() {
     columnWidth: 60
   });
 
-  var positions = {
+  checkItemPositions( msnry, {
     0: {
       right: 0,
       bottom: 0
@@ -156,19 +126,8 @@ test( 'basic layout bottom right', function() {
       right: 60,
       bottom: 90
     }
-  };
-  
-  for ( var i = 0; i < 5; i++ ) {
-    var position = positions[i];
-    var style = msnry.items[i].element.style;
-    for ( var prop in position ) {
-      var value = position[ prop ] + 'px';
-      var message = 'item ' + i + ' ' + prop + ' = ' + value;
-      equal( style[ prop ], value, message );
-    }
-  }
+  });
 
 });
-
 
 })();

@@ -4,6 +4,10 @@
           box-sizing: border-box;
 }
 
+body {
+  font-family: sans-serif;
+}
+
 .container {
   background: #EEE;
   width: 180px;
@@ -33,3 +37,12 @@
   position: absolute;
   border: 1px solid;
 }
+
+
+/* ----  ---- */
+
+#gutter {
+  width: 220px;
+}
+
+#gutter .item.w2 { width: 140px; }

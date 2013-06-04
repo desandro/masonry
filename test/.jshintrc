@@ -6,6 +6,7 @@
   "unused": true,
   "predef": {
     "Masonry": false,
+    "checkItemPositions": false,
 
     "asyncTest": false,
     "deepEqual": false,
