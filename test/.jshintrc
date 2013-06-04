@@ -1,0 +1,26 @@
+{
+  "browser": true,
+  "devel": false,
+  "strict": true,
+  "undef": true,
+  "unused": true,
+  "predef": {
+    "Masonry": false,
+
+    "asyncTest": false,
+    "deepEqual": false,
+    "equal": false,
+    "expect": false,
+    "module": false,
+    "notDeepEqual": false,
+    "notEqual": false,
+    "notStrictEqual": false,
+    "ok": false,
+    "QUnit": false,
+    "raises": false,
+    "start": false,
+    "stop": false,
+    "strictEqual": false,
+    "test": false
+  }
+}

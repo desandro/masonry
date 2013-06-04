@@ -8,6 +8,7 @@
     "outlayer": "metafizzy/outlayer#>=0.4.0"
   },
   "devDependencies": {
-    "doc-ready": "desandro/doc-ready"
+    "doc-ready": "desandro/doc-ready",
+    "qunit": "1.x"
   }
 }

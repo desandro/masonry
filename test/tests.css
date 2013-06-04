@@ -1,0 +1,35 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container {
+  background: #EEE;
+  width: 180px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.item {
+  width:  60px;
+  height: 30px;
+  float: left;
+  border: 1px solid;
+  background: #09F;
+}
+
+.item.w2 { width: 120px; }
+.item.w3 { width: 180px; }
+
+.item.h2 { height:  50px; }
+.item.h3 { height:  70px; }
+.item.h4 { height:  90px; }
+.item.h5 { height: 110px; }
+
+.stamp {
+  background: red;
+  opacity: 0.75;
+  position: absolute;
+  border: 1px solid;
+}
