@@ -119,16 +119,14 @@ function masonryDefinition( Outlayer, getSize ) {
     var firstX = this.options.isOriginLeft ? offset.left : offset.right;
     var lastX = firstX + stampSize.outerWidth;
     var firstCol = Math.floor( firstX / this.columnWidth );
+    firstCol = Math.max( 0, firstCol );
     var lastCol = Math.floor( lastX / this.columnWidth );
+    lastCol = Math.min( this.cols - 1, lastCol );
     // set colYs to bottom of the stamp
     var stampMaxY = ( this.options.isOriginTop ? offset.top : offset.bottom ) +
       stampSize.outerHeight;
     for ( var i = firstCol; i <= lastCol; i++ ) {
-      var colY = this.colYs[i];
-      if ( colY === undefined ) {
-        continue;
-      }
-      this.colYs[i] = Math.max( stampMaxY, colY );
+      this.colYs[i] = Math.max( stampMaxY, this.colYs[i] );
     }
   };
 
