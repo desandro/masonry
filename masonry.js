@@ -1,6 +1,6 @@
 /*!
- * Masonry v3
- * grid layout, like a mason fitting stones in a wall
+ * Masonry v3.0.0
+ * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
  * by David DeSandro
