@@ -10,8 +10,8 @@ For complete docs and demos, see [masonry.desandro.com](http://masonry.desandro.
 
 A packaged source file includes everything you need to use Masonry.
 
-+ [masonry.pkgd.min.js](http://maosnry.desandro.com/)
-+ [masonry.pkgd.js](http://maosnry.desandro.com/)
++ [masonry.pkgd.min.js](http://masonry.desandro.com/masonry.pkgd.min.js)
++ [masonry.pkgd.js](http://masonry.desandro.com/masonry.pkgd.js)
 
 ### Bower
 
