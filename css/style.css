@@ -619,3 +619,18 @@ code .nd { color: #9FAD7E; } /* CSS pseudo selector */
 .clearfix:before, .clearfix:after { content: ""; display: table; }
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
+
+
+#alert a {
+  padding: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+  background: #D26;
+  color: white;
+}
+
+#alert a:hover {
+  background: white;
+  color: #A2C;
+}
