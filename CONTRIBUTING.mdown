@@ -1,24 +1,13 @@
-## Development freeze
-
-I've got my hands full working on [Packery](http://metafizzy.co/blog/packery-preview) for the next couple months.
-
-+ :cry: Development on Masonry is stopped for a while
-+ :sleeping: I won't be snappily responding to new issues
-+ :smile: When development starts back up on Masonry, the gains made building Packery will be ported over to Masonry.
-
 ## Submitting issues
 
-### Read the Help page
+### Reduced test case required
 
-[The Help page in the docs](http://masonry.desandro.com/docs/help.html) covers most issues. Please look it over first before submitting an issue.
+All bug reports and problem issues require a reduced test case. See [CSS Tricks - Reduced Test Cases](http://css-tricks.com/reduced-test-cases/) on why they _"are the absolute, ... number one way to troubleshoot bugs."_
 
-### Provide an isolated example with a live URL
++ A reduced test case is an isolated example that demonstrates the bug or issue.
++ It contains the bare minimum HTML, CSS, and JavaScript required to demonstrate the bug. No extra functionality or styling.
++ Any one of the [CodePen examples](http://codepen.io/desandro/tag/masonry-docs) in [the docs](http://masonry.desandro.com) may be forked and used to build your reduced test case.
++ A link to your site is **not** a reduced test case.
++ Until you provide a reduced test case, your issue will be closed.
 
-**A live URL is required** for any bug report or personal issue request. Try re-creating the issue in jsFiddle or CodePen using these templates:
-
-+ [jsFiddle jQuery Masonry template](http://jsfiddle.net/desandro/7ZVb7/)
-+ [CodePen jQuery Masonry template](http://codepen.io/desandro/pen/BLzoK)
-
-### Look over the Issues Agreement
-
-I wrote an [Issues Agreement](https://github.com/desandro/issues-agreement/#readme) that covers how to submit a good issue.
+I realize this guideline may seem a little harsh, but it dramatically helps both of you and me. Reduced test cases help you identify the issue at hand and understand your own code. On my side, they greatly reduce the amount of time spent resolving the issue.
