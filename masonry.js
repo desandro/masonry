@@ -1,5 +1,5 @@
 /*!
- * Masonry v3.0.2
+ * Masonry v3.0.3
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
@@ -53,7 +53,7 @@ function masonryDefinition( Outlayer, getSize ) {
   };
 
   Masonry.prototype.measureColumns = function() {
-    var container = this.options.isFitWidth ? this.element.parentNode : this.element;
+    var container = this._getSizingContainer();
     // if columnWidth is 0, default to outerWidth of first item
     var firstItem = this.items[0];
     var firstItemElem = firstItem && firstItem.element;
@@ -65,9 +65,13 @@ function masonryDefinition( Outlayer, getSize ) {
     }
     this.columnWidth += this.gutter;
 
-    var containerSize = getSize( container ).innerWidth;
-    this.cols = Math.floor( ( containerSize + this.gutter ) / this.columnWidth );
+    this._containerWidth = getSize( container ).innerWidth;
+    this.cols = Math.floor( ( this._containerWidth + this.gutter ) / this.columnWidth );
     this.cols = Math.max( this.cols, 1 );
+  };
+
+  Masonry.prototype._getSizingContainer = function() {
+    return this.options.isFitWidth ? this.element.parentNode : this.element;
   };
 
   Masonry.prototype._getItemLayoutPosition = function( item ) {
@@ -163,6 +167,25 @@ function masonryDefinition( Outlayer, getSize ) {
     }
     // fit container to columns that have been used
     return ( this.cols - unusedCols ) * this.columnWidth - this.gutter;
+  };
+
+  // debounced, layout on resize
+  // HEADS UP this overwrites Outlayer.resize
+  // Any changes in Outlayer.resize need to be manually added here
+  Masonry.prototype.resize = function() {
+    // don't trigger if size did not change
+    var container = this._getSizingContainer();
+    var size = getSize( container );
+    // check that this.size and size are there
+    // IE8 triggers resize on body size change, so they might not be
+    var hasSizes = this.size && size;
+    if ( hasSizes && size.innerWidth === this._containerWidth ) {
+      return;
+    }
+
+    this.layout();
+
+    delete this.resizeTimeout;
   };
 
   return Masonry;
