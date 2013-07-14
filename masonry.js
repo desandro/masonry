@@ -1,5 +1,5 @@
 /*!
- * Masonry v3.0.0
+ * Masonry v3.0.1
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
@@ -55,8 +55,14 @@ function masonryDefinition( Outlayer, getSize ) {
   Masonry.prototype.measureColumns = function() {
     var container = this.options.isFitWidth ? this.element.parentNode : this.element;
     // if columnWidth is 0, default to outerWidth of first item
-    var firstItemElem = this.items[0].element;
-    this.columnWidth = this.columnWidth || getSize( firstItemElem ).outerWidth;
+    var firstItem = this.items[0];
+    var firstItemElem = firstItem && firstItem.element;
+    if ( !this.columnWidth ) {
+      // columnWidth fall back to item of first element
+      this.columnWidth = firstItemElem ? getSize( firstItemElem ).outerWidth :
+        // or size of container
+        this.size.innerWidth;
+    }
     this.columnWidth += this.gutter;
 
     var containerSize = getSize( container ).innerWidth;
