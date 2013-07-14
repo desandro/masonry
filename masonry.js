@@ -1,5 +1,5 @@
 /*!
- * Masonry v3.0.1
+ * Masonry v3.0.2
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
