@@ -53,12 +53,14 @@ function masonryDefinition( Outlayer, getSize ) {
   };
 
   Masonry.prototype.measureColumns = function() {
+    var container = this.options.isFitWidth ? this.element.parentNode : this.element;
     // if columnWidth is 0, default to outerWidth of first item
     var firstItemElem = this.items[0].element;
     this.columnWidth = this.columnWidth || getSize( firstItemElem ).outerWidth;
     this.columnWidth += this.gutter;
 
-    this.cols = Math.floor( ( this.size.innerWidth + this.gutter ) / this.columnWidth );
+    var containerSize = getSize( container ).innerWidth;
+    this.cols = Math.floor( ( containerSize + this.gutter ) / this.columnWidth );
     this.cols = Math.max( this.cols, 1 );
   };
 
@@ -132,9 +134,31 @@ function masonryDefinition( Outlayer, getSize ) {
 
   Masonry.prototype._getContainerSize = function() {
     this.maxY = Math.max.apply( Math, this.colYs );
-    return {
+    var size = {
       height: this.maxY
     };
+
+    if ( this.options.isFitWidth ) {
+      size.width = this._getContainerFitWidth();
+    }
+
+    console.log( size.width );
+
+    return size;
+  };
+
+  Masonry.prototype._getContainerFitWidth = function() {
+    var unusedCols = 0;
+    // count unused columns
+    var i = this.cols;
+    while ( --i ) {
+      if ( this.colYs[i] !== 0 ) {
+        break;
+      }
+      unusedCols++;
+    }
+    // fit container to columns that have been used
+    return ( this.cols - unusedCols ) * this.columnWidth - this.gutter;
   };
 
   return Masonry;
