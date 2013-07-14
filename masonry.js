@@ -148,8 +148,6 @@ function masonryDefinition( Outlayer, getSize ) {
       size.width = this._getContainerFitWidth();
     }
 
-    console.log( size.width );
-
     return size;
   };
 
