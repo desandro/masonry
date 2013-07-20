@@ -1,5 +1,5 @@
 /*!
- * Masonry v3.0.3
+ * Masonry v3.1.0
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
@@ -196,8 +196,8 @@ function masonryDefinition( Outlayer, getSize ) {
 if ( typeof define === 'function' && define.amd ) {
   // AMD
   define( [
-      'outlayer',
-      'get-size'
+      'outlayer/outlayer',
+      'get-size/get-size'
     ],
     masonryDefinition );
 } else {
