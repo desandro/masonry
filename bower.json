@@ -9,6 +9,6 @@
   },
   "devDependencies": {
     "doc-ready": "desandro/doc-ready",
-    "qunit": "1.x"
+    "qunit": "1.12"
   }
 }
