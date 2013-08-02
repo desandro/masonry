@@ -173,6 +173,10 @@ function masonryDefinition( Outlayer, getSize ) {
   // HEADS UP this overwrites Outlayer.resize
   // Any changes in Outlayer.resize need to be manually added here
   Masonry.prototype.resize = function() {
+    // If Masonry has been destroyed, don't do anything
+    if (this.element.outlayerGUID === undefined) {
+       return;
+    }
     // don't trigger if size did not change
     var container = this._getSizingContainer();
     var size = getSize( container );
