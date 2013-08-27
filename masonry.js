@@ -108,7 +108,7 @@ function masonryDefinition( Outlayer, getSize ) {
    * @returns {Array} colGroup
    */
   Masonry.prototype._getColGroup = function( colSpan ) {
-    if ( colSpan === 1 ) {
+    if ( colSpan < 2 ) {
       // if brick spans only one column, use all the column Ys
       return this.colYs;
     }
