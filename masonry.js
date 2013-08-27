@@ -183,8 +183,6 @@ function masonryDefinition( Outlayer, getSize ) {
     }
 
     this.layout();
-
-    delete this.resizeTimeout;
   };
 
   return Masonry;
