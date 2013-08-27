@@ -54,18 +54,19 @@ function masonryDefinition( Outlayer, getSize ) {
 
   Masonry.prototype.measureColumns = function() {
     var container = this._getSizingContainer();
+    this._containerWidth = getSize( container ).innerWidth;
     // if columnWidth is 0, default to outerWidth of first item
-    var firstItem = this.items[0];
-    var firstItemElem = firstItem && firstItem.element;
     if ( !this.columnWidth ) {
+      var firstItem = this.items[0];
+      var firstItemElem = firstItem && firstItem.element;
       // columnWidth fall back to item of first element
-      this.columnWidth = firstItemElem ? getSize( firstItemElem ).outerWidth :
-        // or size of container
-        this.size.innerWidth;
+      this.columnWidth = firstItemElem  getSize( firstItemElem ).outerWidth ||
+        // if first elem has no width, default to size of container
+        this._containerWidth;
     }
+
     this.columnWidth += this.gutter;
 
-    this._containerWidth = getSize( container ).innerWidth;
     this.cols = Math.floor( ( this._containerWidth + this.gutter ) / this.columnWidth );
     this.cols = Math.max( this.cols, 1 );
   };

@@ -93,3 +93,9 @@ body {
 #fit-width .container {
   margin: 0 auto;
 }
+
+/* ----  ---- */
+
+#zero-column-width .hidden {
+  display: none;
+}
