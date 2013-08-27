@@ -50,26 +50,30 @@ function masonryDefinition( Outlayer, getSize ) {
   };
 
   Masonry.prototype.measureColumns = function() {
-    var container = this._getSizingContainer();
-    this._containerWidth = getSize( container ).innerWidth;
+    this.getContainerWidth();
     // if columnWidth is 0, default to outerWidth of first item
     if ( !this.columnWidth ) {
       var firstItem = this.items[0];
       var firstItemElem = firstItem && firstItem.element;
       // columnWidth fall back to item of first element
-      this.columnWidth = firstItemElem  getSize( firstItemElem ).outerWidth ||
+      this.columnWidth = firstItemElem && getSize( firstItemElem ).outerWidth ||
         // if first elem has no width, default to size of container
-        this._containerWidth;
+        this.containerWidth;
     }
 
     this.columnWidth += this.gutter;
 
-    this.cols = Math.floor( ( this._containerWidth + this.gutter ) / this.columnWidth );
+    this.cols = Math.floor( ( this.containerWidth + this.gutter ) / this.columnWidth );
     this.cols = Math.max( this.cols, 1 );
   };
 
-  Masonry.prototype._getSizingContainer = function() {
-    return this.options.isFitWidth ? this.element.parentNode : this.element;
+  Masonry.prototype.getContainerWidth = function() {
+    // container is parent if fit width
+    var container = this.options.isFitWidth ? this.element.parentNode : this.element;
+    // check that this.size and size are there
+    // IE8 triggers resize on body size change, so they might not be
+    var size = getSize( container );
+    this.containerWidth = size && size.innerWidth;
   };
 
   Masonry.prototype._getItemLayoutPosition = function( item ) {
@@ -172,12 +176,9 @@ function masonryDefinition( Outlayer, getSize ) {
   // Any changes in Outlayer.resize need to be manually added here
   Masonry.prototype.resize = function() {
     // don't trigger if size did not change
-    var container = this._getSizingContainer();
-    var size = getSize( container );
-    // check that this.size and size are there
-    // IE8 triggers resize on body size change, so they might not be
-    var hasSizes = this.size && size;
-    if ( hasSizes && size.innerWidth === this._containerWidth ) {
+    var previousWidth = this.containerWidth;
+    this.getContainerWidth();
+    if ( previousWidth === this.containerWidth ) {
       return;
     }
 
