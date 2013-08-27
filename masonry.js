@@ -10,9 +10,6 @@
 
 'use strict';
 
-// vars
-// var document = window.document;
-
 // -------------------------- helpers -------------------------- //
 
 var indexOf = Array.prototype.indexOf ?
