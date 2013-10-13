@@ -175,6 +175,9 @@ function masonryDefinition( Outlayer, getSize ) {
   // HEADS UP this overwrites Outlayer.resize
   // Any changes in Outlayer.resize need to be manually added here
   Masonry.prototype.resize = function() {
+	if (!this.isResizeBound) {
+		return;
+	}
     // don't trigger if size did not change
     var previousWidth = this.containerWidth;
     this.getContainerWidth();
