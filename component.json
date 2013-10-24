@@ -1,6 +1,7 @@
 {
 	"name": "masonry",
 	"repo": "viatropos/masonry",
-	"main": "masonry.js",
-	"version": "3.1.2"
+	"version": "3.1.2",
+	"scripts": ["masonry.js"],
+	"main": "masonry.js"
 }
