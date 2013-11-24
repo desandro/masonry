@@ -55,9 +55,12 @@ $( function() {
 
   var $container = $('#container').masonry({
     isRTL: true,
-    gutterWidth: 20,
+    gutterWidth: 0,
     animationOptions: {
       duration: 800
+    },
+    columnWidth: function( containerWidth ) {
+      return containerWidth / 4;
     }
     // isAnimated: false
   });

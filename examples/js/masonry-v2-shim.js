@@ -60,4 +60,15 @@
     this._remapV2Options();
   };
 
+  // re-enable using function for columnWidth
+  var _measureColumns = Masonry.prototype.measureColumns;
+  Masonry.prototype.measureColumns = function() {
+    var colWOpt = this.options.columnWidth;
+    if ( colWOpt && typeof colWOpt === 'function' ) {
+      this.getContainerWidth();
+      this.columnWidth = colWOpt( this.containerWidth );
+    }
+    _measureColumns.apply( this, arguments );
+  };
+
 })( window );
