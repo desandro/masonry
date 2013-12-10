@@ -1,5 +1,5 @@
 /*!
- * Masonry v3.1.2
+ * Masonry v3.1.3
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
@@ -79,7 +79,10 @@ function masonryDefinition( Outlayer, getSize ) {
   Masonry.prototype._getItemLayoutPosition = function( item ) {
     item.getSize();
     // how many columns does this brick span
-    var colSpan = Math.ceil( item.size.outerWidth / this.columnWidth );
+    var remainder = item.size.outerWidth % this.columnWidth;
+    var mathMethod = remainder && remainder < 1 ? 'round' : 'ceil';
+    // round if off by 1 pixel, otherwise use ceil
+    var colSpan = Math[ mathMethod ]( item.size.outerWidth / this.columnWidth );
     colSpan = Math.min( colSpan, this.cols );
 
     var colGroup = this._getColGroup( colSpan );

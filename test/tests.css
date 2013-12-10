@@ -99,3 +99,14 @@ body {
 #zero-column-width .hidden {
   display: none;
 }
+
+/* ---- pixel-rounding ---- */
+
+#element-sizing {
+  width: 181px;
+}
+
+#element-sizing .item,
+#element-sizing .grid-sizer { width: 20%; }
+
+#element-sizing .item.w2 { width: 40%; }
