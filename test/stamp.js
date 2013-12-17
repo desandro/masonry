@@ -19,19 +19,18 @@ test( 'stamp top left', function() {
 
 });
 
-test( 'stamp top left', function() {
+test( 'stamp columnWidth multiple', function() {
 
-  var container = document.querySelector('#stamp-top-left');
-  var msnry = new Masonry( container, {
+  var msnry = new Masonry( '#stamp-column-width-multiple', {
     itemSelector: '.item',
     stamp: '.stamp'
   });
 
   checkItemPositions( msnry, {
-    0: { left: 0, top: 20 },
-    1: { left: 135, top: 20 },
-    2: { left: 45, top: 40 },
-    3: { left: 90, top: 40 }
+    0: { left: 0, top: 0 },
+    1: { left: 135, top: 0 },
+    2: { left: 0, top: 30 },
+    3: { left: 45, top: 30 }
   });
 
 });

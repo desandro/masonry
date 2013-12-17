@@ -73,6 +73,12 @@ body {
   top: 0;
 }
 
+#stamp-column-width-multiple .stamp1 {
+  width: 90px;
+  left: 45px;
+  top: 0;
+}
+
 #stamp-bottom-right .stamp1 {
   right: 70px;
   bottom: 10px;
