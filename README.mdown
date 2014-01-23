@@ -48,8 +48,8 @@ Add a class of `js-masonry` to your element. Options can be set in JSON in `data
 
 ## License
 
-Masonry is licensed MIT. Have at it.
+Masonry is released under the [MIT license](http://desandro.mit-license.org). Have at it.
 
 * * *
 
-Copyright (c) 2013 David DeSandro
+Copyright :copyright: 2014 David DeSandro
