@@ -16,6 +16,8 @@
     "examples/",
     "test/",
     "CONTRIBUTING.mdown",
+    "Gruntfile.js",
+    "package.json",
     "**/.*"
   ]
 }
