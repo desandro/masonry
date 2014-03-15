@@ -1,21 +1,69 @@
 /*global requirejs: false*/
 
+// -------------------------- pkgd -------------------------- //
+
+/*
+requirejs( [ '../../dist/masonry.pkgd' ], function( Masonry ) {
+  new Masonry( document.querySelector('#basic') );
+});
+// */
+
+// -------------------------- bower -------------------------- //
+
+/*
 requirejs.config({
   baseUrl: '../bower_components'
-  // OR
-  // paths: {
-  //   eventie: '../bower_components/eventie',
-  //   'doc-ready': '../bower_components/doc-ready',
-  //   eventEmitter: '../bower_components/eventEmitter',
-  //   'get-style-property': '../bower_components/get-style-property',
-  //   'get-size': '../bower_components/get-size',
-  //   'matches-selector': '../bower_components/matches-selector',
-  //   outlayer: '../bower_components/outlayer'
-  // }
 });
 
 requirejs( [ '../masonry' ], function( Masonry ) {
-
   new Masonry( document.querySelector('#basic') );
-
 });
+// */
+
+// -------------------------- pkgd & jQuery -------------------------- //
+
+// /*
+requirejs.config({
+  paths: {
+    jquery: '../../bower_components/jquery/jquery'
+  }
+});
+
+requirejs( [ 'require', 'jquery', '../../dist/masonry.pkgd' ],
+  function( require, $, Masonry ) {
+    require( [
+      'jquery-bridget/jquery.bridget'
+    ],
+    function() {
+      $.bridget( 'masonry', Masonry );
+      $('#basic').masonry({
+        columnWidth: 60
+      });
+    }
+  );
+});
+// */
+
+// -------------------------- bower & jQuery -------------------------- //
+
+/*
+requirejs.config({
+  baseUrl: '../bower_components',
+  paths: {
+    jquery: 'jquery/dist/jquery'
+  }
+});
+
+requirejs( [
+    'jquery',
+    '../masonry',
+    'jquery-bridget/jquery.bridget'
+  ],
+  function( $, Masonry )  {
+    $.bridget( 'masonry', Masonry );
+    $('#basic').masonry({
+      columnWidth: 60
+    });
+  }
+);
+// */

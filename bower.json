@@ -10,7 +10,7 @@
   "devDependencies": {
     "doc-ready": "desandro/doc-ready",
     "qunit": "1.12",
-    "jquery": "1.x"
+    "jquery": "1"
   },
   "ignore": [
     "examples/",
