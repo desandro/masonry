@@ -1,5 +1,5 @@
 /*!
- * Masonry v3.1.4
+ * Masonry v3.1.5
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
@@ -176,18 +176,10 @@ function masonryDefinition( Outlayer, getSize ) {
     return ( this.cols - unusedCols ) * this.columnWidth - this.gutter;
   };
 
-  // debounced, layout on resize
-  // HEADS UP this overwrites Outlayer.resize
-  // Any changes in Outlayer.resize need to be manually added here
-  Masonry.prototype.resize = function() {
-    // don't trigger if size did not change
+  Masonry.prototype.needsResizeLayout = function() {
     var previousWidth = this.containerWidth;
     this.getContainerWidth();
-    if ( previousWidth === this.containerWidth ) {
-      return;
-    }
-
-    this.layout();
+    return previousWidth !== this.containerWidth;
   };
 
   return Masonry;
