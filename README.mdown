@@ -46,6 +46,11 @@ Add a class of `js-masonry` to your element. Options can be set in JSON in `data
 </div>
 ```
 
+## Integration with other projects
+### JBST Masonry Theme
+[JBST](http://www.jbst.eu/) is a powerful theme framework that can be used as a standalone website builder or as a framework to create child themes for WordPress build on Twitter's Bootstrap 3. Full customizable with [LESS](http://www.lesscss.org/).
+With the [JBST Masonry Theme](https://github.com/bassjobsen/jbst-masonry-theme) you can build your homepage with the masonry library.
+
 ## License
 
 Masonry is released under the [MIT license](http://desandro.mit-license.org). Have at it.
