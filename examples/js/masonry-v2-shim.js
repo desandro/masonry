@@ -44,6 +44,7 @@
 
   var __create = Masonry.prototype._create;
   Masonry.prototype._create = function() {
+    jQuery( this.element ).addClass( 'masonry' );
     this._remapV2Options();
     __create.apply( this, arguments );
   };
@@ -58,6 +59,12 @@
   Masonry.prototype.option = function() {
     _option.apply( this, arguments );
     this._remapV2Options();
+  };
+
+  var __itemize = Masonry.prototype._itemize;
+  Masonry.prototype._itemize = function( el ) {
+    jQuery( el ).addClass( 'masonry-brick' );
+    return __itemize.apply( this, arguments );
   };
 
   // re-enable using function for columnWidth
