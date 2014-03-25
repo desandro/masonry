@@ -71,4 +71,8 @@
     _measureColumns.apply( this, arguments );
   };
 
+  Masonry.prototype.reload = function() {
+    this.reloadItems.apply( this, arguments );
+  };
+
 })( window );
