@@ -73,6 +73,7 @@
 
   Masonry.prototype.reload = function() {
     this.reloadItems.apply( this, arguments );
+    this.layout.apply( this );
   };
 
 })( window );
