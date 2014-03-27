@@ -5,6 +5,8 @@
 
 ( function( window ) {
 
+  'use strict';
+
   var Masonry = window.Masonry;
 
   Masonry.prototype._remapV2Options = function() {
@@ -87,9 +89,9 @@
     this.layout.apply( this );
   };
 
-  var _destroy = Outlayer.prototype.destroy;
-  Outlayer.prototype.destroy = function() {
-    var items = jQuery.map( this.items, function( item ) { return item.element; } );
+  var _destroy = Masonry.prototype.destroy;
+  Masonry.prototype.destroy = function() {
+    var items = this.getItemElements();
     jQuery( this.element ).removeClass( 'masonry' );
     jQuery( items ).removeClass( 'masonry-brick' );
     _destroy.apply( this, arguments );
