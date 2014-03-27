@@ -44,8 +44,12 @@
 
   var __create = Masonry.prototype._create;
   Masonry.prototype._create = function() {
+    var that = this;
     this._remapV2Options();
     __create.apply( this, arguments );
+    setTimeout( function() {
+      jQuery( that.element ).addClass( 'masonry' );
+    }, 0 );
   };
 
   var _layout = Masonry.prototype.layout;
@@ -58,6 +62,13 @@
   Masonry.prototype.option = function() {
     _option.apply( this, arguments );
     this._remapV2Options();
+  };
+
+  var __itemize = Masonry.prototype._itemize;
+  Masonry.prototype._itemize = function( elements ) {
+    var items = __itemize.apply( this, arguments );
+    jQuery( elements ).addClass( 'masonry-brick' );
+    return items;
   };
 
   // re-enable using function for columnWidth
@@ -74,6 +85,14 @@
   Masonry.prototype.reload = function() {
     this.reloadItems.apply( this, arguments );
     this.layout.apply( this );
+  };
+
+  var _destroy = Outlayer.prototype.destroy;
+  Outlayer.prototype.destroy = function() {
+    var items = jQuery.map( this.items, function( item ) { return item.element; } );
+    jQuery( this.element ).removeClass( 'masonry' );
+    jQuery( items ).removeClass( 'masonry-brick' );
+    _destroy.apply( this, arguments );
   };
 
 })( window );
