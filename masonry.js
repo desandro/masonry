@@ -63,7 +63,7 @@ function masonryDefinition( Outlayer, getSize ) {
 
     this.columnWidth += this.gutter;
 
-    this.cols = Math.floor( ( this.containerWidth + this.gutter ) / this.columnWidth );
+    this.cols = Math.round( ( this.containerWidth + this.gutter ) / this.columnWidth );
     this.cols = Math.max( this.cols, 1 );
   };
 
