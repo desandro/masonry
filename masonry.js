@@ -61,10 +61,18 @@ function masonryDefinition( Outlayer, getSize ) {
         this.containerWidth;
     }
 
-    this.columnWidth += this.gutter;
+    var columnWidth = this.columnWidth += this.gutter;
 
-    this.cols = Math.floor( ( this.containerWidth + this.gutter ) / this.columnWidth );
-    this.cols = Math.max( this.cols, 1 );
+    // calculate columns
+    var containerWidth = this.containerWidth + this.gutter;
+    var cols = containerWidth / columnWidth;
+    // fix rounding errors, i.e. container = 902px, columns are 33.3% wide
+    // Firefox columnWidth = 300.667px; only two columns
+    var overshoot = columnWidth - containerWidth % columnWidth;
+    // if overshoot is less than a pixel, round up, otherwise floor it
+    var mathMethod = overshoot && overshoot < 1 ? 'round' : 'floor';
+    cols = Math[ mathMethod ]( cols );
+    this.cols = Math.max( cols, 1 );
   };
 
   Masonry.prototype.getContainerWidth = function() {
