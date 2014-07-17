@@ -91,7 +91,7 @@ CSS properties applied to the container. Masonry uses relative/absolute position
   <dd class="default"><code><span class="mi">0</span></code></dd>
 </dl>
 
-Adds additional spacing between columns.
+Adds additional spacing, in pixels, between columns.
 
 [See Demo: Gutters](../demos/gutters.html).
 
