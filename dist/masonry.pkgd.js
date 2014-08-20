@@ -2773,7 +2773,7 @@ function masonryDefinition( Outlayer, getSize ) {
     // position the brick
     var position = {
       x: this.columnWidth * shortColIndex,
-      y: minimumY
+      y: isFinite( minimumY ) ? minimumY : 0
     };
 
     // apply setHeight to necessary columns
