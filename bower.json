@@ -8,7 +8,7 @@
     "outlayer": "^1.2.0"
   },
   "devDependencies": {
-    "doc-ready": "desandro/doc-ready",
+    "doc-ready": "^1.0",
     "qunit": "1.12",
     "jquery": "1"
   },
@@ -18,6 +18,20 @@
     "CONTRIBUTING.mdown",
     "Gruntfile.js",
     "package.json",
-    "**/.*"
-  ]
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "homepage": "http://masonry.desandro.com",
+  "authors": [
+    "David DeSandro"
+  ],
+  "keywords": [
+    "masonry",
+    "layout",
+    "outlayer"
+  ],
+  "license": "MIT"
 }
