@@ -5,7 +5,7 @@
 module.exports = function( grunt ) {
 
   var banner = ( function() {
-    var src = grunt.file.read('masonryg.js');
+    var src = grunt.file.read('masonry.js');
     var re = new RegExp('^\\s*(?:\\/\\*[\\s\\S]*?\\*\\/)\\s*');
     var matches = src.match( re );
     var banner = matches[0].replace( 'Masonry', 'Masonry PACKAGED' );
