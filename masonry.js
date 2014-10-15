@@ -194,6 +194,11 @@ if ( typeof define === 'function' && define.amd ) {
       'get-size/get-size'
     ],
     masonryDefinition );
+} else if (typeof exports === 'object') {
+  module.exports = masonryDefinition(
+    require('outlayer'),
+    require('get-size')
+  );
 } else {
   // browser global
   window.Masonry = masonryDefinition(

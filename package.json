@@ -24,6 +24,10 @@
     "url": "https://github.com/desandro/masonry/issues"
   },
   "homepage": "https://github.com/desandro/masonry",
+  "dependencies": {
+    "get-size": "desandro/get-size",
+    "outlayer": "braznaavtrav/outlayer"
+  },
   "devDependencies": {
     "grunt": "^0.4.4",
     "grunt-contrib-jshint": "^0.9.2",
