@@ -26,7 +26,7 @@
   "homepage": "https://github.com/desandro/masonry",
   "dependencies": {
     "get-size": "desandro/get-size",
-    "outlayer": "braznaavtrav/outlayer"
+    "outlayer": "metafizzy/outlayer"
   },
   "devDependencies": {
     "grunt": "^0.4.4",
