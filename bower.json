@@ -2,7 +2,7 @@
   "name": "masonry",
   "version": "3.1.5",
   "description": "Cascading grid layout library",
-  "main": "masonry.js",
+  "main": "dist/masonry.pkgd.js",
   "dependencies": {
     "get-size": "desandro/get-size#>=1.1.4 <2.0",
     "outlayer": "^1.2.0"
