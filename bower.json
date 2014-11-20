@@ -4,13 +4,13 @@
   "description": "Cascading grid layout library",
   "main": "masonry.js",
   "dependencies": {
-    "get-size": "desandro/get-size#>=1.1.4 <2.0",
-    "outlayer": "^1.2.0"
+    "get-size": ">=1.1.4 <1.3",
+    "outlayer": "~1.2.0"
   },
   "devDependencies": {
-    "doc-ready": "^1.0",
-    "qunit": "1.12",
-    "jquery": "1"
+    "doc-ready": "1.x",
+    "qunit": "^1.12",
+    "jquery": ">=1.4.3 <2"
   },
   "ignore": [
     "examples/",

@@ -4,8 +4,9 @@
   "strict": true,
   "undef": true,
   "unused": true,
-  "node": true,
   "predef": {
-    "define": false
+    "define": false,
+    "module": false,
+    "require": false
   }
 }
