@@ -1,5 +1,5 @@
 /*!
- * Masonry PACKAGED v3.1.5
+ * Masonry PACKAGED v3.2.0
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
@@ -8,7 +8,8 @@
 
 /**
  * Bridget makes jQuery widgets
- * v1.0.1
+ * v1.1.0
+ * MIT license
  */
 
 ( function( window ) {
@@ -51,7 +52,6 @@ function addOptionMethod( PluginClass ) {
     this.options = $.extend( true, this.options, opts );
   };
 }
-
 
 // -------------------------- plugin bridge -------------------------- //
 
@@ -137,6 +137,8 @@ return $.bridget;
 if ( typeof define === 'function' && define.amd ) {
   // AMD
   define( 'jquery-bridget/jquery.bridget',[ 'jquery' ], defineBridget );
+} else if ( typeof exports === 'object' ) {
+  defineBridget( require('jquery') );
 } else {
   // get jquery from browser global
   defineBridget( window.jQuery );
@@ -228,13 +230,13 @@ if ( typeof define === 'function' && define.amd ) {
 })( this );
 
 /*!
- * docReady v1.0.3
+ * docReady v1.0.4
  * Cross browser DOMContentLoaded event emitter
  * MIT license
  */
 
 /*jshint browser: true, strict: true, undef: true, unused: true*/
-/*global define: false */
+/*global define: false, require: false, module: false */
 
 ( function( window ) {
 
@@ -262,14 +264,18 @@ function docReady( fn ) {
 docReady.isReady = false;
 
 // triggered on various doc ready events
-function init( event ) {
-  // bail if IE8 document is not ready just yet
+function onReady( event ) {
+  // bail if already triggered or IE8 document is not ready just yet
   var isIE8NotReady = event.type === 'readystatechange' && document.readyState !== 'complete';
   if ( docReady.isReady || isIE8NotReady ) {
     return;
   }
-  docReady.isReady = true;
 
+  trigger();
+}
+
+function trigger() {
+  docReady.isReady = true;
   // process queue
   for ( var i=0, len = queue.length; i < len; i++ ) {
     var fn = queue[i];
@@ -278,9 +284,15 @@ function init( event ) {
 }
 
 function defineDocReady( eventie ) {
-  eventie.bind( document, 'DOMContentLoaded', init );
-  eventie.bind( document, 'readystatechange', init );
-  eventie.bind( window, 'load', init );
+  // trigger ready if page is ready
+  if ( document.readyState === 'complete' ) {
+    trigger();
+  } else {
+    // listen for events
+    eventie.bind( document, 'DOMContentLoaded', onReady );
+    eventie.bind( document, 'readystatechange', onReady );
+    eventie.bind( window, 'load', onReady );
+  }
 
   return docReady;
 }
@@ -288,8 +300,6 @@ function defineDocReady( eventie ) {
 // transport
 if ( typeof define === 'function' && define.amd ) {
   // AMD
-  // if RequireJS, then doc is already ready
-  docReady.isReady = typeof requirejs === 'function';
   define( 'doc-ready/doc-ready',[ 'eventie/eventie' ], defineDocReady );
 } else if ( typeof exports === 'object' ) {
   module.exports = defineDocReady( require('eventie') );
@@ -774,9 +784,10 @@ if ( typeof define === 'function' && define.amd ) {
 }.call(this));
 
 /*!
- * getStyleProperty v1.0.3
+ * getStyleProperty v1.0.4
  * original by kangax
  * http://perfectionkills.com/feature-testing-css-properties/
+ * MIT license
  */
 
 /*jshint browser: true, strict: true, undef: true */
@@ -828,9 +839,10 @@ if ( typeof define === 'function' && define.amd ) {
 
 })( window );
 
-/**
- * getSize v1.1.7
+/*!
+ * getSize v1.2.0
  * measure size of elements
+ * MIT license
  */
 
 /*jshint browser: true, strict: true, undef: true, unused: true */
@@ -842,15 +854,6 @@ if ( typeof define === 'function' && define.amd ) {
 
 // -------------------------- helpers -------------------------- //
 
-var getComputedStyle = window.getComputedStyle;
-var getStyle = getComputedStyle ?
-  function( elem ) {
-    return getComputedStyle( elem, null );
-  } :
-  function( elem ) {
-    return elem.currentStyle;
-  };
-
 // get a number from a string, not a percentage
 function getStyleSize( value ) {
   var num = parseFloat( value );
@@ -858,6 +861,11 @@ function getStyleSize( value ) {
   var isValid = value.indexOf('%') === -1 && !isNaN( num );
   return isValid && num;
 }
+
+var logError = typeof console === 'undefined' ? noop :
+  function( message ) {
+    console.error( message );
+  };
 
 // -------------------------- measurements -------------------------- //
 
@@ -896,39 +904,76 @@ function getZeroSize() {
 
 function defineGetSize( getStyleProperty ) {
 
-// -------------------------- box sizing -------------------------- //
+// -------------------------- setup -------------------------- //
 
-var boxSizingProp = getStyleProperty('boxSizing');
-var isBoxSizeOuter;
+var isSetup = false;
+
+var getStyle, boxSizingProp, isBoxSizeOuter;
 
 /**
- * WebKit measures the outer-width on style.width on border-box elems
- * IE & Firefox measures the inner-width
+ * setup vars and functions
+ * do it on initial getSize(), rather than on script load
+ * For Firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=548397
  */
-( function() {
-  if ( !boxSizingProp ) {
+function setup() {
+  // setup once
+  if ( isSetup ) {
     return;
   }
+  isSetup = true;
 
-  var div = document.createElement('div');
-  div.style.width = '200px';
-  div.style.padding = '1px 2px 3px 4px';
-  div.style.borderStyle = 'solid';
-  div.style.borderWidth = '1px 2px 3px 4px';
-  div.style[ boxSizingProp ] = 'border-box';
+  var getComputedStyle = window.getComputedStyle;
+  getStyle = ( function() {
+    var getStyleFn = getComputedStyle ?
+      function( elem ) {
+        return getComputedStyle( elem, null );
+      } :
+      function( elem ) {
+        return elem.currentStyle;
+      };
 
-  var body = document.body || document.documentElement;
-  body.appendChild( div );
-  var style = getStyle( div );
+      return function getStyle( elem ) {
+        var style = getStyleFn( elem );
+        if ( !style ) {
+          logError( 'Style returned ' + style +
+            '. Are you running this code in a hidden iframe on Firefox? ' +
+            'See http://bit.ly/getsizeiframe' );
+        }
+        return style;
+      }
+  })();
 
-  isBoxSizeOuter = getStyleSize( style.width ) === 200;
-  body.removeChild( div );
-})();
+  // -------------------------- box sizing -------------------------- //
 
+  boxSizingProp = getStyleProperty('boxSizing');
+
+  /**
+   * WebKit measures the outer-width on style.width on border-box elems
+   * IE & Firefox measures the inner-width
+   */
+  if ( boxSizingProp ) {
+    var div = document.createElement('div');
+    div.style.width = '200px';
+    div.style.padding = '1px 2px 3px 4px';
+    div.style.borderStyle = 'solid';
+    div.style.borderWidth = '1px 2px 3px 4px';
+    div.style[ boxSizingProp ] = 'border-box';
+
+    var body = document.body || document.documentElement;
+    body.appendChild( div );
+    var style = getStyle( div );
+
+    isBoxSizeOuter = getStyleSize( style.width ) === 200;
+    body.removeChild( div );
+  }
+
+}
 
 // -------------------------- getSize -------------------------- //
 
 function getSize( elem ) {
+  setup();
+
   // use querySeletor if elem is string
   if ( typeof elem === 'string' ) {
     elem = document.querySelector( elem );
@@ -1035,7 +1080,7 @@ if ( typeof define === 'function' && define.amd ) {
   define( 'get-size/get-size',[ 'get-style-property/get-style-property' ], defineGetSize );
 } else if ( typeof exports === 'object' ) {
   // CommonJS for Component
-  module.exports = defineGetSize( require('get-style-property') );
+  module.exports = defineGetSize( require('desandro-get-style-property') );
 } else {
   // browser global
   window.getSize = defineGetSize( window.getStyleProperty );
@@ -1659,6 +1704,13 @@ if ( typeof define === 'function' && define.amd ) {
       'get-style-property/get-style-property'
     ],
     outlayerItemDefinition );
+} else if (typeof exports === 'object') {
+  // CommonJS
+  module.exports = outlayerItemDefinition(
+    require('wolfy87-eventemitter'),
+    require('get-size'),
+    require('desandro-get-style-property')
+  );
 } else {
   // browser global
   window.Outlayer = {};
@@ -1672,7 +1724,7 @@ if ( typeof define === 'function' && define.amd ) {
 })( window );
 
 /*!
- * Outlayer v1.2.0
+ * Outlayer v1.3.0
  * the brains and guts of a layout library
  * MIT license
  */
@@ -1686,7 +1738,6 @@ if ( typeof define === 'function' && define.amd ) {
 var document = window.document;
 var console = window.console;
 var jQuery = window.jQuery;
-
 var noop = function() {};
 
 // -------------------------- helpers -------------------------- //
@@ -1724,7 +1775,7 @@ function makeArray( obj ) {
 }
 
 // http://stackoverflow.com/a/384380/182183
-var isElement = ( typeof HTMLElement === 'object' ) ?
+var isElement = ( typeof HTMLElement === 'function' || typeof HTMLElement === 'object' ) ?
   function isElementDOM2( obj ) {
     return obj instanceof HTMLElement;
   } :
@@ -2542,6 +2593,8 @@ Outlayer.prototype.destroy = function() {
 
   this.unbindResize();
 
+  var id = this.element.outlayerGUID;
+  delete instances[ id ]; // remove reference to instance by id
   delete this.element.outlayerGUID;
   // remove data for jQuery
   if ( jQuery ) {
@@ -2667,6 +2720,16 @@ if ( typeof define === 'function' && define.amd ) {
       './item'
     ],
     outlayerDefinition );
+} else if ( typeof exports === 'object' ) {
+  // CommonJS
+  module.exports = outlayerDefinition(
+    require('eventie'),
+    require('doc-ready'),
+    require('wolfy87-eventemitter'),
+    require('get-size'),
+    require('desandro-matches-selector'),
+    require('./item')
+  );
 } else {
   // browser global
   window.Outlayer = outlayerDefinition(
@@ -2682,7 +2745,7 @@ if ( typeof define === 'function' && define.amd ) {
 })( window );
 
 /*!
- * Masonry v3.1.5
+ * Masonry v3.2.0
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
