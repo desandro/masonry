@@ -17,7 +17,7 @@ Or, if you're cool with the command line...
 
 Install with [Bower](http://bower.io): `bower install masonry`
 
-[Install with npm](https://www.npmjs.org/package/masonry-layout) `bower install masonry-layout`
+[Install with npm](https://www.npmjs.org/package/masonry-layout) `npm install masonry-layout`
 
 ## Initialize
 
