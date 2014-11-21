@@ -13,13 +13,11 @@ A packaged source file includes everything you need to use Masonry.
 + [masonry.pkgd.min.js](dist/masonry.pkgd.min.js)
 + [masonry.pkgd.js](dist/masonry.pkgd.js)
 
-### Bower
+Or, if you're cool with the command line...
 
-If you are cool with the command line, install Masonry as a [Bower](http://bower.io) package:
+Install with [Bower](http://bower.io): `bower install masonry`
 
-``` bash
-bower install masonry
-```
+[Install with npm](https://www.npmjs.org/package/masonry-layout) `bower install masonry-layout`
 
 ## Initialize
 
