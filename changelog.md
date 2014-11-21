@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.2.1
+
++ Fix missing dependencies in `package.json`
+
 ## v3.2.0
 
 + Add CommonJS support [#480](https://github.com/desandro/masonry/issues/480)

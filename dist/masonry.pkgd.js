@@ -1,5 +1,5 @@
 /*!
- * Masonry PACKAGED v3.2.0
+ * Masonry PACKAGED v3.2.1
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
@@ -2745,7 +2745,7 @@ if ( typeof define === 'function' && define.amd ) {
 })( window );
 
 /*!
- * Masonry v3.2.0
+ * Masonry v3.2.1
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
