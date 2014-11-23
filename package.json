@@ -29,6 +29,9 @@
     "url": "git://github.com/desandro/masonry.git"
   },
   "keywords": [
+    "DOM",
+    "browser",
+    "grid",
     "layout",
     "outlayer"
   ],
