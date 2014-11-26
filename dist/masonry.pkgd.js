@@ -840,7 +840,7 @@ if ( typeof define === 'function' && define.amd ) {
 })( window );
 
 /*!
- * getSize v1.2.1
+ * getSize v1.2.2
  * measure size of elements
  * MIT license
  */
@@ -1047,7 +1047,7 @@ function getSize( elem ) {
 // taken from jQuery's curCSS
 function mungeNonPixel( elem, value ) {
   // IE8 and has percent value
-  if ( getComputedStyle || value.indexOf('%') === -1 ) {
+  if ( window.getComputedStyle || value.indexOf('%') === -1 ) {
     return value;
   }
   var style = elem.style;
