@@ -1,5 +1,5 @@
 /*!
- * Masonry PACKAGED v3.2.1
+ * Masonry PACKAGED v3.2.2
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
@@ -311,13 +311,13 @@ if ( typeof define === 'function' && define.amd ) {
 })( window );
 
 /*!
- * EventEmitter v4.2.9 - git.io/ee
- * Oliver Caldwell
- * MIT license
+ * EventEmitter v4.2.11 - git.io/ee
+ * Unlicense - http://unlicense.org/
+ * Oliver Caldwell - http://oli.me.uk/
  * @preserve
  */
 
-(function () {
+;(function () {
     
 
     /**
@@ -2747,7 +2747,7 @@ if ( typeof define === 'function' && define.amd ) {
 })( window );
 
 /*!
- * Masonry v3.2.1
+ * Masonry v3.2.2
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License

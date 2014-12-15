@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.2.2
+
++ Update [getSize](https://github.com/desandro/get-size) to v1.2.1 to fix IE8 bug
+
 ## v3.2.1
 
 + Fix missing dependencies in `package.json`
