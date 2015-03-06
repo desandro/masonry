@@ -63,7 +63,7 @@ function masonryDefinition( Outlayer, getSize ) {
 
     this.columnWidth += this.gutter;
 
-    this.cols = Math.floor( ( this.containerWidth + this.gutter ) / this.columnWidth );
+    this.cols = Math.round( ( this.containerWidth + this.gutter ) / this.columnWidth );
     this.cols = Math.max( this.cols, 1 );
   };
 
@@ -79,7 +79,8 @@ function masonryDefinition( Outlayer, getSize ) {
   Masonry.prototype._getItemLayoutPosition = function( item ) {
     item.getSize();
     // how many columns does this brick span
-    var remainder = item.size.outerWidth % this.columnWidth;
+    var factor = item.size.outerWidth / this.columnWidth,
+    	remainder = factor - Math.floor( factor );
     var mathMethod = remainder && remainder < 1 ? 'round' : 'ceil';
     // round if off by 1 pixel, otherwise use ceil
     var colSpan = Math[ mathMethod ]( item.size.outerWidth / this.columnWidth );
