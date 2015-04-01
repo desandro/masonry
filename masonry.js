@@ -6,7 +6,31 @@
  * by David DeSandro
  */
 
-( function( window ) {
+( function( window, factory ) {
+  'use strict';
+  // universal module definition
+  if ( typeof define === 'function' && define.amd ) {
+    // AMD
+    define( [
+        'outlayer/outlayer',
+        'get-size/get-size'
+      ],
+      factory );
+  } else if ( typeof exports === 'object' ) {
+    // CommonJS
+    module.exports = factory(
+      require('outlayer'),
+      require('get-size')
+    );
+  } else {
+    // browser global
+    window.Masonry = factory(
+      window.Outlayer,
+      window.getSize
+    );
+  }
+
+}( window, function factory( Outlayer, getSize ) {
 
 'use strict';
 
@@ -28,8 +52,6 @@ var indexOf = Array.prototype.indexOf ?
 
 // -------------------------- masonryDefinition -------------------------- //
 
-// used for AMD definition and requires
-function masonryDefinition( Outlayer, getSize ) {
   // create an Outlayer layout class
   var Masonry = Outlayer.create('masonry');
 
@@ -190,29 +212,5 @@ function masonryDefinition( Outlayer, getSize ) {
   };
 
   return Masonry;
-}
 
-// -------------------------- transport -------------------------- //
-
-if ( typeof define === 'function' && define.amd ) {
-  // AMD
-  define( [
-      'outlayer/outlayer',
-      'get-size/get-size'
-    ],
-    masonryDefinition );
-} else if ( typeof exports === 'object' ) {
-  // CommonJS
-  module.exports = masonryDefinition(
-    require('outlayer'),
-    require('get-size')
-  );
-} else {
-  // browser global
-  window.Masonry = masonryDefinition(
-    window.Outlayer,
-    window.getSize
-  );
-}
-
-})( window );
+}));
