@@ -50,4 +50,4 @@ Masonry is released under the [MIT license](http://desandro.mit-license.org). Ha
 
 * * *
 
-Copyright :copyright: 2014 David DeSandro
+Copyright :copyright: 2015 David DeSandro
