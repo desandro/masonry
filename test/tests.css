@@ -106,7 +106,7 @@ body {
   display: none;
 }
 
-/* ---- pixel-rounding ---- */
+/* ---- element-sizing ---- */
 
 #element-sizing {
   width: 181px;
@@ -116,3 +116,12 @@ body {
 #element-sizing .grid-sizer { width: 20%; }
 
 #element-sizing .item.w2 { width: 40%; }
+
+/* ---- pixel-rounding ---- */
+
+#pixel-rounding {
+  width: 170px;
+}
+
+#pixel-rounding .item { width: 28.667%; }
+#pixel-rounding .gutter-sizer { width: 7%; }

@@ -2,7 +2,7 @@
 
 'use strict';
 
-test( 'pixel rounding', function() {
+test( 'element sizing', function() {
   var container = document.querySelector('#element-sizing');
   var msnry = new Masonry( '#element-sizing', {
     columnWidth: '.grid-sizer',
