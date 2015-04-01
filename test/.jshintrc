@@ -4,24 +4,9 @@
   "strict": true,
   "undef": true,
   "unused": true,
-  "predef": {
+  "qunit": true,
+  "globals": {
     "Masonry": false,
-    "checkItemPositions": false,
-
-    "asyncTest": false,
-    "deepEqual": false,
-    "equal": false,
-    "expect": false,
-    "module": false,
-    "notDeepEqual": false,
-    "notEqual": false,
-    "notStrictEqual": false,
-    "ok": false,
-    "QUnit": false,
-    "raises": false,
-    "start": false,
-    "stop": false,
-    "strictEqual": false,
-    "test": false
+    "checkItemPositions": false
   }
 }
