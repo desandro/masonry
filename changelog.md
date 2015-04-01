@@ -1,5 +1,9 @@
 # Changelog
 
++ Fixed pixel rounding errors related to Firefox, gutters. Fixed [#580](https://github.com/desandro/masonry/pull/580)
++ Moved poorly named `examples/` to better named `sandbox/`. Fixed [#539](https://github.com/desandro/masonry/issues/539)
++ Moved [`masonry-v2-shim.js` shim to its own repo](https://github.com/desandro/masonry-v2-3-shim)
+
 ### v3.2.2
 
 + Update [getSize](https://github.com/desandro/get-size) to v1.2.1 to fix IE8 bug

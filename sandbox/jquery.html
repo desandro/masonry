@@ -3,45 +3,40 @@
 <head>
   <meta charset="utf-8">
 
-  <title>fit width</title>
+  <title>jQuery</title>
 
-  <link rel="stylesheet" href="examples.css" />
-
-  <style>
-    .container {
-      margin: 0 auto;
-    }
-  </style>
+  <link rel="stylesheet" href="sandbox.css" />
 
 </head>
 <body>
 
-  <h1>fit width</h1>
+  <h1>jQuery</h1>
 
-  <div class="container">
-    <div class="item w2"></div>
-    <div class="item w2 h4"></div>
+  <div id="basic" class="container">
+    <div class="item"></div>
+    <div class="item h4"></div>
     <div class="item w2 h2"></div>
     <div class="item w2"></div>
-    <div class="item w2 h3"></div>
-    <div class="item w4"></div>
-    <div class="item w2"></div>
+    <div class="item h3"></div>
+    <div class="item w3"></div>
+    <div class="item"></div>
+    <div class="item h4"></div>
+    <div class="item"></div>
     <div class="item w2 h4"></div>
     <div class="item w2"></div>
-    <div class="item w2 h4"></div>
-    <div class="item w4"></div>
+    <div class="item h5"></div>
+    <div class="item w3"></div>
+    <div class="item"></div>
+    <div class="item h4"></div>
+    <div class="item"></div>
     <div class="item w2 h5"></div>
-    <div class="item w4"></div>
     <div class="item w2"></div>
-    <div class="item w2 h4"></div>
-    <div class="item w2"></div>
-    <div class="item w2 h5"></div>
-    <div class="item w2"></div>
-    <div class="item w2 h3"></div>
-    <div class="item w4"></div>
-    <div class="item w2"></div>
+    <div class="item h3"></div>
+    <div class="item w3"></div>
+    <div class="item"></div>
   </div>
 
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../bower_components/eventEmitter/EventEmitter.js"></script>
 <script src="../bower_components/eventie/eventie.js"></script>
 <script src="../bower_components/doc-ready/doc-ready.js"></script>
@@ -55,11 +50,12 @@
 <script src="../masonry.js"></script>
 
 <script>
-docReady( function() {
-  var msnry = new Masonry( '.container', {
-    isFitWidth: true,
-    columnWidth: 120
+$( function() {
+
+  $('#basic').masonry({
+    columnWidth: 60
   });
+
 });
 </script>
 

@@ -3,40 +3,45 @@
 <head>
   <meta charset="utf-8">
 
-  <title>v2 shim</title>
+  <title>fit width</title>
 
-  <link rel="stylesheet" href="examples.css" />
+  <link rel="stylesheet" href="sandbox.css" />
+
+  <style>
+    .container {
+      margin: 0 auto;
+    }
+  </style>
 
 </head>
 <body>
 
-  <h1>v2 shim</h1>
+  <h1>fit width</h1>
 
-  <div id="container" class="container">
-    <div class="item"></div>
-    <div class="item h4"></div>
+  <div class="container">
+    <div class="item w2"></div>
+    <div class="item w2 h4"></div>
     <div class="item w2 h2"></div>
     <div class="item w2"></div>
-    <div class="item h3"></div>
-    <div class="item w3"></div>
-    <div class="item"></div>
-    <div class="item h4"></div>
-    <div class="item"></div>
+    <div class="item w2 h3"></div>
+    <div class="item w4"></div>
+    <div class="item w2"></div>
     <div class="item w2 h4"></div>
     <div class="item w2"></div>
-    <div class="item h5"></div>
-    <div class="item w3"></div>
-    <div class="item"></div>
-    <div class="item h4"></div>
-    <div class="item"></div>
+    <div class="item w2 h4"></div>
+    <div class="item w4"></div>
+    <div class="item w2 h5"></div>
+    <div class="item w4"></div>
+    <div class="item w2"></div>
+    <div class="item w2 h4"></div>
+    <div class="item w2"></div>
     <div class="item w2 h5"></div>
     <div class="item w2"></div>
-    <div class="item h3"></div>
-    <div class="item w3"></div>
-    <div class="item"></div>
+    <div class="item w2 h3"></div>
+    <div class="item w4"></div>
+    <div class="item w2"></div>
   </div>
 
-<script src="../bower_components/jquery/dist/jquery.js"></script>
 <script src="../bower_components/eventEmitter/EventEmitter.js"></script>
 <script src="../bower_components/eventie/eventie.js"></script>
 <script src="../bower_components/doc-ready/doc-ready.js"></script>
@@ -48,23 +53,13 @@
 <script src="../bower_components/outlayer/outlayer.js"></script>
 
 <script src="../masonry.js"></script>
-<script src="js/masonry-v2-shim.js"></script>
 
 <script>
-$( function() {
-
-  var $container = $('#container').masonry({
-    isRTL: true,
-    gutterWidth: 0,
-    animationOptions: {
-      duration: 800
-    },
-    columnWidth: function( containerWidth ) {
-      return containerWidth / 4;
-    }
-    // isAnimated: false
+docReady( function() {
+  var msnry = new Masonry( '.container', {
+    isFitWidth: true,
+    columnWidth: 120
   });
-
 });
 </script>
 

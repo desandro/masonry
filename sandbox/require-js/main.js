@@ -25,7 +25,7 @@ requirejs( [ '../masonry' ], function( Masonry ) {
 // /*
 requirejs.config({
   paths: {
-    jquery: '../../bower_components/jquery/jquery'
+    jquery: '../../bower_components/jquery/dist/jquery'
   }
 });
 
