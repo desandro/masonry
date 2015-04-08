@@ -7,7 +7,7 @@
 
   <link rel="stylesheet" href="sandbox.css" />
   <style>
-    #container { width: 501px; }
+/*    #container { width: 501px; }*/
     .item, .grid-sizer { width: 20%; }
     .item.w2 { width: 40%; }
     .item.w3 { width: 60%; }
@@ -15,7 +15,7 @@
 </head>
 <body>
 
-  <h1>basic</h1>
+  <h1>element sizing</h1>
 
   <div id="container" class="container">
     <div class="grid-sizer"></div>
@@ -49,6 +49,7 @@
 <script src="../bower_components/get-size/get-size.js"></script>
 <script src="../bower_components/jquery-bridget/jquery.bridget.js"></script>
 <script src="../bower_components/matches-selector/matches-selector.js"></script>
+<script src="../bower_components/fizzy-ui-utils/utils.js"></script>
 <script src="../bower_components/outlayer/item.js"></script>
 <script src="../bower_components/outlayer/outlayer.js"></script>
 
@@ -58,7 +59,8 @@
 docReady( function() {
   var container = document.querySelector('#container');
   var msnry = new Masonry( container, {
-    columnWidth: '.grid-sizer'
+    columnWidth: '.grid-sizer',
+    percentPosition: true
   });
 });
 </script>

@@ -1,5 +1,5 @@
 /*!
- * Masonry v3.2.3
+ * Masonry v3.3.0
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
@@ -13,42 +13,29 @@
     // AMD
     define( [
         'outlayer/outlayer',
-        'get-size/get-size'
+        'get-size/get-size',
+        'fizzy-ui-utils/utils'
       ],
       factory );
   } else if ( typeof exports === 'object' ) {
     // CommonJS
     module.exports = factory(
       require('outlayer'),
-      require('get-size')
+      require('get-size'),
+      require('fizzy-ui-utils')
     );
   } else {
     // browser global
     window.Masonry = factory(
       window.Outlayer,
-      window.getSize
+      window.getSize,
+      window.fizzyUIUtils
     );
   }
 
-}( window, function factory( Outlayer, getSize ) {
+}( window, function factory( Outlayer, getSize, utils ) {
 
 'use strict';
-
-// -------------------------- helpers -------------------------- //
-
-var indexOf = Array.prototype.indexOf ?
-  function( items, value ) {
-    return items.indexOf( value );
-  } :
-  function ( items, value ) {
-    for ( var i=0, len = items.length; i < len; i++ ) {
-      var item = items[i];
-      if ( item === value ) {
-        return i;
-      }
-    }
-    return -1;
-  };
 
 // -------------------------- masonryDefinition -------------------------- //
 
@@ -117,7 +104,7 @@ var indexOf = Array.prototype.indexOf ?
     var colGroup = this._getColGroup( colSpan );
     // get the minimum Y value from the columns
     var minimumY = Math.min.apply( Math, colGroup );
-    var shortColIndex = indexOf( colGroup, minimumY );
+    var shortColIndex = utils.indexOf( colGroup, minimumY );
 
     // position the brick
     var position = {

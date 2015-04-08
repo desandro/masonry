@@ -1,5 +1,10 @@
 # Changelog
 
+## v3.3.0
+
++ Added `percentPosition` option. Fixed [#574](https://github.com/desandro/masonry/issues/574)
++ Added use of [fizzy-ui-utils](https://github.com/metafizzy/fizzy-ui-utils)
+
 ### v3.2.3
 
 + Fixed pixel rounding errors related to Firefox, gutters. Fixed [#580](https://github.com/desandro/masonry/pull/580)
