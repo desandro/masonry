@@ -3,6 +3,7 @@
 ## v3.3.0
 
 + Added `percentPosition` option. Fixed [#574](https://github.com/desandro/masonry/issues/574)
++ Removed first `instance` argument from `layoutComplete` and `removeComplete` events
 + Added use of [fizzy-ui-utils](https://github.com/metafizzy/fizzy-ui-utils)
 
 ### v3.2.3
