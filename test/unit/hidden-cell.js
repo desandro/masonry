@@ -3,8 +3,6 @@
 'use strict';
 
 test( 'hidden cell', function() {
-    debugger;
-
   var container = document.querySelector('#hidden-cell');
   var msnry = new Masonry( container, {
     itemSelector: '.item',
