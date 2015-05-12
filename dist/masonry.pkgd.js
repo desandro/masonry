@@ -2999,7 +2999,7 @@ return Outlayer;
     this.getContainerWidth();
     // if columnWidth is 0, default to outerWidth of first item
     if ( !this.columnWidth ) {
-      var firstItem = this.items[0];
+      var firstItem = this.items.filter(function (i) { return !i.isHidden; })[0];
       var firstItemElem = firstItem && firstItem.element;
       // columnWidth fall back to item of first element
       this.columnWidth = firstItemElem && getSize( firstItemElem ).outerWidth ||
