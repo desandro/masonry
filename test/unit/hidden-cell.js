@@ -16,6 +16,14 @@ test( 'hidden cell', function() {
   msnry.layout();
 
   equal( lastItem.position.y, 0, '3rd item on top row' );
+
+  msnry.reveal([firstItem]);
+  msnry.layout();
+
+  firstItem.element.style.display = 'none';
+  msnry.layout();
+
+  equal( lastItem.position.y, 0, '3rd item on top row' );
 });
 
 })();
