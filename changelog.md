@@ -1,5 +1,11 @@
 # Changelog
 
+### v3.3.1
+
++ Updated Outlayer v1.4.1
+  + Added jQuery events
+  + Fixed Safari layout and transition bugs. Fixed [#698](https://github.com/desandro/masonry/issues/698)
+
 ## v3.3.0
 
 + Added `percentPosition` option. Fixed [#574](https://github.com/desandro/masonry/issues/574)
