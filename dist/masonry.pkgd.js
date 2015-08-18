@@ -1,5 +1,5 @@
 /*!
- * Masonry PACKAGED v3.3.0
+ * Masonry PACKAGED v3.3.1
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
@@ -1633,14 +1633,19 @@ Item.prototype.getPosition = function() {
   var layoutOptions = this.layout.options;
   var isOriginLeft = layoutOptions.isOriginLeft;
   var isOriginTop = layoutOptions.isOriginTop;
-  var x = parseInt( style[ isOriginLeft ? 'left' : 'right' ], 10 );
-  var y = parseInt( style[ isOriginTop ? 'top' : 'bottom' ], 10 );
+  var xValue = style[ isOriginLeft ? 'left' : 'right' ];
+  var yValue = style[ isOriginTop ? 'top' : 'bottom' ];
+  var x = parseInt( xValue, 10 );
+  var y = parseInt( yValue, 10 );
+  // convert percent to pixels
+  var layoutSize = this.layout.size;
+  x = xValue.indexOf('%') != -1 ? ( x / 100 ) * layoutSize.width : x;
+  y = yValue.indexOf('%') != -1 ? ( y / 100 ) * layoutSize.height : y;
 
   // clean up 'auto' or other non-integer values
   x = isNaN( x ) ? 0 : x;
   y = isNaN( y ) ? 0 : y;
   // remove padding from measurement
-  var layoutSize = this.layout.size;
   x -= isOriginLeft ? layoutSize.paddingLeft : layoutSize.paddingRight;
   y -= isOriginTop ? layoutSize.paddingTop : layoutSize.paddingBottom;
 
@@ -1660,10 +1665,8 @@ Item.prototype.layoutPosition = function() {
   var xResetProperty = layoutOptions.isOriginLeft ? 'right' : 'left';
 
   var x = this.position.x + layoutSize[ xPadding ];
-  // set in percentage
-  x = layoutOptions.percentPosition && !layoutOptions.isHorizontal ?
-    ( ( x / layoutSize.width ) * 100 ) + '%' : x + 'px';
-  style[ xProperty ] = x;
+  // set in percentage or pixels
+  style[ xProperty ] = this.getXValue( x );
   // reset other property
   style[ xResetProperty ] = '';
 
@@ -1673,10 +1676,8 @@ Item.prototype.layoutPosition = function() {
   var yResetProperty = layoutOptions.isOriginTop ? 'bottom' : 'top';
 
   var y = this.position.y + layoutSize[ yPadding ];
-  // set in percentage
-  y = layoutOptions.percentPosition && layoutOptions.isHorizontal ?
-    ( ( y / layoutSize.height ) * 100 ) + '%' : y + 'px';
-  style[ yProperty ] = y;
+  // set in percentage or pixels
+  style[ yProperty ] = this.getYValue( y );
   // reset other property
   style[ yResetProperty ] = '';
 
@@ -1684,15 +1685,17 @@ Item.prototype.layoutPosition = function() {
   this.emitEvent( 'layout', [ this ] );
 };
 
+Item.prototype.getXValue = function( x ) {
+  var layoutOptions = this.layout.options;
+  return layoutOptions.percentPosition && !layoutOptions.isHorizontal ?
+    ( ( x / this.layout.size.width ) * 100 ) + '%' : x + 'px';
+};
 
-// transform translate function
-var translate = is3d ?
-  function( x, y ) {
-    return 'translate3d(' + x + 'px, ' + y + 'px, 0)';
-  } :
-  function( x, y ) {
-    return 'translate(' + x + 'px, ' + y + 'px)';
-  };
+Item.prototype.getYValue = function( y ) {
+  var layoutOptions = this.layout.options;
+  return layoutOptions.percentPosition && layoutOptions.isHorizontal ?
+    ( ( y / this.layout.size.height ) * 100 ) + '%' : y + 'px';
+};
 
 
 Item.prototype._transitionTo = function( x, y ) {
@@ -1717,11 +1720,7 @@ Item.prototype._transitionTo = function( x, y ) {
   var transX = x - curX;
   var transY = y - curY;
   var transitionStyle = {};
-  // flip cooridinates if origin on right or bottom
-  var layoutOptions = this.layout.options;
-  transX = layoutOptions.isOriginLeft ? transX : -transX;
-  transY = layoutOptions.isOriginTop ? transY : -transY;
-  transitionStyle.transform = translate( transX, transY );
+  transitionStyle.transform = this.getTranslate( transX, transY );
 
   this.transition({
     to: transitionStyle,
@@ -1730,6 +1729,21 @@ Item.prototype._transitionTo = function( x, y ) {
     },
     isCleaning: true
   });
+};
+
+Item.prototype.getTranslate = function( x, y ) {
+  // flip cooridinates if origin on right or bottom
+  var layoutOptions = this.layout.options;
+  x = layoutOptions.isOriginLeft ? x : -x;
+  y = layoutOptions.isOriginTop ? y : -y;
+  x = this.getXValue( x );
+  y = this.getYValue( y );
+
+  if ( is3d ) {
+    return 'translate3d(' + x + ', ' + y + ', 0)';
+  }
+
+  return 'translate(' + x + ', ' + y + ')';
 };
 
 // non transition + transform support
@@ -1811,28 +1825,36 @@ Item.prototype._transition = function( args ) {
 
 };
 
-var itemTransitionProperties = transformProperty && ( utils.toDashed( transformProperty ) +
-  ',opacity' );
+// dash before all cap letters, including first for
+// WebkitTransform => -webkit-transform
+function toDashedAll( str ) {
+  return str.replace( /([A-Z])/g, function( $1 ) {
+    return '-' + $1.toLowerCase();
+  });
+}
+
+var transitionProps = 'opacity,' +
+  toDashedAll( vendorProperties.transform || 'transform' );
 
 Item.prototype.enableTransition = function(/* style */) {
-  // only enable if not already transitioning
-  // bug in IE10 were re-setting transition style will prevent
-  // transitionend event from triggering
+  // HACK changing transitionProperty during a transition
+  // will cause transition to jump
   if ( this.isTransitioning ) {
     return;
   }
 
-  // make transition: foo, bar, baz from style object
-  // TODO uncomment this bit when IE10 bug is resolved
-  // var transitionValue = [];
+  // make `transition: foo, bar, baz` from style object
+  // HACK un-comment this when enableTransition can work
+  // while a transition is happening
+  // var transitionValues = [];
   // for ( var prop in style ) {
   //   // dash-ify camelCased properties like WebkitTransition
-  //   transitionValue.push( toDash( prop ) );
+  //   prop = vendorProperties[ prop ] || prop;
+  //   transitionValues.push( toDashedAll( prop ) );
   // }
   // enable transition styles
-  // HACK always enable transform,opacity for IE10
   this.css({
-    transitionProperty: itemTransitionProperties,
+    transitionProperty: transitionProps,
     transitionDuration: this.layout.options.transitionDuration
   });
   // listen for transition end event
@@ -2035,7 +2057,7 @@ return Item;
 }));
 
 /*!
- * Outlayer v1.4.0
+ * Outlayer v1.4.1
  * the brains and guts of a layout library
  * MIT license
  */
@@ -2450,7 +2472,7 @@ Outlayer.prototype._setContainerMeasure = function( measure, isWidth ) {
 Outlayer.prototype._emitCompleteOnItems = function( eventName, items ) {
   var _this = this;
   function onComplete() {
-    _this.emitEvent( eventName + 'Complete', [ items ] );
+    _this.dispatchEvent( eventName + 'Complete', null, [ items ] );
   }
 
   var count = items.length;
@@ -2471,6 +2493,32 @@ Outlayer.prototype._emitCompleteOnItems = function( eventName, items ) {
   for ( var i=0, len = items.length; i < len; i++ ) {
     var item = items[i];
     item.once( eventName, tick );
+  }
+};
+
+/**
+ * emits events via eventEmitter and jQuery events
+ * @param {String} type - name of event
+ * @param {Event} event - original event
+ * @param {Array} args - extra arguments
+ */
+Outlayer.prototype.dispatchEvent = function( type, event, args ) {
+  // add original event to arguments
+  var emitArgs = event ? [ event ].concat( args ) : args;
+  this.emitEvent( type, emitArgs );
+
+  if ( jQuery ) {
+    // set this.$element
+    this.$element = this.$element || jQuery( this.element );
+    if ( event ) {
+      // create jQuery event
+      var $event = jQuery.Event( event );
+      $event.type = type;
+      this.$element.trigger( $event, args );
+    } else {
+      // just trigger with type if no event available
+      this.$element.trigger( type, args );
+    }
   }
 };
 
@@ -2936,7 +2984,7 @@ return Outlayer;
 
 
 /*!
- * Masonry v3.3.0
+ * Masonry v3.3.1
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License

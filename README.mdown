@@ -4,42 +4,65 @@ _Cascading grid layout library_
 
 Masonry works by placing elements in optimal position based on available vertical space, sort of like a mason fitting stones in a wall. You’ve probably seen it in use all over the Internet.
 
-For complete docs and demos, see [masonry.desandro.com](http://masonry.desandro.com) or [masonryjs.com](http://masonryjs.com) if you're lazy.
+See [masonry.desandro.com](http://masonry.desandro.com) for complete docs and demos.
 
 ## Install
 
-A packaged source file includes everything you need to use Masonry.
+### Download
 
-+ [masonry.pkgd.min.js](dist/masonry.pkgd.min.js)
-+ [masonry.pkgd.js](dist/masonry.pkgd.js)
++ [masonry.pkgd.js](https://github.com/desandro/masonry/raw/master/dist/masonry.pkgd.js) un-minified, or
++ [masonry.pkgd.min.js](https://github.com/desandro/masonry/raw/master/dist/masonry.pkgd.min.js) minified
 
-Or, if you're cool with the command line...
+### CDN
 
-Install with [Bower](http://bower.io): `bower install masonry`
+Link directly to [Masonry files on cdnjs](https://cdnjs.com/libraries/masonry).
 
-[Install with npm](https://www.npmjs.org/package/masonry-layout) `npm install masonry-layout`
+``` html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.1/masonry.pkgd.js"></script>
+<!-- or -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.1/masonry.pkgd.min.js"></script>
+```
+
+### Package managers
+
+Bower: `bower install masonry --save`
+
+[npm](https://www.npmjs.com/package/masonry-layout): `npm install masonry-layout --save`
+
 
 ## Initialize
 
-### In JavaScript
+With jQuery
 
 ``` js
-var container = document.querySelector('#container');
-var msnry = new Masonry( container, {
+$('.grid').masonry({
   // options...
-  itemSelector: '.item',
+  itemSelector: '.grid-item',
   columnWidth: 200
 });
 ```
 
-### In HTML
+With vanilla JavaScript
+
+``` js
+// vanilla JS
+var grid = document.querySelector('.grid');
+var msnry = new Masonry( grid, {
+  // options...
+  itemSelector: '.grid-item',
+  columnWidth: 200
+});
+```
+
+With HTML
 
 Add a class of `js-masonry` to your element. Options can be set in JSON in `data-masonry-options`.
 
 ``` html
-<div class="js-masonry" data-masonry-options='{ "itemSelector": ".item", "columnWidth": 200 }'>
-  <div class="item"></div>
-  <div class="item"></div>
+<div class="grid js-masonry"
+  data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
+  <div class="grid-item"></div>
+  <div class="grid-item"></div>
   ...
 </div>
 ```
@@ -50,4 +73,4 @@ Masonry is released under the [MIT license](http://desandro.mit-license.org). Ha
 
 * * *
 
-Copyright :copyright: 2015 David DeSandro
+Copyright 2015 David DeSandro
