@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>fluid</title>
+  <title>add items</title>
 
   <style>
   * {
@@ -45,21 +45,17 @@
 </head>
 <body>
 
-  <h1>fluid</h1>
+  <h1>add items</h1>
+
+  <p>
+    <button class="prepend-button">Prepend button</button>
+    <button class="append-button">Append button</button>
+  </p>
 
   <div class="grid">
     <div class="grid-sizer"></div>
     <div class="grid-item grid-item--width2"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item grid-item--height3"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item grid-item--width2 grid-item--height2"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item grid-item--width2"></div>
-    <div class="grid-item grid-item--height3"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
+    <div class="grid-item grid-item--height2"></div>
   </div>
 
 
@@ -77,11 +73,36 @@
 <script src="../masonry.js"></script>
 
 <script>
+function getItemElement() {
+  var elem = document.createElement('div');
+  var wRand = Math.random();
+  var hRand = Math.random();
+  var widthClass = wRand > 0.8 ? 'grid-item--width3' :
+    wRand > 0.6 ? 'grid-item--width2' : '';
+  var heightClass = hRand > 0.8 ? 'grid-item--height3' :
+    hRand > 0.5 ? 'grid-item--height2' : '';
+  elem.className = 'grid-item ' + widthClass + ' ' + heightClass;
+  return elem;
+};
+
 docReady( function() {
-  window.msnry = new Masonry( '.grid', {
+  var msnry = window.msnry = new Masonry( '.grid', {
     columnWidth: '.grid-sizer',
     percentPosition: true
   });
+
+  document.querySelector('.prepend-button').addEventListener( 'click', function() {
+    var itemElem = getItemElement();
+    msnry.element.insertBefore( itemElem, msnry.element.firstChild );
+    msnry.prepended( itemElem );
+  });
+
+  document.querySelector('.append-button').addEventListener( 'click', function() {
+    var itemElem = getItemElement();
+    msnry.element.appendChild( itemElem );
+    msnry.appended( itemElem );
+  });
+
 });
 </script>
 
