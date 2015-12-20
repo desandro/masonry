@@ -18,9 +18,9 @@ See [masonry.desandro.com](http://masonry.desandro.com) for complete docs and de
 Link directly to [Masonry files on cdnjs](https://cdnjs.com/libraries/masonry).
 
 ``` html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.1/masonry.pkgd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>
 <!-- or -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.1/masonry.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
 ```
 
 ### Package managers
