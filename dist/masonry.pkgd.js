@@ -218,7 +218,7 @@ var eventie = {
 
 if ( typeof define === 'function' && define.amd ) {
   // AMD
-  define( 'eventie/eventie',eventie );
+  define( 'eventie/eventie', function() { return eventie; } );
 } else if ( typeof exports === 'object' ) {
   // CommonJS
   module.exports = eventie;
