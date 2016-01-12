@@ -1,12 +1,11 @@
-test( 'gutter', function() {
+QUnit.test( 'gutter', function( assert ) {
 
-  var container = document.querySelector('#gutter');
-  var msnry = new Masonry( container, {
+  var msnry = new Masonry( '#gutter', {
     columnWidth: 60,
     gutter: 20
   });
 
-  checkItemPositions( msnry, {
+  checkItemPositions( msnry, assert, {
     0: { left: 0, top: 0 },
     1: { left: 80, top: 0 },
     2: { left: 160, top: 0 },

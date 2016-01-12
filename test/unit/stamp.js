@@ -1,16 +1,11 @@
-( function() {
+QUnit.test( 'stamp top left', function( assert ) {
 
-'use strict';
-
-test( 'stamp top left', function() {
-
-  var container = document.querySelector('#stamp-top-left');
-  var msnry = new Masonry( container, {
+  var msnry = new Masonry( '#stamp-top-left', {
     itemSelector: '.item',
     stamp: '.stamp'
   });
 
-  checkItemPositions( msnry, {
+  checkItemPositions( msnry, assert, {
     0: { left: 0, top: 20 },
     1: { left: 135, top: 20 },
     2: { left: 45, top: 40 },
@@ -19,14 +14,14 @@ test( 'stamp top left', function() {
 
 });
 
-test( 'stamp columnWidth multiple', function() {
+QUnit.test( 'stamp columnWidth multiple', function( assert ) {
 
   var msnry = new Masonry( '#stamp-column-width-multiple', {
     itemSelector: '.item',
     stamp: '.stamp'
   });
 
-  checkItemPositions( msnry, {
+  checkItemPositions( msnry, assert, {
     0: { left: 0, top: 0 },
     1: { left: 135, top: 0 },
     2: { left: 0, top: 30 },
@@ -35,17 +30,16 @@ test( 'stamp columnWidth multiple', function() {
 
 });
 
-test( 'stamp bottom right', function() {
+QUnit.test( 'stamp bottom right', function( assert ) {
 
-  var container = document.querySelector('#stamp-bottom-right');
-  var msnry = new Masonry( container, {
+  var msnry = new Masonry( '#stamp-bottom-right', {
     itemSelector: '.item',
     stamp: '.stamp',
     isOriginLeft: false,
     isOriginTop: false
   });
 
-  checkItemPositions( msnry, {
+  checkItemPositions( msnry, assert, {
     0: { right: 0, bottom: 20 },
     1: { right: 135, bottom: 20 },
     2: { right: 45, bottom: 40 },
@@ -53,5 +47,3 @@ test( 'stamp bottom right', function() {
   });
 
 });
-
-})();

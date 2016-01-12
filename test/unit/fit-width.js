@@ -1,4 +1,4 @@
-test( 'fit width', function() {
+QUnit.test( 'fit width', function( assert ) {
 
   var container = document.querySelector('#fit-width .container');
   var msnry = new Masonry( container, {
@@ -6,7 +6,7 @@ test( 'fit width', function() {
     isFitWidth: true
   });
 
-  equal( msnry.cols, 2, '2 columns' );
-  equal( msnry.cols * msnry.columnWidth + 'px', container.style.width, 'width set to match' );
+  assert.equal( msnry.cols, 2, '2 columns' );
+  assert.equal( msnry.cols * msnry.columnWidth + 'px', container.style.width, 'width set to match' );
 
 });

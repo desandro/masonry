@@ -1,4 +1,4 @@
-window.checkItemPositions = function( msnry, positions ) {
+window.checkItemPositions = function( msnry, assert, positions ) {
   var i = 0;
   var position = positions[i];
   while ( position ) {
@@ -6,7 +6,7 @@ window.checkItemPositions = function( msnry, positions ) {
     for ( var prop in position ) {
       var value = position[ prop ] + 'px';
       var message = 'item ' + i + ' ' + prop + ' = ' + value;
-      equal( style[ prop ], value, message );
+      assert.equal( style[ prop ], value, message );
     }
     i++;
     position = positions[i];
