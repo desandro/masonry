@@ -9,14 +9,14 @@
 ( function( window, factory ) {
   'use strict';
   // universal module definition
-  if ( typeof define === 'function' && define.amd ) {
+  if ( typeof define == 'function' && define.amd ) {
     // AMD
     define( [
         'outlayer/outlayer',
         'get-size/get-size'
       ],
       factory );
-  } else if ( typeof exports === 'object' ) {
+  } else if ( typeof module == 'object' && module.exports ) {
     // CommonJS
     module.exports = factory(
       require('outlayer'),
@@ -197,7 +197,7 @@
   Masonry.prototype.needsResizeLayout = function() {
     var previousWidth = this.containerWidth;
     this.getContainerWidth();
-    return previousWidth !== this.containerWidth;
+    return previousWidth != this.containerWidth;
   };
 
   return Masonry;
