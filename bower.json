@@ -13,16 +13,15 @@
     "jquery": ">=1.4.3 <4"
   },
   "ignore": [
-    "examples/",
-    "test/",
-    "CONTRIBUTING.mdown",
-    "Gruntfile.js",
-    "package.json",
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "sandbox/",
+    "CONTRIBUTING.mdown",
+    "gulpfile.js",
+    "package.json"
   ],
   "homepage": "http://masonry.desandro.com",
   "authors": [

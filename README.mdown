@@ -15,12 +15,12 @@ See [masonry.desandro.com](http://masonry.desandro.com) for complete docs and de
 
 ### CDN
 
-Link directly to [Masonry files on cdnjs](https://cdnjs.com/libraries/masonry).
+Link directly to Masonry files on [npmcdn](https://npmcdn.com/).
 
 ``` html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>
+<script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.js"></script>
 <!-- or -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
+<script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
 ```
 
 ### Package managers
@@ -28,7 +28,6 @@ Link directly to [Masonry files on cdnjs](https://cdnjs.com/libraries/masonry).
 Bower: `bower install masonry --save`
 
 [npm](https://www.npmjs.com/package/masonry-layout): `npm install masonry-layout --save`
-
 
 ## Initialize
 
@@ -46,21 +45,26 @@ With vanilla JavaScript
 
 ``` js
 // vanilla JS
+// init with element
 var grid = document.querySelector('.grid');
 var msnry = new Masonry( grid, {
   // options...
   itemSelector: '.grid-item',
   columnWidth: 200
 });
+
+// init with selector
+var msnry = new Masonry( '.grid', {
+  // options...
+});
 ```
 
 With HTML
 
-Add a class of `js-masonry` to your element. Options can be set in JSON in `data-masonry-options`.
+Add a `data-masonry` attribute to your element. Options can be set in JSON in the value.
 
 ``` html
-<div class="grid js-masonry"
-  data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
+<div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
   <div class="grid-item"></div>
   <div class="grid-item"></div>
   ...
@@ -73,4 +77,4 @@ Masonry is released under the [MIT license](http://desandro.mit-license.org). Ha
 
 * * *
 
-Copyright 2015 David DeSandro
+Made by David DeSandro
