@@ -1,18 +1,16 @@
 {
   "name": "masonry",
-  "version": "3.3.2",
+  "version": "4.0.0",
   "description": "Cascading grid layout library",
   "main": "masonry.js",
   "dependencies": {
-    "get-size": "~1.2.2",
-    "outlayer": "~1.4.0",
-    "fizzy-ui-utils": "~1.0.1"
+    "get-size": "~2.0.2",
+    "outlayer": "~2.0.0"
   },
   "devDependencies": {
-    "jquery-bridget": "1.1.x",
-    "doc-ready": "1.x",
+    "jquery-bridget": "~2.0.0",
     "qunit": "^1.12",
-    "jquery": ">=1.4.3 <2"
+    "jquery": ">=1.4.3 <4"
   },
   "ignore": [
     "examples/",

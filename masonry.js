@@ -1,5 +1,5 @@
 /*!
- * Masonry v3.3.2
+ * Masonry v4.0.0
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
@@ -13,27 +13,24 @@
     // AMD
     define( [
         'outlayer/outlayer',
-        'get-size/get-size',
-        'fizzy-ui-utils/utils'
+        'get-size/get-size'
       ],
       factory );
   } else if ( typeof exports === 'object' ) {
     // CommonJS
     module.exports = factory(
       require('outlayer'),
-      require('get-size'),
-      require('fizzy-ui-utils')
+      require('get-size')
     );
   } else {
     // browser global
     window.Masonry = factory(
       window.Outlayer,
-      window.getSize,
-      window.fizzyUIUtils
+      window.getSize
     );
   }
 
-}( window, function factory( Outlayer, getSize, utils ) {
+}( window, function factory( Outlayer, getSize ) {
 
 'use strict';
 
@@ -41,6 +38,8 @@
 
   // create an Outlayer layout class
   var Masonry = Outlayer.create('masonry');
+  // isFitWidth -> fitWidth
+  Masonry.compatOptions.fitWidth = 'isFitWidth';
 
   Masonry.prototype._resetLayout = function() {
     this.getSize();
@@ -49,9 +48,8 @@
     this.measureColumns();
 
     // reset column Y
-    var i = this.cols;
     this.colYs = [];
-    while (i--) {
+    for ( var i=0; i < this.cols; i++ ) {
       this.colYs.push( 0 );
     }
 
@@ -85,7 +83,8 @@
 
   Masonry.prototype.getContainerWidth = function() {
     // container is parent if fit width
-    var container = this.options.isFitWidth ? this.element.parentNode : this.element;
+    var isFitWidth = this._getOption('fitWidth');
+    var container = isFitWidth ? this.element.parentNode : this.element;
     // check that this.size and size are there
     // IE8 triggers resize on body size change, so they might not be
     var size = getSize( container );
@@ -104,7 +103,7 @@
     var colGroup = this._getColGroup( colSpan );
     // get the minimum Y value from the columns
     var minimumY = Math.min.apply( Math, colGroup );
-    var shortColIndex = utils.indexOf( colGroup, minimumY );
+    var shortColIndex = colGroup.indexOf( minimumY );
 
     // position the brick
     var position = {
@@ -149,7 +148,8 @@
     var stampSize = getSize( stamp );
     var offset = this._getElementOffset( stamp );
     // get the columns that this stamp affects
-    var firstX = this.options.isOriginLeft ? offset.left : offset.right;
+    var isOriginLeft = this._getOption('originLeft');
+    var firstX = isOriginLeft ? offset.left : offset.right;
     var lastX = firstX + stampSize.outerWidth;
     var firstCol = Math.floor( firstX / this.columnWidth );
     firstCol = Math.max( 0, firstCol );
@@ -158,7 +158,9 @@
     lastCol -= lastX % this.columnWidth ? 0 : 1;
     lastCol = Math.min( this.cols - 1, lastCol );
     // set colYs to bottom of the stamp
-    var stampMaxY = ( this.options.isOriginTop ? offset.top : offset.bottom ) +
+
+    var isOriginTop = this._getOption('originTop');
+    var stampMaxY = ( isOriginTop ? offset.top : offset.bottom ) +
       stampSize.outerHeight;
     for ( var i = firstCol; i <= lastCol; i++ ) {
       this.colYs[i] = Math.max( stampMaxY, this.colYs[i] );
@@ -171,7 +173,7 @@
       height: this.maxY
     };
 
-    if ( this.options.isFitWidth ) {
+    if ( this._getOption('fitWidth') ) {
       size.width = this._getContainerFitWidth();
     }
 

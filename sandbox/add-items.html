@@ -59,12 +59,8 @@
   </div>
 
 
-<script src="../bower_components/eventEmitter/EventEmitter.js"></script>
-<script src="../bower_components/eventie/eventie.js"></script>
-<script src="../bower_components/doc-ready/doc-ready.js"></script>
-<script src="../bower_components/get-style-property/get-style-property.js"></script>
+<script src="../bower_components/ev-emitter/ev-emitter.js"></script>
 <script src="../bower_components/get-size/get-size.js"></script>
-<script src="../bower_components/jquery-bridget/jquery.bridget.js"></script>
 <script src="../bower_components/matches-selector/matches-selector.js"></script>
 <script src="../bower_components/fizzy-ui-utils/utils.js"></script>
 <script src="../bower_components/outlayer/item.js"></script>
@@ -85,24 +81,21 @@ function getItemElement() {
   return elem;
 };
 
-docReady( function() {
-  var msnry = window.msnry = new Masonry( '.grid', {
-    columnWidth: '.grid-sizer',
-    percentPosition: true
-  });
+var msnry = new Masonry( '.grid', {
+  columnWidth: '.grid-sizer',
+  percentPosition: true
+});
 
-  document.querySelector('.prepend-button').addEventListener( 'click', function() {
-    var itemElem = getItemElement();
-    msnry.element.insertBefore( itemElem, msnry.element.firstChild );
-    msnry.prepended( itemElem );
-  });
+document.querySelector('.prepend-button').addEventListener( 'click', function() {
+  var itemElem = getItemElement();
+  msnry.element.insertBefore( itemElem, msnry.element.firstChild );
+  msnry.prepended( itemElem );
+});
 
-  document.querySelector('.append-button').addEventListener( 'click', function() {
-    var itemElem = getItemElement();
-    msnry.element.appendChild( itemElem );
-    msnry.appended( itemElem );
-  });
-
+document.querySelector('.append-button').addEventListener( 'click', function() {
+  var itemElem = getItemElement();
+  msnry.element.appendChild( itemElem );
+  msnry.appended( itemElem );
 });
 </script>
 
