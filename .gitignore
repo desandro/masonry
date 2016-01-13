@@ -1,2 +1,5 @@
 _site/
 notes.mdown
+bower_components/
+node_modules/
+sandbox/

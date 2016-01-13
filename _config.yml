@@ -1,6 +1,0 @@
-name: jQuery Masonry
-permalink: /:categories/:title.html
-pygments: true
-masonry_js: jquery.masonry.min.js
-jquery_js: js/jquery-1.7.1.min.js
-exclude: [ minify.sh, notes.mdown ]
