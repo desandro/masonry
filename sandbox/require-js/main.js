@@ -32,7 +32,7 @@ requirejs.config({
 requirejs( [ 'require', 'jquery', '../../dist/masonry.pkgd' ],
   function( require, $, Masonry ) {
     require( [
-      'jquery-bridget/jquery.bridget'
+      'jquery-bridget/jquery-bridget'
     ],
     function() {
       $.bridget( 'masonry', Masonry );
@@ -57,7 +57,7 @@ requirejs.config({
 requirejs( [
     'jquery',
     '../masonry',
-    'jquery-bridget/jquery.bridget'
+    'jquery-bridget/jquery-bridget'
   ],
   function( $, Masonry )  {
     $.bridget( 'masonry', Masonry );
