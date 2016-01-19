@@ -152,23 +152,23 @@ var minimist = require('minimist');
 gulp.task( 'version', function() {
   var args = minimist( process.argv.slice(3) );
   var version = args.t;
-  if ( !version || !/^\d+\.\d+\.\d+/.test( version ) ) {
+  if ( !version || !/^\d\.\d+\.\d+/.test( version ) ) {
     gutil.log( 'invalid version: ' + chalk.red( version ) );
     return;
   }
   gutil.log( 'ticking version to ' + chalk.green( version ) );
 
   gulp.src('masonry.js')
-    .pipe( replace( /Masonry v\d\.\d\.\d/, 'Masonry v' + version ) )
+    .pipe( replace( /Masonry v\d\.\d+\.\d+/, 'Masonry v' + version ) )
     .pipe( gulp.dest('.') );
 
-  gulp.src( [ 'bower.json', 'package.json' ] )
-    .pipe( replace( /"version": "\d\.\d\.\d"/, '"version": "' + version + '"' ) )
+  gulp.src( [ 'package.json' ] )
+    .pipe( replace( /"version": "\d\.\d+\.\d+"/, '"version": "' + version + '"' ) )
     .pipe( gulp.dest('.') );
   // replace CDN links in README
-  var minorVersion = version.match( /^\d+\.\d+/ )[0];
+  var minorVersion = version.match( /^\d\.\d+/ )[0];
   gulp.src('README.mdown')
-    .pipe( replace( /masonry\-layout@\d+\.\d+/g, 'masonry-layout@' + minorVersion ))
+    .pipe( replace( /masonry\-layout@\d\.\d+/g, 'masonry-layout@' + minorVersion ))
     .pipe( gulp.dest('.') );
 });
 
