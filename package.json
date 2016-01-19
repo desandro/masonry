@@ -14,15 +14,14 @@
     "gulp-json-lint": "^0.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
+    "gulp-requirejs-optimize": "metafizzy/gulp-requirejs-optimize",
     "gulp-uglify": "^1.5.1",
     "gulp-util": "^3.0.7",
     "jquery": ">=1.4.3 <4",
     "jquery-bridget": "~2.0.0",
     "jshint": "^2.8.0",
     "minimist": "^1.2.0",
-    "qunitjs": "^1.12",
-    "requirejs": "^2.1.22",
-    "through2": "^2.0.0"
+    "qunitjs": "^1.12"
   },
   "directories": {
     "test": "test"
