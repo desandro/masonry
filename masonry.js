@@ -103,12 +103,27 @@
     var colGroup = this._getColGroup( colSpan );
     // get the minimum Y value from the columns
     var minimumY = Math.min.apply( Math, colGroup );
-    var shortColIndex = colGroup.indexOf( minimumY );
+    // get column error margin
+    var maxColumnHeightDifference = this._getOption('maxColumnHeightDifference');
+
+    // find correct column
+    var shortColIndex;
+    if(maxColumnHeightDifference && maxColumnHeightDifference > 0) {
+      // find first column within margin
+      for(var c = 0, n = colGroup.length; c < n; c++) {
+        if(colGroup[c] <= minimumY + maxColumnHeightDifference) {
+          shortColIndex = c;
+          break;
+        }
+      }
+    } else {
+      shortColIndex = colGroup.indexOf( minimumY );
+    }
 
     // position the brick
     var position = {
       x: this.columnWidth * shortColIndex,
-      y: minimumY
+      y: colGroup[shortColIndex]
     };
 
     // apply setHeight to necessary columns
