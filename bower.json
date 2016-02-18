@@ -20,7 +20,8 @@
     "sandbox/",
     "CONTRIBUTING.mdown",
     "gulpfile.js",
-    "package.json"
+    "package.json",
+    "composer.json"
   ],
   "homepage": "http://masonry.desandro.com",
   "authors": [
