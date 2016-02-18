@@ -1,6 +1,6 @@
 {
-  "name": "desandro/imagesloaded",
-  "description": ":love_hotel: Cascading grid layout library http://masonry.desandro.com",
+  "name": "desandro/masonry",
+  "description": "Cascading grid layout library http://masonry.desandro.com",
   "type": "library",
   "keywords": ["javascript", "library", "grid", "browser", "dom", "layout", "outlayer"],
   "homepage": "https://github.com/desandro/masonry",
