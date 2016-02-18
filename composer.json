@@ -1,9 +1,9 @@
 {
   "name": "desandro/masonry",
-  "description": "Cascading grid layout library http://masonry.desandro.com",
+  "description": "Cascading grid layout library",
   "type": "library",
   "keywords": ["javascript", "library", "grid", "browser", "dom", "layout", "outlayer"],
-  "homepage": "https://github.com/desandro/masonry",
+  "homepage": "http://masonry.desandro.com",
   "license": "MIT",
   "authors": [
     {
