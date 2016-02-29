@@ -182,13 +182,15 @@
 
   Masonry.prototype._getContainerFitWidth = function() {
     var unusedCols = 0;
-    // count unused columns
-    var i = this.cols;
-    while ( --i ) {
-      if ( this.colYs[i] !== 0 ) {
-        break;
+    if ( !this._getOption('fitUnusedColumns') ) {
+      // count unused columns
+      var i = this.cols;
+      while ( --i ) {
+        if ( this.colYs[i] !== 0 ) {
+          break;
+        }
+        unusedCols++;
       }
-      unusedCols++;
     }
     // fit container to columns that have been used
     return ( this.cols - unusedCols ) * this.columnWidth - this.gutter;
