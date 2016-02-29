@@ -125,3 +125,14 @@ body {
 
 #pixel-rounding .item { width: 28.667%; }
 #pixel-rounding .gutter-sizer { width: 7%; }
+
+/* ---- fit-unused-columns ---- */
+
+#fit-unused-columns {
+  width: 200px;
+  background: #CCC;
+}
+
+#fit-unused-columns .container {
+  margin: 0 auto;
+}
