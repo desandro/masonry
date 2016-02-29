@@ -152,7 +152,7 @@ return jQueryBridget;
 }));
 
 /**
- * EvEmitter v1.0.1
+ * EvEmitter v1.0.2
  * Lil' event emitter
  * MIT License
  */
@@ -206,8 +206,8 @@ proto.once = function( eventName, listener ) {
   // set once flag
   // set onceEvents hash
   var onceEvents = this._onceEvents = this._onceEvents || {};
-  // set onceListeners array
-  var onceListeners = onceEvents[ eventName ] = onceEvents[ eventName ] || [];
+  // set onceListeners object
+  var onceListeners = onceEvents[ eventName ] = onceEvents[ eventName ] || {};
   // set flag
   onceListeners[ listener ] = true;
 
@@ -485,7 +485,7 @@ return getSize;
   // universal module definition
   if ( typeof define == 'function' && define.amd ) {
     // AMD
-    define( 'matches-selector/matches-selector',factory );
+    define( 'desandro-matches-selector/matches-selector',factory );
   } else if ( typeof module == 'object' && module.exports ) {
     // CommonJS
     module.exports = factory();
@@ -526,21 +526,20 @@ return getSize;
 }));
 
 /**
- * Fizzy UI utils v2.0.0
+ * Fizzy UI utils v2.0.1
  * MIT license
  */
 
 /*jshint browser: true, undef: true, unused: true, strict: true */
 
 ( function( window, factory ) {
-  /*global define: false, module: false, require: false */
-  'use strict';
   // universal module definition
+  /*jshint strict: false */ /*globals define, module, require */
 
   if ( typeof define == 'function' && define.amd ) {
     // AMD
     define( 'fizzy-ui-utils/utils',[
-      'matches-selector/matches-selector'
+      'desandro-matches-selector/matches-selector'
     ], function( matchesSelector ) {
       return factory( window, matchesSelector );
     });
@@ -775,14 +774,11 @@ return utils;
         'ev-emitter/ev-emitter',
         'get-size/get-size'
       ],
-      function( EvEmitter, getSize ) {
-        return factory( window, EvEmitter, getSize );
-      }
+      factory
     );
   } else if ( typeof module == 'object' && module.exports ) {
     // CommonJS - Browserify, Webpack
     module.exports = factory(
-      window,
       require('ev-emitter'),
       require('get-size')
     );
@@ -790,13 +786,12 @@ return utils;
     // browser global
     window.Outlayer = {};
     window.Outlayer.Item = factory(
-      window,
       window.EvEmitter,
       window.getSize
     );
   }
 
-}( window, function factory( window, EvEmitter, getSize ) {
+}( window, function factory( EvEmitter, getSize ) {
 'use strict';
 
 // ----- helpers ----- //
@@ -824,13 +819,13 @@ var transitionEndEvent = {
   transition: 'transitionend'
 }[ transitionProperty ];
 
-// cache all vendor properties
-var vendorProperties = [
-  transformProperty,
-  transitionProperty,
-  transitionProperty + 'Duration',
-  transitionProperty + 'Property'
-];
+// cache all vendor properties that could have vendor prefix
+var vendorProperties = {
+  transform: transformProperty,
+  transition: transitionProperty,
+  transitionDuration: transitionProperty + 'Duration',
+  transitionProperty: transitionProperty + 'Property'
+};
 
 // -------------------------- Item -------------------------- //
 
@@ -1044,7 +1039,7 @@ proto._nonTransition = function( args ) {
  *   @param {Boolean} isCleaning - removes transition styles after transition
  *   @param {Function} onTransitionEnd - callback
  */
-proto._transition = function( args ) {
+proto.transition = function( args ) {
   // redirect to nonTransition if no transition duration
   if ( !parseFloat( this.layout.options.transitionDuration ) ) {
     this._nonTransition( args );
@@ -1090,8 +1085,7 @@ function toDashedAll( str ) {
   });
 }
 
-var transitionProps = 'opacity,' +
-  toDashedAll( vendorProperties.transform || 'transform' );
+var transitionProps = 'opacity,' + toDashedAll( transformProperty );
 
 proto.enableTransition = function(/* style */) {
   // HACK changing transitionProperty during a transition
@@ -1117,8 +1111,6 @@ proto.enableTransition = function(/* style */) {
   // listen for transition end event
   this.element.addEventListener( transitionEndEvent, this, false );
 };
-
-proto.transition = Item.prototype[ transitionProperty ? '_transition' : '_nonTransition' ];
 
 // ----- events ----- //
 
@@ -1311,7 +1303,7 @@ return Item;
 }));
 
 /*!
- * Outlayer v2.0.0
+ * Outlayer v2.0.1
  * the brains and guts of a layout library
  * MIT license
  */
@@ -2392,13 +2384,15 @@ return Outlayer;
 
   Masonry.prototype._getContainerFitWidth = function() {
     var unusedCols = 0;
-    // count unused columns
-    var i = this.cols;
-    while ( --i ) {
-      if ( this.colYs[i] !== 0 ) {
-        break;
+    if ( !this._getOption('fitUnusedColumns') ) {
+      // count unused columns
+      var i = this.cols;
+      while ( --i ) {
+        if ( this.colYs[i] !== 0 ) {
+          break;
+        }
+        unusedCols++;
       }
-      unusedCols++;
     }
     // fit container to columns that have been used
     return ( this.cols - unusedCols ) * this.columnWidth - this.gutter;
