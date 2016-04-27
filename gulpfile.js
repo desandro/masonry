@@ -100,6 +100,8 @@ gulp.task( 'uglify', [ 'requirejs' ], function() {
 // set version in source files
 
 var minimist = require('minimist');
+var gutil = require('gulp-util');
+var chalk = require('chalk');
 
 // use gulp version -t 1.2.3
 gulp.task( 'version', function() {
@@ -120,7 +122,7 @@ gulp.task( 'version', function() {
     .pipe( gulp.dest('.') );
   // replace CDN links in README
   var minorVersion = version.match( /^\d\.\d+/ )[0];
-  gulp.src('README.mdown')
+  gulp.src('README.md')
     .pipe( replace( /masonry\-layout@\d\.\d+/g, 'masonry-layout@' + minorVersion ))
     .pipe( gulp.dest('.') );
 });

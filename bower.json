@@ -3,8 +3,8 @@
   "description": "Cascading grid layout library",
   "main": "masonry.js",
   "dependencies": {
-    "get-size": "~2.0.2",
-    "outlayer": "~2.0.0"
+    "get-size": "^2.0.2",
+    "outlayer": "^2.1.0"
   },
   "devDependencies": {
     "jquery-bridget": "~2.0.0",

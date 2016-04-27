@@ -18,9 +18,9 @@ See [masonry.desandro.com](http://masonry.desandro.com) for complete docs and de
 Link directly to Masonry files on [npmcdn](https://npmcdn.com/).
 
 ``` html
-<script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.js"></script>
+<script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.js"></script>
 <!-- or -->
-<script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
+<script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
 ```
 
 ### Package managers
