@@ -56,6 +56,7 @@
     }
 
     this.maxY = 0;
+    this.horizontalColIndex = 0;
   };
 
   proto.measureColumns = function() {
@@ -101,33 +102,42 @@
     // round if off by 1 pixel, otherwise use ceil
     var colSpan = Math[ mathMethod ]( item.size.outerWidth / this.columnWidth );
     colSpan = Math.min( colSpan, this.cols );
-
-    var colGroup = this._getColGroup( colSpan );
-    // get the minimum Y value from the columns
-    var minimumY = Math.min.apply( Math, colGroup );
-    var shortColIndex = colGroup.indexOf( minimumY );
-
+    // use horizontal or top column position
+    var colPosMethod = this.options.horizontalOrder ?
+      '_getHorizontalColPosition' : '_getTopColPosition';
+    var colPosition = this[ colPosMethod ]( colSpan );
     // position the brick
     var position = {
-      x: this.columnWidth * shortColIndex,
-      y: minimumY
+      x: this.columnWidth * colPosition.col,
+      y: colPosition.y
     };
-
     // apply setHeight to necessary columns
-    var setHeight = minimumY + item.size.outerHeight;
-    var setSpan = this.cols + 1 - colGroup.length;
+    var setHeight = colPosition.y + item.size.outerHeight;
+    var setSpan = this.cols + 1 - colPosition.length;
     for ( var i = 0; i < setSpan; i++ ) {
-      this.colYs[ shortColIndex + i ] = setHeight;
+      this.colYs[ colPosition.col + i ] = setHeight;
     }
 
     return position;
+  };
+
+  proto._getTopColPosition = function( colSpan ) {
+    var colGroup = this._getTopColGroup( colSpan );
+    // get the minimum Y value from the columns
+    var minimumY = Math.min.apply( Math, colGroup );
+
+    return {
+      col: colGroup.indexOf( minimumY ),
+      y: minimumY,
+      length: colGroup.length,
+    };
   };
 
   /**
    * @param {Number} colSpan - number of columns the element spans
    * @returns {Array} colGroup
    */
-  proto._getColGroup = function( colSpan ) {
+  proto._getTopColGroup = function( colSpan ) {
     if ( colSpan < 2 ) {
       // if brick spans only one column, use all the column Ys
       return this.colYs;
@@ -144,6 +154,18 @@
       colGroup[i] = Math.max.apply( Math, groupColYs );
     }
     return colGroup;
+  };
+
+  proto._getHorizontalColPosition = function( colSpan ) {
+    var col = this.horizontalColIndex % this.cols;
+
+    this.horizontalColIndex++;
+
+    return {
+      col: col,
+      y: this.colYs[ col ],
+      length: 1,
+    };
   };
 
   proto._manageStamp = function( stamp ) {
