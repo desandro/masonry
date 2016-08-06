@@ -113,9 +113,9 @@
     };
     // apply setHeight to necessary columns
     var setHeight = colPosition.y + item.size.outerHeight;
-    var setSpan = this.cols + 1 - colPosition.length;
-    for ( var i = 0; i < setSpan; i++ ) {
-      this.colYs[ colPosition.col + i ] = setHeight;
+    var setMax = colSpan + colPosition.col;
+    for ( var i = colPosition.col; i < setMax; i++ ) {
+      this.colYs[i] = setHeight;
     }
 
     return position;
@@ -129,7 +129,6 @@
     return {
       col: colGroup.indexOf( minimumY ),
       y: minimumY,
-      length: colGroup.length,
     };
   };
 
@@ -158,13 +157,15 @@
 
   proto._getHorizontalColPosition = function( colSpan ) {
     var col = this.horizontalColIndex % this.cols;
+    var isOver = colSpan > 2 && col + colSpan > this.cols;
+    // shift to next row if item can't fit on current row
+    col = isOver ? 0 : col;
 
-    this.horizontalColIndex++;
+    this.horizontalColIndex = isOver ? 0 : this.horizontalColIndex + colSpan;
 
     return {
       col: col,
       y: this.colYs[ col ],
-      length: 1,
     };
   };
 
