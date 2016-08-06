@@ -105,7 +105,7 @@
     // use horizontal or top column position
     var colPosMethod = this.options.horizontalOrder ?
       '_getHorizontalColPosition' : '_getTopColPosition';
-    var colPosition = this[ colPosMethod ]( colSpan );
+    var colPosition = this[ colPosMethod ]( colSpan, item );
     // position the brick
     var position = {
       x: this.columnWidth * colPosition.col,
@@ -163,13 +163,14 @@
   };
 
   // get column position based on horizontal index. #873
-  proto._getHorizontalColPosition = function( colSpan ) {
+  proto._getHorizontalColPosition = function( colSpan, item ) {
     var col = this.horizontalColIndex % this.cols;
     var isOver = colSpan > 1 && col + colSpan > this.cols;
     // shift to next row if item can't fit on current row
     col = isOver ? 0 : col;
-
-    this.horizontalColIndex = col + colSpan;
+    // don't let zero-size items take up space
+    var hasSize = item.size.outerWidth && item.size.outerHeight;
+    this.horizontalColIndex = hasSize ? col + colSpan : this.horizontalColIndex;
 
     return {
       col: col,
