@@ -147,33 +147,33 @@
     var groupCount = this.cols + 1 - colSpan;
     // for each group potential horizontal position
     for ( var i = 0; i < groupCount; i++ ) {
-      // make an array of colY values for that one group
-      var groupColYs = this.colYs.slice( i, i + colSpan );
-      // and get the max value of the array
-      colGroup[i] = Math.max.apply( Math, groupColYs );
+      colGroup[i] = this._getColGroupY( i, colSpan );
     }
     return colGroup;
   };
 
+  proto._getColGroupY = function( col, colSpan ) {
+    if ( colSpan < 2 ) {
+      return this.colYs[ col ];
+    }
+    // make an array of colY values for that one group
+    var groupColYs = this.colYs.slice( col, col + colSpan );
+    // and get the max value of the array
+    return Math.max.apply( Math, groupColYs );
+  };
+
+  // get column position based on horizontal index. #873
   proto._getHorizontalColPosition = function( colSpan ) {
     var col = this.horizontalColIndex % this.cols;
     var isOver = colSpan > 1 && col + colSpan > this.cols;
     // shift to next row if item can't fit on current row
     col = isOver ? 0 : col;
 
-    var y;
-    if ( colSpan < 2 ) {
-      y = this.colYs[ col ];
-    } else {
-      var groupColYs = this.colYs.slice( col, col + colSpan );
-      y = Math.max.apply( Math, groupColYs );
-    }
-
     this.horizontalColIndex = col + colSpan;
 
     return {
       col: col,
-      y: y,
+      y: this._getColGroupY( col, colSpan ),
     };
   };
 
