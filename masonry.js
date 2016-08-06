@@ -157,15 +157,18 @@
 
   proto._getHorizontalColPosition = function( colSpan ) {
     var col = this.horizontalColIndex % this.cols;
-    var isOver = colSpan > 2 && col + colSpan > this.cols;
+    var isOver = colSpan > 1 && col + colSpan > this.cols;
     // shift to next row if item can't fit on current row
     col = isOver ? 0 : col;
+
+    var groupColYs = this.colYs.slice( col, col + colSpan );
+    var y = Math.max.apply( Math, groupColYs );
 
     this.horizontalColIndex = isOver ? 0 : this.horizontalColIndex + colSpan;
 
     return {
       col: col,
-      y: this.colYs[ col ],
+      y: y,
     };
   };
 
