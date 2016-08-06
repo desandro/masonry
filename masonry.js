@@ -161,10 +161,15 @@
     // shift to next row if item can't fit on current row
     col = isOver ? 0 : col;
 
-    var groupColYs = this.colYs.slice( col, col + colSpan );
-    var y = Math.max.apply( Math, groupColYs );
+    var y;
+    if ( colSpan < 2 ) {
+      y = this.colYs[ col ];
+    } else {
+      var groupColYs = this.colYs.slice( col, col + colSpan );
+      y = Math.max.apply( Math, groupColYs );
+    }
 
-    this.horizontalColIndex = isOver ? 0 : this.horizontalColIndex + colSpan;
+    this.horizontalColIndex = col + colSpan;
 
     return {
       col: col,
