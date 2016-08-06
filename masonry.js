@@ -41,7 +41,9 @@
   // isFitWidth -> fitWidth
   Masonry.compatOptions.fitWidth = 'isFitWidth';
 
-  Masonry.prototype._resetLayout = function() {
+  var proto = Masonry.prototype;
+
+  proto._resetLayout = function() {
     this.getSize();
     this._getMeasurement( 'columnWidth', 'outerWidth' );
     this._getMeasurement( 'gutter', 'outerWidth' );
@@ -56,7 +58,7 @@
     this.maxY = 0;
   };
 
-  Masonry.prototype.measureColumns = function() {
+  proto.measureColumns = function() {
     this.getContainerWidth();
     // if columnWidth is 0, default to outerWidth of first item
     if ( !this.columnWidth ) {
@@ -81,7 +83,7 @@
     this.cols = Math.max( cols, 1 );
   };
 
-  Masonry.prototype.getContainerWidth = function() {
+  proto.getContainerWidth = function() {
     // container is parent if fit width
     var isFitWidth = this._getOption('fitWidth');
     var container = isFitWidth ? this.element.parentNode : this.element;
@@ -91,7 +93,7 @@
     this.containerWidth = size && size.innerWidth;
   };
 
-  Masonry.prototype._getItemLayoutPosition = function( item ) {
+  proto._getItemLayoutPosition = function( item ) {
     item.getSize();
     // how many columns does this brick span
     var remainder = item.size.outerWidth % this.columnWidth;
@@ -125,7 +127,7 @@
    * @param {Number} colSpan - number of columns the element spans
    * @returns {Array} colGroup
    */
-  Masonry.prototype._getColGroup = function( colSpan ) {
+  proto._getColGroup = function( colSpan ) {
     if ( colSpan < 2 ) {
       // if brick spans only one column, use all the column Ys
       return this.colYs;
@@ -144,7 +146,7 @@
     return colGroup;
   };
 
-  Masonry.prototype._manageStamp = function( stamp ) {
+  proto._manageStamp = function( stamp ) {
     var stampSize = getSize( stamp );
     var offset = this._getElementOffset( stamp );
     // get the columns that this stamp affects
@@ -167,7 +169,7 @@
     }
   };
 
-  Masonry.prototype._getContainerSize = function() {
+  proto._getContainerSize = function() {
     this.maxY = Math.max.apply( Math, this.colYs );
     var size = {
       height: this.maxY
@@ -180,7 +182,7 @@
     return size;
   };
 
-  Masonry.prototype._getContainerFitWidth = function() {
+  proto._getContainerFitWidth = function() {
     var unusedCols = 0;
     // count unused columns
     var i = this.cols;
@@ -194,7 +196,7 @@
     return ( this.cols - unusedCols ) * this.columnWidth - this.gutter;
   };
 
-  Masonry.prototype.needsResizeLayout = function() {
+  proto.needsResizeLayout = function() {
     var previousWidth = this.containerWidth;
     this.getContainerWidth();
     return previousWidth != this.containerWidth;
