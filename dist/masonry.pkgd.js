@@ -1,5 +1,5 @@
 /*!
- * Masonry PACKAGED v4.1.0
+ * Masonry PACKAGED v4.1.1
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
@@ -8,20 +8,19 @@
 
 /**
  * Bridget makes jQuery widgets
- * v2.0.0
+ * v2.0.1
  * MIT license
  */
 
 /* jshint browser: true, strict: true, undef: true, unused: true */
 
 ( function( window, factory ) {
-  'use strict';
-  /* globals define: false, module: false, require: false */
-
+  // universal module definition
+  /*jshint strict: false */ /* globals define, module, require */
   if ( typeof define == 'function' && define.amd ) {
     // AMD
     define( 'jquery-bridget/jquery-bridget',[ 'jquery' ], function( jQuery ) {
-      factory( window, jQuery );
+      return factory( window, jQuery );
     });
   } else if ( typeof module == 'object' && module.exports ) {
     // CommonJS
@@ -152,7 +151,7 @@ return jQueryBridget;
 }));
 
 /**
- * EvEmitter v1.0.2
+ * EvEmitter v1.0.3
  * Lil' event emitter
  * MIT License
  */
@@ -161,7 +160,7 @@ return jQueryBridget;
 
 ( function( global, factory ) {
   // universal module definition
-  /* jshint strict: false */ /* globals define, module */
+  /* jshint strict: false */ /* globals define, module, window */
   if ( typeof define == 'function' && define.amd ) {
     // AMD - RequireJS
     define( 'ev-emitter/ev-emitter',factory );
@@ -173,7 +172,7 @@ return jQueryBridget;
     global.EvEmitter = factory();
   }
 
-}( this, function() {
+}( typeof window != 'undefined' ? window : this, function() {
 
 
 
@@ -526,7 +525,7 @@ return getSize;
 }));
 
 /**
- * Fizzy UI utils v2.0.1
+ * Fizzy UI utils v2.0.2
  * MIT license
  */
 
@@ -697,7 +696,8 @@ utils.debounceMethod = function( _class, methodName, threshold ) {
 // ----- docReady ----- //
 
 utils.docReady = function( callback ) {
-  if ( document.readyState == 'complete' ) {
+  var readyState = document.readyState;
+  if ( readyState == 'complete' || readyState == 'interactive' ) {
     callback();
   } else {
     document.addEventListener( 'DOMContentLoaded', callback );
@@ -2256,7 +2256,7 @@ return Outlayer;
 }));
 
 /*!
- * Masonry v4.1.0
+ * Masonry v4.1.1
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
