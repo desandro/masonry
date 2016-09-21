@@ -60,7 +60,7 @@
     this.getContainerWidth();
     // if columnWidth is 0, default to outerWidth of first item
     if ( !this.columnWidth ) {
-      var firstItem = this.items[0];
+      var firstItem = this.items.find(function(item) {return !item.isIgnored;});
       var firstItemElem = firstItem && firstItem.element;
       // columnWidth fall back to item of first element
       this.columnWidth = firstItemElem && getSize( firstItemElem ).outerWidth ||
