@@ -37,7 +37,7 @@
   }
 
 }( window, function factory( window, jQuery ) {
-'use strict';
+
 
 // ----- utils ----- //
 
@@ -286,7 +286,7 @@ return EvEmitter;
   }
 
 })( window, function factory() {
-'use strict';
+
 
 // -------------------------- helpers -------------------------- //
 
@@ -525,7 +525,7 @@ return getSize;
 }));
 
 /**
- * Fizzy UI utils v2.0.2
+ * Fizzy UI utils v2.0.3
  * MIT license
  */
 
@@ -698,7 +698,8 @@ utils.debounceMethod = function( _class, methodName, threshold ) {
 utils.docReady = function( callback ) {
   var readyState = document.readyState;
   if ( readyState == 'complete' || readyState == 'interactive' ) {
-    callback();
+    // do async to allow for other scripts to run. metafizzy/flickity#441
+    setTimeout( callback );
   } else {
     document.addEventListener( 'DOMContentLoaded', callback );
   }
@@ -746,7 +747,7 @@ utils.htmlInit = function( WidgetClass, namespace ) {
       }
       // initialize
       var instance = new WidgetClass( elem, options );
-      // make available via $().data('layoutname')
+      // make available via $().data('namespace')
       if ( jQuery ) {
         jQuery.data( elem, namespace, instance );
       }
@@ -792,7 +793,7 @@ return utils;
   }
 
 }( window, function factory( EvEmitter, getSize ) {
-'use strict';
+
 
 // ----- helpers ----- //
 
@@ -1358,7 +1359,7 @@ return Item;
   }
 
 }( window, function factory( window, EvEmitter, getSize, utils, Item ) {
-'use strict';
+
 
 // ----- vars ----- //
 
@@ -2360,12 +2361,27 @@ return Outlayer;
     var colGroup = this._getColGroup( colSpan );
     // get the minimum Y value from the columns
     var minimumY = Math.min.apply( Math, colGroup );
-    var shortColIndex = colGroup.indexOf( minimumY );
+    // get column error margin
+    var maxColumnHeightDifference = this._getOption('maxColumnHeightDifference');
+
+    // find correct column
+    var shortColIndex;
+    if(maxColumnHeightDifference && maxColumnHeightDifference > 0) {
+      // find first column within margin
+      for(var c = 0, n = colGroup.length; c < n; c++) {
+        if(colGroup[c] <= minimumY + maxColumnHeightDifference) {
+          shortColIndex = c;
+          break;
+        }
+      }
+    } else {
+      shortColIndex = colGroup.indexOf( minimumY );
+    }
 
     // position the brick
     var position = {
       x: this.columnWidth * shortColIndex,
-      y: minimumY
+      y: colGroup[shortColIndex]
     };
 
     // apply setHeight to necessary columns
