@@ -391,7 +391,12 @@ function setup() {
   body.appendChild( div );
   var style = getStyle( div );
 
-  getSize.isBoxSizeOuter = isBoxSizeOuter = getStyleSize( style.width ) == 200;
+  //style.width doesn't return 200 on Chrome using a 67% zoom level, but 199.992, which caused the bug. On all other zoom levels it return 200 as expected.
+  //Rounding it to the 1st decimal solves the bug, but maybe there is a cleaner version. Im not sure why this happens
+  var widthStyleSize=getStyleSize( style.width );
+  widthStyleSize=Math.round(widthStyleSize*10)/10; //199.992 -> 200
+  
+  getSize.isBoxSizeOuter = isBoxSizeOuter = widthStyleSize == 200;
   body.removeChild( div );
 
 }
