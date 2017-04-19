@@ -45,5 +45,9 @@
   "bugs": {
     "url": "https://github.com/desandro/masonry/issues"
   },
-  "homepage": "http://masonry.desandro.com"
+  "homepage": "http://masonry.desandro.com",
+  "files": [
+    "dist",
+    "masonry.js"
+  ]
 }
