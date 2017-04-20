@@ -14,8 +14,9 @@
   .grid {
     background: #DDD;
     max-width: 900px;
+    margin-bottom: 60px;
   }
-  
+
   .grid-item {
     float: left;
     width: 150px;
@@ -26,7 +27,7 @@
     background: #19F;
     counter-increment: grid-item;
   }
-  
+
   .grid-item:before {
     content: counter(grid-item);
     padding: 10px;
@@ -39,6 +40,19 @@
   .grid-item--height3 { height: 250px; }
 
   .grid-item.is-zero { height: 0; border: none; }
+
+  .stamp {
+    border: 1px solid #333;
+    background: #E21;
+    position: absolute;
+  }
+
+  .stamp--1 {
+    width: 300px;
+    height: 200px;
+    right: 0;
+    top: 0;
+  }
   </style>
 
 </head>
@@ -46,7 +60,7 @@
 
   <h1>horizontal order</h1>
 
-<div class="grid">
+<div class="grid grid--1">
   <div class="grid-item"></div>
   <div class="grid-item grid-item--height3"></div>
   <div class="grid-item grid-item--height2"></div>
@@ -71,6 +85,42 @@
   <div class="grid-item"></div>
 </div>
 
+<div class="grid grid--2">
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height3"></div>
+  <div class="grid-item grid-item--height2"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height2"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height3"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height3"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height3"></div>
+  <div class="grid-item grid-item--height2"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height2"></div>
+</div>
+
+<div class="grid grid--3">
+  <div class="stamp stamp--1"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height3"></div>
+  <div class="grid-item grid-item--height2"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height2"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height3"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height2"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height3"></div>
+  <div class="grid-item"></div>
+</div>
+
 <script src="../bower_components/ev-emitter/ev-emitter.js"></script>
 <script src="../bower_components/get-size/get-size.js"></script>
 <script src="../bower_components/desandro-matches-selector/matches-selector.js"></script>
@@ -81,10 +131,21 @@
 <script src="../masonry.js"></script>
 
 <script>
-new Masonry( '.grid', {
+new Masonry( '.grid--1', {
   itemSelector: '.grid-item',
   horizontalOrder: true,
 });
+
+new Masonry( '.grid--2', {
+  itemSelector: '.grid-item',
+  horizontalOrder: true,
+});
+
+new Masonry( '.grid--3', {
+  itemSelector: '.grid-item',
+  horizontalOrder: true,
+  stamp: '.stamp',
+})
 </script>
 
 </body>
