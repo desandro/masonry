@@ -120,11 +120,6 @@ gulp.task( 'version', function() {
   gulp.src( [ 'package.json' ] )
     .pipe( replace( /"version": "\d\.\d+\.\d+"/, '"version": "' + version + '"' ) )
     .pipe( gulp.dest('.') );
-  // replace CDN links in README
-  var minorVersion = version.match( /^\d\.\d+/ )[0];
-  gulp.src('README.md')
-    .pipe( replace( /masonry\-layout@\d\.\d+/g, 'masonry-layout@' + minorVersion ))
-    .pipe( gulp.dest('.') );
 });
 
 // ----- default ----- //
