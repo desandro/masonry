@@ -4,14 +4,14 @@ _Cascading grid layout library_
 
 Masonry works by placing elements in optimal position based on available vertical space, sort of like a mason fitting stones in a wall. You’ve probably seen it in use all over the Internet.
 
-See [masonry.desandro.com](http://masonry.desandro.com) for complete docs and demos.
+See [masonry.desandro.com](https://masonry.desandro.com) for complete docs and demos.
 
 ## Install
 
 ### Download
 
-+ [masonry.pkgd.js](https://github.com/desandro/masonry/raw/master/dist/masonry.pkgd.js) un-minified, or
-+ [masonry.pkgd.min.js](https://github.com/desandro/masonry/raw/master/dist/masonry.pkgd.min.js) minified
++ [masonry.pkgd.js](https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js) un-minified, or
++ [masonry.pkgd.min.js](https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js) minified
 
 ### CDN
 
@@ -28,6 +28,10 @@ Link directly to Masonry files on [unpkg](https://unpkg.com/).
 Bower: `bower install masonry --save`
 
 [npm](https://www.npmjs.com/package/masonry-layout): `npm install masonry-layout --save`
+
+## Support Masonry development
+
+Masonry has been actively maintained and improved upon for 8 years, with 900 GitHub issues closed. Please consider supporting its development by [purchasing a license for one of Metafizzy's commercial libraries](https://metafizzy.co).
 
 ## Initialize
 

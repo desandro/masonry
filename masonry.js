@@ -1,7 +1,7 @@
 /*!
  * Masonry v4.2.0
  * Cascading grid layout library
- * http://masonry.desandro.com
+ * https://masonry.desandro.com
  * MIT License
  * by David DeSandro
  */
