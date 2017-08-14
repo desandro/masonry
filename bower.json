@@ -1,5 +1,5 @@
 {
-  "name": "masonry",
+  "name": "masonry-layout",
   "description": "Cascading grid layout library",
   "main": "masonry.js",
   "dependencies": {
@@ -22,7 +22,7 @@
     "package.json",
     "composer.json"
   ],
-  "homepage": "http://masonry.desandro.com",
+  "homepage": "https://masonry.desandro.com",
   "authors": [
     "David DeSandro"
   ],

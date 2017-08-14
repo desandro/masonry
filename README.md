@@ -25,9 +25,9 @@ Link directly to Masonry files on [unpkg](https://unpkg.com/).
 
 ### Package managers
 
-Bower: `bower install masonry --save`
-
 [npm](https://www.npmjs.com/package/masonry-layout): `npm install masonry-layout --save`
+
+Bower: `bower install masonry-layout --save`
 
 ## Support Masonry development
 

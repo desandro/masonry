@@ -3,7 +3,7 @@
   "description": "Cascading grid layout library",
   "type": "component",
   "keywords": ["javascript", "library", "grid", "browser", "dom", "layout", "outlayer"],
-  "homepage": "http://masonry.desandro.com",
+  "homepage": "https://masonry.desandro.com",
   "license": "MIT",
   "authors": [
     {
