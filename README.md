@@ -15,7 +15,15 @@ See [masonry.desandro.com](https://masonry.desandro.com) for complete docs and d
 
 ### CDN
 
-Link directly to Masonry files on [unpkg](https://unpkg.com/).
+Link directly to Masonry files on [jsDelivr](https://www.jsdelivr.com/package/npm/masonry-layout):
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4/dist/masonry.pkgd.js"></script>
+<!-- or -->
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+```
+
+Or on [unpkg](https://unpkg.com/):
 
 ``` html
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
