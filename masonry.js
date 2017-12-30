@@ -1,5 +1,5 @@
 /*!
- * Masonry v4.2.0
+ * Masonry v4.2.1
  * Cascading grid layout library
  * https://masonry.desandro.com
  * MIT License

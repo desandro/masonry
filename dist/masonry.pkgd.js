@@ -1,7 +1,7 @@
 /*!
- * Masonry PACKAGED v4.2.0
+ * Masonry PACKAGED v4.2.1
  * Cascading grid layout library
- * http://masonry.desandro.com
+ * https://masonry.desandro.com
  * MIT License
  * by David DeSandro
  */
@@ -151,7 +151,7 @@ return jQueryBridget;
 }));
 
 /**
- * EvEmitter v1.0.3
+ * EvEmitter v1.1.0
  * Lil' event emitter
  * MIT License
  */
@@ -231,13 +231,14 @@ proto.emitEvent = function( eventName, args ) {
   if ( !listeners || !listeners.length ) {
     return;
   }
-  var i = 0;
-  var listener = listeners[i];
+  // copy over to avoid interference if .off() in listener
+  listeners = listeners.slice(0);
   args = args || [];
   // once stuff
   var onceListeners = this._onceEvents && this._onceEvents[ eventName ];
 
-  while ( listener ) {
+  for ( var i=0; i < listeners.length; i++ ) {
+    var listener = listeners[i]
     var isOnce = onceListeners && onceListeners[ listener ];
     if ( isOnce ) {
       // remove listener
@@ -248,12 +249,14 @@ proto.emitEvent = function( eventName, args ) {
     }
     // trigger listener
     listener.apply( this, args );
-    // get next listener
-    i += isOnce ? 0 : 1;
-    listener = listeners[i];
   }
 
   return this;
+};
+
+proto.allOff = function() {
+  delete this._events;
+  delete this._onceEvents;
 };
 
 return EvEmitter;
@@ -525,7 +528,7 @@ return getSize;
 }));
 
 /**
- * Fizzy UI utils v2.0.4
+ * Fizzy UI utils v2.0.5
  * MIT license
  */
 
@@ -611,7 +614,7 @@ utils.removeFrom = function( ary, obj ) {
 // ----- getParent ----- //
 
 utils.getParent = function( elem, selector ) {
-  while ( elem != document.body ) {
+  while ( elem.parentNode && elem != document.body ) {
     elem = elem.parentNode;
     if ( matchesSelector( elem, selector ) ) {
       return elem;
@@ -2258,9 +2261,9 @@ return Outlayer;
 }));
 
 /*!
- * Masonry v4.2.0
+ * Masonry v4.2.1
  * Cascading grid layout library
- * http://masonry.desandro.com
+ * https://masonry.desandro.com
  * MIT License
  * by David DeSandro
  */
