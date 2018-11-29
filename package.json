@@ -2,7 +2,7 @@
   "name": "masonry-layout",
   "version": "4.2.2",
   "description": "Cascading grid layout library",
-  "main": "masonry.js",
+  "main": "dist/masonry.pkgd.min.js",
   "dependencies": {
     "get-size": "^2.0.2",
     "outlayer": "^2.1.0"
