@@ -6,7 +6,7 @@
  * by David DeSandro
  */
 
-( function( window, factory ) {
+(typeof window !== 'undefined') && ( function( window, factory ) {
   // universal module definition
   /* jshint strict: false */ /*globals define, module, require */
   if ( typeof define == 'function' && define.amd ) {
