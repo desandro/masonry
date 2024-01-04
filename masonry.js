@@ -6,7 +6,8 @@
  * by David DeSandro
  */
 
-( function( window, factory ) {
+console.log(typeof window);
+(typeof window !== 'undefined' && typeof window !== null) && ( function( window, factory ) {
   // universal module definition
   /* jshint strict: false */ /*globals define, module, require */
   if ( typeof define == 'function' && define.amd ) {
@@ -30,7 +31,7 @@
     );
   }
 
-}( window, function factory( Outlayer, getSize ) {
+}( typeof window !== 'undefined' && window, function factory( Outlayer, getSize ) {
 
 'use strict';
 
